@@ -4,9 +4,7 @@ import . "goa.design/model/dsl"
 
 var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema", func() {
 
-	// ==========================================
-	// 1. SISTEMAS EXTERNOS
-	// ==========================================
+
 	var PasarelaPagos = SoftwareSystem("Pasarela de Pagos Internacionales",
 		"Procesa transferencias internacionales y liquidaciones interbancarias.",
 		func() {
@@ -49,15 +47,13 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 			Tag("externo")
 		})
 
-	// ==========================================
-	// 2. SISTEMA INTERNO Y CONTENEDORES
-	// ==========================================
+
 	var SistemaBancario = SoftwareSystem("Sistema de Banca Digital",
 		"Permite a los clientes gestionar cuentas, tarjetas, transacciones, préstamos e inversiones de forma segura.",
 		func() {
 			Tag("interno")
 
-			// Contenedor 1: Mobile App
+			
 			Container("Aplicación Móvil",
 				"Proporciona acceso a los servicios de banca digital desde dispositivos móviles.",
 				"React Native",
@@ -66,7 +62,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 					Uses("Sistema de Banca Digital/API Backend Principal", "Realiza llamadas a la API", "JSON/HTTPS")
 				})
 
-			// Contenedor 2: Web SPA
+			
 			Container("Single-Page Application (SPA)",
 				"Proporciona la funcionalidad de banca por internet a los clientes vía navegador web.",
 				"React / TypeScript",
@@ -75,7 +71,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 					Uses("Sistema de Banca Digital/API Backend Principal", "Realiza llamadas a la API", "JSON/HTTPS")
 				})
 
-			// Contenedor 3: Portal Backoffice
+			
 			Container("Portal de Atención y Backoffice",
 				"Permite a los agentes atender chats de soporte, gestionar PQRS y procesar reclamaciones.",
 				"React / Admin Template",
@@ -84,7 +80,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 					Uses("Sistema de Banca Digital/API Backend Principal", "Realiza llamadas a la API de administración", "JSON/HTTPS")
 				})
 
-			// Contenedor 5: Base de Datos Relacional
+			
 			var Database = Container("Base de Datos Transaccional",
 				"Almacena la información de usuarios, cuentas, tarjetas, transacciones, créditos y auditoría.",
 				"PostgreSQL / Database Schema",
@@ -92,7 +88,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 					Tag("database")
 				})
 
-			// Contenedor 6: Almacén de Documentos
+			
 			var DocumentStore = Container("Almacén de Documentos",
 				"Almacena los extractos bancarios, comprobantes en PDF y certificados generados.",
 				"Amazon S3 / Object Storage",
@@ -100,7 +96,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 					Tag("database")
 				})
 
-			// Contenedor 4: Backend API
+			
 			Container("API Backend Principal",
 				"Procesa la lógica de negocio bancaria, autenticación, transacciones y orquestación de servicios.",
 				"Go / REST API",
@@ -117,9 +113,6 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 				})
 		})
 
-	// ==========================================
-	// 3. PERSONAS Y SUS RELACIONES
-	// ==========================================
 	Person("Cliente Bancario",
 		"Usuario que accede a los servicios de banca digital para gestionar sus productos financieros.",
 		func() {
@@ -135,9 +128,7 @@ var _ = Design("Sistema de Banca Digital", "Diagrama de Contenedores del Sistema
 			Tag("persona")
 		})
 
-	// ==========================================
-	// 4. VISTAS Y ESTILOS
-	// ==========================================
+	
 	Views(func() {
 		ContainerView(SistemaBancario, "ContainerView", "Diagrama de Contenedores del Sistema de Banca Digital.", func() {
 			AddAll()

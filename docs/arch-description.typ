@@ -404,6 +404,18 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 )
 
 = Contexto y Alcance
+
+#figure(
+  caption: "Diagrama de contexto del sistema",
+  align(
+    center,
+    image(
+      "diagrams/system-context.png",
+      width: 80%,
+    ),
+  ),
+) <fig-system-context>
+
 #instruction[
   Relación entre el sistema y su entorno (personas y otros sistemas). \
   *Contenido:* \
@@ -412,6 +424,18 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Vista de contenedores
+
+#figure(
+  caption: "Diagrama de vista de contenedores",
+  align(
+    center,
+    image(
+      "diagrams/container-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-container-view>
+
 #instruction[
   Describir los contenedores y sus relaciones entre sí. \
   *Contenido:* C4 Container Diagram y explicación del diagrama.

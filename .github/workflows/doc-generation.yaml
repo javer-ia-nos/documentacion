@@ -18,6 +18,7 @@ jobs:
         run: |
           typst compile docs/bitacora.typ --input version="${{ github.ref_name }}"
           typst compile docs/arch-description.typ --input version="${{ github.ref_name }}"
+          typst compile docs/dev.typ --input version="${{ github.ref_name }}"
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
@@ -37,3 +38,4 @@ jobs:
           files: |
             docs/bitacora.pdf
             docs/arch-description.pdf
+            docs/dev.pdf

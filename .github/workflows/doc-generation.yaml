@@ -1,4 +1,5 @@
-name: Build Typst document
+name: Build and Release Documentation
+
 on: [push, workflow_dispatch]
 
 permissions:
@@ -11,14 +12,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Convert Drawio diagrams to PNG
+        uses: rlespinasse/drawio-export-action@v2
+        with:
+          action-mode: all
+          path: docs/diagrams/
+          output: ""
+          format: png
+          transparent: false
+          remove-page-suffix: true
+
       - name: Setup Typst
         uses: typst-community/setup-typst@v3
 
+      - name: Install Local Fonts
+        run: |
+          mkdir -p ~/.local/share/fonts
+          cp .github/fonts/*.ttf ~/.local/share/fonts/
+          fc-cache -f -v
+
+      - name: Verify Font is Detected
+        run: "fc-list : family | grep -i 'Times New Roman'"
+
       - name: Compile Typst documents
         run: |
-          typst compile docs/bitacora.typ --input version="${{ github.ref_name }}"
-          typst compile docs/arch-description.typ --input version="${{ github.ref_name }}"
-          typst compile docs/dev.typ --input version="${{ github.ref_name }}"
+          typst compile --font-path ~/.local/share/fonts docs/bitacora.typ --input version="${{ github.ref_name }}"
+          typst compile --font-path ~/.local/share/fonts docs/arch-description.typ --input version="${{ github.ref_name }}"
+          typst compile --font-path ~/.local/share/fonts docs/dev.typ --input version="${{ github.ref_name }}"
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
@@ -26,15 +46,12 @@ jobs:
           name: PDF
           path: docs/*.pdf
 
-      - name: Get current date
-        id: date
-        run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
-
       - name: Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
           name: "${{ github.ref_name }}"
+          tag_name: "${{ github.ref_name }}"
           files: |
             docs/bitacora.pdf
             docs/arch-description.pdf

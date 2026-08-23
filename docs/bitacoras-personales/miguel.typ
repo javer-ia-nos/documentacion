@@ -12,7 +12,12 @@
   [Documentación],
 
   [2],
-  [Se migraron manualmente los contenedores: #link(git_base_url + "/diagrams/container-view.drawio", "container-view.drawio") y #link(git_base_url + "/diagrams/system-view.drawio", "system-view.drawio") desde goa model a drawio debido a problemas de compatibilidad.],
+  [Se migraron manualmente los contenedores: #link(git_base_url + "/docs/diagrams/container-view.drawio", "container-view.drawio") y #link(git_base_url + "/docs/diagrams/system-view.drawio", "system-view.drawio") desde goa model a drawio debido a problemas de compatibilidad.],
+  [2026-08-23],
+  [Diagramas],
+
+  [3],
+  [Se añadio al workflow en github actions para el compilado de las imagenes finales de entrega, #link(git_base_url + "/.github/workflows/doc-generation.yaml", "doc-generation.yaml").],
   [2026-08-23],
   [Diagramas],
 )

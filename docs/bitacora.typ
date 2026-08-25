@@ -60,6 +60,17 @@
     - Se inicio con la bitácora formal del grupo y de cada participante.
   ],
   [Todos],
+
+  [3],
+  [Trabajo en Clase],
+  [25-08-2026],
+  [
+    - Se definen dos lideres de arquitectura, Miguel para microservicios y Salomón para monolito modular para intentar convencer a los demás integrantes del equipo por que su arquitectura es mejor.
+    - Se revisan los diagramas en conjunto con el profesor y se toman sus comentarios para posterior mejora.
+    - Correción de typos en diagrama.
+    - Se define el horario de reuniones para los lunes a las 8pm.
+  ],
+  [Todos],
 )
 
 = Bitacoras personales

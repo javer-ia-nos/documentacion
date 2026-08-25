@@ -24,3 +24,7 @@ Diagramas realizados con draw.io, más información en (diagramas)[./docs/diagra
 ## Bitacoras personales
 
 Cada integrante del equipo contiene su propio archivo en el cual debe anotar sus contribuciones al proyecto, más información en (bitacoras personales)[./docs/bitacoras-personales].
+
+## Versionado / Tag versión
+
+Cualquier integrante puede aumentar una versión v0.0.X, es decir, solo modificar el último numero. _POR FAVOR_ mantener el número en orden, sin saltarse numeros y este numero debería ser igual en cada repo del proyecto. Para versiones v0.x.0, se deberían generar solo mediante consenso de todo el grupo. Para versiones vx.0.0 se debería generar por petición del profesor o en entregas importantes del proyecto.

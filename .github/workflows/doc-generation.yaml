@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Convert Drawio diagrams to PNG
         uses: rlespinasse/drawio-export-action@v2
@@ -21,6 +23,8 @@ jobs:
           format: png
           transparent: false
           remove-page-suffix: true
+          quality: 100
+          scale: 2
 
       - name: Setup Typst
         uses: typst-community/setup-typst@v3

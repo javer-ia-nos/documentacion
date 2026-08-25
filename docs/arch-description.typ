@@ -442,6 +442,18 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Vista de componentes
+
+#figure(
+  caption: "Diagrama de vista de componentes",
+  align(
+    center,
+    image(
+      "diagrams/component-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-container-view>
+
 #instruction[
   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \
   *Contenido:* C4 Component Diagram (al menos uno por cada contenedor de la sección anterior) y explicación de cada diagrama.

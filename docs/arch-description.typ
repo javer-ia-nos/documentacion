@@ -452,7 +452,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
       width: 80%,
     ),
   ),
-) <fig-container-view>
+) <fig-component-view>
 
 #instruction[
   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \

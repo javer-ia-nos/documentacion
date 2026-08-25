@@ -20,4 +20,9 @@
   [Se añadio al workflow en github actions para el compilado de las imagenes finales de entrega, #link(git_base_url + "/.github/workflows/doc-generation.yaml", "doc-generation.yaml").],
   [2026-08-23],
   [Diagramas],
+
+  [4],
+  [Se agrego duocumentación interna para el equipo en los readme del repo y se mejoró la calidad de las imagenes generadas por el workflow e incrustadas en el documento final.],
+  [2026-08-25],
+  [Documentación y diagramas],
 )

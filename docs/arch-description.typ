@@ -187,8 +187,8 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Samuel Beltrán Martínez],
 
   [CU-14],
-  [*Notificaciones de movimientos*],
-  [Envío de alertas instantáneas vía push, SMS o correo por cualquier tipo de transacción.],
+  [*Centro de notificaciones*],
+  [Configuración y envío de alertas transaccionales (vía push, SMS o correo) por movimientos superiores a montos definidos o ingresos desde dispositivos nuevos. Notificaciones publicitarias, informativas, entre otras.],
   [Notificaciones],
   [Juliana Sofia Novoa Solano],
 
@@ -230,7 +230,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
   [CU-21],
   [*Emisión y gestión de tarjetas de crédito*],
-  [Solicitud, activación y configuración de tarjetas de crédito.],
+  [Solicitud, activación y configuración de tarjetas de crédito. Consulta de cupo, visualización de movimientos, pago de extracto a cuotas y avances de efectivo.],
   [Tarjetas],
   [Sara Rodriguez Urueña],
 
@@ -259,8 +259,8 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Miguel Francisco Vargas],
 
   [CU-26],
-  [*Gestión de transferencias internacionales*],
-  [Envío y recepción de fondos hacia o desde el exterior.],
+  [*Gestión de transferencias internacionales y nacionales*],
+  [Envío y recepción de fondos hacia o desde el exterior. Envio y recepción de fondos interbancarias o internas.],
   [Transacciones],
   [Salomon Alfredo Avila Larrotta],
 
@@ -287,6 +287,18 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Envío de fondos entre cuentas del mismo banco o cuentas interbancarias.],
   [Transacciones],
   [Salomon Alfredo Avila Larrotta],
+
+  [CU-31],
+  [*Información clara sobre intereses e impuestos aplicados a compras*],
+  [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o crzeditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
+  [Samuel Beltrán Martínez],
+
+  [CU-32], [*Pago de facturas y servicios*], [Módulo para convenios de servicios públicos, privados y recargas.], [Miguel Francisco Vargas],
+
+  // [CU-??],
+  // [*Compra de cartera*],
+  // [Compra de cartera o deuda desde otros bancos]
+  // [],
 )
 
 #set text(size: 7pt)

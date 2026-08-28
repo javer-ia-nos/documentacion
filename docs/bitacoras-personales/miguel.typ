@@ -25,4 +25,13 @@
   [Se agrego duocumentación interna para el equipo en los readme del repo y se mejoró la calidad de las imagenes generadas por el workflow e incrustadas en el documento final.],
   [2026-08-25],
   [Documentación y diagramas],
+
+  [5],
+  [Se revisaron los casos de uso y modificaron para especificar mejor algunos puntos importantes.
+    - *CU-14 ( Notificaciones )*: Se agregan algunos tipos importantes de notificaciones.
+    - *CU-21 ( Gestión de TC )*: Se agregan consultas importantes para el usuario.
+    - *CU-26 ( transferencias )*: Se generaliza este caso de uso para permitir transacciones internas y nacionales.
+    - *CU-31 ( info intereses e impuestos)*: Información clara para los usuarios.
+    - *CU-32 ( facturas y servicios )*: Para poder pagar facturas y servicios.
+  ],
 )

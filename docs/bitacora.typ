@@ -71,6 +71,31 @@
     - Se define el horario de reuniones para los lunes a las 8pm.
   ],
   [Todos],
+
+  [4],
+  [Trabajo en clase],
+  [27-08-2026],
+  [
+    Se definen los puntos de disponibilidad:
+    + Detección de fallos
+      - monitoreo
+      - heartbeat
+      - detección de excepciones
+    + Recuperación de fallos
+      - rollback
+      - manejo de excepciones
+      - actualización de software
+      - reconfiguración
+      - reintroducción
+    + Prevención de fallos
+      - transacciones/SAGA
+      - prevención de excepciones
+    + Patrones para disponibilidad
+      - circuit breaker
+      - cold spare
+
+    Se define el uso de terraform y se designa a Salomón para revisar terraform.
+  ],
 )
 
 = Bitacoras personales

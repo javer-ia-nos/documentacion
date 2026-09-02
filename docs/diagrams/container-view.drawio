@@ -1,165 +1,213 @@
 <mxfile host="Electron">
   <diagram name="ContainerView" id="c4-container-view">
-    <mxGraphModel dx="4662" dy="1091" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="4683" dy="876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="group-banca" parent="1" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=4 4;strokeColor=#666666;strokeWidth=2;fillColor=rgba(0, 0, 0, 0.02);fontColor=#666666;fontSize=18;startSize=30;align=left;spacingLeft=15;" value="&lt;b&gt;Sistema de Banca Digital&lt;/b&gt;" vertex="1">
+        <mxCell id="group-banca" parent="1" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=4 4;strokeColor=#666666;strokeWidth=2;fillColor=rgba(0, 0, 0, 0.02);fontColor=#666666;fontSize=18;startSize=30;align=left;spacingLeft=15;" value="&lt;b&gt;Sistema Bancario&lt;/b&gt;" vertex="1">
           <mxGeometry height="1260" width="2355" x="735" y="385" as="geometry" />
         </mxCell>
-        <object placeholders="1" c4Name="Single-Page Application (SPA)" c4Type="web: React / TypeScript" c4Description="Proporciona la funcionalidad de banca por internet a los clientes vía navegador web." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="9hn2bl">
-          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#438DD5;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2E6295;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Single-Page Application (SPA)" c4Type="web: React / TypeScript" c4Description="Proporciona la funcionalidad de banca por internet a los clientes vía navegador web." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="9hn2bl">
+          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="25" y="115" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Aplicación Móvil" c4Type="mobile: React Native" c4Description="Proporciona acceso a los servicios de banca digital desde dispositivos móviles." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="9pbat0">
-          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#438DD5;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#2E6295;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Aplicación Móvil" c4Type="mobile: React Native" c4Description="Proporciona acceso a los servicios de banca digital desde dispositivos móviles." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="9pbat0">
+          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=10;strokeColor=#438DD5;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="425" y="115" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Portal de Atención y Backoffice" c4Type="web: React / Admin Template" c4Description="Permite a los agentes atender chats de soporte, gestionar PQRS y procesar reclamaciones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="g8bt75">
-          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#438DD5;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2E6295;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Portal de Atención y Backoffice" c4Type="web: React / Admin Template" c4Description="Permite a los agentes atender chats de soporte, gestionar PQRS y procesar reclamaciones." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="g8bt75">
+          <mxCell parent="group-banca" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="825" y="115" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="API Backend Principal" c4Type="backend: Go / REST API" c4Description="Procesa la lógica de negocio bancaria, autenticación, transacciones y orquestación de servicios." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="54f0tk">
-          <mxCell parent="group-banca" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=20;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5B8EB8;fontColor=#000000;align=center;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="API Backend Principal" c4Type="backend: Go / REST API" c4Description="Procesa la lógica de negocio bancaria, autenticación, transacciones y orquestación de servicios." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="54f0tk">
+          <mxCell parent="group-banca" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;size=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="425" y="590" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL / Database Schema" c4Description="Almacena la información de usuarios, cuentas, tarjetas, transacciones, créditos y auditoría." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="awd0kb">
-          <mxCell parent="group-banca" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#85BBF0;strokeColor=#5B8EB8;fontColor=#000000;align=center;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL / Database Schema" c4Description="Almacena la información de usuarios, cuentas, tarjetas, transacciones, créditos y auditoría." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="awd0kb">
+          <mxCell parent="group-banca" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="825" y="1025" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Almacén de Documentos" c4Type="database: Amazon S3 / Object Storage" c4Description="Almacena los extractos bancarios, comprobantes en PDF y certificados generados." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="l9edzy">
-          <mxCell parent="group-banca" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#85BBF0;strokeColor=#5B8EB8;fontColor=#000000;align=center;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Almacén de Documentos" c4Type="database: Amazon S3 / Object Storage" c4Description="Almacena los extractos bancarios, comprobantes en PDF y certificados generados." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="l9edzy">
+          <mxCell parent="group-banca" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="2050" y="1025" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Cliente Bancario" c4Type="persona" c4Description="Usuario que accede a los servicios de banca digital para gestionar sus productos financieros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="1c3x9c6">
-          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#08427B;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Cliente bancario" c4Type="Persona" c4Description="Usuario que accede a los servicios de banca digital, desde web o móvil, para gestionar sus productos financieros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="1c3x9c6">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;shape=mxgraph.c4.person2;strokeWidth=2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="1160" y="20" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Agente de Atención al Cliente" c4Type="persona" c4Description="Empleado del banco que atiende chats de soporte y gestiona PQRS." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="xk2vjd">
-          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#08427B;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Agente de Atención al Cliente" c4Type="Persona" c4Description="Empleado del banco que atiende chats de soporte y gestiona PQRS." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="xk2vjd">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;shape=mxgraph.c4.person2;strokeWidth=2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="1560" y="50" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="externo" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="16ggj64">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="16ggj64">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="-90" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="externo" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="52yi3p">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="Sistema de software" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="52yi3p">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="310" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="externo" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="5xvido">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="Sistema de software" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="5xvido">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="735" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="externo" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="ds10iw">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ds10iw">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#B22222;align=center;arcSize=6;strokeColor=#B22222;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="1135" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="externo" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="j4gtqg">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="Sistema de software" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="j4gtqg">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="1960" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="externo" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="10vr57m">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#7F7F7F;metaEdit=1;resizable=0;" vertex="1">
+        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="10vr57m">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="180" width="280" x="2360" y="1410" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="e-83cv3n" edge="1" parent="1" source="1c3x9c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="9hn2bl">
+        <mxCell id="e-83cv3n" edge="1" parent="1" source="1c3x9c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="9hn2bl">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-83cv3n" connectable="0" parent="e-83cv3n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Consulta saldos, realiza&lt;br&gt;transferencias y gestiona&lt;br&gt;tarjetas vía web" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-1ir7t39" edge="1" parent="1" source="1c3x9c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="9pbat0">
+        <mxCell id="e-1ir7t39" edge="1" parent="1" source="1c3x9c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="9pbat0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-1ir7t39" connectable="0" parent="e-1ir7t39" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Gestiona cuentas,&lt;br&gt;transferencias y pagos&lt;br&gt;desde su smartphone" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-mf7484" edge="1" parent="1" source="xk2vjd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="g8bt75">
+        <mxCell id="e-mf7484" edge="1" parent="1" source="xk2vjd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="g8bt75">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-mf7484" connectable="0" parent="e-mf7484" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Gestiona PQRS,&lt;br&gt;atiende chat de soporte&lt;br&gt;y reclamos" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-vrg1x0" edge="1" parent="1" source="9hn2bl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="54f0tk">
+        <mxCell id="e-vrg1x0" edge="1" parent="1" source="9hn2bl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-vrg1x0" connectable="0" parent="e-vrg1x0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-15k1371" edge="1" parent="1" source="9pbat0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="54f0tk">
+        <mxCell id="e-15k1371" edge="1" parent="1" source="9pbat0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-15k1371" connectable="0" parent="e-15k1371" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-1rfs9tp" edge="1" parent="1" source="g8bt75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="54f0tk">
+        <mxCell id="e-1rfs9tp" edge="1" parent="1" source="g8bt75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-1rfs9tp" connectable="0" parent="e-1rfs9tp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API de administración" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-hnzo6t" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="16ggj64">
+        <mxCell id="e-hnzo6t" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="16ggj64">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-hnzo6t" connectable="0" parent="e-hnzo6t" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía pagos de&lt;br&gt;facturas registradas" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-x63l8q" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="52yi3p">
+        <mxCell id="e-x63l8q" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="52yi3p">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-x63l8q" connectable="0" parent="e-x63l8q" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Consulta historial&lt;br&gt;crediticio del solicitante" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-kq3jxg" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="5xvido">
+        <mxCell id="e-kq3jxg" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="5xvido">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-kq3jxg" connectable="0" parent="e-kq3jxg" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Sincroniza y valida&lt;br&gt;tarjetas vinculadas" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-rsezwy" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="ds10iw">
+        <mxCell id="e-rsezwy" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="ds10iw">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-rsezwy" connectable="0" parent="e-rsezwy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía alertas de&lt;br&gt;movimientos y eventos&lt;br&gt;de seguridad" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-lm7jdq" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="awd0kb">
+        <mxCell id="e-lm7jdq" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="awd0kb">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-lm7jdq" connectable="0" parent="e-lm7jdq" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Lee y escribe&lt;br&gt;información transaccional" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-ox54of" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="j4gtqg">
+        <mxCell id="e-ox54of" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="j4gtqg">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-ox54of" connectable="0" parent="e-ox54of" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Reporta eventos de&lt;br&gt;auditoría y cumplimiento&lt;br&gt;normativo" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-ohap89" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="10vr57m">
+        <mxCell id="e-ohap89" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="10vr57m">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-ohap89" connectable="0" parent="e-ohap89" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía y recibe fondos&lt;br&gt;de transferencias&lt;br&gt;internacionales" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-1b7pfux" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#999999;strokeWidth=2;" target="l9edzy">
+        <mxCell id="e-1b7pfux" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="l9edzy">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="label-1b7pfux" connectable="0" parent="e-1b7pfux" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Almacena y recupera&lt;br&gt;extractos y certificados&lt;br&gt;en PDF" vertex="1">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo c4model.com)" vertex="1">
+          <mxGeometry height="372" width="340" x="-620" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="446" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E8B00;fontStyle=1;" value="Persona / actor" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="446" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="514" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Almacen de datos" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="514" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B22222;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="548" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#B22222;fontStyle=1;" value="Externo - Notificaciones" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="548" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="582" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#D6690F;fontStyle=1;" value="Externo - Pagos y recaudo" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="582" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6B3FA0;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-602" y="616" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#6B3FA0;fontStyle=1;" value="Externo - Riesgo y cumplimiento" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="616" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-ln-6" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#707070;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-602" y="663" as="sourcePoint" />
+            <mxPoint x="-568" y="663" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#707070;fontStyle=0;" value="Relacion / dependencia" vertex="1">
+          <mxGeometry height="24" width="260" x="-554" y="650" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

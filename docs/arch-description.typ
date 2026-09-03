@@ -293,7 +293,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o crzeditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
   [Samuel Beltrán Martínez],
 
-  [CU-32], [*Pago de facturas y servicios*], [Módulo para convenios de servicios públicos, privados y recargas.], [Miguel Francisco Vargas],
+  [CU-32],
+  [*Pago de facturas y servicios*],
+  [Módulo para convenios de servicios públicos, privados y recargas.],
+  [Miguel Francisco Vargas],
 
   // [CU-??],
   // [*Compra de cartera*],
@@ -455,8 +458,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
 = Vista de componentes
 
+== Vista de componentes para el Back-End
+
 #figure(
-  caption: "Diagrama de vista de componentes",
+  caption: "Diagrama de vista de componentes para el Back-end",
   align(
     center,
     image(
@@ -464,7 +469,33 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
       width: 80%,
     ),
   ),
-) <fig-component-view>
+) <fig-backend-component-view>
+
+== Vista de componentes para la página web
+
+#figure(
+  caption: "Diagrama de vista de componentes para la página web",
+  align(
+    center,
+    image(
+      "diagrams/component-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-webpage-component-view>
+
+== Vista de componentes para la aplicación movil
+
+#figure(
+  caption: "Diagrama de vista de componentes para la aplicación movil",
+  align(
+    center,
+    image(
+      "diagrams/component-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-mobile-component-view>
 
 #instruction[
   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \
@@ -521,33 +552,33 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
 Este glosario define los términos técnicos y de negocio utilizados a lo largo del documento, diseñados para facilitar la comprensión tanto de lectores con perfiles técnicos como de negocio.
 
-* **Arquitectura de software*: Estructura fundamental de un sistema informático, compuesta por sus elementos, las relaciones entre ellos y las propiedades de ambos, que sirve de base para su diseño y evolución futura.
++ *Arquitectura de software*: Estructura fundamental de un sistema informático, compuesta por sus elementos, las relaciones entre ellos y las propiedades de ambos, que sirve de base para su diseño y evolución futura.
 
-* **Atributo de calidad*: Característica no funcional que evalúa qué tan bien un sistema cumple con los requisitos operativos y de negocio, tales como la disponibilidad, la seguridad o el rendimiento.
++ *Atributo de calidad*: Característica no funcional que evalúa qué tan bien un sistema cumple con los requisitos operativos y de negocio, tales como la disponibilidad, la seguridad o el rendimiento.
 
-* **Auditoría*: Módulo o proceso encargado de registrar, rastrear y supervisar todas las actividades, transacciones e inicios de sesión realizados en el sistema para garantizar la trazabilidad y seguridad.
++ *Auditoría*: Módulo o proceso encargado de registrar, rastrear y supervisar todas las actividades, transacciones e inicios de sesión realizados en el sistema para garantizar la trazabilidad y seguridad.
 
-* **Disponibilidad*: Atributo de calidad que mide la capacidad del sistema para mantenerse operativo y accesible de forma continua, asegurando que no se interrumpan transacciones en curso.
++ *Disponibilidad*: Atributo de calidad que mide la capacidad del sistema para mantenerse operativo y accesible de forma continua, asegurando que no se interrumpan transacciones en curso.
 
-* **Integrabilidad*: Capacidad del sistema para conectarse, comunicarse e intercambiar datos de forma fluida con plataformas externas, tales como billeteras digitales, cajeros automáticos u otras entidades bancarias.
++ *Integrabilidad*: Capacidad del sistema para conectarse, comunicarse e intercambiar datos de forma fluida con plataformas externas, tales como billeteras digitales, cajeros automáticos u otras entidades bancarias.
 
-* **Modelo de dominio*: Representación conceptual de los objetos, entidades y reglas del mundo real dentro del negocio bancario (como cuentas, clientes, transacciones y tarjetas) que forman la lógica central del sistema.
++ *Modelo de dominio*: Representación conceptual de los objetos, entidades y reglas del mundo real dentro del negocio bancario (como cuentas, clientes, transacciones y tarjetas) que forman la lógica central del sistema.
 
-* **Módulo*: Componente o unidad lógica independiente dentro del sistema software que agrupa una serie de funcionalidades específicas y acotadas.
++ *Módulo*: Componente o unidad lógica independiente dentro del sistema software que agrupa una serie de funcionalidades específicas y acotadas.
 
-* **Notificaciones*: Sistema automatizado encargado de enviar alertas instantáneas a los usuarios a través de canales como mensajes de texto, correos electrónicos o notificaciones emergentes sobre el estado de sus movimientos.
++ *Notificaciones*: Sistema automatizado encargado de enviar alertas instantáneas a los usuarios a través de canales como mensajes de texto, correos electrónicos o notificaciones emergentes sobre el estado de sus movimientos.
 
-* **Procesamiento de transacciones*: Mecanismo encargado de recibir, validar, ejecutar y registrar operaciones financieras (como transferencias o pagos) garantizando la consistencia y seguridad del dinero.
++ *Procesamiento de transacciones*: Mecanismo encargado de recibir, validar, ejecutar y registrar operaciones financieras (como transferencias o pagos) garantizando la consistencia y seguridad del dinero.
 
-* **Requisito funcional*: Descripción de un comportamiento, servicio o función específica que el sistema debe ser capaz de realizar bajo ciertas condiciones.
++ *Requisito funcional*: Descripción de un comportamiento, servicio o función específica que el sistema debe ser capaz de realizar bajo ciertas condiciones.
 
-* **Requisitos Arquitectónicamente Significativos (ASR)*: Requisitos del sistema que tienen un impacto directo y profundo en la estructura y diseño de la arquitectura de software.
++ *Requisitos Arquitectónicamente Significativos (ASR)*: Requisitos del sistema que tienen un impacto directo y profundo en la estructura y diseño de la arquitectura de software.
 
-* **Seguridad y Protection Operativa (Safety)*: Conjunto de mecanismos orientados a proteger la información confidencial de los usuarios, controlar el acceso a las cuentas y prevenir pérdidas económicas o fraudes derivados de fallos en el sistema.
++ *Seguridad y Protection Operativa (Safety)*: Conjunto de mecanismos orientados a proteger la información confidencial de los usuarios, controlar el acceso a las cuentas y prevenir pérdidas económicas o fraudes derivados de fallos en el sistema.
 
-* **Sistema bancario*: Plataforma tecnológica integral diseñada para gestionar cuentas, productos financieros, transacciones y servicios de atención a los clientes de una entidad financiera.
++ *Sistema bancario*: Plataforma tecnológica integral diseñada para gestionar cuentas, productos financieros, transacciones y servicios de atención a los clientes de una entidad financiera.
 
-* **Usabilidad*: Medida en la que el sistema y su interfaz gráfica permiten a los usuarios operar de manera intuitiva, rápida y sin fricciones técnicas.
++ *Usabilidad*: Medida en la que el sistema y su interfaz gráfica permiten a los usuarios operar de manera intuitiva, rápida y sin fricciones técnicas.
 
 = Referencias
 #instruction[

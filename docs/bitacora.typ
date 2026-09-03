@@ -121,6 +121,24 @@
     - Arantxa Marian Espejo Malagon
     - Samuel Beltrán Martínez
   ],
+
+  [Trabajo en clase],
+  [03-09-2026],
+  [
+    Se revisan los diagramas con el profesor, y se aplican los cambios solicitados.
+
+    Se crea un repo para testear la herramienta y lenguaje elegidos como primera prueba, Elysia y Typescript.
+
+    Se define que:
+    - Juliana Sofia Novoa Solano realizará el diagrama de componente para la App movil.
+    - Salomón va a revisar los cambios propuestos por el profesor.
+    - Sara Rodriguez va a realizar el diagrama de componente para el SPA.
+    - Los demás revisarán tecnologías de base de datos para cada servicio. Además de investigar kubernetes.
+    - Cuando esten los diagramas, cada persona va a revisar sus casos de uso y contrastarlos con el diagrama para validar.
+  ],
+  [
+    Todos
+  ],
 )
 
 = Bitacoras personales

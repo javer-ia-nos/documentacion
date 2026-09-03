@@ -135,6 +135,7 @@
     - Sara Rodriguez va a realizar el diagrama de componente para el SPA.
     - Los demás revisarán tecnologías de base de datos para cada servicio. Además de investigar kubernetes.
     - Cuando esten los diagramas, cada persona va a revisar sus casos de uso y contrastarlos con el diagrama para validar.
+    - Miguel Vargas va a redactar las decisiones tomadas hasta el momento en el documento de arquitectura.
   ],
   [
     Todos

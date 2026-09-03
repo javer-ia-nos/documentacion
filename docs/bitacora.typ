@@ -96,6 +96,31 @@
 
     Se define el uso de terraform y se designa a Salomón para revisar terraform.
   ],
+  [5],
+
+  [Trabajo en clase],
+  [01-09-2026],
+  [
+    Se definen los criterios de desplegabilidad del sistema:
+    - Se usara kubernetes para la gestión de la caga.
+    - Se empaquetara la aplicación en una imagen docker para cada servicio/microservicio.
+    - Kill switch se usará pero no se ha definido la herramienta o forma de hacerlo.
+    - Vamos a reemplazar parcialmente los servicios usando kubernetes.
+    - Testing tendremos pruebas:
+      - Unitarias
+      - Integración
+      - Sistema
+    - Se usara git flow para los repos de código fuente.
+
+    Se cambia el repo para que ahora tenga las imagenes en el repo.
+  ],
+  [
+    - Miguel Francisco Vargas
+    - Juliana Sofia Novoa Solano
+    - Salomon Alfredo Avila Larrotta
+    - Arantxa Marian Espejo Malagon
+    - Samuel Beltrán Martínez
+  ],
 )
 
 = Bitacoras personales

@@ -34,4 +34,11 @@
     - *CU-31 ( info intereses e impuestos)*: Información clara para los usuarios.
     - *CU-32 ( facturas y servicios )*: Para poder pagar facturas y servicios.
   ],
+  [2026-08-30],
+  [Casos de uso],
+
+  [6],
+  [Se comenzo a editar el documento de arquitectura y se creo el repo de prueba para el servicio de transacciones, este incluye una plantila para trabajar sobre Elysia y sistema básico (por ahora) de pruebas unitarias.],
+  [2026-09-03],
+  [Repos y documentación],
 )

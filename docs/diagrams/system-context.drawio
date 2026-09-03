@@ -1,203 +1,282 @@
-<mxfile host="Electron">
-  <diagram name="Page-1" id="lLGdGfJd5NCZk4yLCu8B">
-    <mxGraphModel dx="2336" dy="1031" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="Hwwj01McrxwiARMHx2ZV">
+    <mxGraphModel dx="1400" dy="368" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="gx8_kib297UIpPy5o5gy-1" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="gx8_kib297UIpPy5o5gy-22">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-1" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="fpQ9vuizpO4UahdR9gvP-22">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="20" y="575" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-2" connectable="0" parent="gx8_kib297UIpPy5o5gy-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="&lt;div&gt;Consulta saldos, realiza transferencias,&lt;/div&gt;&lt;div&gt;gestiona tarjetas y solicita&lt;/div&gt;&lt;div&gt;productos financieros (web y móvil)&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-2" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="&lt;div&gt;Consulta saldos, realiza transferencias,&lt;/div&gt;&lt;div&gt;gestiona tarjetas y solicita&lt;/div&gt;&lt;div&gt;productos financieros (web y móvil)&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint y="-12" as="offset" />
+            <mxPoint x="-180" y="-82" as="offset" />
           </mxGeometry>
         </mxCell>
-        <object placeholders="1" c4Name="Cliente bancario" c4Type="Persona" c4Description="Usuario que accede a los servicios de banca digital, desde web o móvil, para gestionar sus productos financieros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-3">
+        <object placeholders="1" c4Name="Persona natural" c4Type="Persona" c4Description="Usuario que accede a los servicios de banca digital, desde web o móvil, para gestionar sus productos financieros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-3">
           <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
             <mxGeometry height="205" width="210" x="-85" y="250" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="gx8_kib297UIpPy5o5gy-4" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-22">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-4" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-5" connectable="0" parent="gx8_kib297UIpPy5o5gy-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="&lt;div&gt;Registra operaciones presenciales de&lt;/div&gt;&lt;div&gt;ventanilla (consignaciones, retiros, cheques)&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-5" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="&lt;div&gt;Registra operaciones presenciales de&lt;/div&gt;&lt;div&gt;ventanilla (consignaciones, retiros, cheques)&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="90" y="-19" as="offset" />
+            <mxPoint x="10" y="-46" as="offset" />
           </mxGeometry>
         </mxCell>
-        <object placeholders="1" c4Name="Cajero" c4Type="Persona" c4Description="Empleado en sucursal que atiende operaciones presenciales de los clientes a través del sistema para cajeros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-6">
+        <object placeholders="1" c4Name="Cajero" c4Type="Persona" c4Description="Empleado en sucursal que atiende operaciones presenciales de los clientes a través del sistema para cajeros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-6">
           <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
-            <mxGeometry height="205" width="210" x="355" y="250" as="geometry" />
+            <mxGeometry height="205" width="210" x="355" y="260" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="gx8_kib297UIpPy5o5gy-7" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="gx8_kib297UIpPy5o5gy-22">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-7" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="fpQ9vuizpO4UahdR9gvP-22">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="900" y="595" />
+              <mxPoint x="735" y="640" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-8" connectable="0" parent="gx8_kib297UIpPy5o5gy-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Atiende el chat de soporte, gestiona&lt;div&gt;PQRS y realiza tareas de back-office&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-8" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Atiende dudas generales y&amp;nbsp;&lt;div&gt;asigna turnos&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint y="-12" as="offset" />
+            <mxPoint y="-125" as="offset" />
           </mxGeometry>
         </mxCell>
-        <object placeholders="1" c4Name="Personal del Banco (soporte y back-office)" c4Type="Persona" c4Description="Empleado del banco que atiende chats de soporte, gestiona PQRS y realiza operaciones administrativas a través del portal interno." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-9">
+        <object placeholders="1" c4Name="Personal de atención al cliente presencial" c4Type="Persona" c4Description="Empleado encargado de resolución de dudas dentro de la entidad" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-9">
           <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
-            <mxGeometry height="205" width="210" x="795" y="250" as="geometry" />
+            <mxGeometry height="205" width="210" x="630" y="260" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="gx8_kib297UIpPy5o5gy-10" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-23">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-10" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-23">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-260" y="705.11" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-11" connectable="0" parent="gx8_kib297UIpPy5o5gy-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía alertas de movimientos&lt;div&gt;y eventos de seguridad&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-11" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía alertas de movimientos&lt;div&gt;y eventos de seguridad&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.3287" y="1" as="geometry">
             <mxPoint x="-52" y="99" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-12" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-24">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-12" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-24">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="20" y="705.11" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-13" connectable="0" parent="gx8_kib297UIpPy5o5gy-12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Sincroniza y valida&lt;div&gt;tarjetas vinculadas&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-13" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-12" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Sincroniza y valida&lt;div&gt;tarjetas vinculadas&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.4344" y="3" as="geometry">
             <mxPoint x="-3" y="40" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-14" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-25">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-14" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-25">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="300" y="705.11" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-15" connectable="0" parent="gx8_kib297UIpPy5o5gy-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Consulta historial&lt;div&gt;crediticio del solicitante&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-15" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Consulta historial&lt;div&gt;crediticio del solicitante&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.0617" y="1" as="geometry">
             <mxPoint x="-1" y="7" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-16" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-26">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-16" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-26">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="620" y="705" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-17" connectable="0" parent="gx8_kib297UIpPy5o5gy-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía pagos de facturas&lt;div&gt;registradas&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-17" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía pagos de facturas&lt;div&gt;registradas&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.08" y="-1" as="geometry">
             <mxPoint y="5" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-18" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-27">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-18" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-27">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="860" y="705" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-19" connectable="0" parent="gx8_kib297UIpPy5o5gy-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía y recibe fondos&lt;div&gt;de transferencias&lt;/div&gt;&lt;div&gt;internacionales&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-19" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Envía y recibe fondos&lt;div&gt;de transferencias&lt;/div&gt;&lt;div&gt;internacionales&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.54" as="geometry">
             <mxPoint y="13" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-20" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="gx8_kib297UIpPy5o5gy-28">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-20" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;" target="fpQ9vuizpO4UahdR9gvP-28">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-21" connectable="0" parent="gx8_kib297UIpPy5o5gy-20" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Reporta eventos de&lt;div&gt;auditoría y cumplimiento&lt;/div&gt;&lt;div&gt;normativo&lt;/div&gt;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-21" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-20" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Reporta eventos de&lt;div&gt;auditoría y cumplimiento&lt;/div&gt;&lt;div&gt;normativo&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.7137" y="4" as="geometry">
             <mxPoint x="-4" y="12" as="offset" />
           </mxGeometry>
         </mxCell>
-        <object placeholders="1" c4Name="Sistema Bancario" c4Type="Sistema de software" c4Description="Permite a los clientes gestionar cuentas, tarjetas, transacciones, préstamos e inversiones de forma segura, a través de canales web, móvil, cajeros y el portal interno." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-22">
+        <object placeholders="1" c4Name="Sistema Bancario" c4Type="Sistema de software" c4Description="Permite a los actores involucrados gestionar cuentas, tarjetas, transacciones, préstamos e inversiones de forma segura, a través de canales web y móvil." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-22">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#1168BD;strokeColor=#1168BD;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="130" width="260" x="330" y="635" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-23">
+        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-23">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#B22222;strokeColor=#B22222;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="-380" y="915" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="Sistema de software" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-24">
+        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="Sistema de software" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-24">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;strokeColor=#D6690F;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="-100" y="915" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="Sistema de software" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-25">
+        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="Sistema de software" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-25">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;strokeColor=#6B3FA0;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="180" y="915" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-26">
+        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-26">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;strokeColor=#D6690F;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="460" y="915" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-27">
+        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-27">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;strokeColor=#D6690F;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="740" y="915" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="Sistema de software" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="gx8_kib297UIpPy5o5gy-28">
+        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="Sistema de software" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-28">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;strokeColor=#6B3FA0;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;arcSize=8;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="1020" y="915" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="gx8_kib297UIpPy5o5gy-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=13;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 · estilo c4model.com)" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=13;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 · estilo c4model.com)" vertex="1">
           <mxGeometry height="320" width="330" x="-760" y="415" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-30" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-30" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="22" width="34" x="-742" y="459" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-31" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#2E8B00;fontStyle=1;" value="Persona / actor" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-31" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#2E8B00;fontStyle=1;" value="Persona / actor" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="459" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1168BD;strokeWidth=2;arcSize=20;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1168BD;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="22" width="34" x="-742" y="493" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-33" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#1168BD;fontStyle=1;" value="Sistema en alcance" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-33" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#1168BD;fontStyle=1;" value="Sistema en alcance" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="493" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B22222;strokeWidth=2;arcSize=20;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B22222;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="22" width="34" x="-742" y="527" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-35" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#B22222;fontStyle=1;" value="Externo · Notificaciones" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-35" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#B22222;fontStyle=1;" value="Externo · Notificaciones" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="527" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="22" width="34" x="-742" y="561" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-37" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#D6690F;fontStyle=1;" value="Externo · Pagos y recaudo" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-37" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#D6690F;fontStyle=1;" value="Externo · Pagos y recaudo" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="561" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6B3FA0;strokeWidth=2;arcSize=20;" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6B3FA0;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="22" width="34" x="-742" y="595" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-39" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#6B3FA0;fontStyle=1;" value="Externo · Riesgo y cumplimiento" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-39" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#6B3FA0;fontStyle=1;" value="Externo · Riesgo y cumplimiento" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="595" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-40" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#707070;">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-40" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#707070;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-742" y="640" as="sourcePoint" />
             <mxPoint x="-708" y="640" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-41" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#707070;" value="Relación / dependencia" vertex="1">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-41" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#707070;" value="Relación / dependencia" vertex="1">
           <mxGeometry height="22" width="250" x="-698" y="629" as="geometry" />
         </mxCell>
-        <mxCell id="gx8_kib297UIpPy5o5gy-43" edge="1" parent="1" source="gx8_kib297UIpPy5o5gy-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="gx8_kib297UIpPy5o5gy-29">
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-42" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="fpQ9vuizpO4UahdR9gvP-29">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Persona Juridica" c4Type="Persona" c4Description="Usuario que accede a los servicios de banca digital, desde web o móvil, para gestionar sus productos financieros." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-43">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="205" width="210" x="-350" y="250" as="geometry" />
+          </mxCell>
+        </object>
+        <object placeholders="1" c4Name="Personal de atención al cliente virtual" c4Type="Persona" c4Description="Empleado asignado a resolución de dudas de manera virtual" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-45">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="205" width="210" x="880" y="260" as="geometry" />
+          </mxCell>
+        </object>
+        <object placeholders="1" c4Name="Asesor comercial" c4Type="Persona" c4Description="Ofrece asesoramiento sobre inversiones, préstamos y crecimiento de patrimonio." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-46">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="205" width="210" x="1120" y="260" as="geometry" />
+          </mxCell>
+        </object>
+        <object placeholders="1" c4Name="Funcionario de créditos" c4Type="Persona" c4Description="Evalúa y hace seguimiento a las solicitudes de financiación y cartera." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-47">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="205" width="210" x="1360" y="260" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-59" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.998;entryY=0.426;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;strokeColor=light-dark(#000000,#8D8D8D);" target="fpQ9vuizpO4UahdR9gvP-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1703.7" y="690.06" />
+              <mxPoint x="589.5" y="690.06" />
+            </Array>
+            <mxPoint x="1703.74" y="465" as="sourcePoint" />
+            <mxPoint x="608.74" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object placeholders="1" c4Name="Jefe de la sucursal" c4Type="Persona" c4Description="Controla que los registros y procesos diarios funcionen de manera correcta." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fpQ9vuizpO4UahdR9gvP-48">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;strokeWidth=2;shape=mxgraph.c4.person2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="205" width="210" x="1600" y="260" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-50" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.271;entryDx=0;entryDy=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="985" y="645" />
+            </Array>
+            <mxPoint x="983.96" y="439.9999999999999" as="sourcePoint" />
+            <mxPoint x="589.9999999999998" y="645.2299999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-51" connectable="0" parent="fpQ9vuizpO4UahdR9gvP-50" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Atiende canales generales&lt;div&gt;de preguntas de usuarios&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="107" y="-145" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-54" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;dashed=1;strokeColor=light-dark(#000000,#8D8D8D);" target="fpQ9vuizpO4UahdR9gvP-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-56" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Consultas internas relacionadas&lt;div&gt;a productos&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1220" y="499" as="geometry" />
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-57" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.007;entryY=0.347;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;strokeColor=light-dark(#000000,#8D8D8D);" target="fpQ9vuizpO4UahdR9gvP-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1465" y="680.02" />
+            </Array>
+            <mxPoint x="600" y="680.02" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-60" edge="1" parent="1" source="fpQ9vuizpO4UahdR9gvP-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#000000,#8D8D8D);dashed=1;" target="fpQ9vuizpO4UahdR9gvP-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-245.05" y="667.53" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-61" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="&lt;div&gt;Consulta saldos, realiza transferencias,&lt;/div&gt;&lt;div&gt;gestiona tarjetas y solicita&lt;/div&gt;&lt;div&gt;productos financieros (web y móvil)&lt;/div&gt;" vertex="1">
+          <mxGeometry x="-230" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-62" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Abrir proceso de credito" vertex="1">
+          <mxGeometry x="1465" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="fpQ9vuizpO4UahdR9gvP-63" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#707070;" value="Coordinación y verificación&lt;div&gt;general&amp;nbsp;&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1705" y="490" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

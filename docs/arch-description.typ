@@ -293,7 +293,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o crzeditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
   [Samuel Beltrán Martínez],
 
-  [CU-32], [*Pago de facturas y servicios*], [Módulo para convenios de servicios públicos, privados y recargas.], [Miguel Francisco Vargas],
+  [CU-32],
+  [*Pago de facturas y servicios*],
+  [Módulo para convenios de servicios públicos, privados y recargas.],
+  [Miguel Francisco Vargas],
 
   // [CU-??],
   // [*Compra de cartera*],
@@ -455,8 +458,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
 = Vista de componentes
 
+== Vista de componentes para el Back-End
+
 #figure(
-  caption: "Diagrama de vista de componentes",
+  caption: "Diagrama de vista de componentes para el Back-end",
   align(
     center,
     image(
@@ -464,7 +469,33 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
       width: 80%,
     ),
   ),
-) <fig-component-view>
+) <fig-backend-component-view>
+
+== Vista de componentes para la página web
+
+#figure(
+  caption: "Diagrama de vista de componentes para la página web",
+  align(
+    center,
+    image(
+      "diagrams/component-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-webpage-component-view>
+
+== Vista de componentes para la aplicación movil
+
+#figure(
+  caption: "Diagrama de vista de componentes para la aplicación movil",
+  align(
+    center,
+    image(
+      "diagrams/component-view.png",
+      width: 80%,
+    ),
+  ),
+) <fig-mobile-component-view>
 
 #instruction[
   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \

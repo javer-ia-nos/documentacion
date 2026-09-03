@@ -66,6 +66,18 @@
     [2026-08-18],
     [Se incorporaron los 30 casos de uso categorizados y aprobados por el docente. Asimismo, se integró una versión preliminar de la introducción y la primera iteración del glosario del documento. Por ultimo, se realizo la primera iteración de los requisitos arquitectónicamente significativos],
     [Salomón Avila],
+
+    [2026-08-30],
+    [Se revisaron los casos de uso y modificaron para especificar mejor algunos puntos importantes.
+      - *CU-14 ( Notificaciones )*: Se agregan algunos tipos importantes de notificaciones.
+      - *CU-21 ( Gestión de TC )*: Se agregan consultas importantes para el usuario.
+      - *CU-26 ( transferencias )*: Se generaliza este caso de uso para permitir transacciones internas y nacionales.
+      - *CU-31 ( info intereses e impuestos)*: Información clara para los usuarios.
+      - *CU-32 ( facturas y servicios )*: Para poder pagar facturas y servicios.
+    ],
+    [Miguel Francisco Vargas],
+
+    [2026-09-03], [Se agregaron los nuevos diagramas de componentes para cada contenedor del sistema.],
   )
 ]
 

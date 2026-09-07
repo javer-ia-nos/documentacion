@@ -80,6 +80,10 @@
     [2026-09-03],
     [Se agregaron los nuevos diagramas de componentes para cada contenedor del sistema.],
     [Miguel Francisco Vargas],
+
+    [2026-09-07],
+    [Se añadio la primera version de los stakeholders],
+    [Salomon Avila]
   )
 ]
 
@@ -304,12 +308,14 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
   [CU-31],
   [*Información clara sobre intereses e impuestos aplicados a compras*],
-  [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o crzeditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
+  [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o creditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
+  [Transacciones],
   [Samuel Beltrán Martínez],
 
   [CU-32],
   [*Pago de facturas y servicios*],
   [Módulo para convenios de servicios públicos, privados y recargas.],
+  [Transacciones],
   [Miguel Francisco Vargas],
 
   // [CU-??],
@@ -340,12 +346,57 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   Una tabla que especifique cada stakeholder, su información de contacto y qué intereses o expectativas tiene sobre el sistema que se está desarrollando (cómo espera beneficiarse del mismo).
 ]
 
+#set text(size: 9pt)
 #table(
-  columns: (1fr, 2fr, 2fr),
+  columns: (1.2fr, 1.3fr, 2.5fr),
   fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
   [*Rol/Nombre*], [*Información de Contacto*], [*Intereses / expectativas*],
-  [], [], [],
+
+  [Persona natural],
+  [Canales digitales: app móvil y portal web],
+  [Consultar saldos, realizar transferencias, gestionar tarjetas y solicitar productos financieros desde web y móvil. Espera disponibilidad continua del servicio, transacciones que se completen en pocos segundos y protección de sus datos y fondos frente a fraudes.],
+
+  [Persona jurídica],
+  [Canales digitales: app móvil y portal web; ejecutivo de relación asignado],
+  [Gestionar los productos financieros de la empresa por canales digitales con controles y trazabilidad. Espera soporte para operaciones de alto volumen, segregación de permisos y disponibilidad para su operación diaria.],
+
+  [Cajero],
+  [Sucursal, módulo del sistema para cajeros],
+  [Registrar operaciones presenciales de ventanilla tales como consignaciones, retiros y cheques de forma confiable y con conciliación correcta contra las cuentas de los clientes.],
+
+  [Personal de atención al cliente presencial],
+  [Sucursal, puesto de atención],
+  [Atender dudas generales de los usuarios y asignar turnos. Espera acceso ágil a la información del cliente para resolver consultas y canalizar solicitudes.],
+
+  [Personal de atención al cliente virtual],
+  [Centro de contacto, por canales virtuales],
+  [Atender los canales generales de preguntas de los usuarios de forma remota. Espera herramientas con acceso al historial del cliente y tiempos de respuesta bajos.],
+
+  [Asesor comercial],
+  [Sucursal o canal comercial],
+  [Ofrecer asesoramiento sobre inversiones, préstamos y crecimiento de patrimonio. Espera consultar productos e información del cliente para proponer soluciones a la medida.],
+
+  [Funcionario de créditos],
+  [Área de crédito y cartera],
+  [Evaluar y hacer seguimiento a las solicitudes de financiación y abrir procesos de crédito. Espera poder consultar el historial crediticio del solicitante y gestionar el ciclo de la solicitud.],
+
+  [Jefe de la sucursal],
+  [Dirección de sucursal],
+  [Controlar que los registros y procesos diarios de la sucursal funcionen de manera correcta. Espera funciones de coordinación y verificación general de la operación.],
+
+  [Especialista en comercio exterior],
+  [Área de comercio exterior],
+  [Apoyar a las empresas que importan o exportan mediante cartas de crédito. Espera gestionar giros internacionales y el financiamiento del comercio fronterizo.],
+
+  [Gerente de Banca Corporativa],
+  [Banca corporativa],
+  [Dirigir las estrategias de entrada y salida de dinero para clientes corporativos. Espera visibilidad y liderazgo financiero estratégico sobre las operaciones de grandes empresas.],
+
+  [Ejecutivo de Relación],
+  [Banca corporativa, cartera empresarial],
+  [Administrar la cartera de empresas asignada, analizar las necesidades del negocio y ofrecer soluciones a medida a partir de la información del sistema.],
 )
+#set text(size: 11pt)
 
 = Requisitos Arquitectónicamente Significativos (ASR)
 

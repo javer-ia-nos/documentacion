@@ -140,6 +140,26 @@
   [
     Todos
   ],
+
+  [Reunión],
+  [07-09-2026],
+  [
+    - Se revisa el progreso individual de cada persona.
+    - Se revisan las maquinas virtuales.
+      - Juliana, Miguel y Arantxa necesitan preguntar por más maquinas virtuales para la clase.
+    - Preguntas para el profesor
+      - Preguntar si estan bien los stakeholders o toca añádir más.
+      - Revisar los diagramas.
+      - Preguntar si hay que tener desinstalado kubernetes para la sustentación de deployment.
+    - Se define fecha para tener primer borrador del documento para el jueves.
+  ],
+  [
+    - Miguel Francisco Vargas
+    - Sara Rodriguez Urueña
+    - Juliana Sofia Novoa Solano
+    - Salomon Alfredo Avila Larrotta
+    - Arantxa Marian Espejo Malagon
+  ],
 )
 
 = Bitacoras personales

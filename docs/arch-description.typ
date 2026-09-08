@@ -77,7 +77,7 @@
     ],
     [Miguel Francisco Vargas],
 
-    [2026-09-03],
+    [2026-09-07],
     [Se agregaron los nuevos diagramas de componentes para cada contenedor del sistema.],
     [Miguel Francisco Vargas],
 

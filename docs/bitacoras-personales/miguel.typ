@@ -50,5 +50,10 @@
   [8],
   [Revisión y re-organización de diagramas],
   [2026-09-12],
+  [Repo y documentación],
+
+  [9],
+  [Cu-32 estaba duplicado, entonces se elimino y agrego la información extra al CU-27],
+  [2026-09-12],
   [Repo y documentación]
 )

@@ -282,7 +282,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
   [CU-27],
   [*Pago de facturas de servicios*],
-  [Cancelación de servicios públicos y privados mediante convenios registrados.],
+  [Cancelación de servicios públicos y privados mediante convenios registrados, además de recargas a operadores moviles.],
   [Transacciones],
   [Samuel Beltrán Martínez],
 
@@ -309,17 +309,6 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o creditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
   [Transacciones],
   [Samuel Beltrán Martínez],
-
-  [CU-32],
-  [*Pago de facturas y servicios*],
-  [Módulo para convenios de servicios públicos, privados y recargas.],
-  [Transacciones],
-  [Miguel Francisco Vargas],
-
-  // [CU-??],
-  // [*Compra de cartera*],
-  // [Compra de cartera o deuda desde otros bancos]
-  // [],
 )
 
 #set text(size: 7pt)

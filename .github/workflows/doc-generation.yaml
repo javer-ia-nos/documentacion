@@ -26,11 +26,24 @@ jobs:
           quality: 100
           scale: 2
 
+      - name: Convert Component Drawio diagrams to PNG
+        uses: rlespinasse/drawio-export-action@v2
+        with:
+          action-mode: all
+          path: docs/diagrams/components/
+          output: ""
+          format: png
+          transparent: false
+          remove-page-suffix: true
+          quality: 100
+          scale: 2
+
       - name: Commit and push exported diagrams
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/diagrams/*.png
+          git add docs/diagrams/*
+          git add docs/diagrams/components/*
           if ! git diff --staged --quiet; then
             git commit -m "chore(docs): update exported diagram images [skip ci]"
             git push origin HEAD:${{ github.ref }}

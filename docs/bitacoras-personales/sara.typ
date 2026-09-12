@@ -19,7 +19,7 @@
   [Diagramas],
 
   [4],
-  [Se completó el diagrama de componentes para la página web #image("../diagrams/component-web.png", width: 100%)],
+  [Se completó el diagrama de componentes para la página web #image("../diagrams/components/component-web.png", width: 100%)],
   [2026-09-09],
   [Diagrama],
 

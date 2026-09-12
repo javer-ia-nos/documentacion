@@ -44,7 +44,7 @@ de la herramienta y el contenido se trasladó a
 *Archivos:*
 #link(git_base_url + "/docs/diagrams/system-context.png", [system-context.png]),
 #link(git_base_url + "/docs/diagrams/container-view.png", [container-view.png]),
-#link(git_base_url + "/docs/diagrams/component-view.png", [component-view.png]).
+#link(git_base_url + "/docs/diagrams/components/component-backend.png", [component-backend.png]).
 
 ==== Objetivo
 

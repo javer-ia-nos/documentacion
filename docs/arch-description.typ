@@ -528,7 +528,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-backend.png",
+      "diagrams/components/component-backend.png",
       width: 80%,
     ),
   ),
@@ -541,7 +541,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-web.png",
+      "diagrams/components/component-web.png",
       width: 80%,
     ),
   ),
@@ -554,7 +554,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-mobil.png",
+      "diagrams/components/component-mobil.png",
       width: 80%,
     ),
   ),

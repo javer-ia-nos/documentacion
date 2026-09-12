@@ -81,9 +81,7 @@
     [Se agregaron los nuevos diagramas de componentes para cada contenedor del sistema.],
     [Miguel Francisco Vargas],
 
-    [2026-09-07],
-    [Se añadio la primera version de los stakeholders],
-    [Salomon Avila]
+    [2026-09-07], [Se añadio la primera version de los stakeholders], [Salomon Avila],
   )
 ]
 
@@ -530,7 +528,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-view.png",
+      "diagrams/component-backend.png",
       width: 80%,
     ),
   ),
@@ -556,7 +554,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-view.png",
+      "diagrams/component-mobil.png",
       width: 80%,
     ),
   ),

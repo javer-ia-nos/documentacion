@@ -151,6 +151,7 @@
       - Preguntar si estan bien los stakeholders o toca añádir más.
       - Revisar los diagramas.
       - Preguntar si hay que tener desinstalado kubernetes para la sustentación de deployment.
+      - Hay que hacer un code diagrama por cada componente?
     - Se define fecha para tener primer borrador del documento para el jueves.
   ],
   [

@@ -554,7 +554,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/components/component-mobil.png",
+      "diagrams/components/component-mobile.png",
       width: 80%,
     ),
   ),

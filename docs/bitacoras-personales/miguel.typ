@@ -46,4 +46,9 @@
   [Ordenar archivos de diagrama de componentes],
   [2026-09-12],
   [Repo y documentación]
+
+  [8],
+  [Revisión y re-organización de diagramas],
+  [2026-09-12],
+  [Repo y documentación]
 )

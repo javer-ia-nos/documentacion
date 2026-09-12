@@ -1,68 +1,511 @@
-<mxfile host="app.diagrams.net">
+<mxfile host="Electron">
   <diagram name="Vista de componentes - App Móvil" id="mobile-component-view">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4283" dy="3187" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="cont-1" value="&lt;b&gt;Aplicación Móvil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[mobile: React Native]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Proporciona acceso a los servicios de banca digital desde dispositivos móviles.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=10;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1" parent="1"><mxGeometry x="740" y="40" width="280" height="140" as="geometry"/></mxCell>
-<mxCell id="bound-2" value="Aplicación Móvil
-[Frontend mobile]" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#333333;fontSize=14;fontStyle=1;spacingTop=6;spacingLeft=6;" vertex="1" parent="1"><mxGeometry x="40" y="220" width="1680" height="640" as="geometry"/></mxCell>
-<mxCell id="comp-3" value="&lt;b&gt;Autenticación&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Inicio y cierre de sesión, autenticación biométrica (huella/rostro), recuperación y restablecimiento de contraseña, verificación de identidad, control de sesiones.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="80" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-4" value="&lt;b&gt;Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Cambio de contraseña, autenticación 2FA, alertas de seguridad push, dispositivos confiables, bloqueo y desbloqueo de usuario.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="400" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-5" value="&lt;b&gt;Inicio&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Saldo total, resumen de cuentas y tarjetas, últimos movimientos, notificaciones importantes, accesos rápidos.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="720" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-6" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Mis tarjetas, débito y crédito, estado de tarjeta, cupos, información de tarjeta, activarla y bloquearla.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1040" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-7" value="&lt;b&gt;Soporte&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de atención, PQRS, solicitudes, contactar asesor y centro de ayuda.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1360" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-8" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Corriente, ahorro, saldo disponible y total, número y tipo de cuenta.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="80" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-9" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Entre cuentas, pago con QR, programadas, internacionales, consultar transferencia, historial de transacciones.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="400" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-10" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Notificaciones push nativas de movimientos, transferencias, pagos, alertas y avisos de seguridad.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="720" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-11" value="&lt;b&gt;Billeteras y pagos digitales&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Vincular billetera, Apple Pay, Google Wallet, pago con QR/NFC, gestión de medios de pago digitales.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1040" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-12" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Préstamos, inversiones, CDT, certificados, resumen de ingresos y gastos, análisis de ahorro y gasto.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1360" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-13" value="&lt;b&gt;Pagos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Facturas, tarjetas, préstamos, comercios, consultar pagos, comprobantes.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="80" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-14" value="&lt;b&gt;Documentos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Extractos, certificaciones, comprobantes, historiales, descarga y visualización en el dispositivo.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="400" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-15" value="&lt;b&gt;Perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Información personal, datos de contacto, información de cuenta.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="720" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-16" value="&lt;b&gt;Configuración&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Idioma, preferencias generales, gestión de dispositivos, notificaciones, privacidad y comunicación.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1040" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="bound-17" value="API Backend Principal
-[Container: Backend]" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#333333;fontSize=14;fontStyle=1;spacingTop=6;spacingLeft=6;" vertex="1" parent="1"><mxGeometry x="1800" y="220" width="600" height="800" as="geometry"/></mxCell>
-<mxCell id="comp-18" value="&lt;b&gt;Autenticación y Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Login, sesiones, roles, dispositivos confiables y límites de transacción (CU-15 a CU-19).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0000CC;strokeColor=#0000CC;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1840" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-19" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CRUD de cuentas corrientes/ahorro, subcuentas y ahorro automático (CU-06 a CU-09).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="2120" y="260" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-20" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Emisión, bloqueo/desbloqueo y avances de crédito (CU-20 a CU-23).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1840" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-21" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Transferencias, QR, pagos automáticos, facturas y billeteras externas (CU-24 a CU-30).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="2120" y="460" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-22" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CDT/inversiones, préstamos, certificados y consulta de saldo (CU-10 a CU-13).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1840" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-23" value="&lt;b&gt;CRM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de soporte, beneficiarios, PQRS y reclamaciones (CU-02 a CU-05).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="2120" y="660" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-24" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Orquesta el envío de alertas de movimientos y seguridad (CU-14).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="1840" y="860" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="comp-25" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Registro de sesiones, actividad y trazabilidad del sistema (CU-01).&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="2120" y="860" width="240" height="120" as="geometry"/></mxCell>
-<mxCell id="legend-41" value="Nomenclatura (C4 - estilo c4model.com)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" vertex="1" parent="1"><mxGeometry x="40" y="900" width="360" height="250" as="geometry"/></mxCell>
-<mxCell id="lsw-42" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="930" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-43" value="Contenedor / Componente frontend (App móvil)" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="930" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-44" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0000CC;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="955" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-45" value="Backend: Autenticación y Seguridad" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#0000CC;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="955" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-46" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="980" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-47" value="Backend: Cuentas" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#82b366;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="980" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-48" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="1005" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-49" value="Backend: Tarjetas" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="1005" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-50" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#d6b656;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="1030" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-51" value="Backend: Transacciones" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#d6b656;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="1030" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-52" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673a6;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="1055" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-53" value="Backend: Financiero" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#9673a6;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="1055" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-54" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="1080" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-55" value="Backend: CRM / Auditoría" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="1080" width="290" height="20" as="geometry"/></mxCell>
-<mxCell id="lsw-56" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#b85450;strokeWidth=2;arcSize=20;" vertex="1" parent="1"><mxGeometry x="55" y="1105" width="30" height="20" as="geometry"/></mxCell>
-<mxCell id="ltx-57" value="Backend: Notificaciones" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#b85450;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="95" y="1105" width="290" height="20" as="geometry"/></mxCell>
-        <mxCell id="edge-26" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-3" target="comp-18"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-27" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-4" target="comp-18"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-28" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-5" target="comp-19"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-29" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-6" target="comp-20"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-30" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-7" target="comp-23"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-31" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-8" target="comp-19"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-32" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-9" target="comp-21"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-33" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-10" target="comp-24"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-34" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-11" target="comp-21"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-35" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-12" target="comp-22"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-36" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-13" target="comp-21"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-37" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-14" target="comp-19"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-38" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-15" target="comp-18"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-39" value="Usa" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="comp-16" target="comp-18"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="edge-40" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" edge="1" parent="1" source="cont-1" target="bound-2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="cont-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=10;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" value="&lt;b&gt;Aplicación Móvil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[mobile: React Native]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Proporciona acceso a los servicios de banca digital desde dispositivos móviles.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="740" as="geometry" />
+        </mxCell>
+        <mxCell id="bound-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#333333;fontSize=14;fontStyle=1;spacingTop=6;spacingLeft=6;" value="Aplicación Móvil [Frontend mobile]" vertex="1">
+          <mxGeometry height="640" width="1680" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Autenticación&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Inicio y cierre de sesión, autenticación biométrica (huella/rostro), recuperación y restablecimiento de contraseña, verificación de identidad, control de sesiones.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="80" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Cambio de contraseña, autenticación 2FA, alertas de seguridad push, dispositivos confiables, bloqueo y desbloqueo de usuario.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="400" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Inicio&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Saldo total, resumen de cuentas y tarjetas, últimos movimientos, notificaciones importantes, accesos rápidos.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="720" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Mis tarjetas, débito y crédito, estado de tarjeta, cupos, información de tarjeta, activarla y bloquearla.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1040" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Soporte&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de atención, PQRS, solicitudes, contactar asesor y centro de ayuda.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1360" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Corriente, ahorro, saldo disponible y total, número y tipo de cuenta.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="80" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Entre cuentas, pago con QR, programadas, internacionales, consultar transferencia, historial de transacciones.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="400" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Notificaciones push nativas de movimientos, transferencias, pagos, alertas y avisos de seguridad.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="720" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Billeteras y pagos digitales&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Vincular billetera, Apple Pay, Google Wallet, pago con QR/NFC, gestión de medios de pago digitales.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1040" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Préstamos, inversiones, CDT, certificados, resumen de ingresos y gastos, análisis de ahorro y gasto.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1360" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Pagos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Facturas, tarjetas, préstamos, comercios, consultar pagos, comprobantes.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="80" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Documentos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Extractos, certificaciones, comprobantes, historiales, descarga y visualización en el dispositivo.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="400" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Información personal, datos de contacto, información de cuenta.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="720" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Configuración&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Idioma, preferencias generales, gestión de dispositivos, notificaciones, privacidad y comunicación.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1040" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0000CC;strokeColor=#0000CC;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Autenticación y Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Login, sesiones, roles, dispositivos confiables y límites de transacción (CU-15 a CU-19).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1840" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CRUD de cuentas corrientes/ahorro, subcuentas y ahorro automático (CU-06 a CU-09).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="2120" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Emisión, bloqueo/desbloqueo y avances de crédito (CU-20 a CU-23).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1840" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Transferencias, QR, pagos automáticos, facturas y billeteras externas (CU-24 a CU-30).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="2120" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CDT/inversiones, préstamos, certificados y consulta de saldo (CU-10 a CU-13).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1840" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;CRM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de soporte, beneficiarios, PQRS y reclamaciones (CU-02 a CU-05).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="2120" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Orquesta el envío de alertas de movimientos y seguridad (CU-14).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="1840" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;arcSize=6;strokeWidth=2;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Registro de sesiones, actividad y trazabilidad del sistema (CU-01).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="2120" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo c4model.com)" vertex="1">
+          <mxGeometry height="250" width="360" x="40" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-42" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-43" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#6c8ebf;fontStyle=1;" value="Contenedor / Componente frontend (App móvil)" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-44" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0000CC;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-45" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#0000CC;fontStyle=1;" value="Backend: Autenticación y Seguridad" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-46" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-47" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#82b366;fontStyle=1;" value="Backend: Cuentas" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-48" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="1005" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-49" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" value="Backend: Tarjetas" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1005" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#d6b656;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-51" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#d6b656;fontStyle=1;" value="Backend: Transacciones" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-52" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673a6;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="1055" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-53" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#9673a6;fontStyle=1;" value="Backend: Financiero" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1055" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-54" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-55" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;fontStyle=1;" value="Backend: CRM / Auditoría" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-56" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#b85450;strokeWidth=2;arcSize=20;" value="" vertex="1">
+          <mxGeometry height="20" width="30" x="55" y="1105" as="geometry" />
+        </mxCell>
+        <mxCell id="ltx-57" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#b85450;fontStyle=1;" value="Backend: Notificaciones" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1105" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-40" edge="1" parent="1" source="cont-1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" target="bound-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-6" edge="1" parent="1" source="comp-3" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="320" />
+            </Array>
+            <mxPoint x="450" y="180" as="sourcePoint" />
+            <mxPoint x="360" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-7" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="360" y="200" as="sourcePoint" />
+            <mxPoint x="1960" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-9" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.0076" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-8" edge="1" parent="1" source="comp-18" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1680" y="80" as="sourcePoint" />
+            <mxPoint x="1960" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-10" edge="1" parent="1" source="comp-4" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="180" />
+            </Array>
+            <mxPoint x="790" y="260" as="sourcePoint" />
+            <mxPoint x="1900" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-12" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.0054" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-11" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;endFill=1;" target="comp-18" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1900" y="180" as="sourcePoint" />
+            <mxPoint x="2080" y="-10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-13" edge="1" parent="1" source="comp-5" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="320" />
+            </Array>
+            <mxPoint x="1030" y="140" as="sourcePoint" />
+            <mxPoint x="1030" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-14" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1030" y="160" as="sourcePoint" />
+            <mxPoint x="2240" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-16" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.7815" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-15" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;endFill=1;" target="comp-19" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2240" y="160" as="sourcePoint" />
+            <mxPoint x="2260" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-17" edge="1" parent="1" source="comp-6" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="320" />
+            </Array>
+            <mxPoint x="1680" y="480" as="sourcePoint" />
+            <mxPoint x="1320" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-18" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1320" y="100" as="sourcePoint" />
+            <mxPoint x="1760" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-21" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.0955" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-19" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1760" y="490" as="sourcePoint" />
+            <mxPoint x="1760" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-20" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;endFill=1;" target="comp-20" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1760" y="490" as="sourcePoint" />
+            <mxPoint x="1730" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-22" edge="1" parent="1" source="comp-7" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1760" y="440" as="sourcePoint" />
+            <mxPoint x="1780" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-26" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.38" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-23" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1780" y="620" as="sourcePoint" />
+            <mxPoint x="1780" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-24" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1780" y="620" as="sourcePoint" />
+            <mxPoint x="2240" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-25" edge="1" parent="1" source="comp-23" style="endArrow=none;dashed=1;html=1;rounded=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1760" y="640" as="sourcePoint" />
+            <mxPoint x="2240" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-27" edge="1" parent="1" source="comp-8" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="60" y="450" as="sourcePoint" />
+            <mxPoint x="-20" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-28" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-20" y="520" as="sourcePoint" />
+            <mxPoint x="-20" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-30" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-20" y="150" as="sourcePoint" />
+            <mxPoint x="2300" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-32" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-30" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.3259" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-31" edge="1" parent="1" source="comp-19" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1840" y="150" as="sourcePoint" />
+            <mxPoint x="2300" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-33" edge="1" parent="1" source="comp-9" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="-30" />
+            </Array>
+            <mxPoint x="1150" y="230" as="sourcePoint" />
+            <mxPoint x="2400" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-36" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.271" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-34" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2400" y="520" as="sourcePoint" />
+            <mxPoint x="2400" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-35" edge="1" parent="1" source="comp-21" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2330" y="460" as="sourcePoint" />
+            <mxPoint x="2400" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-38" edge="1" parent="1" source="comp-10" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="520" />
+            </Array>
+            <mxPoint x="1160" y="630" as="sourcePoint" />
+            <mxPoint x="1000" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-39" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;endFill=1;" target="comp-24" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1000" y="950" as="sourcePoint" />
+            <mxPoint x="1210" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-40" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-39" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.6214" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-41" edge="1" parent="1" source="comp-11" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="520" />
+            </Array>
+            <mxPoint x="1670" y="630" as="sourcePoint" />
+            <mxPoint x="1320" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-42" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1320" y="1040" as="sourcePoint" />
+            <mxPoint x="2400" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-45" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-42" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.6813" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-43" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2400" y="1040" as="sourcePoint" />
+            <mxPoint x="2400" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-44" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;endFill=1;" target="comp-21" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2400" y="550" as="sourcePoint" />
+            <mxPoint x="1720" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-46" edge="1" parent="1" source="comp-12" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1760" y="520" />
+            </Array>
+            <mxPoint x="1500" y="760" as="sourcePoint" />
+            <mxPoint x="1760" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-48" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-46" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.6898" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-47" edge="1" parent="1" source="comp-22" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1500" y="760" as="sourcePoint" />
+            <mxPoint x="1760" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-49" edge="1" parent="1" source="comp-13" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="450" y="480" as="sourcePoint" />
+            <mxPoint x="-40" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-50" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-40" y="720" as="sourcePoint" />
+            <mxPoint x="-40" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-51" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-40" y="-40" as="sourcePoint" />
+            <mxPoint x="2440" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-54" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-51" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.0333" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-52" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2440" y="490" as="sourcePoint" />
+            <mxPoint x="2440" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-53" edge="1" parent="1" source="comp-21" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2320" y="480" as="sourcePoint" />
+            <mxPoint x="2440" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-55" edge="1" parent="1" source="comp-14" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1290" y="510" as="sourcePoint" />
+            <mxPoint x="520" y="1070" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-56" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="520" y="1080" as="sourcePoint" />
+            <mxPoint x="2450" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-60" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.005" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-57" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2450" y="1080" as="sourcePoint" />
+            <mxPoint x="2450" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-58" edge="1" parent="1" source="comp-19" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2360" y="390" as="sourcePoint" />
+            <mxPoint x="2450" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-62" edge="1" parent="1" source="comp-16" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1520" y="650" as="sourcePoint" />
+            <mxPoint x="1800" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-65" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-62" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="0.4122" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-63" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1800" y="320" as="sourcePoint" />
+            <mxPoint x="1800" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-64" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;" target="comp-18" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1800" y="320" as="sourcePoint" />
+            <mxPoint x="1820" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-66" edge="1" parent="1" source="comp-15" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="920" />
+            </Array>
+            <mxPoint x="1270" y="690" as="sourcePoint" />
+            <mxPoint x="1820" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-69" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-66" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+          <mxGeometry relative="1" x="-0.1804" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-67" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1820" y="920" as="sourcePoint" />
+            <mxPoint x="1820" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-68" edge="1" parent="1" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;endFill=1;" target="comp-18" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1820" y="350" as="sourcePoint" />
+            <mxPoint x="1850" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-70" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#333333;fontSize=14;fontStyle=1;spacingTop=6;spacingLeft=6;" value="API Backend Principal [Container: Backend]" vertex="1">
+          <mxGeometry height="800" width="600" x="1790" y="220" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

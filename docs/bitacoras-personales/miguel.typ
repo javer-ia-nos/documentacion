@@ -55,5 +55,10 @@
   [9],
   [Cu-32 estaba duplicado, entonces se elimino y agrego la información extra al CU-27],
   [2026-09-12],
-  [Repo y documentación]
+  [Repo y documentación],
+  
+  [10],
+  [Se desarrolla parte del docker y la db para el servicio de cuentas a modo de plantilla para el desarrollo de los demás servicios.],
+  [2026-09-12],
+  [Servicios y código]
 )

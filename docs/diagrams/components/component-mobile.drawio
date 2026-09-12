@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Vista de componentes - App Móvil" id="mobile-component-view">
-    <mxGraphModel dx="4283" dy="3187" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1340" dy="1398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -145,7 +145,7 @@
             <mxPoint x="1960" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-9" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-9" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="VALIDA CREDENCIALES" vertex="1">
           <mxGeometry relative="1" x="0.0076" y="2" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -165,7 +165,7 @@
             <mxPoint x="1900" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-12" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-12" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="GESTIONA SESIÓN Y DISPOSITIVOS" vertex="1">
           <mxGeometry relative="1" x="-0.0054" y="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -191,7 +191,7 @@
             <mxPoint x="2240" y="160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-16" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-16" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="CONSULTA SALDOS Y RESUMEN" vertex="1">
           <mxGeometry relative="1" x="-0.7815" y="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -217,7 +217,7 @@
             <mxPoint x="1760" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-21" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-21" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="SINCRONIZA TARJETAS VINCULADAS" vertex="1">
           <mxGeometry relative="1" x="-0.0955" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -240,7 +240,7 @@
             <mxPoint x="1780" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-26" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-26" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="REGISTRA&lt;div&gt;SOLICITUD&lt;/div&gt;&lt;div&gt;(PQRS)&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="-0.38" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -281,7 +281,7 @@
             <mxPoint x="2300" y="150" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-32" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-30" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-32" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-30" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="CONSULTA Y ACTUALIZA CUENTAS" vertex="1">
           <mxGeometry relative="1" x="0.3259" y="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -301,7 +301,7 @@
             <mxPoint x="2400" y="-30" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-36" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-36" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ENVÍA TRANSACCIÓN" vertex="1">
           <mxGeometry relative="1" x="0.271" y="-1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -333,7 +333,7 @@
             <mxPoint x="1210" y="580" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-40" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-39" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-40" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-39" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="RECIBE ALERTA" vertex="1">
           <mxGeometry relative="1" x="-0.6214" y="-2" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -353,7 +353,7 @@
             <mxPoint x="2400" y="1040" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-45" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-42" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-45" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-42" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="PROCESA PAGO DIGITAL" vertex="1">
           <mxGeometry relative="1" x="-0.6813" y="-3" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -379,9 +379,9 @@
             <mxPoint x="1760" y="720" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-48" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-46" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-48" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-46" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="CONSULTA&lt;div&gt;PRODUCTO&lt;/div&gt;&lt;div&gt;FINANCIERO&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.6898" y="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="-101" y="-144" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="5X-2PxTty6mnN5YpOLD5-47" edge="1" parent="1" source="comp-22" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" value="">
@@ -408,9 +408,9 @@
             <mxPoint x="2440" y="-40" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-54" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-51" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-54" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-51" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="REGISTRA PAGOS" vertex="1">
           <mxGeometry relative="1" x="-0.0333" y="2" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="361" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="5X-2PxTty6mnN5YpOLD5-52" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
@@ -437,7 +437,7 @@
             <mxPoint x="2450" y="1080" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-60" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-60" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="SOLICITA EXTRACTOS" vertex="1">
           <mxGeometry relative="1" x="0.005" y="-1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -460,9 +460,9 @@
             <mxPoint x="1800" y="690" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-65" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-62" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-65" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-62" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="AJUSTA PREFERENCIAS DE SEGURIDAD" vertex="1">
           <mxGeometry relative="1" x="0.4122" y="2" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="-167" y="2" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="5X-2PxTty6mnN5YpOLD5-63" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
@@ -486,7 +486,7 @@
             <mxPoint x="1820" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5X-2PxTty6mnN5YpOLD5-69" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-66" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="USA" vertex="1">
+        <mxCell id="5X-2PxTty6mnN5YpOLD5-69" connectable="0" parent="5X-2PxTty6mnN5YpOLD5-66" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ACTUALIZA DATOS DE USUARIO" vertex="1">
           <mxGeometry relative="1" x="-0.1804" y="-1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>

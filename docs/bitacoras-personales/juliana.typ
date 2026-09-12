@@ -11,4 +11,8 @@
   [Se realizó el diagrama de componentes (usando el C4 model) para la aplicación móvil.],
   [2026-09-07],
   [Diagrama de Componentes - Aplicación móvil],
+  [3],
+  [Se subió una nuerva versión del diagrama de componentes del sistema móvil con cambios y mejoras.],
+  [2026-09-12],
+  [Diagrama de Componentes (Mejora) - Aplicación móvil],
 )

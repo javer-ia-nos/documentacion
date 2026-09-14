@@ -15,4 +15,8 @@
   [Se subió una nuerva versión del diagrama de componentes del sistema móvil con cambios y mejoras.],
   [2026-09-12],
   [Diagrama de Componentes (Mejora) - Aplicación móvil],
+  [4],
+  [Se realizó la primera iteración del diagrama de código oara móvil de pagos.],
+  [2026-09-14],
+  [Diagrama de Código para pagos - Aplicación móvil],
 )

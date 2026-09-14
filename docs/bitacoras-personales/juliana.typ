@@ -16,7 +16,7 @@
   [2026-09-12],
   [Diagrama de Componentes (Mejora) - Aplicación móvil],
   [4],
-  [Se realizó la primera iteración del diagrama de código oara móvil de pagos.],
+  [Se realizó la primera iteración del diagrama de código para móvil de pagos.],
   [2026-09-14],
   [Diagrama de Código para pagos - Aplicación móvil],
 )

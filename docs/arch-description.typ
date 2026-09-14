@@ -555,6 +555,73 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Vista de procesos
+
+#figure(
+  caption: "Diagrama dinámico: Programación de ahorro automático (CU-09)",
+  align(
+    center,
+    image(
+      "diagrams/processes/programacion-ahorro-automatico.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-ahorro-automatico>
+
+#figure(
+  caption: "Diagrama dinámico: Solicitud de CDT e inversiones (CU-12)",
+  align(
+    center,
+    image(
+      "diagrams/processes/solicitud-cdt-inversiones.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-cdt-inversiones>
+
+#figure(
+  caption: "Diagrama dinámico: Solicitud y gestión de préstamos (CU-13)",
+  align(
+    center,
+    image(
+      "diagrams/processes/solicitud-gestion-prestamos.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-gestion-prestamos>
+
+#figure(
+  caption: "Diagrama dinámico: Gestión de transferencias internacionales y nacionales (CU-26)",
+  align(
+    center,
+    image(
+      "diagrams/processes/gestion-transferencias-internacionales-nacionales.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-transferencias-internacionales-nacionales>
+
+#figure(
+  caption: "Diagrama dinámico: Pago de facturas y servicios (CU-27)",
+  align(
+    center,
+    image(
+      "diagrams/processes/pago-facturas-servicios.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-pago-facturas-servicios>
+
+#figure(
+  caption: "Diagrama dinámico: Transferencias entre cuentas propias y a terceros (CU-30)",
+  align(
+    center,
+    image(
+      "diagrams/processes/transferencias-cuentas-propias-terceros.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-transferencias-propias-terceros>
+
 #instruction[
   Describir el comportamiento de las partes más críticas del sistema. No es necesario detallar el comportamiento de todos los elementos del sistema, sino solo aquellos más críticos en relación con los atributos de calidad. \
   *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
@@ -567,6 +634,95 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Modelo de datos
+
+#figure(
+  caption: "Modelo E/R: Auditoría",
+  align(
+    center,
+    image(
+      "diagrams/er/auditoria_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-auditoria>
+
+#figure(
+  caption: "Modelo E/R: Autenticación y Seguridad",
+  align(
+    center,
+    image(
+      "diagrams/er/authSeguridad_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-auth-seguridad>
+
+#figure(
+  caption: "Modelo E/R: CRM",
+  align(
+    center,
+    image(
+      "diagrams/er/crm_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-crm>
+
+#figure(
+  caption: "Modelo E/R: Cuentas",
+  align(
+    center,
+    image(
+      "diagrams/er/cuentas_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-cuentas>
+
+#figure(
+  caption: "Modelo E/R: Financiero",
+  align(
+    center,
+    image(
+      "diagrams/er/financiero_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-financiero>
+
+#figure(
+  caption: "Modelo E/R: Notificaciones",
+  align(
+    center,
+    image(
+      "diagrams/er/notificaciones_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-notificaciones>
+
+#figure(
+  caption: "Modelo E/R: Tarjetas",
+  align(
+    center,
+    image(
+      "diagrams/er/tarjetas_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-tarjetas>
+
+#figure(
+  caption: "Modelo E/R: Transacciones",
+  align(
+    center,
+    image(
+      "diagrams/er/transacciones_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-transacciones>
+
 #instruction[
   Si aplica, esta sección debe mostrar todos los modelos de datos persistentes usados en la aplicación: modelos ER, modelos de entidades, etc. Si es una arquitectura distribuida, indicar claramente a qué componentes o contenedores aplica cada modelo de datos. \
   *Contenido:* diagramas y su correspondiente explicación.

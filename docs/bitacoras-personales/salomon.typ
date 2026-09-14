@@ -219,3 +219,40 @@ como participantes. El flujo numerado cubre la configuración de la
 programación y su ejecución automática mediante un disparador interno, con una
 nota sobre el caso de saldo insuficiente. Queda pendiente enlazar este
 diagrama desde `arch-description.typ`.
+
+=== Iteración 9: Diagramas dinámicos de procesos restantes
+
+*Fecha:* 14 de septiembre de 2026 \
+*Commit:*
+#link(commit_url + "c02eea6e6aafe36a5daf81048d7fdd53c68e305f", [c02eea6 · «CDT e inversiones»]),
+#link(commit_url + "9290df6a5a3d18b65877ddd058d4e3d59dc49419", [9290df6 · «Gestión de préstamos»]),
+#link(commit_url + "21f2d003c4eb7996af0211be1eacb7500d3ed488", [21f2d00 · «Pago de facturas de servicios»]),
+#link(commit_url + "2a2ba7950cffbd8b71596932982a6041d35e5b21", [2a2ba79 · «Transferencias nacionales e internacionales»]),
+#link(commit_url + "010fb0d2372c93b845612d6f9b9a237f7461f525", [010fb0d · «Transferencias cuentas propias y terceros»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/processes/solicitud-cdt-inversiones.drawio", [solicitud-cdt-inversiones.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/solicitud-gestion-prestamos.drawio", [solicitud-gestion-prestamos.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/pago-facturas-servicios.drawio", [pago-facturas-servicios.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/gestion-transferencias-internacionales-nacionales.drawio", [gestion-transferencias-internacionales-nacionales.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/transferencias-cuentas-propias-terceros.drawio", [transferencias-cuentas-propias-terceros.drawio]).
+
+==== Objetivo
+
+Completar la vista de procesos con un C4 Dynamic Diagram en estilo secuencia
+para cada uno de los casos de uso críticos restantes de Financiero y
+Transacciones: CU-12, CU-13, CU-27, CU-26 y CU-30.
+
+==== Descripción
+
+Se creó un diagrama dinámico por caso de uso en `diagrams/processes`, todos
+con la misma convención visual y de nomenclatura del primer diagrama de
+ahorro automático. Cada uno modela dos fases numeradas sobre los componentes
+backend ya existentes en `component-backend.drawio`, con una nota sobre el
+comportamiento crítico correspondiente cuando aplica. El de transferencias
+internacionales aprovecha la relación ya modelada entre Transacciones y la
+Pasarela de Pagos Internacionales, y el de transferencias a terceros suma el
+componente CRM para la consulta de beneficiarios registrados. Ninguno de
+estos cambios tocó el modelo ER ni los diagramas de componentes existentes.
+Queda pendiente enlazar los seis diagramas de procesos desde
+`arch-description.typ`.

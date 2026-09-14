@@ -19,4 +19,8 @@
   [Se realizó la primera iteración del diagrama de código para móvil de pagos.],
   [2026-09-14],
   [Diagrama de Código para pagos - Aplicación móvil],
+  [5],
+  [Se realizó el diagrama para el componente financiero móvil.],
+  [2026-09-14],
+  [Diagrama de Código financiero - Aplicación móvil],
 )

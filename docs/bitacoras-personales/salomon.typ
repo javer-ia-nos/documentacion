@@ -119,3 +119,37 @@ los sistemas externos y los stakeholders del proyecto académico. Cada interés 
 redactó a partir de la descripción y las relaciones del actor en el diagrama de
 contexto. Queda pendiente cerrar la trazabilidad de los roles corporativos y de
 sucursal, que aún no tienen CU ni ASR que los respalde.
+
+=== Iteración 5: Primera iteración de diagramas E/R
+
+*Fecha:* 14 de septiembre de 2026 \
+*Commit:* #link(commit_url + "42801991d741fa15d435213a2788d421a0ef4c7e", [4280199 · «Primera iteracion de diagramas E/R»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/er/authSeguridad_er.drawio", [authSeguridad_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/cuentas_er.drawio", [cuentas_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/tarjetas_er.drawio", [tarjetas_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/transacciones_er.drawio", [transacciones_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/financiero_er.drawio", [financiero_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/crm_er.drawio", [crm_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/notificaciones_er.drawio", [notificaciones_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/auditoria_er.drawio", [auditoria_er.drawio]).
+
+==== Objetivo
+
+Diseñar los diagramas Entidad-Relación de las bases de datos de cada uno de los
+ocho microservicios del backend, normalizados a tercera forma normal y con
+trazabilidad a los componentes definidos en `component-backend.drawio`.
+
+==== Descripción
+
+Se crearon ocho diagramas draw.io en `docs/diagrams/er/`, uno por microservicio:
+Autenticación y Seguridad, Cuentas, Tarjetas, Transacciones, Financiero, CRM,
+Notificaciones y Auditoría. Cada diagrama usa el formato de tabla relacional con
+columnas de indicador PK/FK, nombre de atributo en _camelCase_ y tipo de dato SQL.
+Las claves primarias son UUID y se incluyen llaves foráneas a sistemas externos
+donde corresponde. Las entidades se clasifican por color: azul claro para tablas
+principales, verde para catálogos, amarillo para tablas puente M:N y morado para
+referencias a sistemas externos. Las relaciones usan notación _crow's foot_ con
+cardinalidades explícitas. Queda pendiente la revisión de esquemas con el equipo
+y la generación de los scripts DDL a partir de estos diagramas.

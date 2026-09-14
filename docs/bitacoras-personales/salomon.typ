@@ -153,3 +153,69 @@ principales, verde para catálogos, amarillo para tablas puente M:N y morado par
 referencias a sistemas externos. Las relaciones usan notación _crow's foot_ con
 cardinalidades explícitas. Queda pendiente la revisión de esquemas con el equipo
 y la generación de los scripts DDL a partir de estos diagramas.
+
+=== Iteración 6: Corrección del rango CU-31 en los diagramas de componentes
+
+*Fecha:* 14 de septiembre de 2026 \
+*Commit:* #link(commit_url + "e44327a7055bea1ce41881b4b6d7e48a8690e979", [e44327a · «Arreglo en diagramas de componentes, no se contemplaba el CU-31»]) \
+*Actividad:* Diagramas / Documentación \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/components/component-backend.drawio", [component-backend.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-web.drawio", [component-web.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-mobile.drawio", [component-mobile.drawio]).
+
+==== Objetivo
+
+Corregir el rango de casos de uso declarado por el componente Transacciones, que
+la tabla de casos de uso ya ubicaba en el CU-31 sin que los diagramas de
+componentes lo reflejaran.
+
+==== Descripción
+
+Se comparó cada uno de los ocho componentes del backend contra los treinta y un
+casos de uso del sistema y se encontró que Transacciones se describía como
+CU-24 a CU-30 en los tres diagramas de componentes. Se amplió el texto a
+CU-24 a CU-31 en los tres archivos.
+
+=== Iteración 7: Entidad AutoSavingSchedule en el diagrama E/R de Cuentas
+
+*Fecha:* 14 de septiembre de 2026 \
+*Commit:* #link(commit_url + "830e86b51453acb91516ca0226705e08eb818a92", [830e86b · «Fix del diagrama ER para soportar el ahorro automatico»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/er/cuentas_er.drawio", [cuentas_er.drawio]).
+
+==== Objetivo
+
+Cerrar el vacío del modelo de datos de Cuentas, que aún no tenía ninguna tabla
+capaz de persistir la programación de ahorro automático del CU-09.
+
+==== Descripción
+
+Se agregó la tabla AutoSavingSchedule con el monto, la frecuencia, la próxima
+fecha de ejecución y las referencias a la cuenta origen y al destino en
+subcuenta o meta de ahorro, junto con sus relaciones hacia Account, SubAccount
+y SavingsGoal.
+
+=== Iteración 8: Primera iteración del diagrama dinámico de ahorro automático
+
+*Fecha:* 14 de septiembre de 2026 \
+*Commit:* #link(commit_url + "480ee1b731d33dba63ef79d38cfd85d5f4f6e4f4", [480ee1b · «Primera iteracion del diagrama de ahorro automatico»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/processes/programacion-ahorro-automatico.drawio", [programacion-ahorro-automatico.drawio]).
+
+==== Objetivo
+
+Modelar el comportamiento del CU-09 en la sección de vista de procesos mediante
+un C4 Dynamic Diagram en estilo secuencia.
+
+==== Descripción
+
+Se creó el primer diagrama dinámico en `diagrams/processes`, con el cliente
+bancario, la aplicación, los componentes de Cuentas, Transacciones, Auditoría y
+Notificaciones, la base de datos transaccional y el proveedor de notificaciones
+como participantes. El flujo numerado cubre la configuración de la
+programación y su ejecución automática mediante un disparador interno, con una
+nota sobre el caso de saldo insuficiente. Queda pendiente enlazar este
+diagrama desde `arch-description.typ`.

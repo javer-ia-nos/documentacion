@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="C4 - Codigo - Pagos (Mobile)" id="c4-code-pagos-mobile-v2">
-    <mxGraphModel dx="2060" dy="1252" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="1300" math="0" shadow="0">
+    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="1300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -292,7 +292,7 @@
         <mxCell id="row-196" parent="uml-193" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ billerName: string" vertex="1">
           <mxGeometry height="26" width="260" y="72" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-221" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontColor=#1a1a1a;fontStyle=1;" value="Code View: Sistema Bancario — App Móvil — Componente Pagos" vertex="1">
+        <mxCell id="lbl-221" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontColor=#1a1a1a;fontStyle=1;" value="Code View: Banca Digital — App Móvil — Componente Pagos" vertex="1">
           <mxGeometry height="24" width="1100" x="20" y="10" as="geometry" />
         </mxCell>
         <mxCell id="e-01" edge="1" parent="1" source="row-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="uml-122" value="usa">
@@ -321,30 +321,23 @@
         <mxCell id="e-04" edge="1" parent="1" source="uml-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=10;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uml-127" value="lee / actualiza">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-05" edge="1" parent="1" source="row-125" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.15;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="invoca">
+        <mxCell id="e-05" edge="1" parent="1" source="row-125" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="invoca">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="400" y="319" />
-              <mxPoint x="400" y="400" />
-              <mxPoint x="473" y="400" />
+              <mxPoint x="360" y="319" />
+              <mxPoint x="360" y="400" />
+              <mxPoint x="570" y="400" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-06" edge="1" parent="1" source="row-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="invoca">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="415" y="345" />
-              <mxPoint x="415" y="415" />
-              <mxPoint x="570" y="415" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="e-06" edge="1" parent="1" source="row-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-132" value="invoca">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-07" edge="1" parent="1" source="row-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" target="uml-140" value="invoca">
+        <mxCell id="e-07" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="uml-140" value="invoca">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="430" y="352" />
-              <mxPoint x="430" y="428" />
-              <mxPoint x="828" y="428" />
+              <mxPoint x="256" y="528" />
+              <mxPoint x="870" y="528" />
             </Array>
           </mxGeometry>
         </mxCell>

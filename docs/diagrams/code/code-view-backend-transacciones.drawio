@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net" agent="Claude">
+  <diagram name="Codigo - backend-transacciones" id="code-view-transacciones">
+    <mxGraphModel dx="1488" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t-controller" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionController&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Controller&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ POST /transferencias&lt;br&gt;+ POST /pagos-factura&lt;br&gt;+ POST /qr/generar&lt;br&gt;+ POST /qr/escanear&lt;br&gt;+ POST /pagos-automaticos&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t-service" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionService&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ ejecutarTransferencia(dto): Transaccion&lt;br&gt;+ ejecutarPagoFactura(dto): Transaccion&lt;br&gt;+ generarQR(dto): string&lt;br&gt;+ validarSaldo(cuentaId, monto): boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="280" x="380" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="t-entity" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;Transaccion&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;- id: string&lt;br&gt;- tipo: TipoTransaccion&lt;br&gt;- monto: number&lt;br&gt;- cuentaOrigen: string&lt;br&gt;- cuentaDestino: string&lt;br&gt;- estado: EstadoTransaccion&lt;br&gt;- timestamp: Date&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="720" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="t-repository" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionRepository&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Repository&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ guardar(t: Transaccion): void&lt;br&gt;+ buscarPorId(id: string): Transaccion&lt;br&gt;+ actualizarEstado(id, estado): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="280" x="380" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="t-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="&lt;b&gt;Base de Datos Transaccional&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[database: PostgreSQL]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="220" x="410" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-cuentas" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;CuentasClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ consultarSaldo(cuentaId)&lt;br&gt;+ actualizarSaldo(cuentaId, monto)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="20" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="t-target-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="200" x="20" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-notif" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;NotificacionesClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ enviarEvento(movimiento)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1010" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="t-target-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1010" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-auditoria" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;AuditoriaClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ registrarEvento(transaccion)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1240" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="t-target-auditoria" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1240" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-billeteras" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;BilleterasClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ sincronizarTarjeta(id)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1010" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="t-ext-billeteras" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Billeteras Digitales Externas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1010" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-serviciospublicos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;ServiciosPublicosClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ pagarFactura(convenio, monto)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1240" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="t-ext-serviciospublicos" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Proveedores de Servicios Públicos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1240" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="t-client-pasarela" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;PasarelaPagosClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ enviarFondos(destino, monto)&lt;br&gt;+ recibirFondos(origen, monto)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1010" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="t-ext-pasarela" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Pasarela de Pagos Internacionales&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1240" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="te1" edge="1" parent="1" source="t-controller" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-service" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te2" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="t-entity" value="crea / retorna">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te3" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-repository" value="usa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te4" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.6;entryX=0.3;entryY=1;" target="t-entity" value="persiste">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te5" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-db" value="INSERT / SELECT (pg)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te6" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="t-client-cuentas" value="Valida y actualiza saldo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te7" edge="1" parent="1" source="t-client-cuentas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-cuentas" value="HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te8" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.35;entryX=0;entryY=0.5;" target="t-client-notif" value="Envía evento de movimiento">
+          <mxGeometry relative="1" x="0.8291" y="15" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te9" edge="1" parent="1" source="t-client-notif" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-notif" value="HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te10" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" target="t-client-auditoria" value="Registra transacción">
+          <mxGeometry relative="1" x="-0.0538" y="-16" as="geometry">
+            <mxPoint x="11" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te11" edge="1" parent="1" source="t-client-auditoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-auditoria" value="HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te12" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="t-client-billeteras" value="Sincroniza tarjetas vinculadas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="445" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te13" edge="1" parent="1" source="t-client-billeteras" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-billeteras" value="HTTP/HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te14" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" target="t-client-serviciospublicos" value="Envía pago de facturas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te15" edge="1" parent="1" source="t-client-serviciospublicos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-serviciospublicos" value="HTTP/HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="te16" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="t-client-pasarela" value="Envía y recibe fondos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="785" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te17" edge="1" parent="1" source="t-client-pasarela" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-pasarela" value="HTTP/HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

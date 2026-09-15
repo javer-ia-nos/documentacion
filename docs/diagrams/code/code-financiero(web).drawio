@@ -7,7 +7,7 @@
         <mxCell id="frame-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;" value="" vertex="1">
           <mxGeometry height="1200" width="1230" x="10" y="50" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE PRESENTACIÓN (UI — React Native)" vertex="1">
+        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE PRESENTACIÓN (UI — React)" vertex="1">
           <mxGeometry height="24" width="500" x="50" y="70" as="geometry" />
         </mxCell>
         <mxCell id="lbl-104" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE VIEWMODEL / ESTADO" vertex="1">

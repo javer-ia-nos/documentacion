@@ -1,0 +1,269 @@
+<mxfile host="Electron">
+  <diagram id="proc-transferencias" name="GestionTransferenciasInternacionalesNacionales">
+    <mxGraphModel dx="10470" dy="4230" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=18;fontStyle=1;fontColor=#333333;align=left;verticalAlign=middle;" value="Diagrama Dinámico (C4) — Gestión de transferencias internacionales y nacionales (CU-26)" vertex="1">
+          <mxGeometry height="30" width="1500" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=12;fontColor=#666666;align=left;verticalAlign=middle;" value="Estilo secuencia (c4model.com/diagrams/dynamic) · Componente Transacciones · flujo de transferencia internacional y transferencia nacional interbancaria" vertex="1">
+          <mxGeometry height="20" width="1700" x="40" y="42" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Cliente bancario" c4Type="Persona" c4Description="Usuario que envía transferencias internacionales y nacionales interbancarias." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-cliente">
+          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;shape=mxgraph.c4.person2;strokeWidth=2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
+            <mxGeometry height="110" width="160" x="70" y="60" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="p-app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;Aplicación (Móvil / Web)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Contenedor]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="350" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p-trans" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Transacciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="650" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Cuentas&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="950" y="80" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL" c4Description="Persiste Transaction, Transfer y las cuentas asociadas." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1250" y="70" as="geometry" />
+          </mxCell>
+        </object>
+        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-pasarela">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=middle;fontSize=12;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="90" width="200" x="1550" y="80" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="p-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="1850" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="2150" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ll-cliente" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="170" as="sourcePoint" />
+            <mxPoint x="150" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-app" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="170" as="sourcePoint" />
+            <mxPoint x="450" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-trans" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="170" as="sourcePoint" />
+            <mxPoint x="750" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-cuentas" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="170" as="sourcePoint" />
+            <mxPoint x="1050" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-db" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1350" y="170" as="sourcePoint" />
+            <mxPoint x="1350" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-pasarela" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1650" y="170" as="sourcePoint" />
+            <mxPoint x="1650" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-audit" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1950" y="170" as="sourcePoint" />
+            <mxPoint x="1950" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-notif" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2250" y="170" as="sourcePoint" />
+            <mxPoint x="2250" y="1600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase1-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Fase 1 — Transferencia internacional (envío de fondos al exterior)" vertex="1">
+          <mxGeometry height="24" width="560" x="40" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="1. Solicita una transferencia internacional&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(monto, moneda, cuenta y banco destino)&lt;/font&gt;">
+          <mxGeometry relative="1" x="0.1333" y="-50" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="150" y="230" as="sourcePoint" />
+            <mxPoint x="450" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step2" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="2. Crea la transferencia (API)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="300" as="sourcePoint" />
+            <mxPoint x="750" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step3" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="3. Valida el saldo de la cuenta origen">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="370" as="sourcePoint" />
+            <mxPoint x="1050" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step4" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="4. Confirma el saldo disponible">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="440" as="sourcePoint" />
+            <mxPoint x="750" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note-saldo" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Si el saldo es insuficiente para el monto y la moneda solicitados: se rechaza la solicitud y no se crea la transferencia." vertex="1">
+          <mxGeometry height="80" width="290" x="1090" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="step5" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="5. Crea la Transaction y el Transfer (isInternational = true)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="630" as="sourcePoint" />
+            <mxPoint x="1350" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step6" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="6. Envía la orden de transferencia al exterior">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="700" as="sourcePoint" />
+            <mxPoint x="1650" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step7" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="7. Confirma la liquidación de la transferencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1650" y="770" as="sourcePoint" />
+            <mxPoint x="750" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step8" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="8. Registra el débito en la cuenta origen">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="840" as="sourcePoint" />
+            <mxPoint x="1050" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step9" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="9. Registra la transacción">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="910" as="sourcePoint" />
+            <mxPoint x="1950" y="910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step10" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="10. Notifica el movimiento">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="980" as="sourcePoint" />
+            <mxPoint x="2250" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step11" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="11. Responde con el comprobante de la transferencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="1050" as="sourcePoint" />
+            <mxPoint x="450" y="1050" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step12" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="12. Muestra el comprobante de la transferencia internacional">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="1120" as="sourcePoint" />
+            <mxPoint x="150" y="1120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="divider" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#B0B0B0;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="1160" as="sourcePoint" />
+            <mxPoint x="2350" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase2-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=center;verticalAlign=middle;" value="Fase 2 — Transferencia nacional interbancaria" vertex="1">
+          <mxGeometry height="24" width="700" x="500" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="step13" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="13. Solicita una transferencia nacional interbancaria&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(monto, cuenta y banco destino)&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="1220" as="sourcePoint" />
+            <mxPoint x="450" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step14" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="14. Crea la transferencia (API)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="1290" as="sourcePoint" />
+            <mxPoint x="750" y="1290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step15" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="15. Valida el saldo, crea la Transaction/Transfer (isInternational = false) y registra el débito en la cuenta origen">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="1360" as="sourcePoint" />
+            <mxPoint x="1050" y="1360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step16" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="16. Confirma el débito">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="1430" as="sourcePoint" />
+            <mxPoint x="750" y="1430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step17" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="17. Responde con el comprobante de la transferencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="1500" as="sourcePoint" />
+            <mxPoint x="450" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step18" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="18. Muestra el comprobante de la transferencia nacional">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="1570" as="sourcePoint" />
+            <mxPoint x="150" y="1570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo secuencia)" vertex="1">
+          <mxGeometry height="300" width="360" x="-640" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E8B00;fontStyle=1;" value="Persona" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor / Componente backend" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Almacén de datos" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#D6690F;fontStyle=1;" value="Externo — Pagos y recaudo" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-ln-4" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#404040;strokeWidth=1.5;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-622" y="258" as="sourcePoint" />
+            <mxPoint x="-584" y="258" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje numerado (llamada)" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="246" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-ln-5" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#404040;strokeWidth=1.5;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-622" y="288" as="sourcePoint" />
+            <mxPoint x="-584" y="288" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-tx-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje de retorno / confirmación" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="276" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-6" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;size=6;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Nota — comportamiento crítico" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="316" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -41,4 +41,24 @@
   [Se comenzo a editar el documento de arquitectura y se creo el repo de prueba para el servicio de transacciones, este incluye una plantila para trabajar sobre Elysia y sistema básico (por ahora) de pruebas unitarias.],
   [2026-09-03],
   [Repos y documentación],
+
+  [7],
+  [Ordenar archivos de diagrama de componentes],
+  [2026-09-12],
+  [Repo y documentación],
+
+  [8],
+  [Revisión y re-organización de diagramas],
+  [2026-09-12],
+  [Repo y documentación],
+
+  [9],
+  [Cu-32 estaba duplicado, entonces se elimino y agrego la información extra al CU-27],
+  [2026-09-12],
+  [Repo y documentación],
+  
+  [10],
+  [Se desarrolla parte del docker y la db para el servicio de cuentas a modo de plantilla para el desarrollo de los demás servicios.],
+  [2026-09-12],
+  [Servicios y código]
 )

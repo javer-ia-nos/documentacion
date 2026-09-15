@@ -77,9 +77,11 @@
     ],
     [Miguel Francisco Vargas],
 
-    [2026-09-03],
+    [2026-09-07],
     [Se agregaron los nuevos diagramas de componentes para cada contenedor del sistema.],
     [Miguel Francisco Vargas],
+
+    [2026-09-07], [Se añadio la primera version de los stakeholders], [Salomon Avila],
   )
 ]
 
@@ -280,7 +282,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
   [CU-27],
   [*Pago de facturas de servicios*],
-  [Cancelación de servicios públicos y privados mediante convenios registrados.],
+  [Cancelación de servicios públicos y privados mediante convenios registrados, además de recargas a operadores moviles.],
   [Transacciones],
   [Samuel Beltrán Martínez],
 
@@ -304,18 +306,9 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
   [CU-31],
   [*Información clara sobre intereses e impuestos aplicados a compras*],
-  [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o crzeditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
+  [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o creditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
+  [Transacciones],
   [Samuel Beltrán Martínez],
-
-  [CU-32],
-  [*Pago de facturas y servicios*],
-  [Módulo para convenios de servicios públicos, privados y recargas.],
-  [Miguel Francisco Vargas],
-
-  // [CU-??],
-  // [*Compra de cartera*],
-  // [Compra de cartera o deuda desde otros bancos]
-  // [],
 )
 
 #set text(size: 7pt)
@@ -340,12 +333,57 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   Una tabla que especifique cada stakeholder, su información de contacto y qué intereses o expectativas tiene sobre el sistema que se está desarrollando (cómo espera beneficiarse del mismo).
 ]
 
+#set text(size: 9pt)
 #table(
-  columns: (1fr, 2fr, 2fr),
+  columns: (1.2fr, 1.3fr, 2.5fr),
   fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
   [*Rol/Nombre*], [*Información de Contacto*], [*Intereses / expectativas*],
-  [], [], [],
+
+  [Persona natural],
+  [Canales digitales: app móvil y portal web],
+  [Consultar saldos, realizar transferencias, gestionar tarjetas y solicitar productos financieros desde web y móvil. Espera disponibilidad continua del servicio, transacciones que se completen en pocos segundos y protección de sus datos y fondos frente a fraudes.],
+
+  [Persona jurídica],
+  [Canales digitales: app móvil y portal web; ejecutivo de relación asignado],
+  [Gestionar los productos financieros de la empresa por canales digitales con controles y trazabilidad. Espera soporte para operaciones de alto volumen, segregación de permisos y disponibilidad para su operación diaria.],
+
+  [Cajero],
+  [Sucursal, módulo del sistema para cajeros],
+  [Registrar operaciones presenciales de ventanilla tales como consignaciones, retiros y cheques de forma confiable y con conciliación correcta contra las cuentas de los clientes.],
+
+  [Personal de atención al cliente presencial],
+  [Sucursal, puesto de atención],
+  [Atender dudas generales de los usuarios y asignar turnos. Espera acceso ágil a la información del cliente para resolver consultas y canalizar solicitudes.],
+
+  [Personal de atención al cliente virtual],
+  [Centro de contacto, por canales virtuales],
+  [Atender los canales generales de preguntas de los usuarios de forma remota. Espera herramientas con acceso al historial del cliente y tiempos de respuesta bajos.],
+
+  [Asesor comercial],
+  [Sucursal o canal comercial],
+  [Ofrecer asesoramiento sobre inversiones, préstamos y crecimiento de patrimonio. Espera consultar productos e información del cliente para proponer soluciones a la medida.],
+
+  [Funcionario de créditos],
+  [Área de crédito y cartera],
+  [Evaluar y hacer seguimiento a las solicitudes de financiación y abrir procesos de crédito. Espera poder consultar el historial crediticio del solicitante y gestionar el ciclo de la solicitud.],
+
+  [Jefe de la sucursal],
+  [Dirección de sucursal],
+  [Controlar que los registros y procesos diarios de la sucursal funcionen de manera correcta. Espera funciones de coordinación y verificación general de la operación.],
+
+  [Especialista en comercio exterior],
+  [Área de comercio exterior],
+  [Apoyar a las empresas que importan o exportan mediante cartas de crédito. Espera gestionar giros internacionales y el financiamiento del comercio fronterizo.],
+
+  [Gerente de Banca Corporativa],
+  [Banca corporativa],
+  [Dirigir las estrategias de entrada y salida de dinero para clientes corporativos. Espera visibilidad y liderazgo financiero estratégico sobre las operaciones de grandes empresas.],
+
+  [Ejecutivo de Relación],
+  [Banca corporativa, cartera empresarial],
+  [Administrar la cartera de empresas asignada, analizar las necesidades del negocio y ofrecer soluciones a medida a partir de la información del sistema.],
 )
+#set text(size: 11pt)
 
 = Requisitos Arquitectónicamente Significativos (ASR)
 
@@ -479,7 +517,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-view.png",
+      "diagrams/components/component-backend.png",
       width: 80%,
     ),
   ),
@@ -492,7 +530,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-view.png",
+      "diagrams/components/component-web.png",
       width: 80%,
     ),
   ),
@@ -505,7 +543,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(
     center,
     image(
-      "diagrams/component-view.png",
+      "diagrams/components/component-mobile.png",
       width: 80%,
     ),
   ),
@@ -517,6 +555,73 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Vista de procesos
+
+#figure(
+  caption: "Diagrama dinámico: Programación de ahorro automático (CU-09)",
+  align(
+    center,
+    image(
+      "diagrams/processes/programacion-ahorro-automatico.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-ahorro-automatico>
+
+#figure(
+  caption: "Diagrama dinámico: Solicitud de CDT e inversiones (CU-12)",
+  align(
+    center,
+    image(
+      "diagrams/processes/solicitud-cdt-inversiones.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-cdt-inversiones>
+
+#figure(
+  caption: "Diagrama dinámico: Solicitud y gestión de préstamos (CU-13)",
+  align(
+    center,
+    image(
+      "diagrams/processes/solicitud-gestion-prestamos.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-gestion-prestamos>
+
+#figure(
+  caption: "Diagrama dinámico: Gestión de transferencias internacionales y nacionales (CU-26)",
+  align(
+    center,
+    image(
+      "diagrams/processes/gestion-transferencias-internacionales-nacionales.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-transferencias-internacionales-nacionales>
+
+#figure(
+  caption: "Diagrama dinámico: Pago de facturas y servicios (CU-27)",
+  align(
+    center,
+    image(
+      "diagrams/processes/pago-facturas-servicios.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-pago-facturas-servicios>
+
+#figure(
+  caption: "Diagrama dinámico: Transferencias entre cuentas propias y a terceros (CU-30)",
+  align(
+    center,
+    image(
+      "diagrams/processes/transferencias-cuentas-propias-terceros.png",
+      width: 100%,
+    ),
+  ),
+) <fig-proc-transferencias-propias-terceros>
+
 #instruction[
   Describir el comportamiento de las partes más críticas del sistema. No es necesario detallar el comportamiento de todos los elementos del sistema, sino solo aquellos más críticos en relación con los atributos de calidad. \
   *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
@@ -529,6 +634,95 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 ]
 
 = Modelo de datos
+
+#figure(
+  caption: "Modelo E/R: Auditoría",
+  align(
+    center,
+    image(
+      "diagrams/er/auditoria_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-auditoria>
+
+#figure(
+  caption: "Modelo E/R: Autenticación y Seguridad",
+  align(
+    center,
+    image(
+      "diagrams/er/authSeguridad_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-auth-seguridad>
+
+#figure(
+  caption: "Modelo E/R: CRM",
+  align(
+    center,
+    image(
+      "diagrams/er/crm_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-crm>
+
+#figure(
+  caption: "Modelo E/R: Cuentas",
+  align(
+    center,
+    image(
+      "diagrams/er/cuentas_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-cuentas>
+
+#figure(
+  caption: "Modelo E/R: Financiero",
+  align(
+    center,
+    image(
+      "diagrams/er/financiero_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-financiero>
+
+#figure(
+  caption: "Modelo E/R: Notificaciones",
+  align(
+    center,
+    image(
+      "diagrams/er/notificaciones_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-notificaciones>
+
+#figure(
+  caption: "Modelo E/R: Tarjetas",
+  align(
+    center,
+    image(
+      "diagrams/er/tarjetas_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-tarjetas>
+
+#figure(
+  caption: "Modelo E/R: Transacciones",
+  align(
+    center,
+    image(
+      "diagrams/er/transacciones_er.png",
+      width: 80%,
+    ),
+  ),
+) <fig-er-transacciones>
+
 #instruction[
   Si aplica, esta sección debe mostrar todos los modelos de datos persistentes usados en la aplicación: modelos ER, modelos de entidades, etc. Si es una arquitectura distribuida, indicar claramente a qué componentes o contenedores aplica cada modelo de datos. \
   *Contenido:* diagramas y su correspondiente explicación.

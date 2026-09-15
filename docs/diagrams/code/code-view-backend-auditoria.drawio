@@ -1,72 +1,199 @@
-<mxfile host="app.diagrams.net" modified="2026-09-15T00:00:00.000Z" agent="Claude" version="24.7.0" type="device">
-<diagram name="Codigo - backend-auditoria" id="code-view-auditoria">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="900" math="0" shadow="0">
+<mxfile host="Electron">
+  <diagram name="C4 - Codigo - Auditoria (Backend)" id="c4-code-auditoria-backend">
+    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="1150" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
-        <mxCell id="a-stub" value="&lt;b&gt;Otros Componentes&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;(Transacciones, Cuentas, Tarjetas, Financiero, CRM)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;arcSize=10;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="300" y="20" width="260" height="70" as="geometry" />
+        <mxCell id="frame-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="1050" width="1000" x="10" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE API (Elysia Routes)" vertex="1">
+          <mxGeometry height="24" width="500" x="50" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-105" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE APLICACIÓN (CASOS DE USO)" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="226" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-106" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE DATOS — REPOSITORIO" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-107" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CONTRATOS DE SERIALIZACIÓN (REQUEST / RESPONSE)" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="564" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR" vertex="1">
+          <mxGeometry height="24" width="500" x="50" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-109" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="MODELOS DE DOMINIO" vertex="1">
+          <mxGeometry height="24" width="500" x="30" y="900" as="geometry" />
         </mxCell>
 
-        <mxCell id="a-controller" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;AuditoriaController&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Controller&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ POST /eventos&lt;br&gt;&amp;nbsp;&amp;nbsp;registrarEvento(req)&lt;br&gt;+ GET /eventos/:usuarioId&lt;br&gt;&amp;nbsp;&amp;nbsp;obtenerHistorial(usuarioId)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="300" y="130" width="260" height="120" as="geometry" />
+        <!-- CAPA DE API -->
+        <mxCell id="uml-110" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaController" vertex="1">
+          <mxGeometry height="98" width="320" x="330" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="div-111" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-112" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-113" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /eventos → registrarEvento(req)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-113b" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ GET /eventos/:id → obtenerHistorial(id)" vertex="1"><mxGeometry height="26" width="320" y="72" as="geometry" /></mxCell>
+
+        <!-- CAPA DE APLICACIÓN -->
+        <mxCell id="uml-132" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ RegistrarEventoUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="60" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="div-133" parent="uml-132" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-134" parent="uml-132" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-135" parent="uml-132" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(evento: EventoDTO): RegistroAuditoria" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-136" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ ConsultarHistorialUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="410" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="div-137" parent="uml-136" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-138" parent="uml-136" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-139" parent="uml-136" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(usuarioId): RegistroAuditoria[]" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-140" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ ReportarCumplimientoUseCase" vertex="1">
+          <mxGeometry height="72" width="320" x="760" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="div-141" parent="uml-140" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-142" parent="uml-140" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-143" parent="uml-140" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(periodo): ReporteCumplimiento" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+
+        <!-- CAPA DE DATOS -->
+        <mxCell id="uml-144" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;AuditoriaRepository&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="320" x="60" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="div-145" parent="uml-144" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-146" parent="uml-144" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-147" parent="uml-144" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ RegistroAuditoria[] buscarPorUsuario(id)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-148" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaRepositoryImpl" vertex="1">
+          <mxGeometry height="46" width="300" x="430" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="div-149" parent="uml-148" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-150" parent="uml-148" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+
+        <mxCell id="uml-151" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaDbConnection" vertex="1">
+          <mxGeometry height="72" width="300" x="780" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="div-152" parent="uml-151" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-153" parent="uml-151" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-154" parent="uml-151" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ Response execute(Request)" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <!-- CONTRATOS DE SERIALIZACIÓN -->
+        <mxCell id="uml-155" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;Response&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="200" x="60" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-156" parent="uml-155" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-157" parent="uml-155" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-158" parent="uml-155" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ fromJson()" vertex="1"><mxGeometry height="26" width="200" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-159" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;Request&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="200" x="320" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-160" parent="uml-159" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-161" parent="uml-159" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-162" parent="uml-159" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toJson()" vertex="1"><mxGeometry height="26" width="200" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-163" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaResponse" vertex="1">
+          <mxGeometry height="72" width="240" x="580" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-164" parent="uml-163" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-166" parent="uml-163" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-165" parent="uml-163" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ RegistroAuditoria[] registros" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-167" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaRequest" vertex="1">
+          <mxGeometry height="72" width="240" x="860" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-168" parent="uml-167" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-170" parent="uml-167" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-169" parent="uml-167" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ usuarioId: string" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <!-- INFRAESTRUCTURA AUXILIAR -->
+        <mxCell id="uml-171" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaMapper" vertex="1">
+          <mxGeometry height="98" width="300" x="60" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-172" parent="uml-171" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-173" parent="uml-171" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-174" parent="uml-171" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toDomain(dto)" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-175" parent="uml-171" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toDTO(model)" vertex="1"><mxGeometry height="26" width="300" y="72" as="geometry" /></mxCell>
+
+        <mxCell id="uml-176" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ EnteReguladorClient" vertex="1">
+          <mxGeometry height="72" width="300" x="420" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-177" parent="uml-176" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-178" parent="uml-176" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-179" parent="uml-176" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ enviarReporte(reporte): void" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <!-- MODELOS DE DOMINIO -->
+        <mxCell id="uml-181" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ RegistroAuditoria" vertex="1">
+          <mxGeometry height="150" width="280" x="60" y="934" as="geometry" />
+        </mxCell>
+        <mxCell id="div-182" parent="uml-181" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="30" as="geometry" /></mxCell>
+        <mxCell id="row-183" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ id: UUID" vertex="1"><mxGeometry height="26" width="280" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-184" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ tipoEvento: string" vertex="1"><mxGeometry height="26" width="280" y="64" as="geometry" /></mxCell>
+        <mxCell id="row-184b" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ usuarioId: string" vertex="1"><mxGeometry height="26" width="280" y="90" as="geometry" /></mxCell>
+        <mxCell id="div-186" parent="uml-181" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="116" as="geometry" /></mxCell>
+        <mxCell id="row-185" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ timestamp: Date" vertex="1"><mxGeometry height="26" width="280" y="124" as="geometry" /></mxCell>
+
+        <mxCell id="lbl-221" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontColor=#1a1a1a;fontStyle=1;" value="Code View: Banca Digital — Backend — Componente Auditoría" vertex="1">
+          <mxGeometry height="24" width="1000" x="20" y="10" as="geometry" />
         </mxCell>
 
-        <mxCell id="a-service" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;AuditoriaService&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ registrar(evento: EventoAuditoriaDTO): RegistroAuditoria&lt;br&gt;+ consultarHistorial(usuarioId: string): RegistroAuditoria[]&lt;br&gt;+ reportarCumplimiento(): void&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="300" y="320" width="260" height="130" as="geometry" />
+        <!-- EDGES -->
+        <mxCell id="e-01" edge="1" parent="1" source="row-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-132" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="200" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-02" edge="1" parent="1" source="row-113b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="700" y="180" /><mxPoint x="560" y="180" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-03" edge="1" parent="1" source="uml-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-140" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="920" y="190" /></Array></mxGeometry>
         </mxCell>
 
-        <mxCell id="a-repository" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;AuditoriaRepository&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Repository&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ guardar(registro: RegistroAuditoria): void&lt;br&gt;+ buscarPorUsuario(usuarioId: string): RegistroAuditoria[]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="300" y="500" width="260" height="100" as="geometry" />
+        <mxCell id="e-04" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="370" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-05" edge="1" parent="1" source="row-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="560" y="390" /><mxPoint x="220" y="390" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-06" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="920" y="400" /><mxPoint x="316" y="400" /></Array></mxGeometry>
         </mxCell>
 
-        <mxCell id="a-entity" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;RegistroAuditoria&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;- id: string&lt;br&gt;- tipoEvento: string&lt;br&gt;- usuarioId: string&lt;br&gt;- timestamp: Date&lt;br&gt;- detalle: string&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="640" y="320" width="220" height="130" as="geometry" />
-        </mxCell>
-
-        <mxCell id="a-client-regulador" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;EnteReguladorClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ enviarReporte(reporte: ReporteCumplimiento): void&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="640" y="500" width="220" height="90" as="geometry" />
-        </mxCell>
-
-        <mxCell id="a-db" value="&lt;b&gt;Base de Datos Transaccional&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[database: PostgreSQL]&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" vertex="1" parent="1">
-          <mxGeometry x="300" y="660" width="220" height="120" as="geometry" />
-        </mxCell>
-
-        <mxCell id="a-ext-regulador" value="&lt;b&gt;Ente Regulador Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
-          <mxGeometry x="640" y="660" width="220" height="100" as="geometry" />
-        </mxCell>
-
-        <mxCell id="ae1" value="Envía eventos (HTTP)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a-stub" target="a-controller">
+        <mxCell id="e-07" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-144" value="implementa">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="ae2" value="usa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a-controller" target="a-service">
+        <mxCell id="e-08" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uml-151" value="usa">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="ae3" value="usa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a-service" target="a-repository">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-09" edge="1" parent="1" source="row-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-155" value="creates">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="650" y="530" /><mxPoint x="160" y="530" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-10" edge="1" parent="1" source="row-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-167" value="creates">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="930" y="550" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-11" edge="1" parent="1" source="uml-163" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-155" value="implementa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="680" /><mxPoint x="160" y="680" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-12" edge="1" parent="1" source="uml-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-159" value="implementa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="830" y="692" /><mxPoint x="420" y="692" /></Array></mxGeometry>
         </mxCell>
 
-        <mxCell id="ae4" value="crea / retorna" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="1" source="a-service" target="a-entity">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-13" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-171" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="520" y="500" /><mxPoint x="210" y="500" /><mxPoint x="210" y="754" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-14" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-176" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="920" y="600" /><mxPoint x="570" y="600" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-15" edge="1" parent="1" source="uml-176" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-140" value="HTTP (Ente Regulador)">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="850" y="740" /><mxPoint x="850" y="720" /></Array></mxGeometry>
         </mxCell>
 
-        <mxCell id="ae5" value="persiste" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" edge="1" parent="1" source="a-repository" target="a-entity">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-16" edge="1" parent="1" source="uml-171" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-181" value="mapea a">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="200" y="890" /></Array></mxGeometry>
         </mxCell>
-
-        <mxCell id="ae6" value="INSERT / SELECT (pg)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a-repository" target="a-db">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="ae7" value="reporta cumplimiento" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" edge="1" parent="1" source="a-service" target="a-client-regulador">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="ae8" value="HTTP/HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a-client-regulador" target="a-ext-regulador">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" target="uml-181" value="retorna">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="88" y="920" /></Array></mxGeometry>
         </mxCell>
 
       </root>

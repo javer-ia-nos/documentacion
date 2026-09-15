@@ -1,127 +1,248 @@
-<mxfile host="app.diagrams.net" agent="Claude">
-  <diagram name="Codigo - backend-transacciones" id="code-view-transacciones">
-    <mxGraphModel dx="1488" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+<mxfile host="Electron">
+  <diagram name="C4 - Codigo - Transacciones (Backend)" id="c4-code-transacciones-backend">
+    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1150" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="t-controller" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionController&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Controller&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ POST /transferencias&lt;br&gt;+ POST /pagos-factura&lt;br&gt;+ POST /qr/generar&lt;br&gt;+ POST /qr/escanear&lt;br&gt;+ POST /pagos-automaticos&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="280" x="380" y="40" as="geometry" />
+
+        <mxCell id="frame-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="1050" width="1300" x="10" y="50" as="geometry" />
         </mxCell>
-        <mxCell id="t-service" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionService&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ ejecutarTransferencia(dto): Transaccion&lt;br&gt;+ ejecutarPagoFactura(dto): Transaccion&lt;br&gt;+ generarQR(dto): string&lt;br&gt;+ validarSaldo(cuentaId, monto): boolean&lt;/div&gt;" vertex="1">
-          <mxGeometry height="130" width="280" x="380" y="220" as="geometry" />
+        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE API (Elysia Routes)" vertex="1">
+          <mxGeometry height="24" width="500" x="50" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="t-entity" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;Transaccion&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;- id: string&lt;br&gt;- tipo: TipoTransaccion&lt;br&gt;- monto: number&lt;br&gt;- cuentaOrigen: string&lt;br&gt;- cuentaDestino: string&lt;br&gt;- estado: EstadoTransaccion&lt;br&gt;- timestamp: Date&lt;/div&gt;" vertex="1">
-          <mxGeometry height="150" width="240" x="720" y="220" as="geometry" />
+        <mxCell id="lbl-105" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE APLICACIÓN (CASOS DE USO)" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="226" as="geometry" />
         </mxCell>
-        <mxCell id="t-repository" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=left;verticalAlign=top;spacing=8;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;TransaccionRepository&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Repository&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:11px&quot;&gt;+ guardar(t: Transaccion): void&lt;br&gt;+ buscarPorId(id: string): Transaccion&lt;br&gt;+ actualizarEstado(id, estado): void&lt;/div&gt;" vertex="1">
-          <mxGeometry height="110" width="280" x="380" y="400" as="geometry" />
+        <mxCell id="lbl-106" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE DATOS — REPOSITORIO" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="408" as="geometry" />
         </mxCell>
-        <mxCell id="t-db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="&lt;b&gt;Base de Datos Transaccional&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[database: PostgreSQL]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="220" x="410" y="560" as="geometry" />
+        <mxCell id="lbl-107" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CONTRATOS DE SERIALIZACIÓN (REQUEST / RESPONSE)" vertex="1">
+          <mxGeometry height="24" width="500" x="60" y="564" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-cuentas" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;CuentasClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ consultarSaldo(cuentaId)&lt;br&gt;+ actualizarSaldo(cuentaId, monto)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="100" width="200" x="20" y="400" as="geometry" />
+        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR (CLIENTS HTTP)" vertex="1">
+          <mxGeometry height="24" width="500" x="50" y="720" as="geometry" />
         </mxCell>
-        <mxCell id="t-target-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="80" width="200" x="20" y="560" as="geometry" />
+        <mxCell id="lbl-109" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="MODELOS DE DOMINIO" vertex="1">
+          <mxGeometry height="24" width="500" x="30" y="940" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-notif" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;NotificacionesClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ enviarEvento(movimiento)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1010" y="220" as="geometry" />
+
+        <mxCell id="uml-110" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionController" vertex="1">
+          <mxGeometry height="150" width="340" x="480" y="104" as="geometry" />
         </mxCell>
-        <mxCell id="t-target-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="70" width="200" x="1010" y="360" as="geometry" />
+        <mxCell id="div-111" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="340" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-112" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="340" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-113" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /transferencias → transferir(req)" vertex="1"><mxGeometry height="26" width="340" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-113b" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /pagos-factura → pagarFactura(req)" vertex="1"><mxGeometry height="26" width="340" y="72" as="geometry" /></mxCell>
+        <mxCell id="row-113c" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /qr/generar → generarQR(req)" vertex="1"><mxGeometry height="26" width="340" y="98" as="geometry" /></mxCell>
+        <mxCell id="row-113d" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /transferencias-intl → transferirIntl(req)" vertex="1"><mxGeometry height="26" width="340" y="124" as="geometry" /></mxCell>
+
+        <mxCell id="uml-132" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransferirFondosUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="60" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-auditoria" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;AuditoriaClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ registrarEvento(transaccion)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1240" y="220" as="geometry" />
+        <mxCell id="div-133" parent="uml-132" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-134" parent="uml-132" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-135" parent="uml-132" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(dto): Transaccion" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-136" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ PagarFacturaUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="400" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="t-target-auditoria" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3C9E8;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=10;align=center;verticalAlign=middle;arcSize=10;dashed=1;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="70" width="200" x="1240" y="360" as="geometry" />
+        <mxCell id="div-137" parent="uml-136" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-138" parent="uml-136" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-139" parent="uml-136" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(dto): Transaccion" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-140" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ GenerarQRUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="740" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-billeteras" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;BilleterasClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ sincronizarTarjeta(id)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1010" y="470" as="geometry" />
+        <mxCell id="div-141" parent="uml-140" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-142" parent="uml-140" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-143" parent="uml-140" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(cuentaId): string" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-140b" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransferirIntlUseCase" vertex="1">
+          <mxGeometry height="72" width="300" x="1080" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="t-ext-billeteras" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Billeteras Digitales Externas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1010" y="610" as="geometry" />
+        <mxCell id="div-141b" parent="uml-140b" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-142b" parent="uml-140b" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="300" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-143b" parent="uml-140b" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ execute(dto): Transaccion" vertex="1"><mxGeometry height="26" width="300" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-144" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;TransaccionRepository&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="340" x="60" y="442" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-serviciospublicos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;ServiciosPublicosClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ pagarFactura(convenio, monto)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1240" y="470" as="geometry" />
+        <mxCell id="div-145" parent="uml-144" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="340" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-146" parent="uml-144" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="340" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-147" parent="uml-144" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ Transaccion guardar(Transaccion)" vertex="1"><mxGeometry height="26" width="340" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-148" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionRepositoryImpl" vertex="1">
+          <mxGeometry height="46" width="320" x="460" y="442" as="geometry" />
         </mxCell>
-        <mxCell id="t-ext-serviciospublicos" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Proveedores de Servicios Públicos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1240" y="610" as="geometry" />
+        <mxCell id="div-149" parent="uml-148" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-150" parent="uml-148" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+
+        <mxCell id="uml-151" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionDbConnection" vertex="1">
+          <mxGeometry height="72" width="320" x="860" y="442" as="geometry" />
         </mxCell>
-        <mxCell id="t-client-pasarela" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=10;align=left;verticalAlign=top;spacing=6;" value="&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt;PasarelaPagosClient&lt;/b&gt;&lt;br&gt;&lt;i&gt;&amp;lt;&amp;lt;Client&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;font-size:10px&quot;&gt;+ enviarFondos(destino, monto)&lt;br&gt;+ recibirFondos(origen, monto)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1010" y="740" as="geometry" />
+        <mxCell id="div-152" parent="uml-151" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-153" parent="uml-151" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-154" parent="uml-151" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ Response execute(Request)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-155" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;Response&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="200" x="60" y="598" as="geometry" />
         </mxCell>
-        <mxCell id="t-ext-pasarela" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=10;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Pasarela de Pagos Internacionales&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[externo]&lt;/font&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1240" y="740" as="geometry" />
+        <mxCell id="div-156" parent="uml-155" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-157" parent="uml-155" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-158" parent="uml-155" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ fromJson()" vertex="1"><mxGeometry height="26" width="200" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-159" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓘ ▲ &lt;i&gt;Request&lt;/i&gt;" vertex="1">
+          <mxGeometry height="72" width="200" x="320" y="598" as="geometry" />
         </mxCell>
-        <mxCell id="te1" edge="1" parent="1" source="t-controller" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-service" value="usa">
+        <mxCell id="div-160" parent="uml-159" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-161" parent="uml-159" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="200" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-162" parent="uml-159" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toJson()" vertex="1"><mxGeometry height="26" width="200" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-163" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionResponse" vertex="1">
+          <mxGeometry height="72" width="240" x="580" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-164" parent="uml-163" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-166" parent="uml-163" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-165" parent="uml-163" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ Transaccion transaccion" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-167" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionRequest" vertex="1">
+          <mxGeometry height="72" width="240" x="860" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="div-168" parent="uml-167" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-170" parent="uml-167" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-169" parent="uml-167" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ cuentaOrigen: string" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-mapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ TransaccionMapper" vertex="1">
+          <mxGeometry height="98" width="240" x="30" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-m1" parent="uml-mapper" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-m2" parent="uml-mapper" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-m1" parent="uml-mapper" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toDomain(dto)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-m2" parent="uml-mapper" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ toDTO(model)" vertex="1"><mxGeometry height="26" width="240" y="72" as="geometry" /></mxCell>
+
+        <mxCell id="uml-cuentas" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ CuentasClient" vertex="1">
+          <mxGeometry height="98" width="240" x="300" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-c1" parent="uml-cuentas" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-c2" parent="uml-cuentas" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-c1" parent="uml-cuentas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ consultarSaldo(cuentaId)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-c2" parent="uml-cuentas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ actualizarSaldo(id, monto)" vertex="1"><mxGeometry height="26" width="240" y="72" as="geometry" /></mxCell>
+
+        <mxCell id="uml-notif" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ NotificacionesClient" vertex="1">
+          <mxGeometry height="72" width="240" x="570" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-n1" parent="uml-notif" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-n2" parent="uml-notif" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-n1" parent="uml-notif" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ enviarEvento(movimiento)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-audit" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaClient" vertex="1">
+          <mxGeometry height="72" width="240" x="840" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-a1" parent="uml-audit" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-a2" parent="uml-audit" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-a1" parent="uml-audit" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ registrarEvento(transaccion)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+
+        <mxCell id="uml-pasarela" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ PasarelaPagosClient" vertex="1">
+          <mxGeometry height="98" width="240" x="1110" y="754" as="geometry" />
+        </mxCell>
+        <mxCell id="div-p1" parent="uml-pasarela" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-p2" parent="uml-pasarela" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-p1" parent="uml-pasarela" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ enviarFondos(destino, monto)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-p2" parent="uml-pasarela" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ recibirFondos(origen, monto)" vertex="1"><mxGeometry height="26" width="240" y="72" as="geometry" /></mxCell>
+
+        <mxCell id="uml-181" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ Transaccion" vertex="1">
+          <mxGeometry height="176" width="280" x="60" y="974" as="geometry" />
+        </mxCell>
+        <mxCell id="div-182" parent="uml-181" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="30" as="geometry" /></mxCell>
+        <mxCell id="row-183" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ id: UUID" vertex="1"><mxGeometry height="26" width="280" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-184" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ tipo: TipoTransaccion" vertex="1"><mxGeometry height="26" width="280" y="64" as="geometry" /></mxCell>
+        <mxCell id="row-184b" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ monto: number" vertex="1"><mxGeometry height="26" width="280" y="90" as="geometry" /></mxCell>
+        <mxCell id="row-184c" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ cuentaOrigen: string" vertex="1"><mxGeometry height="26" width="280" y="116" as="geometry" /></mxCell>
+        <mxCell id="row-184d" parent="uml-181" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ cuentaDestino: string" vertex="1"><mxGeometry height="26" width="280" y="142" as="geometry" /></mxCell>
+        <mxCell id="div-186" parent="uml-181" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="168" as="geometry" /></mxCell>
+
+        <mxCell id="uml-estado" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ EstadoTransaccion" vertex="1">
+          <mxGeometry height="46" width="220" x="400" y="974" as="geometry" />
+        </mxCell>
+        <mxCell id="div-e1" parent="uml-estado" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="220" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-e2" parent="uml-estado" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="220" y="38" as="geometry" /></mxCell>
+
+        <mxCell id="lbl-221" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontColor=#1a1a1a;fontStyle=1;" value="Code View: Banca Digital — Backend — Componente Transacciones" vertex="1">
+          <mxGeometry height="24" width="1200" x="20" y="10" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-01" edge="1" parent="1" source="row-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-132" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="200" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-02" edge="1" parent="1" source="row-113b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="210" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-03" edge="1" parent="1" source="row-113c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-140" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="890" y="220" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-04" edge="1" parent="1" source="row-113d" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-140b" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1230" y="230" /></Array></mxGeometry>
+        </mxCell>
+
+        <mxCell id="e-05" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="370" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-06" edge="1" parent="1" source="uml-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="390" /><mxPoint x="230" y="390" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-07" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="890" y="400" /><mxPoint x="332" y="400" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-08" edge="1" parent="1" source="uml-140b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.95;entryY=0;entryDx=0;entryDy=0;" target="uml-144" value="depende de">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1110" y="410" /><mxPoint x="398" y="410" /></Array></mxGeometry>
+        </mxCell>
+
+        <mxCell id="e-09" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-144" value="implementa">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="te2" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="t-entity" value="crea / retorna">
+        <mxCell id="e-10" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uml-151" value="usa">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="te3" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-repository" value="usa">
+        <mxCell id="e-11" edge="1" parent="1" source="row-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-155" value="creates">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="700" y="530" /><mxPoint x="160" y="530" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-12" edge="1" parent="1" source="row-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-167" value="creates">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1020" y="550" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-13" edge="1" parent="1" source="uml-163" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-155" value="implementa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="680" /><mxPoint x="160" y="680" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-14" edge="1" parent="1" source="uml-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="uml-159" value="implementa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="830" y="692" /><mxPoint x="420" y="692" /></Array></mxGeometry>
+        </mxCell>
+
+        <mxCell id="e-15" edge="1" parent="1" source="uml-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-mapper" value="usa">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="490" y="500" /><mxPoint x="150" y="500" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-16" edge="1" parent="1" source="uml-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-cuentas" value="Valida y actualiza saldo">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="380" /><mxPoint x="420" y="380" /><mxPoint x="420" y="754" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Envía evento de movimiento">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="360" /><mxPoint x="690" y="360" /><mxPoint x="690" y="754" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-18" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-audit" value="Registra transacción">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="350" /><mxPoint x="960" y="350" /><mxPoint x="960" y="754" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-19" edge="1" parent="1" source="uml-140b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-pasarela" value="Envía y recibe fondos">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1230" y="500" /></Array></mxGeometry>
+        </mxCell>
+
+        <mxCell id="e-21" edge="1" parent="1" source="uml-mapper" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-181" value="mapea a">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="150" y="930" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-22" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.1;entryY=0;entryDx=0;entryDy=0;" target="uml-181" value="retorna">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="88" y="960" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e-23" edge="1" parent="1" source="uml-181" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uml-estado" value="tiene 1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="te4" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;fontSize=9;exitX=1;exitY=0.6;entryX=0.3;entryY=1;" target="t-entity" value="persiste">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te5" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-db" value="INSERT / SELECT (pg)">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te6" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="t-client-cuentas" value="Valida y actualiza saldo">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te7" edge="1" parent="1" source="t-client-cuentas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-cuentas" value="HTTP">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te8" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.35;entryX=0;entryY=0.5;" target="t-client-notif" value="Envía evento de movimiento">
-          <mxGeometry relative="1" x="0.8291" y="15" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="te9" edge="1" parent="1" source="t-client-notif" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-notif" value="HTTP">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te10" edge="1" parent="1" source="t-service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" target="t-client-auditoria" value="Registra transacción">
-          <mxGeometry relative="1" x="-0.0538" y="-16" as="geometry">
-            <mxPoint x="11" y="-4" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="te11" edge="1" parent="1" source="t-client-auditoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-target-auditoria" value="HTTP">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te12" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="t-client-billeteras" value="Sincroniza tarjetas vinculadas">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="900" y="445" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="te13" edge="1" parent="1" source="t-client-billeteras" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-billeteras" value="HTTP/HTTPS">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te14" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" target="t-client-serviciospublicos" value="Envía pago de facturas">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="950" y="470" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="te15" edge="1" parent="1" source="t-client-serviciospublicos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-serviciospublicos" value="HTTP/HTTPS">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="te16" edge="1" parent="1" source="t-repository" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;fontSize=9;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="t-client-pasarela" value="Envía y recibe fondos">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="520" y="785" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="te17" edge="1" parent="1" source="t-client-pasarela" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="t-ext-pasarela" value="HTTP/HTTPS">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

@@ -23,4 +23,8 @@
   [Se realizó el diagrama para el componente financiero móvil.],
   [2026-09-14],
   [Diagrama de Código financiero - Aplicación móvil],
+  [6],
+  [Se realizó el grafo de navegación de la web.],
+  [2026-09-15],
+  [Grafo de navegación - Aplicación web],
 )

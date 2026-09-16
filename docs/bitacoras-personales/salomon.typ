@@ -1,6 +1,12 @@
 #let version = sys.inputs.at("version", default: "main")
 #let git_base_url = "https://github.com/javer-ia-nos/Documentacion/tree/" + version
 #let commit_url = "https://github.com/javer-ia-nos/Documentacion/commit/"
+#let git_transacciones_base_url = "https://github.com/javer-ia-nos/ms-transacciones/tree/main"
+#let commit_transacciones_url = "https://github.com/javer-ia-nos/ms-transacciones/commit/"
+#let git_financiero_base_url = "https://github.com/javer-ia-nos/ms-financiero/tree/main"
+#let commit_financiero_url = "https://github.com/javer-ia-nos/ms-financiero/commit/"
+#let git_ui_shared_base_url = "https://github.com/javer-ia-nos/ui-shared/tree/main"
+#let commit_ui_shared_url = "https://github.com/javer-ia-nos/ui-shared/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -256,3 +262,93 @@ componente CRM para la consulta de beneficiarios registrados. Ninguno de
 estos cambios tocó el modelo ER ni los diagramas de componentes existentes.
 Queda pendiente enlazar los seis diagramas de procesos desde
 `arch-description.typ`.
+
+=== Iteración 10: Corrección del flujo de CI/CD para generación de documentación por tags
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:* #link(commit_url + "980052324aa09a0d57a0ddd20dbd234a0fddd6c7", [9800523 · «Arreglar la generacion de la documentacion por el tag»]) \
+*Actividad:* DevOps / CI/CD / Documentación \
+*Archivos:*
+#link(git_base_url + "/.github/workflows/doc-generation.yaml", [doc-generation.yaml]).
+
+==== Objetivo
+
+Corregir la acción de integración continua en GitHub Actions encargada de compilar los documentos Typst y publicar los artefactos PDF y _releases_ cuando se crean o publican tags de versión en el repositorio de Documentación.
+
+==== Descripción
+
+Se modificó el archivo de workflow `.github/workflows/doc-generation.yaml` para asegurar que la variable del tag de versión se pase correctamente como parámetro de entrada a Typst (`--input version="${{ github.ref_name }}"`), evitando errores durante la ejecución de los disparadores basados en tags y garantizando la exportación y publicación automática de `bitacora.pdf`, `arch-description.pdf` y `dev.pdf`.
+
+=== Iteración 11: Implementación del microservicio ms-transacciones y casos de uso asignados
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_transacciones_url + "ea41703b5e05a63e8376ac0eacccbe1f16ccb8c9", [ea41703 · «Primera iteracion del microservicio, inicializacion y demas basicos»]),
+#link(commit_transacciones_url + "a558b12956d1c9a37ec38e90ceb1afcd1bc398db", [a558b12 · «Primera iteracion del CU-30»]),
+#link(commit_transacciones_url + "b9fadfa7f2583fdd6afd2efe6da3f8cc6a0f0ff8", [b9fadfa · «Fix de errores de UUID por validacion, retornos HTTP y pruebas de DB en el actions con BUN usando SQlite»]),
+#link(commit_transacciones_url + "d711402c8f316b147f0d91b576ec68fcd6c0274c", [d711402 · «Se realizaron las pruebas y demas codigo relacionado al CU-26»]),
+#link(commit_transacciones_url + "e842e30cdc01de7a4383f1572e27e5d1ec39ca24", [e842e30 · «Mejora de pruebas de integracion»]),
+#link(commit_transacciones_url + "c878688562dc5c9e57f7b9abd1a0315e7c7eb3d3", [c878688 · «Codigo relacionado al CU-24»]),
+#link(commit_transacciones_url + "c0bfb272adca0592149a353a3de5d21d9dba8c12", [c0bfb27 · «Primer avance del codigo relacionado con el CU-28»]) \
+*Actividad:* Backend / Arquitectura / Testing \
+*Archivos:*
+#link(git_transacciones_base_url + "/src/server.ts", [server.ts]),
+#link(git_transacciones_base_url + "/src/contracts", [contracts/]),
+#link(git_transacciones_base_url + "/src/repositories", [repositories/]),
+#link(git_transacciones_base_url + "/src/use-cases", [use-cases/]),
+#link(git_transacciones_base_url + "/src/controllers", [controllers/]),
+#link(git_transacciones_base_url + "/src/test", [test/]).
+
+==== Objetivo
+
+Construir e implementar el microservicio `ms-transacciones` bajo arquitectura limpia con Bun y Elysia.js, satisfaciendo los cuatro casos de uso asignados a Salomon (CU-30, CU-26, CU-24 y CU-28), asegurando tipado estricto con TypeBox, aislamiento de base de datos en memoria para entornos de CI/CD y una batería exhaustiva de pruebas automatizadas.
+
+==== Descripción
+
+Se inicializó el microservicio con Elysia.js y Bun. Para garantizar que los tests unitarios y los flujos de GitHub Actions se ejecuten de forma aislada sin requerir un contenedor de PostgreSQL levantado, se configuró `service.db.ts` para usar SQLite en memoria con el driver nativo `bun:sql`. Se modularizó la lógica de negocio dividiéndola en capas desacopladas: contratos TypeBox, repositorios de persistencia, casos de uso y controladores REST. Se implementaron las transferencias entre cuentas propias y a terceros (CU-30), transferencias internacionales vía SWIFT e interbancarias vía ACH (CU-26), administración de pagos automáticos y programados con control de ciclo de vida (CU-24), y registro de depósitos en efectivo, consignación con cheques y retiros presenciales en ventanilla (CU-28). Cada caso de uso cuenta con integración hacia los clientes de `ms-cuentas`, `ms-auditoria` y `ms-notificaciones`, validaciones estrictas y comprobantes bancarios unívocos, culminando en una suite automatizada de 46 pruebas aprobadas sin errores de compilación TypeScript.
+
+=== Iteración 12: Estructuración base y estandarización del microservicio ms-financiero
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:* #link(commit_financiero_url + "06a4510a80aa558ec6e8fa632c96ba1454a6573d", [06a4510 · «Inicializacion del repo con plantillas y estructura de carpetas temporal»]) \
+*Actividad:* Backend / Arquitectura \
+*Archivos:*
+#link(git_financiero_base_url + "/package.json", [package.json]),
+#link(git_financiero_base_url + "/Dockerfile", [Dockerfile]),
+#link(git_financiero_base_url + "/compose.yml", [compose.yml]),
+#link(git_financiero_base_url + "/src/server.ts", [server.ts]),
+#link(git_financiero_base_url + "/src/db/service.db.ts", [service.db.ts]),
+#link(git_financiero_base_url + "/README.md", [README.md]).
+
+==== Objetivo
+
+Extrapolar el esqueleto y las buenas prácticas arquitectónicas validadas en `ms-transacciones` al repositorio `ms-financiero`, dejando la estructura de capas lista para el desarrollo de los casos de uso CU-10 a CU-13.
+
+==== Descripción
+
+Se configuró el proyecto con Bun y Elysia.js, replicando la arquitectura limpia desacoplada en carpetas para contratos, repositorios, casos de uso, controladores y clientes inter-servicio. Se incluyó el soporte de doble entorno en `service.db.ts` (SQLite en memoria para pruebas automáticas y PostgreSQL para ejecución con Docker Compose), el `Dockerfile` optimizado y una suite inicial de pruebas que verifica la salud del servicio y la conectividad a la base de datos.
+
+=== Iteración 13: Creación de la librería compartida de componentes y hooks (ui-shared)
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_ui_shared_url + "49f3ec9b27ede3ec90575a0eda4cb689c62424c2", [49f3ec9 · «Commit inicial para los componentes»]),
+#link(commit_ui_shared_url + "31a1865d7ddb3198b609573c592a2a24823b7699", [31a1865 · «Correccion para poder correr el workflow»]),
+#link(commit_ui_shared_url + "de99cd52822c095958ed3663247619fa80be5b77", [de99cd5 · «Arreglar token para el workflow»]) \
+*Actividad:* Frontend / Librería / Cross-Platform / CI/CD \
+*Archivos:*
+#link(git_ui_shared_base_url + "/src/hooks/useTransferencia.ts", [useTransferencia.ts]),
+#link(git_ui_shared_base_url + "/src/components/BotonBancario.tsx", [BotonBancario.tsx]),
+#link(git_ui_shared_base_url + "/src/components/TarjetaSaldo.tsx", [TarjetaSaldo.tsx]),
+#link(git_ui_shared_base_url + "/src/utils/index.ts", [utils/index.ts]),
+#link(git_ui_shared_base_url + "/.github/workflows/publish.yaml", [publish.yaml]).
+
+==== Objetivo
+
+Construir la librería transversal `@javer-ia-nos/ui-shared` para desacoplar la lógica de negocio y los componentes visuales universales, permitiendo su reutilización directa tanto en la aplicación Web (Astro + React) como en la aplicación Móvil (React Native).
+
+==== Descripción
+
+Se implementó el repositorio `ui-shared` bajo los principios de diseño cross-platform definidos en el proyecto: hooks headless (como `useTransferencia`) que manejan estado y comunicación HTTP sin ligarse al DOM ni a primitivas nativas, utilidades de formateo financiero en pesos colombianos y componentes UI universales (`BotonBancario`, `TarjetaSaldo`) basados en primitivas de React Native compatibles con `react-native-web`. Asimismo, se configuró el empaquetado TypeScript con scripts de compilación de bundle y tipos `.d.ts`, y se corrigió el pipeline de CI/CD en GitHub Actions para resolver la autenticación automática y publicación del paquete con Bun.
+
+

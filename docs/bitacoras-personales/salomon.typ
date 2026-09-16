@@ -3,6 +3,10 @@
 #let commit_url = "https://github.com/javer-ia-nos/Documentacion/commit/"
 #let git_transacciones_base_url = "https://github.com/javer-ia-nos/ms-transacciones/tree/main"
 #let commit_transacciones_url = "https://github.com/javer-ia-nos/ms-transacciones/commit/"
+#let git_financiero_base_url = "https://github.com/javer-ia-nos/ms-financiero/tree/main"
+#let commit_financiero_url = "https://github.com/javer-ia-nos/ms-financiero/commit/"
+#let git_ui_shared_base_url = "https://github.com/javer-ia-nos/ui-shared/tree/main"
+#let commit_ui_shared_url = "https://github.com/javer-ia-nos/ui-shared/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -302,4 +306,49 @@ Construir e implementar el microservicio `ms-transacciones` bajo arquitectura li
 ==== Descripción
 
 Se inicializó el microservicio con Elysia.js y Bun. Para garantizar que los tests unitarios y los flujos de GitHub Actions se ejecuten de forma aislada sin requerir un contenedor de PostgreSQL levantado, se configuró `service.db.ts` para usar SQLite en memoria con el driver nativo `bun:sql`. Se modularizó la lógica de negocio dividiéndola en capas desacopladas: contratos TypeBox, repositorios de persistencia, casos de uso y controladores REST. Se implementaron las transferencias entre cuentas propias y a terceros (CU-30), transferencias internacionales vía SWIFT e interbancarias vía ACH (CU-26), administración de pagos automáticos y programados con control de ciclo de vida (CU-24), y registro de depósitos en efectivo, consignación con cheques y retiros presenciales en ventanilla (CU-28). Cada caso de uso cuenta con integración hacia los clientes de `ms-cuentas`, `ms-auditoria` y `ms-notificaciones`, validaciones estrictas y comprobantes bancarios unívocos, culminando en una suite automatizada de 46 pruebas aprobadas sin errores de compilación TypeScript.
+
+=== Iteración 12: Estructuración base y estandarización del microservicio ms-financiero
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:* #link(commit_financiero_url + "06a4510a80aa558ec6e8fa632c96ba1454a6573d", [06a4510 · «Inicializacion del repo con plantillas y estructura de carpetas temporal»]) \
+*Actividad:* Backend / Arquitectura \
+*Archivos:*
+#link(git_financiero_base_url + "/package.json", [package.json]),
+#link(git_financiero_base_url + "/Dockerfile", [Dockerfile]),
+#link(git_financiero_base_url + "/compose.yml", [compose.yml]),
+#link(git_financiero_base_url + "/src/server.ts", [server.ts]),
+#link(git_financiero_base_url + "/src/db/service.db.ts", [service.db.ts]),
+#link(git_financiero_base_url + "/README.md", [README.md]).
+
+==== Objetivo
+
+Extrapolar el esqueleto y las buenas prácticas arquitectónicas validadas en `ms-transacciones` al repositorio `ms-financiero`, dejando la estructura de capas lista para el desarrollo de los casos de uso CU-10 a CU-13.
+
+==== Descripción
+
+Se configuró el proyecto con Bun y Elysia.js, replicando la arquitectura limpia desacoplada en carpetas para contratos, repositorios, casos de uso, controladores y clientes inter-servicio. Se incluyó el soporte de doble entorno en `service.db.ts` (SQLite en memoria para pruebas automáticas y PostgreSQL para ejecución con Docker Compose), el `Dockerfile` optimizado y una suite inicial de pruebas que verifica la salud del servicio y la conectividad a la base de datos.
+
+=== Iteración 13: Creación de la librería compartida de componentes y hooks (ui-shared)
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_ui_shared_url + "49f3ec9b27ede3ec90575a0eda4cb689c62424c2", [49f3ec9 · «Commit inicial para los componentes»]),
+#link(commit_ui_shared_url + "31a1865d7ddb3198b609573c592a2a24823b7699", [31a1865 · «Correccion para poder correr el workflow»]),
+#link(commit_ui_shared_url + "de99cd52822c095958ed3663247619fa80be5b77", [de99cd5 · «Arreglar token para el workflow»]) \
+*Actividad:* Frontend / Librería / Cross-Platform / CI/CD \
+*Archivos:*
+#link(git_ui_shared_base_url + "/src/hooks/useTransferencia.ts", [useTransferencia.ts]),
+#link(git_ui_shared_base_url + "/src/components/BotonBancario.tsx", [BotonBancario.tsx]),
+#link(git_ui_shared_base_url + "/src/components/TarjetaSaldo.tsx", [TarjetaSaldo.tsx]),
+#link(git_ui_shared_base_url + "/src/utils/index.ts", [utils/index.ts]),
+#link(git_ui_shared_base_url + "/.github/workflows/publish.yaml", [publish.yaml]).
+
+==== Objetivo
+
+Construir la librería transversal `@javer-ia-nos/ui-shared` para desacoplar la lógica de negocio y los componentes visuales universales, permitiendo su reutilización directa tanto en la aplicación Web (Astro + React) como en la aplicación Móvil (React Native).
+
+==== Descripción
+
+Se implementó el repositorio `ui-shared` bajo los principios de diseño cross-platform definidos en el proyecto: hooks headless (como `useTransferencia`) que manejan estado y comunicación HTTP sin ligarse al DOM ni a primitivas nativas, utilidades de formateo financiero en pesos colombianos y componentes UI universales (`BotonBancario`, `TarjetaSaldo`) basados en primitivas de React Native compatibles con `react-native-web`. Asimismo, se configuró el empaquetado TypeScript con scripts de compilación de bundle y tipos `.d.ts`, y se corrigió el pipeline de CI/CD en GitHub Actions para resolver la autenticación automática y publicación del paquete con Bun.
+
 

@@ -23,4 +23,14 @@
   [2026-09-09],
   [Diagrama],
 
+  [5],
+  [Se realizó el diagrama de código para web para el componente de pagos],
+  [2026-09-15],
+  [Diagrama],
+
+  [6],
+  [Se realizó el diagrama de código para web el componente financiero],
+  [2026-09-15],
+  [Diagrama],
+
 )

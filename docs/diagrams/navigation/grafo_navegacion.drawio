@@ -1,0 +1,319 @@
+<mxfile host="Electron">
+  <diagram name="Grafo de Navegacion - Banca Digital" id="grafo-navegacion-banca-digital">
+    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5214" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=2.5;" value="LoginScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-15&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="900" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="home" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=2.5;" value="HomeScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="900" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=2.5;" value="RegisterScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="640" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="recuperar" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=2.5;" value="RecuperarContrasenaScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1270" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-audit" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#666666;fontStyle=1;" value="AUDITORÍA" vertex="1">
+          <mxGeometry height="24" width="172" x="20" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="aud-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="HistorialActividadScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-01&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="20" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-crm" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#9673A6;fontStyle=1;" value="CRM / ATENCIÓN AL CLIENTE" vertex="1">
+          <mxGeometry height="24" width="754" x="252" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="crm-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="CRMScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="543" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="crm-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="ChatSoporteScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-02&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="252" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="crm-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="BeneficiariosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-03&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="446" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="crm-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="PQRSScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-04&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="640" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="crm-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="ReclamacionesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-05&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="834" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-cuentas" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#82B366;fontStyle=1;" value="CUENTAS" vertex="1">
+          <mxGeometry height="24" width="366" x="1066" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cue-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="CuentasScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-06 / CU-07&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1163" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="cue-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="SubcuentasScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-08&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1066" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="cue-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="AhorroAutomaticoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-09&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1260" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-financ" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#6C8EBF;fontStyle=1;" value="FINANCIERO" vertex="1">
+          <mxGeometry height="24" width="754" x="1492" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="ResumenFinancieroScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-11&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1783" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="MovimientosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-11&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1492" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="ExtractoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-10&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1686" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="SolicitudCDTScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-12&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="1880" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="GestionPrestamosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-13&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2074" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-notif" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#D79B00;fontStyle=1;" value="NOTIFICACIONES" vertex="1">
+          <mxGeometry height="24" width="172" x="2306" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="notif-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="NotificacionesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-14&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2306" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-segur" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#B85450;fontStyle=1;" value="SEGURIDAD" vertex="1">
+          <mxGeometry height="24" width="560" x="2538" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="seg-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="SeguridadCuentaScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-18&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2732" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="seg-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="RolesPermisosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-16&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2538" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="seg-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="DispositivosConfiablesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-17&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2732" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="seg-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="LimitesTransaccionesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-19&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="2926" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tarjet" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#D6B656;fontStyle=1;" value="TARJETAS" vertex="1">
+          <mxGeometry height="24" width="754" x="3158" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="tar-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="TarjetasScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3449" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="tar-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="BloqueoTarjetaScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-20&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3158" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tar-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="TarjetaCreditoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-21&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3352" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tar-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="TarjetaDebitoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-22&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3546" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tar-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="AvanceEfectivoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-23&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3740" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-trans" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#10739E;fontStyle=1;" value="TRANSACCIONES" vertex="1">
+          <mxGeometry height="24" width="1142" x="3972" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-hub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="TransaccionesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4457" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="PagosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-27&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3972" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="PagosAutomaticosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-24&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4166" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="QRScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-25&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4360" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="TransferenciasScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-26 / CU-30&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4554" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="PagosFisicosScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-28&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4748" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="BilleterasExternasScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-29&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4942" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-1a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="PagoDetalleScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-27&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3972" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-1b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="ComprobantePagoScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="3972" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="tra-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;strokeWidth=1.3;" value="DetalleInteresesScreen&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#555555;font-weight:normal&#39;&gt;CU-31&lt;/font&gt;" vertex="1">
+          <mxGeometry height="54" width="172" x="4748" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-legend" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#333333;fontStyle=1;" value="LEYENDA" vertex="1">
+          <mxGeometry height="24" width="400" x="20" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Auditoría&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="20" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="CRM&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="180" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Cuentas&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="340" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-financ" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Financiero&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="500" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Notificaciones&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="660" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-segur" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Seguridad&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="820" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-tarjet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Tarjetas&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="980" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-trans" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#D0E0E3;strokeColor=#10739E;fontSize=12;fontStyle=0;align=center;verticalAlign=middle;strokeWidth=1.3;" value="Transacciones&lt;br&gt;&lt;font style=&#39;font-size:9px;color:#888888;font-weight:normal&#39;&gt;(navegación)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="140" x="1140" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="note1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#444444;fontStyle=1;" value="Flechas sólidas = navegación directa desde el menú/hub. Flechas punteadas = navegación cruzada entre módulos." vertex="1">
+          <mxGeometry height="24" width="620" x="1340" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="e-login-home" edge="1" parent="1" source="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;" target="home" value="Autenticación exitosa (CU-15)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-login" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="login" value="Cerrar sesión">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-login-register" edge="1" parent="1" source="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="register" value="Crear cuenta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-register-home" edge="1" parent="1" source="register" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;curved=1;" target="home" value="Registro exitoso">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-login-recuperar" edge="1" parent="1" source="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="recuperar" value="¿Olvidó su contraseña?">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-recuperar-login" edge="1" parent="1" source="recuperar" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.2;entryDx=0;entryDy=0;curved=1;" target="login" value="Contraseña restablecida">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-aud1" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="aud-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-crm-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="crm-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crm-hub-crm-1" edge="1" parent="1" source="crm-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="crm-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crm-hub-crm-2" edge="1" parent="1" source="crm-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="crm-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crm-hub-crm-3" edge="1" parent="1" source="crm-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="crm-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crm-hub-crm-4" edge="1" parent="1" source="crm-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="crm-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-cue-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cue-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cue-hub-cue-1" edge="1" parent="1" source="cue-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cue-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cue-hub-cue-2" edge="1" parent="1" source="cue-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cue-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-fin-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fin-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fin-hub-fin-1" edge="1" parent="1" source="fin-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fin-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fin-hub-fin-2" edge="1" parent="1" source="fin-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fin-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fin-hub-fin-3" edge="1" parent="1" source="fin-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fin-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fin-hub-fin-4" edge="1" parent="1" source="fin-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="fin-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-notif1" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="notif-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-seg-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="seg-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-seg-hub-seg-1" edge="1" parent="1" source="seg-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="seg-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-seg-hub-seg-2" edge="1" parent="1" source="seg-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="seg-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-seg-hub-seg-3" edge="1" parent="1" source="seg-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="seg-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-tar-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tar-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tar-hub-tar-1" edge="1" parent="1" source="tar-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tar-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tar-hub-tar-2" edge="1" parent="1" source="tar-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tar-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tar-hub-tar-3" edge="1" parent="1" source="tar-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tar-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tar-hub-tar-4" edge="1" parent="1" source="tar-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tar-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-home-tra-hub" edge="1" parent="1" source="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-hub" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-1" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-2" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-3" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-4" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-5" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tra-hub-tra-6" edge="1" parent="1" source="tra-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-seg-aud" edge="1" parent="1" source="seg-hub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#666666;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="aud-1" value="Ver historial (CU-01)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1462" y="307" />
+              <mxPoint x="1462" y="530" />
+              <mxPoint x="192" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-cred-avance" edge="1" parent="1" source="tar-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;" target="tar-4" value="Solicitar avance (CU-23)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-pagos-detalle" edge="1" parent="1" source="tra-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-1a" value="Seleccionar factura">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-detalle-comprobante" edge="1" parent="1" source="tra-1a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tra-1b" value="Confirmar pago">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-transf-comprobante" edge="1" parent="1" source="tra-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#10739E;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;curved=1;" target="tra-1b" value="Confirmar transferencia (CU-26/CU-30)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cred-interes" edge="1" parent="1" source="tar-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#D6B656;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=1;" target="tra-7" value="Ver intereses (CU-31)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-avance-interes" edge="1" parent="1" source="tar-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#D6B656;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;" target="tra-7" value="Ver intereses (CU-31)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-prestamo-interes" edge="1" parent="1" source="fin-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;endSize=8;fontSize=10;fontColor=#000000;strokeColor=#6C8EBF;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;" target="tra-7" value="Ver intereses (CU-31)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

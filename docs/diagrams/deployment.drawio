@@ -1,0 +1,150 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Deployment - Desarrollo" id="deployment-development">
+    <mxGraphModel dx="1414" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lbl-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontColor=#1a1a1a;fontStyle=1;" value="Deployment View: Banca Digital — Ambiente de Desarrollo" vertex="1">
+          <mxGeometry height="30" width="800" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="node-machine" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=10;fontStyle=1;fontColor=#666666;fontSize=13;" value="Máquina de Desarrollo Local [Deployment Node]" vertex="1">
+          <mxGeometry height="1080" width="1180" x="20" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="node-frontend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=10;fontStyle=1;fontColor=#666666;fontSize=12;" value="Entorno de Desarrollo Frontend" vertex="1">
+          <mxGeometry height="140" width="640" x="60" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-web" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=center;verticalAlign=middle;" value="web&#xa;[Astro Dev Server]&#xa;localhost:4321" vertex="1">
+          <mxGeometry height="80" width="260" x="100" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dev-mobile" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=center;verticalAlign=middle;" value="mobile&#xa;[Expo / Metro Bundler]&#xa;Emulador o Expo Go" vertex="1">
+          <mxGeometry height="80" width="260" x="420" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="node-gateway" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E6295;strokeColor=#1a3f5c;fontColor=#ffffff;fontSize=12;align=center;verticalAlign=middle;fontStyle=1;" value="api-gateway&#xa;[Container]&#xa;&#xa;Punto de entrada único (*)&#xa;alcance aún por definir" vertex="1">
+          <mxGeometry height="100" width="300" x="450" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="node-mocks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=10;fontStyle=1;fontColor=#666666;fontSize=12;" value="Mocks de Sistemas Externos" vertex="1">
+          <mxGeometry height="120" width="340" x="820" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ext-mocks" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8C8C8C;strokeColor=#6C6C6C;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="Simuladores locales de:&#xa;Central de Riesgo, Pasarela de Pagos,&#xa;Proveedor de Notificaciones,&#xa;Billeteras Digitales, Ente Regulador" vertex="1">
+          <mxGeometry height="70" width="300" x="840" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="node-docker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=10;fontStyle=1;fontColor=#666666;fontSize=12;" value="Docker Compose local [Deployment Node: Docker]" vertex="1">
+          <mxGeometry height="720" width="1140" x="60" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-cuentas" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-cuentas&lt;br&gt;[Container: Bun + Elysia]&lt;br&gt;&lt;br&gt;&lt;div&gt;bun dev +&lt;br&gt;docker-compose propio&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="250" x="100" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="db-cuentas" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="cuentas-db&#xa;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="120" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-transacciones" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-transacciones (*)&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="370" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="db-transacciones" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="transacciones-db&amp;nbsp;&lt;div&gt;[PostgreSQL]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="210" x="390" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-auditoria" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-auditoria (*)&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="640" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="db-auditoria" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="auditoria-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="660" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-financiero" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-financiero (*)&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="910" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="db-financiero" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="financiero-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="930" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-tarjetas" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-tarjetas&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="100" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="db-tarjetas" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="tarjetas-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="120" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-seguridad" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-seguridad&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="370" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="db-seguridad" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="seguridad-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="390" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-notificaciones" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-notificaciones&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="640" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="db-notificaciones" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="notificaciones-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="660" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-crm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;verticalAlign=middle;" value="ms-crm&lt;br&gt;[Container: TypeScript]&lt;br&gt;&lt;br&gt;bun dev +&lt;br&gt;docker-compose propio" vertex="1">
+          <mxGeometry height="100" width="250" x="910" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="db-crm" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#ffffff;fontSize=11;align=center;" value="crm-db&lt;br&gt;[PostgreSQL]" vertex="1">
+          <mxGeometry height="90" width="210" x="930" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="e-web-gw" edge="1" parent="1" source="dev-web" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.7;exitY=1;entryX=0.3;entryY=0;" target="node-gateway" value="HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-mobile-gw" edge="1" parent="1" source="dev-mobile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.3;exitY=1;entryX=0.7;entryY=0;" target="node-gateway" value="HTTP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gw-docker" edge="1" parent="1" source="node-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;" target="node-docker" value="Enruta solicitudes al microservicio correspondiente">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-gw-mocks" edge="1" parent="1" source="node-docker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.05;entryX=0.5;entryY=1;" target="node-mocks" value="HTTP&amp;nbsp;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="456" />
+              <mxPoint x="1130" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-cuentas-db" edge="1" parent="1" source="svc-cuentas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-cuentas" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-transacciones-db" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-transacciones" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auditoria-db" edge="1" parent="1" source="svc-auditoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-auditoria" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-financiero-db" edge="1" parent="1" source="svc-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-financiero" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tarjetas-db" edge="1" parent="1" source="svc-tarjetas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-tarjetas" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-seguridad-db" edge="1" parent="1" source="svc-seguridad" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-seguridad" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-notificaciones-db" edge="1" parent="1" source="svc-notificaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-notificaciones" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crm-db" edge="1" parent="1" source="svc-crm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-crm" value="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-transacciones-cuentas" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.3;entryX=1;entryY=0.3;" target="svc-cuentas" value="HTTP (valida saldo)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-transacciones-auditoria" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-auditoria" value="HTTP (registra evento)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-financiero-auditoria" edge="1" parent="1" source="svc-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" target="svc-auditoria" value="HTTP (registra evento)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tarjetas-notificaciones" edge="1" parent="1" source="svc-tarjetas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-notificaciones" value="HTTP (notifica)">
+          <mxGeometry relative="1" x="-0.0811" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="360" y="790" />
+              <mxPoint x="360" y="750" />
+              <mxPoint x="630" y="750" />
+              <mxPoint x="630" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

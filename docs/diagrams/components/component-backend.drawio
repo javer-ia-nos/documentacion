@@ -1,372 +1,256 @@
 <mxfile host="Electron">
   <diagram name="ContainerView" id="c4-container-view">
-    <mxGraphModel dx="1509" dy="1031" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="1178" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2600" pageHeight="1750" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;arcSize=8;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#666666;fontSize=14;fontStyle=1;spacingLeft=10;spacingTop=10;" value="API Backend Principal [Container: Backend]" vertex="1">
-          <mxGeometry height="480" width="960" x="820" y="550" as="geometry" />
+        <mxCell id="svc-auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Autenticación y Seguridad&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="760" y="620" as="geometry" />
         </mxCell>
-        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="16ggj64">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="2320" y="690" as="geometry" />
+        <mxCell id="c-auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Autenticación y Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Login, sesiones, roles, dispositivos confiables y límites de transacción (CU-15 a CU-19).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="780" y="654" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Autenticación" c4Type="database: PostgreSQL" c4Description="Usuarios, credenciales, sesiones, roles y dispositivos confiables." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-auth">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="810" y="794" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="Sistema de software" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="52yi3p">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="460" y="990" as="geometry" />
+        <mxCell id="e-db-auth" edge="1" parent="1" source="c-auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-auth" value="Lee y escribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1100" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="c-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CRUD de cuentas corrientes/ahorro, subcuentas y ahorro automático (CU-06 a CU-09).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1120" y="654" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Cuentas" c4Type="database: PostgreSQL" c4Description="Cuentas, subcuentas y configuración de ahorro automático." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-cuentas">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1150" y="794" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="Sistema de software" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="5xvido">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="2010" y="590" as="geometry" />
+        <mxCell id="e-db-cuentas" edge="1" parent="1" source="c-cuentas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-cuentas" value="Lee y escribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-tarjetas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1440" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="c-tarjetas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Emisión, bloqueo/desbloqueo y avances de crédito (CU-20 a CU-23).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1460" y="654" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Tarjetas" c4Type="database: PostgreSQL" c4Description="Tarjetas emitidas, estados y avances de crédito." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-tarjetas">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1490" y="794" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ds10iw">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#B22222;align=center;arcSize=6;strokeColor=#B22222;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="1280" y="1070" as="geometry" />
+        <mxCell id="e-db-tarjetas" edge="1" parent="1" source="c-tarjetas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-tarjetas" value="Lee y escribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-transacciones" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1780" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="c-transacciones" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Transferencias, QR, pagos automáticos, facturas y billeteras externas (CU-24 a CU-31).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1800" y="654" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Transacciones" c4Type="database: PostgreSQL" c4Description="Transacciones, transferencias y pagos ejecutados." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-transacciones">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1830" y="794" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="Sistema de software" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="j4gtqg">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="1780" y="1060" as="geometry" />
+        <mxCell id="e-db-transacciones" edge="1" parent="1" source="c-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-transacciones" value="Lee y escribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-financiero" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="760" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="c-financiero" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CDT/inversiones, préstamos, certificados y consulta de saldo (CU-10 a CU-13).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="780" y="994" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Financiero" c4Type="database: PostgreSQL" c4Description="CDT, inversiones, préstamos y certificados." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-financiero">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="810" y="1134" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="10vr57m">
-          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="2000" y="850" as="geometry" />
+        <mxCell id="e-db-financiero" edge="1" parent="1" source="c-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-financiero" value="Lee y escribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;CRM&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1100" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="c-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;CRM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de soporte, beneficiarios, PQRS y reclamaciones (CU-02 a CU-05).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1120" y="994" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD CRM" c4Type="database: PostgreSQL" c4Description="Beneficiarios, PQRS, reclamaciones e historial de chat." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-crm">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1150" y="1134" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="e-15k1371" edge="1" parent="1" source="9pbat0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RwXhdLozfmwHUUNoeEfB-1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1300" y="550" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-15k1371" connectable="0" parent="e-15k1371" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API" vertex="1">
+        <mxCell id="e-db-crm" edge="1" parent="1" source="c-crm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-crm" value="Lee y escribe">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-hnzo6t" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" target="16ggj64">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1910" y="740" />
-              <mxPoint x="1910" y="790" />
-            </Array>
-            <mxPoint x="1160" y="1065" as="sourcePoint" />
-          </mxGeometry>
+        <mxCell id="svc-notificaciones" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1440" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="label-hnzo6t" connectable="0" parent="e-hnzo6t" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía pagos de&lt;br&gt;facturas registradas" vertex="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-136" y="-20" as="offset" />
-          </mxGeometry>
+        <mxCell id="c-notificaciones" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Orquesta el envío de alertas de movimientos y seguridad (CU-14).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1460" y="994" as="geometry" />
         </mxCell>
-        <mxCell id="e-x63l8q" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" target="52yi3p">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1160" y="1065" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-x63l8q" connectable="0" parent="e-x63l8q" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Consulta historial&lt;br&gt;crediticio del solicitante" vertex="1">
+        <object placeholders="1" c4Name="BD Notificaciones" c4Type="database: PostgreSQL" c4Description="Plantillas y registro de notificaciones enviadas." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-notificaciones">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1490" y="1134" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-db-notificaciones" edge="1" parent="1" source="c-notificaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-notificaciones" value="Lee y escribe">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-kq3jxg" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" target="5xvido">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1160" y="1065" as="sourcePoint" />
-          </mxGeometry>
+        <mxCell id="svc-auditoria" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#438DD5;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:9px;font-weight:normal&quot;&gt;[Microservicio]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="300" x="1780" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="label-kq3jxg" connectable="0" parent="e-kq3jxg" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Sincroniza y valida&lt;br&gt;tarjetas vinculadas" vertex="1">
+        <mxCell id="c-auditoria" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Registro de sesiones, actividad y trazabilidad del sistema (CU-01).&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="1800" y="994" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="BD Auditoría" c4Type="database: PostgreSQL" c4Description="Bitácora de eventos, sesiones y trazabilidad." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px&quot;&gt;%c4Description%&lt;/div&gt;" id="db-auditoria">
+          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="100" width="200" x="1830" y="1134" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-db-auditoria" edge="1" parent="1" source="c-auditoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="db-auditoria" value="Lee y escribe">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-rsezwy" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="ds10iw">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1300" y="1155" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-rsezwy" connectable="0" parent="e-rsezwy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía alertas de&lt;br&gt;movimientos y eventos&lt;br&gt;de seguridad" vertex="1">
+        <mxCell id="pMxtwSPwUi8vGUHa1wLu-2" edge="1" parent="1" source="mobile-app" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.681;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#707070;" target="pMxtwSPwUi8vGUHa1wLu-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-lm7jdq" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="awd0kb">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="980" y="650" />
-              <mxPoint x="980" y="600" />
-              <mxPoint x="1990" y="600" />
-              <mxPoint x="1990" y="210" />
-            </Array>
-            <mxPoint x="950" y="630" as="sourcePoint" />
-            <mxPoint x="1760" y="1390" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-lm7jdq" connectable="0" parent="e-lm7jdq" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Lee y escribe&lt;br&gt;sesiones, roles y dispositivos" vertex="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="260" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e-ox54of" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="j4gtqg">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="label-ox54of" connectable="0" parent="e-ox54of" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Reporta eventos de&lt;br&gt;auditoría y cumplimiento&lt;br&gt;normativo" vertex="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="14" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e-ohap89" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="10vr57m">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1760" y="830" />
-              <mxPoint x="2170" y="830" />
-            </Array>
-            <mxPoint x="1440" y="1065" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-ohap89" connectable="0" parent="e-ohap89" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Envía y recibe fondos&lt;br&gt;de transferencias&lt;br&gt;internacionales" vertex="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e-1b7pfux" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="l9edzy">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="840" y="880" />
-              <mxPoint x="670" y="880" />
-              <mxPoint x="670" y="890" />
-            </Array>
-            <mxPoint x="1440" y="1065" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="label-1b7pfux" connectable="0" parent="e-1b7pfux" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Almacena y recupera&lt;br&gt;extractos y certificados&lt;br&gt;en PDF" vertex="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <object placeholders="1" c4Name="Aplicación Móvil" c4Type="mobile: React Native" c4Description="Proporciona acceso a los servicios de banca digital desde dispositivos móviles." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="9pbat0">
+        <object placeholders="1" c4Name="Aplicación Móvil" c4Type="mobile: React Native" c4Description="Proporciona acceso a los servicios de banca digital desde dispositivos móviles." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="mobile-app">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=10;strokeColor=#438DD5;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="1160" y="160" as="geometry" />
+            <mxGeometry height="150" width="280" x="1520" y="280" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL / Database Schema" c4Description="Almacena la información de usuarios, cuentas, tarjetas, transacciones, créditos y auditoría." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="awd0kb">
-          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="1850" y="210" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Almacén de Documentos" c4Type="database: Amazon S3 / Object Storage" c4Description="Almacena los extractos bancarios, comprobantes en PDF y certificados generados." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="l9edzy">
-          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="180" width="280" x="280" y="780" as="geometry" />
-          </mxCell>
-        </object>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Autenticación y Seguridad&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Login, sesiones, roles, dispositivos confiables y límites de transacción (CU-15 a CU-19).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="840" y="650" as="geometry" />
+        <mxCell id="mobile-caption" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#666666;fontStyle=2;" value="Consume la API de cada microservicio directamente (sin API Gateway aún)" vertex="1">
+          <mxGeometry height="20" width="500" x="1140" y="510" as="geometry" />
         </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-34" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;strokeColor=light-dark(#000000,#CCCCCC);dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-9">
+        <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-serviciospublicos">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="2460" y="840" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-ext-serviciospublicos" edge="1" parent="1" source="c-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ext-serviciospublicos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label-ext-serviciospublicos" connectable="0" parent="e-ext-serviciospublicos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Envía pagos de facturas registradas" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Central de Riesgo - Bureau de Crédito" c4Type="Sistema de software" c4Description="Consulta de score crediticio para aprobación de préstamos." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-riesgo">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="290" y="1180" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-ext-riesgo" edge="1" parent="1" source="c-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" target="ext-riesgo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label-ext-riesgo" connectable="0" parent="e-ext-riesgo" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Consulta historial crediticio del solicitante" vertex="1">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1300" y="710" />
-              <mxPoint x="1300" y="980" />
-              <mxPoint x="1660" y="980" />
-              <mxPoint x="1660" y="960" />
-            </Array>
+            <mxPoint x="-25" y="-13" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Cuentas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CRUD de cuentas corrientes/ahorro, subcuentas y ahorro automático (CU-06 a CU-09).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1080" y="650" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Tarjetas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Emisión, bloqueo/desbloqueo y avances de crédito (CU-20 a CU-23).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1320" y="650" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-22" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;strokeColor=#828282;strokeWidth=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=#404040;labelBackgroundColor=default;elbow=vertical;jumpStyle=arc;jumpSize=16;startSize=14;endArrow=blockThin;endFill=1;endSize=14;" target="RwXhdLozfmwHUUNoeEfB-3">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1670" y="790" />
-              <mxPoint x="1180" y="790" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-25" connectable="0" parent="RwXhdLozfmwHUUNoeEfB-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=light-dark(#000000,#CCCCCC);" value="&lt;span style=&quot;&quot;&gt;Registra cambios&lt;/span&gt;" vertex="1">
-          <mxGeometry relative="1" x="-0.322" y="3" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Transacciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Transferencias, QR, pagos automáticos, facturas y billeteras externas (CU-24 a CU-31).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1560" y="650" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-33" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;strokeColor=light-dark(#000000,#CCCCCC);" target="RwXhdLozfmwHUUNoeEfB-9">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="940" y="980" />
-              <mxPoint x="1660" y="980" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-36" connectable="0" parent="RwXhdLozfmwHUUNoeEfB-33" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=light-dark(transparent,#CCCCCC);" value="Registra" vertex="1">
-          <mxGeometry relative="1" x="-0.4202" y="-1" as="geometry">
-            <mxPoint x="410" y="-1" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Financiero&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;CDT/inversiones, préstamos, certificados y consulta de saldo (CU-10 a CU-13).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="840" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-35" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;strokeColor=light-dark(#000000,#CCCCCC);" target="RwXhdLozfmwHUUNoeEfB-9">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1190" y="980" />
-              <mxPoint x="1660" y="980" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;CRM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Chat de soporte, beneficiarios, PQRS y reclamaciones (CU-02 a CU-05).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1080" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Notificaciones&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Orquesta el envío de alertas de movimientos y seguridad (CU-14).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1320" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=11;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Auditoría&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[Componente]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Registro de sesiones, actividad y trazabilidad del sistema (CU-01).&lt;/font&gt;" vertex="1">
-          <mxGeometry height="120" width="200" x="1560" y="840" as="geometry" />
-        </mxCell>
-        <object placeholders="1" c4Type="Relationship" c4Description="Válida sesión y permisos" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-15">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-3" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-2">
-            <mxGeometry relative="1" width="240" x="0.0769" y="-10" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1110" y="780" as="sourcePoint" />
-              <mxPoint x="1350" y="780" as="targetPoint" />
-            </mxGeometry>
+        <object placeholders="1" c4Name="Billeteras Digitales Externas" c4Type="Sistema de software" c4Description="Apple Pay, Google Wallet y otras billeteras vinculadas a tarjetas del banco." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-billeteras">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="2390" y="584" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-16">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-4" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-2">
-            <mxGeometry relative="1" width="240" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1380" y="630" as="sourcePoint" />
-              <mxPoint x="1140" y="630" as="targetPoint" />
-            </mxGeometry>
+        <mxCell id="e-ext-billeteras" edge="1" parent="1" source="c-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ext-billeteras">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label-ext-billeteras" connectable="0" parent="e-ext-billeteras" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Sincroniza y valida tarjetas vinculadas" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-notif">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#B22222;align=center;arcSize=6;strokeColor=#B22222;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="1320" y="1440" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-17">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-7" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-2">
-            <mxGeometry relative="1" width="240" as="geometry">
-              <mxPoint as="offset" />
-              <Array as="points">
-                <mxPoint x="1180" y="830" />
-                <mxPoint x="940" y="830" />
-              </Array>
-              <mxPoint x="1640" y="820" as="sourcePoint" />
-              <mxPoint x="1400" y="820" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="Válida sesión y permisos" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-20">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-6" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-2">
-            <mxGeometry relative="1" width="240" x="-0.4286" y="-40" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1320" y="870" as="sourcePoint" />
-              <mxPoint x="1080" y="800" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-21">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-2">
-            <mxGeometry relative="1" width="240" x="-0.7297" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1500" y="640" as="sourcePoint" />
-              <mxPoint x="1020" y="640" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="Envía movimiento" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-28">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-8">
-            <mxGeometry relative="1" width="240" x="0.0385" y="15" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1460" y="610" as="sourcePoint" />
-              <mxPoint x="1220" y="610" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Type="Relationship" c4Description="Registra transacción" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="RwXhdLozfmwHUUNoeEfB-32">
-          <mxCell edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-5" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" target="RwXhdLozfmwHUUNoeEfB-9">
-            <mxGeometry relative="1" width="240" x="0.0769" y="-10" as="geometry">
-              <mxPoint as="offset" />
-              <mxPoint x="1850" y="810" as="sourcePoint" />
-              <mxPoint x="1610" y="810" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </object>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-38" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="awd0kb">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1220" y="650" />
-              <mxPoint x="1220" y="600" />
-              <mxPoint x="1990" y="600" />
-            </Array>
-            <mxPoint x="1280" y="640" as="sourcePoint" />
-            <mxPoint x="2090" y="1400" as="targetPoint" />
+        <mxCell id="e-ext-notif" edge="1" parent="1" source="c-notificaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;" target="ext-notif">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label-ext-notif" connectable="0" parent="e-ext-notif" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Envía alertas de movimientos y eventos de seguridad" vertex="1">
+          <mxGeometry relative="1" x="0.4" as="geometry">
+            <mxPoint x="-20" y="-118" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-40" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="awd0kb">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1470" y="600" />
-              <mxPoint x="1990" y="600" />
-            </Array>
-            <mxPoint x="2040" y="880" as="sourcePoint" />
-            <mxPoint x="2850" y="1640" as="targetPoint" />
-          </mxGeometry>
+        <object placeholders="1" c4Name="Ente Regulador Financiero" c4Type="Sistema de software" c4Description="Organismo de supervisión que recibe reportes de auditoría y cumplimiento." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-regulador">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#6B3FA0;align=center;arcSize=6;strokeColor=#6B3FA0;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="1830" y="1460" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-ext-regulador" edge="1" parent="1" source="c-auditoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;" target="ext-regulador">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-43" edge="1" parent="1" source="RwXhdLozfmwHUUNoeEfB-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="awd0kb">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="780" y="840" />
-              <mxPoint x="780" y="510" />
-              <mxPoint x="1990" y="510" />
-            </Array>
-            <mxPoint x="1510" y="510" as="sourcePoint" />
-            <mxPoint x="2510" y="70" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="label-ext-regulador" connectable="0" parent="e-ext-regulador" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Reporta eventos de auditoría y cumplimiento normativo" vertex="1">
+          <mxGeometry relative="1" x="0.4" as="geometry" />
         </mxCell>
-        <mxCell id="RwXhdLozfmwHUUNoeEfB-44" connectable="0" parent="RwXhdLozfmwHUUNoeEfB-43" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Lee y escribe&lt;br&gt;información transaccional" vertex="1">
+        <object placeholders="1" c4Name="Pasarela de Pagos Internacionales" c4Type="Sistema de software" c4Description="Procesa transferencias internacionales y liquidaciones interbancarias." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-pasarela">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#D6690F;align=center;arcSize=6;strokeColor=#D6690F;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="180" width="280" x="2350" y="1130" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="e-ext-pasarela" edge="1" parent="1" source="c-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="ext-pasarela">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="label-ext-pasarela" connectable="0" parent="e-ext-pasarela" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#666666;" value="Envía y recibe fondos de transferencias internacionales" vertex="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="260" as="offset" />
+            <mxPoint x="65" y="80" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo c4model.com)" vertex="1">
-          <mxGeometry height="372" width="340" x="220" y="150" as="geometry" />
+          <mxGeometry height="330" width="340" x="300" y="650" as="geometry" />
         </mxCell>
         <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="196" as="geometry" />
+          <mxGeometry height="24" width="38" x="318" y="696" as="geometry" />
         </mxCell>
-        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="196" as="geometry" />
+        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor / Componente" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="696" as="geometry" />
         </mxCell>
         <mxCell id="legend-sw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="230" as="geometry" />
+          <mxGeometry height="24" width="38" x="318" y="730" as="geometry" />
         </mxCell>
-        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Componente" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="230" as="geometry" />
+        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Base de datos (propia por servicio)" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="730" as="geometry" />
         </mxCell>
-        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="264" as="geometry" />
+        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B22222;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="318" y="764" as="geometry" />
         </mxCell>
-        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Almacen de datos" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="264" as="geometry" />
+        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#B22222;fontStyle=1;" value="Externo - Notificaciones" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="764" as="geometry" />
         </mxCell>
-        <mxCell id="legend-sw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B22222;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="298" as="geometry" />
+        <mxCell id="legend-sw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="318" y="798" as="geometry" />
         </mxCell>
-        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#B22222;fontStyle=1;" value="Externo - Notificaciones" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="298" as="geometry" />
+        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#D6690F;fontStyle=1;" value="Externo - Pagos y recaudo" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="798" as="geometry" />
         </mxCell>
-        <mxCell id="legend-sw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6690F;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="332" as="geometry" />
+        <mxCell id="legend-sw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6B3FA0;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="318" y="832" as="geometry" />
         </mxCell>
-        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#D6690F;fontStyle=1;" value="Externo - Pagos y recaudo" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="332" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6B3FA0;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="238" y="366" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#6B3FA0;fontStyle=1;" value="Externo - Riesgo y cumplimiento" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="366" as="geometry" />
+        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#6B3FA0;fontStyle=1;" value="Externo - Riesgo y cumplimiento" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="832" as="geometry" />
         </mxCell>
         <mxCell id="legend-ln-6" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#707070;">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="238" y="413" as="sourcePoint" />
-            <mxPoint x="272" y="413" as="targetPoint" />
+            <mxPoint x="318" y="879" as="sourcePoint" />
+            <mxPoint x="352" y="879" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#707070;fontStyle=0;" value="Relacion / dependencia" vertex="1">
-          <mxGeometry height="24" width="260" x="286" y="400" as="geometry" />
+        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#707070;fontStyle=0;" value="Relación / dependencia" vertex="1">
+          <mxGeometry height="24" width="260" x="366" y="866" as="geometry" />
+        </mxCell>
+        <mxCell id="pMxtwSPwUi8vGUHa1wLu-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;arcSize=8;fillColor=none;strokeColor=#707070;verticalAlign=top;align=left;fontColor=#438DD5;fontSize=11;fontStyle=1;spacingLeft=8;spacingTop=6;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: rgb(112, 112, 112);&quot;&gt;&amp;nbsp;Backend&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; font-weight: normal; color: rgb(112, 112, 112);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;[backend: Typescript / REST API]&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="725" width="1380" x="720" y="555" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Single-Page Application (SPA)" c4Type="web: React / TypeScript" c4Description="Proporciona la funcionalidad de banca por internet a los clientes vía navegador web" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="pMxtwSPwUi8vGUHa1wLu-4">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=10;strokeColor=#438DD5;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" vertex="1">
+            <mxGeometry height="150" width="280" x="910" y="280" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="pMxtwSPwUi8vGUHa1wLu-5" edge="1" parent="1" source="pMxtwSPwUi8vGUHa1wLu-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.239;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#707070;" target="pMxtwSPwUi8vGUHa1wLu-1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

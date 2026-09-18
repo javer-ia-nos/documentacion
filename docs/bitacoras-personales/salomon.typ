@@ -7,6 +7,12 @@
 #let commit_financiero_url = "https://github.com/javer-ia-nos/ms-financiero/commit/"
 #let git_ui_shared_base_url = "https://github.com/javer-ia-nos/ui-shared/tree/main"
 #let commit_ui_shared_url = "https://github.com/javer-ia-nos/ui-shared/commit/"
+#let git_web_base_url = "https://github.com/javer-ia-nos/web/tree/main"
+#let commit_web_url = "https://github.com/javer-ia-nos/web/commit/"
+#let git_mobile_base_url = "https://github.com/javer-ia-nos/mobile/tree/main"
+#let commit_mobile_url = "https://github.com/javer-ia-nos/mobile/commit/"
+#let git_infra_base_url = "https://github.com/javer-ia-nos/infra/tree/main"
+#let commit_infra_url = "https://github.com/javer-ia-nos/infra/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -328,27 +334,143 @@ Extrapolar el esqueleto y las buenas prácticas arquitectónicas validadas en `m
 
 Se configuró el proyecto con Bun y Elysia.js, replicando la arquitectura limpia desacoplada en carpetas para contratos, repositorios, casos de uso, controladores y clientes inter-servicio. Se incluyó el soporte de doble entorno en `service.db.ts` (SQLite en memoria para pruebas automáticas y PostgreSQL para ejecución con Docker Compose), el `Dockerfile` optimizado y una suite inicial de pruebas que verifica la salud del servicio y la conectividad a la base de datos.
 
-=== Iteración 13: Creación de la librería compartida de componentes y hooks (ui-shared)
+=== Iteración 13: Creación y consolidación de la librería compartida de componentes y hooks (ui-shared)
 
-*Fecha:* 15 de septiembre de 2026 \
+*Fecha:* 15 y 16 de septiembre de 2026 \
 *Commit:*
 #link(commit_ui_shared_url + "49f3ec9b27ede3ec90575a0eda4cb689c62424c2", [49f3ec9 · «Commit inicial para los componentes»]),
 #link(commit_ui_shared_url + "31a1865d7ddb3198b609573c592a2a24823b7699", [31a1865 · «Correccion para poder correr el workflow»]),
-#link(commit_ui_shared_url + "de99cd52822c095958ed3663247619fa80be5b77", [de99cd5 · «Arreglar token para el workflow»]) \
+#link(commit_ui_shared_url + "de99cd52822c095958ed3663247619fa80be5b77", [de99cd5 · «Arreglar token para el workflow»]),
+#link(commit_ui_shared_url + "598ba9218d33ddda4d2504a202df31394952b8aa", [598ba92 · «Actualizacion del package.json»]),
+#link(commit_ui_shared_url + "1046f8422993017770c9172805fabb2f221b5a14", [1046f84 · «Avance en el componente de prueba»]),
+#link(commit_ui_shared_url + "38d833d19789f1a38b8d4d72c99437af3d9a7d31", [38d833d · «Avance del paquete»]),
+#link(commit_ui_shared_url + "e911968935ec39fdafebb3ff9197c7eaa128bc5c", [e911968 · «Actualizacion del readme»]) \
 *Actividad:* Frontend / Librería / Cross-Platform / CI/CD \
 *Archivos:*
 #link(git_ui_shared_base_url + "/src/hooks/useTransferencia.ts", [useTransferencia.ts]),
 #link(git_ui_shared_base_url + "/src/components/BotonBancario.tsx", [BotonBancario.tsx]),
 #link(git_ui_shared_base_url + "/src/components/TarjetaSaldo.tsx", [TarjetaSaldo.tsx]),
 #link(git_ui_shared_base_url + "/src/utils/index.ts", [utils/index.ts]),
+#link(git_ui_shared_base_url + "/package.json", [package.json]),
+#link(git_ui_shared_base_url + "/tsconfig.json", [tsconfig.json]),
+#link(git_ui_shared_base_url + "/README.md", [README.md]),
 #link(git_ui_shared_base_url + "/.github/workflows/publish.yaml", [publish.yaml]).
 
 ==== Objetivo
 
-Construir la librería transversal `@javer-ia-nos/ui-shared` para desacoplar la lógica de negocio y los componentes visuales universales, permitiendo su reutilización directa tanto en la aplicación Web (Astro + React) como en la aplicación Móvil (React Native).
+Construir y publicar la librería transversal `@javer-ia-nos/ui-shared` para desacoplar la lógica de negocio y los componentes visuales universales, permitiendo su reutilización directa tanto en la aplicación Web (Astro + React) como en la aplicación Móvil (React Native).
 
 ==== Descripción
 
-Se implementó el repositorio `ui-shared` bajo los principios de diseño cross-platform definidos en el proyecto: hooks headless (como `useTransferencia`) que manejan estado y comunicación HTTP sin ligarse al DOM ni a primitivas nativas, utilidades de formateo financiero en pesos colombianos y componentes UI universales (`BotonBancario`, `TarjetaSaldo`) basados en primitivas de React Native compatibles con `react-native-web`. Asimismo, se configuró el empaquetado TypeScript con scripts de compilación de bundle y tipos `.d.ts`, y se corrigió el pipeline de CI/CD en GitHub Actions para resolver la autenticación automática y publicación del paquete con Bun.
+Se implementó el repositorio `ui-shared` bajo los principios de diseño cross-platform definidos en el proyecto: hooks headless (`useTransferencia`) que manejan estado transaccional y comunicación HTTP sin ligarse al DOM ni a primitivas específicas de plataforma, utilidades de formateo financiero en pesos colombianos y componentes UI universales (`BotonBancario`, `TarjetaSaldo`) basados en primitivas de React Native compatibles con `react-native-web`. Se configuró el empaquetado TypeScript con soporte para generación de tipos `.d.ts`, paths de exportación limpios en `package.json`, documentación técnica de uso en `README.md` y automatización del flujo de CI/CD en GitHub Actions para compilar, autenticar y publicar el paquete con Bun.
+
+=== Iteración 14: Inicialización e integración de componentes en el frontend Web (web)
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_web_url + "09c56f68543b8224b8179abbbadc43cf65790d22", [09c56f6 · «COmmit inicial de estructura»]),
+#link(commit_web_url + "6d25030dddd1e0052dab21d2500cfb95579a07cf", [6d25030 · «Primer componente en web»]) \
+*Actividad:* Frontend / Arquitectura Web / Integración \
+*Archivos:*
+#link(git_web_base_url + "/astro.config.mjs", [astro.config.mjs]),
+#link(git_web_base_url + "/package.json", [package.json]),
+#link(git_web_base_url + "/src/layouts/LayoutPrincipal.astro", [LayoutPrincipal.astro]),
+#link(git_web_base_url + "/src/pages/index.astro", [index.astro]),
+#link(git_web_base_url + "/src/pages/transferencias.astro", [transferencias.astro]),
+#link(git_web_base_url + "/src/components/FormularioTransferencia.tsx", [FormularioTransferencia.tsx]).
+
+==== Objetivo
+
+Inicializar la aplicación Web del Sistema Bancario utilizando Astro con la integración de React, estableciendo la estructura base del portal transaccional y conectando los componentes y lógica de negocio proveídos por `@javer-ia-nos/ui-shared`.
+
+==== Descripción
+
+Se estructuró el proyecto en el repositorio `web` empleando Astro como framework por su óptimo rendimiento mediante arquitectura de islas. Se configuró la integración oficial `@astrojs/react` en `astro.config.mjs` y se diseñó la plantilla de navegación global en `LayoutPrincipal.astro` con soporte responsivo y estética corporativa. Se crearon las páginas principales (`index.astro` y `transferencias.astro`), e implementó el componente interactivo `FormularioTransferencia.tsx` montado como isla de React en el cliente (`client:load`). Dicho formulario se conecta directamente a la lógica de estado provista por `ui-shared`, permitiendo la captura y validación de cuentas de origen, cuentas de destino, montos en moneda local y visualización inmediata del resultado de las transferencias.
+
+=== Iteración 15: Configuración y desarrollo de la aplicación móvil con Expo (mobile)
+
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_mobile_url + "919a6e6ed248958fe720eea9f2ce7ac54fcbb9c7", [919a6e6 · «Creacion de carpetas para movil»]),
+#link(commit_mobile_url + "1c2352cc32446cb7df6a1cb3400c3549483cc6c4", [1c2352c · «Primera prueba de componente»]),
+#link(commit_mobile_url + "fc0bccb2a4ba9a316252c44a74ae9960df297a3f", [fc0bccb · «Avance del mobile»]),
+#link(commit_mobile_url + "5ad647cf9fa319e2e4f4a42a904b7c778d65572f", [5ad647c · «Prueba de renderizado»]),
+#link(commit_mobile_url + "8314dedfc5628163dbb4c040bb00c9fa9f38cf13", [8314ded · «Avance funcional en movil»]),
+#link(commit_mobile_url + "d0a1a4eb31f66483e73b8342d83733b7f434fa88", [d0a1a4e · «Añadir script para poder testear mas facil»]) \
+*Actividad:* Frontend Móvil / Cross-Platform / Mobile \
+*Archivos:*
+#link(git_mobile_base_url + "/App.tsx", [App.tsx]),
+#link(git_mobile_base_url + "/metro.config.js", [metro.config.js]),
+#link(git_mobile_base_url + "/package.json", [package.json]),
+#link(git_mobile_base_url + "/app.json", [app.json]),
+#link(git_mobile_base_url + "/tsconfig.json", [tsconfig.json]).
+
+==== Objetivo
+
+Inicializar, configurar y desarrollar la aplicación móvil del Sistema Bancario utilizando React Native con Expo, consumiendo los componentes y hooks de `@javer-ia-nos/ui-shared` y habilitando un entorno de desarrollo ágil en dispositivos físicos.
+
+==== Descripción
+
+Se inicializó el entorno móvil con Expo y TypeScript en el repositorio `mobile`. Se ajustó la configuración del empaquetador Metro (`metro.config.js`) para resolver correctamente los enlaces a la librería compartida de componentes y evitar discrepancias de dependencias. En `App.tsx` se diseñó la interfaz de usuario móvil mediante componentes universales (`TarjetaSaldo`, `BotonBancario`), incorporando el hook desacoplado `useTransferencia` para la ejecución reactiva de transferencias bancarias con validación de saldo disponible y retroalimentación mediante alertas nativas. Finalmente, se añadieron scripts de ejecución y depuración directa por conexión USB en dispositivos físicos Android para superar restricciones de red locales.
+
+=== Iteración 16: Aprovisionamiento y orquestación del clúster de Kubernetes con Ansible (infra)
+
+*Fecha:* 17 de septiembre de 2026 \
+*Commit:*
+#link(commit_infra_url + "a7f6226ead28c76380789531a37412ef0c3ae98d", [a7f6226 · «Configuracion inicial d kubernetes y flannel con ansible»]),
+#link(commit_infra_url + "a07dbb0c96844a9a2e13e390dd7a132961011be0", [a07dbb0 · «Re organizacion de los archivos»]),
+#link(commit_infra_url + "51ffb5a1c109551b3c53a092848b6fba6a664f1a", [51ffb5a · «Arreglo en ymls de containerd y kubernetes»]),
+#link(commit_infra_url + "9ef646a1984c81feecbfeda1f25902207d82d56c", [9ef646a · «Re ordenamiento de pasos»]),
+#link(commit_infra_url + "d17b32592101f0cc922078de9a6b440de5f51c4a", [d17b325 · «Fix en prerrequisitos para la conexion de los workers»]),
+#link(commit_infra_url + "b5046ff424d1e2f8871a50ef1e85deee237469d8", [b5046ff · «cambio de tokens y hashes»]),
+#link(commit_infra_url + "58ccfe5aa2b62c110913940204541b9efafdd628", [58ccfe5 · «Fix de roles para cada uno de los workers»]),
+#link(commit_infra_url + "0f0d0f4231bdfee263f0cc0c034555f413b92594", [0f0d0f4 · «Fix del script»]) \
+*Actividad:* DevOps / Infraestructura / Ansible / Kubernetes \
+*Archivos:*
+#link(git_infra_base_url + "/inventory/hosts.yml", [hosts.yml]),
+#link(git_infra_base_url + "/inventory/group_vars/all/vars.yml", [vars.yml]),
+#link(git_infra_base_url + "/inventory/group_vars/all/vault.yml", [vault.yml]),
+#link(git_infra_base_url + "/playbooks/02-prereqs.yml", [02-prereqs.yml]),
+#link(git_infra_base_url + "/playbooks/03-containerd.yml", [03-containerd.yml]),
+#link(git_infra_base_url + "/playbooks/04-kubernetes-packages.yml", [04-kubernetes-packages.yml]),
+#link(git_infra_base_url + "/playbooks/05-init-control-plane.yml", [05-init-control-plane.yml]),
+#link(git_infra_base_url + "/playbooks/06-join-workers.yml", [06-join-workers.yml]),
+#link(git_infra_base_url + "/playbooks/site.yml", [site.yml]),
+#link(git_infra_base_url + "/README.md", [README.md]).
+
+==== Objetivo
+
+Automatizar mediante Ansible el aprovisionamiento, configuración y puesta en marcha del clúster de Kubernetes bare-metal del equipo, integrando Flannel como plugin de red CNI y asegurando la incorporación transparente de los nodos worker de cada integrante.
+
+==== Descripción
+
+Se estructuró el repositorio `infra` con una suite de playbooks idempotentes ejecutables a través de `site.yml`. Se automatizó la configuración de nombres de host y resolución estática en `/etc/hosts`, la habilitación de módulos del kernel (`overlay` y `br_netfilter`) y parámetros de red `sysctl`. Se orquestó la instalación y puesta a punto de Containerd con soporte de cgroup v2 en `systemd`, junto a los paquetes oficiales de Kubernetes (`kubelet`, `kubeadm`, `kubectl`). Para el plano de control (`05-init-control-plane.yml`), se configuró la inicialización con el bloque CIDR requerido por Flannel (`10.244.0.0/16`) y el despliegue de su manifiesto de red. Por último, se aseguraron los secretos de conexión (tokens de unión y discovery token CA cert hashes) mediante Ansible Vault en `vault.yml`, resolviendo dependencias de roles y refinando los scripts de incorporación de nodos worker (`06-join-workers.yml`) para asegurar la topología completa del clúster.
+
+=== Iteración 17: Implementación del patrón SAGA para disponibilidad transaccional (ASR-01)
+
+*Fecha:* 17 de septiembre de 2026 \
+*Commit:*
+#link(commit_transacciones_url + "2a0d314cc8a4340b1aebfa2ffe69ca8e97cb93ef", [2a0d314 · «Implemenetacion inicial de patron SAGA»]),
+#link(commit_transacciones_url + "cc4089b1c75d623bac4c856fe53d40655e192f05", [cc4089b · «Implementacion del patron SAGA y arreglos en casos de uso»]) \
+*Actividad:* Backend / Arquitectura de Software / Resiliencia / Testing \
+*Archivos:*
+#link(git_transacciones_base_url + "/src/use-cases/transferir-intl.use-case.ts", [transferir-intl.use-case.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/transferir-fondos.use-case.ts", [transferir-fondos.use-case.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/procesar-transaccion-fisica.use-case.ts", [procesar-transaccion-fisica.use-case.ts]),
+#link(git_transacciones_base_url + "/src/repositories/transaccion.repository.ts", [transaccion.repository.ts]),
+#link(git_transacciones_base_url + "/src/repositories/transaccion-fisica.repository.ts", [transaccion-fisica.repository.ts]),
+#link(git_transacciones_base_url + "/src/clients/cuentas.client.ts", [cuentas.client.ts]),
+#link(git_transacciones_base_url + "/src/clients/pasarela-pagos.client.ts", [pasarela-pagos.client.ts]),
+#link(git_transacciones_base_url + "/src/test/cu26-transferencias-intl.test.ts", [cu26-transferencias-intl.test.ts]),
+#link(git_transacciones_base_url + "/src/test/cu30-transferencias.test.ts", [cu30-transferencias.test.ts]).
+
+==== Objetivo
+
+Diseñar e implementar el Patrón SAGA orquestado con transacciones de compensación y reintentos con retroceso exponencial en `ms-transacciones`, garantizando el cumplimiento estricto del requisito de arquitectura ASR-01 (Disponibilidad Transaccional y preservación del saldo del usuario ante fallos de red).
+
+==== Descripción
+
+Para garantizar la atomicidad transaccional entre microservicios distribuidos sin bloqueos distribuidos pesados, se implementó el patrón SAGA en los flujos críticos de transferencias internacionales (CU-26) y transferencias a terceros (CU-30). Las operaciones se persisten inicialmente en estado `PENDING` en `transaccion.repository.ts`. Tras efectuar el débito en la cuenta de origen a través de `ms-cuentas`, se ejecutan llamadas externas con tolerancia a fallos y reintentos con backoff exponencial. Si la pasarela de pagos o el servicio de destino experimenta una interrupción definitiva de red, el orquestador SAGA captura el error y ejecuta automáticamente la transacción compensatoria: reembolsa el monto exacto a la cuenta de origen, actualiza el estado de la transacción a `FAILED` en la base de datos y despacha un evento de auditoría (`TRANSFERENCIA_FALLIDA_COMPENSADA`). Adicionalmente, se modularizaron los servicios legados y se construyeron pruebas automatizadas de simulación de desconexión de red, alcanzando un total de 48 pruebas unitarias y de integración exitosas con cero errores de TypeScript.
+
 
 

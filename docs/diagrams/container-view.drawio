@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="ContainerView" id="c4-container-view">
-    <mxGraphModel dx="4738" dy="2971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="4578" dy="2705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -97,22 +97,42 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="e-vrg1x0" edge="1" parent="1" source="9hn2bl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="550" />
+              <mxPoint x="1210" y="550" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="label-vrg1x0" connectable="0" parent="e-vrg1x0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API" vertex="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e-15k1371" edge="1" parent="1" source="9pbat0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-15k1371" edge="1" parent="1" source="9pbat0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="54f0tk">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="597.5" />
+              <mxPoint x="1300" y="597.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="label-15k1371" connectable="0" parent="e-15k1371" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-1rfs9tp" edge="1" parent="1" source="g8bt75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="54f0tk">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e-1rfs9tp" edge="1" parent="1" source="g8bt75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;entryX=0.835;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="54f0tk">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1480" y="445" />
+              <mxPoint x="1480" y="620" />
+              <mxPoint x="1393.83" y="620" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="label-1rfs9tp" connectable="0" parent="e-1rfs9tp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#666666;" value="Realiza llamadas a&lt;br&gt;la API de administración" vertex="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="34" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="e-hnzo6t" edge="1" parent="1" source="54f0tk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#707070;strokeWidth=1;" target="16ggj64">
           <mxGeometry relative="1" as="geometry">

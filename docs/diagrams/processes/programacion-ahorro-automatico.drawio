@@ -28,7 +28,7 @@
           <mxGeometry x="650" y="80" width="200" height="90" as="geometry" />
         </mxCell>
 
-        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL" c4Description="Persiste cuentas, subcuentas, metas y programaciones de ahorro." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
+        <object placeholders="1" c4Name="BD Cuentas" c4Type="database: PostgreSQL" c4Description="Base de datos exclusiva del microservicio Cuentas. Persiste cuentas, subcuentas, metas y programaciones de ahorro." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
           <mxCell style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1" parent="1">
             <mxGeometry x="950" y="70" width="200" height="100" as="geometry" />
           </mxCell>
@@ -38,17 +38,21 @@
           <mxGeometry x="1250" y="80" width="200" height="90" as="geometry" />
         </mxCell>
 
-        <mxCell id="p-audit" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
+        <mxCell id="p-kafka" value="&lt;b&gt;Broker de Eventos (Kafka)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Infraestructura]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#D79B00;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1550" y="80" width="200" height="90" as="geometry" />
         </mxCell>
 
-        <mxCell id="p-notif" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
+        <mxCell id="p-audit" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1850" y="80" width="200" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p-notif" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2150" y="80" width="200" height="90" as="geometry" />
         </mxCell>
 
         <object placeholders="1" c4Name="Proveedor de Notificaciones" c4Type="Sistema de software" c4Description="Servicio externo de envío de SMS, correo electrónico y push." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-prov">
           <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FFFFFF;fontColor=#B22222;align=center;arcSize=6;strokeColor=#B22222;strokeWidth=2;verticalAlign=middle;fontSize=12;metaEdit=1;resizable=0;" vertex="1" parent="1">
-            <mxGeometry x="2150" y="80" width="200" height="90" as="geometry" />
+            <mxGeometry x="2450" y="80" width="200" height="90" as="geometry" />
           </mxCell>
         </object>
 
@@ -83,22 +87,28 @@
             <mxPoint x="1350" y="1470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-audit" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
+        <mxCell id="ll-kafka" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1650" y="170" as="sourcePoint" />
             <mxPoint x="1650" y="1470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-notif" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
+        <mxCell id="ll-audit" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1950" y="170" as="sourcePoint" />
             <mxPoint x="1950" y="1470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-prov" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
+        <mxCell id="ll-notif" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="2250" y="170" as="sourcePoint" />
             <mxPoint x="2250" y="1470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-prov" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2550" y="170" as="sourcePoint" />
+            <mxPoint x="2550" y="1470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
@@ -192,46 +202,67 @@
             <mxPoint x="1350" y="990" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step11" value="11. Debita cuenta origen y acredita subcuenta/meta destino" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+        <mxCell id="step11" value="11. Debita cuenta origen y acredita subcuenta/meta destino (gRPC)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1350" y="1060" as="sourcePoint" />
-            <mxPoint x="1050" y="1060" as="targetPoint" />
+            <mxPoint x="750" y="1060" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="step12" value="12. Confirma actualización de saldos" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1050" y="1130" as="sourcePoint" />
+            <mxPoint x="750" y="1130" as="sourcePoint" />
             <mxPoint x="1350" y="1130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step13" value="13. Registra el evento de la transferencia automática" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+        <mxCell id="step13" value="13. Publica evento AhorroAutomáticoRealizado (async, sin esperar respuesta)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1350" y="1200" as="sourcePoint" />
             <mxPoint x="1650" y="1200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step14" value="14. Notifica transferencia exitosa" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+        <mxCell id="step14" value="14. Consume evento — registra en bitácora (async)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1350" y="1270" as="sourcePoint" />
+            <mxPoint x="1650" y="1270" as="sourcePoint" />
             <mxPoint x="1950" y="1270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step15" value="15. Envía alerta (push / email / SMS)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+        <mxCell id="step14b" value="15. Consume evento — envía alerta al cliente (async)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1950" y="1340" as="sourcePoint" />
+            <mxPoint x="1650" y="1340" as="sourcePoint" />
             <mxPoint x="2250" y="1340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step16" value="16. Entrega la notificación de ahorro realizado (canal externo)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+        <mxCell id="step15" value="16. Envía alerta (push / email / SMS)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="2250" y="1410" as="sourcePoint" />
-            <mxPoint x="150" y="1410" as="targetPoint" />
+            <mxPoint x="2550" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step16" value="17. Entrega la notificación de ahorro realizado (canal externo)" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2550" y="1450" as="sourcePoint" />
+            <mxPoint x="150" y="1450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
         <!-- Legend -->
         <mxCell id="legend-box" value="Nomenclatura (C4 - estilo secuencia)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" vertex="1" parent="1">
-          <mxGeometry x="-640" y="80" width="360" height="300" as="geometry" />
+          <mxGeometry x="-640" y="80" width="360" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-622" y="346" width="38" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-7" value="Infraestructura — Broker de eventos" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="-574" y="346" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-ln-8" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#D79B00;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-622" y="388" as="sourcePoint" />
+            <mxPoint x="-584" y="388" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-tx-8" value="Publica / consume evento (asíncrono)" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="-574" y="376" width="280" height="24" as="geometry" />
         </mxCell>
         <mxCell id="legend-sw-0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1" parent="1">
           <mxGeometry x="-622" y="126" width="38" height="24" as="geometry" />

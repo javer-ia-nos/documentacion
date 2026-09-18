@@ -13,6 +13,12 @@
 #let commit_mobile_url = "https://github.com/javer-ia-nos/mobile/commit/"
 #let git_infra_base_url = "https://github.com/javer-ia-nos/infra/tree/main"
 #let commit_infra_url = "https://github.com/javer-ia-nos/infra/commit/"
+#let commit_cuentas_url = "https://github.com/javer-ia-nos/ms-cuentas/commit/"
+#let commit_auditoria_url = "https://github.com/javer-ia-nos/ms-auditoria/commit/"
+#let commit_crm_url = "https://github.com/javer-ia-nos/ms-crm/commit/"
+#let commit_notificaciones_url = "https://github.com/javer-ia-nos/ms-notificaciones/commit/"
+#let commit_seguridad_url = "https://github.com/javer-ia-nos/ms-seguridad/commit/"
+#let commit_tarjetas_url = "https://github.com/javer-ia-nos/ms-tarjetas/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -472,5 +478,132 @@ Diseñar e implementar el Patrón SAGA orquestado con transacciones de compensac
 
 Para garantizar la atomicidad transaccional entre microservicios distribuidos sin bloqueos distribuidos pesados, se implementó el patrón SAGA en los flujos críticos de transferencias internacionales (CU-26) y transferencias a terceros (CU-30). Las operaciones se persisten inicialmente en estado `PENDING` en `transaccion.repository.ts`. Tras efectuar el débito en la cuenta de origen a través de `ms-cuentas`, se ejecutan llamadas externas con tolerancia a fallos y reintentos con backoff exponencial. Si la pasarela de pagos o el servicio de destino experimenta una interrupción definitiva de red, el orquestador SAGA captura el error y ejecuta automáticamente la transacción compensatoria: reembolsa el monto exacto a la cuenta de origen, actualiza el estado de la transacción a `FAILED` en la base de datos y despacha un evento de auditoría (`TRANSFERENCIA_FALLIDA_COMPENSADA`). Adicionalmente, se modularizaron los servicios legados y se construyeron pruebas automatizadas de simulación de desconexión de red, alcanzando un total de 48 pruebas unitarias y de integración exitosas con cero errores de TypeScript.
 
+=== Iteración 18: Correcciones menores en el diagrama de contexto y en el workflow de documentación
 
+*Fecha:* 15 de septiembre de 2026 \
+*Commit:*
+#link(commit_url + "be85b7da0df041bb74ea40de38e5e0a426ef52b3", [be85b7d · «Alineacion de flecha en diagrama de contexto»]),
+#link(commit_url + "bb1fa8f8a9b2ff1065e05e119fab84ea78f34609", [bb1fa8f · «Fix del workflow»]) \
+*Actividad:* Diagramas / CI/CD \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/system-context.drawio", [system-context.drawio]),
+#link(git_base_url + "/.github/workflows/doc-generation.yaml", [doc-generation.yaml]).
+
+==== Objetivo
+
+Corregir un desalineamiento visual en `system-context.drawio` y un error de orden en el flujo de _auto-commit_ de imágenes exportadas del workflow de documentación.
+
+==== Descripción
+
+Se ajustó el desplazamiento (_offset_) de una etiqueta de relación en el diagrama de contexto que quedaba superpuesta a su flecha. En `doc-generation.yaml` se detectó que el job hacía `git pull --rebase` antes de crear el commit de las imágenes regeneradas, lo que descartaba el `git add` pendiente en escenarios de carrera; se invirtió el orden a commit primero y pull con rebase después, antes del push.
+
+=== Iteración 19: Adaptación de los diagramas de componentes a la arquitectura de microservicios
+
+*Fecha:* 17 de septiembre de 2026 \
+*Commit:*
+#link(commit_url + "614975b940c4d6e02cd57b9de7542ab7507b4667", [614975b · «Actualizacion de diagramas de componentes para adaptacion a microservicios»]),
+#link(commit_url + "5f130c989c8c1ed3770ebb08c36d9bb489150a25", [5f130c9 · «Arreglo de diagrama de componentes»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/components/component-backend.drawio", [component-backend.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-web.drawio", [component-web.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-mobile.drawio", [component-mobile.drawio]).
+
+==== Objetivo
+
+Actualizar los tres diagramas de componentes para que dejen de representar un backend monolítico con una base de datos compartida y reflejen los ocho microservicios independientes, cada uno con su propia base de datos y comunicados por un broker de eventos.
+
+==== Descripción
+
+Se reemplazó la nota genérica de acceso a datos por «Base de datos (propia por servicio)» en cada componente del backend, y se introdujo el contenedor «Infraestructura - Broker de eventos» con las relaciones de publicación/consumo asíncronas de cada microservicio (`Publica: TransacciónRealizada`, `Publica: SaldoActualizado / AhorroProgramado`, `Publica: TarjetaBloqueada / CupoActualizado`, `Publica: PréstamoAprobado / CDTConstituido`, `Publica: LoginFallido / DispositivoNuevo`, `Publica: PQRSRadicada / ReclamaciónCreada`, `Publica: NotificaciónEnviada`, `Consume: TODOS los eventos (bitácora)` para Auditoría). Las llamadas síncronas que sí deben mantenerse por ser consultas de estado (validación de cupo y de saldo) quedaron explícitamente etiquetadas como `gRPC` para diferenciarlas de la mensajería asíncrona. Se corrigieron además referencias huérfanas en `component-mobile.drawio` y `component-web.drawio` detectadas al revisar la coherencia de los tres diagramas.
+
+=== Iteración 20: Migración de los diagramas de procesos a mensajería asíncrona con Kafka
+
+*Fecha:* 18 de septiembre de 2026 \
+*Commit:*
+#link(commit_url + "0abfbc527549cb1fafeb2db9d0caf187231a1d82", [0abfbc5 · «Actualizacion de diagramas de procesos»]),
+#link(commit_url + "cd24a14393f171a352e4027befb60cb9ba8238b7", [cd24a14 · «arreglar vista»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/processes/transferencias-cuentas-propias-terceros.drawio", [transferencias-cuentas-propias-terceros.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/gestion-transferencias-internacionales-nacionales.drawio", [gestion-transferencias-internacionales-nacionales.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/pago-facturas-servicios.drawio", [pago-facturas-servicios.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/programacion-ahorro-automatico.drawio", [programacion-ahorro-automatico.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/solicitud-cdt-inversiones.drawio", [solicitud-cdt-inversiones.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/solicitud-gestion-prestamos.drawio", [solicitud-gestion-prestamos.drawio]),
+#link(git_base_url + "/docs/diagrams/container-view.drawio", [container-view.drawio]).
+
+==== Objetivo
+
+Alinear los seis diagramas dinámicos de procesos con la arquitectura de microservicios ya reflejada en los diagramas de componentes (Iteración 19): reemplazar las llamadas síncronas directas a Auditoría y Notificaciones por publicación de eventos en Kafka, y eliminar toda representación de una base de datos compartida entre servicios.
+
+==== Descripción
+
+En los seis diagramas de `docs/diagrams/processes/` se sustituyeron las llamadas HTTP directas a Auditoría y Notificaciones por un _lifeline_ del broker Kafka con publicación asíncrona («sin esperar respuesta»). Al revisar la trazabilidad de las bases de datos se detectó que CU-27, CU-09, CU-12 y CU-13 mostraban a otros componentes leyendo o escribiendo saldo directamente contra «la» base de datos, como si fuera compartida; se corrigió insertando el _lifeline_ del componente Cuentas donde faltaba y separando cada paso de validación/débito de saldo en su propia llamada gRPC a Cuentas, y se renombraron las bases de datos de cada diagrama a su nombre real y exclusivo del servicio (`BD Transacciones`, `BD Cuentas`, `BD Financiero`). Se ajustó además una flecha en `container-view.drawio` que quedaba cruzando el borde de una fase.
+
+=== Iteración 21: Migración de los diagramas de código a la mensajería con Kafka
+
+*Fecha:* 18 de septiembre de 2026 \
+*Commit:* #link(commit_url + "5d880d193b0b0640005677dba94365892cffe650", [5d880d1 · «Visualizacion del broker de kafka»]) \
+*Actividad:* Diagramas / Arquitectura \
+*Archivos:*
+#link(git_base_url + "/docs/diagrams/code/code-view-backend-transacciones.drawio", [code-view-backend-transacciones.drawio]),
+#link(git_base_url + "/docs/diagrams/code/code-view-backend-auditoria.drawio", [code-view-backend-auditoria.drawio]),
+#link(git_base_url + "/docs/diagrams/code/code-financiero(backend).drawio", [code-financiero(backend).drawio]).
+
+==== Objetivo
+
+Cerrar la última capa (C4 nivel 4, de código) que todavía describía `ms-transacciones`, `ms-auditoria` y `ms-financiero` comunicándose por clientes HTTP directos, para que coincidiera con la mensajería asíncrona ya definida en las capas de componentes y de procesos.
+
+==== Descripción
+
+En `code-view-backend-transacciones.drawio` se reemplazaron las clases `NotificacionesClient` y `AuditoriaClient` por una única clase `EventosClient (Kafka)` con el método `publicar(topic, payload)`, retargeteando las relaciones existentes hacia ella. En `code-view-backend-auditoria.drawio` se retiró el endpoint HTTP `POST /eventos` del controlador y se agregó `EventosConsumer (Kafka)` con `onMessage(topic, evento)`, conectado al caso de uso existente `RegistrarEventoUseCase`. En `code-financiero(backend).drawio` —generado desde PlantUML, con el código fuente embebido además de las formas nativas ya renderizadas— se renombró la interfaz `IAuditService` a `IEventosService`, el método `logTransaction(action, details)` a `publicarEvento(topic, payload)`, y se aplicó el mismo estilo dorado usado en los otros dos diagramas a la interfaz y sus relaciones entrantes para marcarlas visualmente como mensajería asíncrona.
+
+=== Iteración 22: Eliminación del cliente síncrono simulado de Auditoría/Notificaciones en ms-transacciones
+
+*Fecha:* 18 de septiembre de 2026 \
+*Commit:* #link(commit_transacciones_url + "74bd554e9ae12ccaa8381a6a6143db29e2063011", [74bd554 · «Fix para dejar de simular comunicacion y utilizar el broker»]) \
+*Actividad:* Backend / Arquitectura de Software \
+*Archivos:*
+#link(git_transacciones_base_url + "/src/clients/eventos.client.ts", [eventos.client.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/transferir-fondos.use-case.ts", [transferir-fondos.use-case.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/transferir-intl.use-case.ts", [transferir-intl.use-case.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/procesar-transaccion-fisica.use-case.ts", [procesar-transaccion-fisica.use-case.ts]),
+#link(git_transacciones_base_url + "/src/use-cases/administrar-pagos-programados.use-case.ts", [administrar-pagos-programados.use-case.ts]).
+
+==== Objetivo
+
+Corregir la divergencia entre el código real de `ms-transacciones` y el diagrama de código actualizado en la Iteración 21: los cuatro casos de uso seguían invocando de forma directa y síncrona a `auditoriaClient` y `notificacionesClient`, contradiciendo el `EventosClient (Kafka)` ya documentado.
+
+==== Descripción
+
+Se eliminaron `src/clients/auditoria.client.ts` y `src/clients/notificaciones.client.ts`, que quedaron sin ningún consumidor. Las cuatro clases de caso de uso (transferencias propias/terceros, transferencias internacionales, transacciones presenciales y pagos programados) se migraron a publicar en `eventosClient.publicar("auditoria.evento-transaccion", payload)` y `eventosClient.publicar("notificaciones.evento-transaccion", payload)` en lugar de llamar directamente a los clientes retirados, incluyendo el camino de fallo de compensación del SAGA. La suite de 48 pruebas automatizadas y la verificación de tipos con `tsc --noEmit` se mantuvieron en verde tras el cambio.
+
+=== Iteración 23: Publicación de imágenes Docker en GitHub Container Registry y orquestación con Helm
+
+*Fecha:* 18 de septiembre de 2026 \
+*Commit:*
+#link(commit_transacciones_url + "ce595efff59271edeb62439470e23e902e497c7f", [ce595ef · «Añádir subida a GitHub Container Registry»]) (ms-transacciones),
+#link(commit_cuentas_url + "1a63a9fc18def75e338d421391a344357e1f416d", [1a63a9f · «añadir subida a GitHub Container Registry»]) (ms-cuentas),
+#link(commit_financiero_url + "4b836b08e10f7bd81aecc8b0a3b8e770b6498bed", [4b836b0 · «Añádir subida a GitHub Container Registry»]) (ms-financiero),
+#link(commit_auditoria_url + "2c20bf9a00618d95996fb61438c375b63c16da51", [2c20bf9 · «añádir subida a GitHub Container Registry»]) (ms-auditoria),
+#link(commit_crm_url + "e43e64e829ff64cb8a3f0fbcd3e21e0907c31393", [e43e64e · «añadir subida a GitHub Container Registry»]) (ms-crm),
+#link(commit_notificaciones_url + "74271c61933fd512c8e16ff421a43af2a098a88f", [74271c6 · «Añadir subida a GitHub Container Registry»]) (ms-notificaciones),
+#link(commit_seguridad_url + "72a108042faebcacad282fb60cd7be78c592ca63", [72a1080 · «Añadir subida a GitHub Container Registry»]) (ms-seguridad),
+#link(commit_tarjetas_url + "31e4459a57980896b1c0da372246d03f518cb201", [31e4459 · «Añádir subida a GitHub Container Registry»]) (ms-tarjetas),
+#link(commit_infra_url + "a0c636b9252ae7ec56aba2b2c881e52eec72c778", [a0c636b · «Avance de infraestructura para adicionar helm y la subida de contenedores a GitHub Container Registry»]) (infra) \
+*Actividad:* DevOps / CI/CD / Kubernetes / Helm \
+*Archivos:*
+#link(git_infra_base_url + "/charts/microservice", [charts/microservice/]),
+#link(git_infra_base_url + "/charts/javer-ia-nos", [charts/javer-ia-nos/]),
+#link(git_infra_base_url + "/Makefile", [Makefile]),
+#link(git_infra_base_url + "/inventory/group_vars/all/vault.yml.example", [vault.yml.example]).
+
+==== Objetivo
+
+Cumplir el requisito de poder levantar toda la plataforma (ocho microservicios y el frontend web) con un único comando sobre el clúster de Kubernetes ya aprovisionado en la Iteración 16, publicando primero las imágenes de cada servicio en un registro accesible desde los nodos.
+
+==== Descripción
+
+Se agregó un workflow de GitHub Actions (`docker-publish.yaml`) a cada uno de los ocho microservicios que construye y publica la imagen en `ghcr.io/javer-ia-nos/<repo>` en cada push a `main`, usando el `GITHUB_TOKEN` del propio workflow para el push. En `infra` se creó un chart de Helm genérico y reutilizable, `charts/microservice`, que despliega el Deployment/Service de la aplicación y, opcionalmente, su propia base de datos PostgreSQL con Secret y PVC dedicados; y un chart paraguas `charts/javer-ia-nos` que instancia ese chart nueve veces (una por microservicio más el frontend web) como dependencias aliaseadas, cada una con su imagen, puerto y variables de entorno cruzadas hacia otros servicios (por ejemplo `CUENTAS_SERVICE_URL` en Transacciones y Financiero) resueltas por el DNS interno del clúster. Se agregó un `Secret` de tipo `dockerconfigjson` para el _pull_ de las imágenes privadas y un `Makefile` con el objetivo `deploy`, de modo que el despliegue completo se reduce a `make deploy` con el token de GitHub como única variable de entorno. Las contraseñas de cada base de datos y el token de GHCR se documentaron como variables nuevas en `vault.yml.example`, a completar en el `vault.yml` cifrado real de cada integrante.
 

@@ -7,6 +7,9 @@
         <mxCell id="cont-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=10;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=top;spacingTop=6;metaEdit=1;resizable=0;" value="&lt;b&gt;Aplicación Móvil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;[mobile: React Native]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Proporciona acceso a los servicios de banca digital desde dispositivos móviles.&lt;/font&gt;" vertex="1">
           <mxGeometry height="140" width="280" x="740" as="geometry" />
         </mxCell>
+        <mxCell id="protocol-caption" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#666666;fontStyle=2;" value="Llamadas al backend vía gRPC (gRPC-Web desde el cliente móvil); push de estado vía WebSocket" vertex="1">
+          <mxGeometry height="20" width="600" x="580" y="160" as="geometry" />
+        </mxCell>
         <mxCell id="bound-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=0;fillColor=none;strokeColor=#666666;verticalAlign=top;align=left;fontColor=#333333;fontSize=14;fontStyle=1;spacingTop=6;spacingLeft=6;" value="Aplicación Móvil [Frontend mobile]" vertex="1">
           <mxGeometry height="640" width="1680" x="40" y="220" as="geometry" />
         </mxCell>
@@ -77,7 +80,7 @@
           <mxGeometry height="120" width="240" x="2120" y="860" as="geometry" />
         </mxCell>
         <mxCell id="legend-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo c4model.com)" vertex="1">
-          <mxGeometry height="250" width="360" x="40" y="900" as="geometry" />
+          <mxGeometry height="280" width="360" x="40" y="900" as="geometry" />
         </mxCell>
         <mxCell id="lsw-42" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=2;arcSize=20;" value="" vertex="1">
           <mxGeometry height="20" width="30" x="55" y="930" as="geometry" />
@@ -126,6 +129,15 @@
         </mxCell>
         <mxCell id="ltx-57" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#b85450;fontStyle=1;" value="Backend: Notificaciones" vertex="1">
           <mxGeometry height="20" width="290" x="95" y="1105" as="geometry" />
+        </mxCell>
+        <mxCell id="lsw-58" parent="1" edge="1" style="endArrow=classic;html=1;rounded=0;strokeColor=#2E8B00;strokeWidth=2;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="1140" as="sourcePoint" />
+            <mxPoint x="85" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ltx-58" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E8B00;fontStyle=1;" value="Push WebSocket (estado asíncrono)" vertex="1">
+          <mxGeometry height="20" width="290" x="95" y="1130" as="geometry" />
         </mxCell>
         <mxCell id="edge-40" edge="1" parent="1" source="cont-1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=11;fontColor=#666666;strokeColor=#666666;" target="bound-2" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -233,7 +245,7 @@
             <mxPoint x="970" y="230" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WRKpu8Q4V-eOO5JHiesK-15" connectable="0" parent="WRKpu8Q4V-eOO5JHiesK-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ENVÍA TRANSACCIÓN" vertex="1">
+        <mxCell id="WRKpu8Q4V-eOO5JHiesK-15" connectable="0" parent="WRKpu8Q4V-eOO5JHiesK-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ENVÍA TRANSACCIÓN&lt;div style=&quot;font-size:9px;font-style:italic&quot;&gt;(async vía cola)&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="-0.7309" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -264,7 +276,7 @@
             <mxPoint x="1820" y="670" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WRKpu8Q4V-eOO5JHiesK-19" connectable="0" parent="WRKpu8Q4V-eOO5JHiesK-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="PROCESA PAGO DIGITAL" vertex="1">
+        <mxCell id="WRKpu8Q4V-eOO5JHiesK-19" connectable="0" parent="WRKpu8Q4V-eOO5JHiesK-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="PROCESA PAGO DIGITAL&lt;div style=&quot;font-size:9px;font-style:italic&quot;&gt;(async vía cola)&lt;/div&gt;" vertex="1">
           <mxGeometry relative="1" x="0.3907" y="3" as="geometry">
             <mxPoint x="-1" as="offset" />
           </mxGeometry>
@@ -344,6 +356,21 @@
         <mxCell id="WRKpu8Q4V-eOO5JHiesK-30" connectable="0" parent="WRKpu8Q4V-eOO5JHiesK-29" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="AJUSTA&amp;nbsp; PREFERENCIAS DE SEGURIDAD" vertex="1">
           <mxGeometry relative="1" x="-0.6661" y="-2" as="geometry">
             <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ws-push-1" edge="1" parent="1" source="comp-24" target="cont-1" style="endArrow=classic;html=1;rounded=0;strokeColor=#2E8B00;strokeWidth=2;endFill=1;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2400" y="895" />
+              <mxPoint x="2400" y="70" />
+            </Array>
+            <mxPoint x="2080" y="895" as="sourcePoint" />
+            <mxPoint x="1020" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ws-push-1-lbl" connectable="0" parent="ws-push-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#2E8B00;fontStyle=1;fontSize=10;" value="Empuja actualización de estado&lt;div style=&quot;font-size:9px;font-style:italic&quot;&gt;(WebSocket)&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <mxPoint x="40" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>

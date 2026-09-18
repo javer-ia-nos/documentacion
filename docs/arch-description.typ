@@ -139,9 +139,9 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [Sara Rodríguez Urueña],
 
   [CU-03],
-  [*Gestión de beneficiarios (CRM)*],
+  [*Gestión de beneficiarios*],
   [Registro, actualización y administración de contactos frecuentes para transferencias.],
-  [CRM],
+  [Cuentas],
   [Miguel Francisco Vargas],
 
   [CU-04],

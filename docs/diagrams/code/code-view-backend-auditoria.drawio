@@ -8,7 +8,7 @@
         <mxCell id="frame-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;" value="" vertex="1">
           <mxGeometry height="1050" width="1000" x="10" y="50" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE API (Elysia Routes)" vertex="1">
+        <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE API (Elysia Routes) / CONSUMIDOR DE EVENTOS (Kafka)" vertex="1">
           <mxGeometry height="24" width="500" x="50" y="70" as="geometry" />
         </mxCell>
         <mxCell id="lbl-105" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE APLICACIÓN (CASOS DE USO)" vertex="1">
@@ -28,13 +28,19 @@
         </mxCell>
 
         <!-- CAPA DE API -->
+        <mxCell id="uml-kafka" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#FFE6CC;strokeColor=#D79B00;fillColor=#FFE6CC;fontSize=13;html=1;" value="Ⓒ ▲ EventosConsumer (Kafka)" vertex="1">
+          <mxGeometry height="72" width="280" x="60" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="div-k1" parent="uml-kafka" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="30" as="geometry" /></mxCell>
+        <mxCell id="div-k2" parent="uml-kafka" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-k1" parent="uml-kafka" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ onMessage(topic, evento)" vertex="1"><mxGeometry height="26" width="280" y="46" as="geometry" /></mxCell>
+
         <mxCell id="uml-110" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaController" vertex="1">
-          <mxGeometry height="98" width="320" x="330" y="104" as="geometry" />
+          <mxGeometry height="72" width="320" x="410" y="104" as="geometry" />
         </mxCell>
         <mxCell id="div-111" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
         <mxCell id="div-112" parent="uml-110" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
-        <mxCell id="row-113" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ POST /eventos → registrarEvento(req)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
-        <mxCell id="row-113b" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ GET /eventos/:id → obtenerHistorial(id)" vertex="1"><mxGeometry height="26" width="320" y="72" as="geometry" /></mxCell>
+        <mxCell id="row-113b" parent="uml-110" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ GET /eventos/:id → obtenerHistorial(id)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
 
         <!-- CAPA DE APLICACIÓN -->
         <mxCell id="uml-132" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ RegistrarEventoUseCase" vertex="1">
@@ -140,8 +146,8 @@
         </mxCell>
 
         <!-- EDGES -->
-        <mxCell id="e-01" edge="1" parent="1" source="row-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-132" value="usa">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="200" /></Array></mxGeometry>
+        <mxCell id="e-01" edge="1" parent="1" source="row-k1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-132" value="consume evento (async)">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="200" y="200" /></Array></mxGeometry>
         </mxCell>
         <mxCell id="e-02" edge="1" parent="1" source="row-113b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-136" value="usa">
           <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="700" y="180" /><mxPoint x="560" y="180" /></Array></mxGeometry>

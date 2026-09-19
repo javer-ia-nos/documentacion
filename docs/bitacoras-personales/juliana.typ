@@ -32,7 +32,7 @@
   [2026-09-19],
   [Implementación de Casos de uso (6 - 8) (21 -22 )],
   [8],
-  [Realice la implementación del casu de uso 10 (certificados bancarios).],
+  [Realice la implementación del caso de uso 10 (certificados bancarios).],
   [2026-09-19],
   [Implementación de Casos de uso #10 - Certificados Bancarios],
 )

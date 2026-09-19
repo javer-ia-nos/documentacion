@@ -34,7 +34,7 @@
   [Diagrama],
 
   [7],
-  [Se realizaron los casos de usos correspondientes 2-4-5-14-20-21-22-23],
+  [Se realizaron los casos de usos correspondientes 2-4-5-14-20-21-22-23 donde el 21 y 22 se hizo con ayuda de Juliana Novoa],
   [2026-09-19],
   [Casos de uso],
 

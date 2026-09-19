@@ -33,4 +33,9 @@
   [2026-09-15],
   [Diagrama],
 
+  [7],
+  [Se realizaron los casos de usos correspondientes 2-4-5-14-20-21-22-23],
+  [2026-09-19],
+  [Casos de uso],
+
 )

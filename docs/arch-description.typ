@@ -82,6 +82,8 @@
     [Miguel Francisco Vargas],
 
     [2026-09-07], [Se añadio la primera version de los stakeholders], [Salomon Avila],
+
+    [2026-09-19], [Se intercambiaron los casos de uso entre Juliana y Sara], [Sara Rodríguez],
   )
 ]
 
@@ -134,7 +136,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Chat de atención al cliente*],
   [Soporte interactivo en línea para resolución de dudas.],
   [CRM],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodríguez Urueña],
 
   [CU-03],
   [*Gestión de beneficiarios (CRM)*],
@@ -146,31 +148,31 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Gestión de solicitudes PQRS*],
   [Radicación y seguimiento de Peticiones, Quejas, Reclamos y Solicitudes.],
   [CRM],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodríguez Urueña],
 
   [CU-05],
   [*Reclamaciones por transacciones*],
   [Revisión y disputas por transacciones no reconocidas o fraudulentas.],
   [CRM],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodríguez Urueña],
 
   [CU-06],
   [*Gestión de cuentas corrientes (CRUD)*],
   [Apertura, modificación, consulta y cancelación de cuentas corrientes.],
   [Cuentas],
-  [Sara Rodriguez Urueña],
+  [Juliana Sofia Novoa Solano],
 
   [CU-07],
   [*Gestión de cuentas de ahorros (CRUD)*],
   [Apertura, modificación, consulta y cancelación de cuentas de ahorros.],
   [Cuentas],
-  [Sara Rodriguez Urueña],
+  [Juliana Sofia Novoa Solano],
 
   [CU-08],
   [*Gestión de subcuentas*],
   [Permitir al usuario separar dinero del saldo disponible en subcuentas de ahorro.],
   [Cuentas],
-  [Sara Rodriguez Urueña],
+  [Juliana Sofia Novoa Solano],
 
   [CU-09],
   [*Programación de ahorro automático*],
@@ -206,7 +208,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Centro de notificaciones*],
   [Configuración y envío de alertas transaccionales (vía push, SMS o correo) por movimientos superiores a montos definidos o ingresos desde dispositivos nuevos. Notificaciones publicitarias, informativas, entre otras.],
   [Notificaciones],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodríguez Urueña],
 
   [CU-15],
   [*Autenticación de usuarios*],
@@ -242,7 +244,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Bloqueo y desbloqueo de tarjetas*],
   [Inhabilitación temporal o definitiva de tarjetas en caso de robo o pérdida.],
   [Tarjetas],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodríguez Urueña],
 
   [CU-21],
   [*Emisión y gestión de tarjetas de crédito*],
@@ -260,7 +262,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Realización de avances de tarjeta de crédito*],
   [Desembolso de efectivo a partir del cupo de la tarjeta de crédito.],
   [Tarjetas],
-  [Miguel Francisco Vargas],
+  [Sara Rodríguez Urueña],
 
   [CU-24],
   [*Administración de pagos automáticos*],

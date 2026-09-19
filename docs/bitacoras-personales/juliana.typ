@@ -31,4 +31,8 @@
   [Realice la implementación (individualmente) de los casos de uso  06, 07 y 08 en el ms-cuenta, junto a Sara Rodriguez realice el 21 y 22.],
   [2026-09-19],
   [Implementación de Casos de uso (6 - 8) (21 -22 )],
+  [8],
+  [Realice la implementación del casu de uso 10 (certificados bancarios).],
+  [2026-09-19],
+  [Implementación de Casos de uso #10 - Certificados Bancarios],
 )

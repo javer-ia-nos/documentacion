@@ -444,7 +444,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [CU-04, CU-05, CU-06, CU-07, CU-08, CU-21, CU-22],
   [Ante el lanzamiento de una nueva regulación o tipo de producto de crédito/ahorro, los desarrolladores deben poder modificar o añadir la lógica del CRUD de cuentas y tarjetas sin alterar los módulos de transacciones.],
   [Media],
-  [Sara Rodriguez Urueña],
+  [Juliana Sofia Novoa Solano],
 
   [ASR-06],
   [Testabilidad y Auditoría del Sistema],
@@ -453,7 +453,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [CU-01, CU-04, CU-05, CU-14, CU-20, CU-24],
   [El equipo de calidad debe poder aislar y probar unitariamente los módulos de cuentas, PQRS y registros de auditoría de sesiones para verificar el cumplimiento normativo.],
   [Media],
-  [Juliana Sofia Novoa Solano],
+  [Sara Rodriguez Urueña],
 )
 #set text(size: 11pt)
 

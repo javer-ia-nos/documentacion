@@ -184,7 +184,7 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   [*Certificados bancarios*],
   [Generación automatizada de certificados de cuentas y productos.],
   [Financiero],
-  [Samuel Beltrán Martínez],
+  [Juliana Sofía Novoa Solano],
 
   [CU-11],
   [*Consulta de saldo y movimientos*],

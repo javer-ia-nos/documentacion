@@ -84,6 +84,8 @@
     [2026-09-07], [Se añadio la primera version de los stakeholders], [Salomon Avila],
 
     [2026-09-19], [Se intercambiaron los casos de uso entre Juliana y Sara], [Sara Rodríguez],
+
+    [2026-09-20], [Inclusión de la entidad ChatMessage en el modelo E/R de CRM (CU-02) para el soporte del historial de mensajes en chat de atención.], [Equipo de Arquitectura],
   )
 ]
 

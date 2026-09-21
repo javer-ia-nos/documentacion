@@ -637,6 +637,61 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   *Contenido:* C4 Deployment Diagram, al menos uno por cada ambiente de ejecución, y explicación de cada diagrama.
 ]
 
+#figure(
+  caption: "Diagrama de despliegue",
+  align(
+    center,
+    image(
+      "diagrams/deployment.png",
+      width: 80%,
+    ),
+  ),
+) <fig-deployment>
+
+= Vista de código
+
+#figure(
+  caption: "Vista de código: Back-end de Auditoría",
+  align(center, image("diagrams/code/code-backend-auditoria.png", width: 80%)),
+) <fig-code-backend-auditoria>
+
+#figure(
+  caption: "Vista de código: Financiero (Back-end)",
+  align(center, image("diagrams/code/code-financiero(backend).png", width: 80%)),
+) <fig-code-financiero-backend>
+
+#figure(
+  caption: "Vista de código: Financiero (Móvil)",
+  align(center, image("diagrams/code/code-financiero(mobile).png", width: 80%)),
+) <fig-code-financiero-mobile>
+
+#figure(
+  caption: "Vista de código: Financiero (Web)",
+  align(center, image("diagrams/code/code-financiero(web).png", width: 80%)),
+) <fig-code-financiero-web>
+
+#figure(
+  caption: "Vista de código: Back-end de Transacciones",
+  align(center, image("diagrams/code/code-view-backend-transacciones.png", width: 80%)),
+) <fig-code-backend-transacciones>
+
+#figure(
+  caption: "Vista de código: Pagos (Móvil)",
+  align(center, image("diagrams/code/codigo_pagos(mobile).png", width: 80%)),
+) <fig-code-pagos-mobile>
+
+#figure(
+  caption: "Vista de código: Pagos (Web)",
+  align(center, image("diagrams/code/codigo_pagos(web).png", width: 80%)),
+) <fig-code-pagos-web>
+
+= Vista de navegación
+
+#figure(
+  caption: "Grafo de navegación",
+  align(center, image("diagrams/navigation/grafo_navegacion.png", width: 80%)),
+) <fig-navigation>
+
 = Modelo de datos
 
 #figure(

@@ -852,3 +852,241 @@ GitHub como única variable de entorno.
 Documentar las contraseñas de cada base de datos y el token de GHCR como
 variables nuevas en `vault.yml.example`, a completar en el `vault.yml`
 cifrado real de cada integrante.
+
+=== Iteración 24: Reimplementación de dispositivos confiables (CU-17) en ms-seguridad
+
+*Fecha y hora:* 20 de septiembre de 2026, 16:00, y 21 de septiembre de 2026, 13:29 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección + Implementación \
+*Commit:*
+#link(commit_seguridad_url + "54e42baf4220b6f455f0a7d90038bf96518d2c58", [54e42ba · «CU-17»]),
+#link(commit_seguridad_url + "7fb2b3bc8c782b49c6ae762ff484647e8e75a555", [7fb2b3b · «Re implementacion CU-17»]) \
+*Archivos:*
+#link("https://github.com/javer-ia-nos/ms-seguridad/tree/main/src/controllers/device.controller.ts", [device.controller.ts]),
+#link("https://github.com/javer-ia-nos/ms-seguridad/tree/main/src/repositories/device.repository.ts", [device.repository.ts]),
+#link("https://github.com/javer-ia-nos/ms-seguridad/tree/main/src/repositories/device-trust.repository.ts", [device-trust.repository.ts]),
+#link("https://github.com/javer-ia-nos/ms-seguridad/tree/main/src/use-cases/device.usecase.ts", [device.usecase.ts]),
+#link("https://github.com/javer-ia-nos/ms-seguridad/tree/main/src/test/devices.test.ts", [devices.test.ts])
+
+==== Descripción
+
+Objetivo: cerrar el ciclo completo de CU-17 (registro, consulta y revocación
+de dispositivos confiables) en `ms-seguridad`, que ya tenía una primera
+versión con nomenclatura en español (`dispositivo.controller.ts`,
+`dispositivos.usecase.ts`).
+
+El primer commit (`54e42ba`) añadió los repositorios `confianza.repository.ts`
+y `dispositivo.repository.ts`, el caso de uso `dispositivos.usecase.ts` y el
+seed de base de datos correspondiente. El segundo commit (`7fb2b3b`, al día
+siguiente) reescribió el mismo caso de uso con nomenclatura en inglés
+(`device.controller.ts`, `device.repository.ts`,
+`device-trust.repository.ts`, `device.usecase.ts`), separando el registro de
+confianza del dispositivo (`device-trust.repository.ts`) del registro del
+dispositivo en sí, y amplió la suite de pruebas a 152 líneas en
+`devices.test.ts`, cubriendo registro, listado, actualización de confianza y
+revocación por `usuarioId`.
+
+==== Tareas asignadas
+
+Eliminar los archivos duplicados en español (`dispositivo.*`,
+`dispositivos.*`) que quedaron del primer commit, para no mantener dos
+implementaciones paralelas del mismo caso de uso.
+
+=== Iteración 25: Reubicación de CU-27 y CU-29 de ms-financiero a ms-transacciones
+
+*Fecha y hora:* 20 de septiembre de 2026, 21:42 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Implementación \
+*Commit:*
+#link(commit_financiero_url + "34c28dc1839e52ec340af435e481f6ff546fd4c6", [34c28dc · «Mover CU-27 y CU-29»]) (ms-financiero),
+#link(commit_transacciones_url + "3018863f80a6237c35fa3dcd618974cf5af03e78", [3018863 · «Mover CU-27 y CU-29»]) (ms-transacciones) \
+*Archivos:*
+#link(git_transacciones_base_url + "/src/controllers/factura.controller.ts", [factura.controller.ts]),
+#link(git_transacciones_base_url + "/src/controllers/billetera.controller.ts", [billetera.controller.ts]),
+#link(git_transacciones_base_url + "/src/test/cu27-pagos-facturas.test.ts", [cu27-pagos-facturas.test.ts]),
+#link(git_transacciones_base_url + "/src/test/cu29-billeteras-externas.test.ts", [cu29-billeteras-externas.test.ts])
+
+==== Descripción
+
+*Drivers:* CU-27 (pago de facturas de servicios) y CU-29 (soporte para
+billeteras externas) estaban implementados en `ms-financiero`, cuyo límite
+de contexto (certificados, saldo, CDT, préstamos) no corresponde a pagos ni
+a integraciones de billeteras; la tabla de casos de uso y los diagramas de
+componentes ya los ubicaban dentro de Transacciones (CU-24 a CU-31,
+Iteración 6).
+
+*Conceptos de diseño analizados:* mantener CU-27/CU-29 en `ms-financiero`
+por costo de migración frente a moverlos a `ms-transacciones` para respetar
+el límite de contexto ya documentado en la arquitectura.
+
+*Análisis preliminar de resultados:* se retiraron de `ms-financiero` los
+contratos, cliente de servicios externos, controlador, repositorio, casos
+de uso y pruebas de CU-27/CU-29 (237 líneas eliminadas). En
+`ms-transacciones` se recrearon como `factura.controller.ts` y
+`billetera.controller.ts`, con sus propios contratos, repositorios y
+clientes (`pagos-externos.client.ts`, `billeteras.client.ts`), y se migraron
+las pruebas `cu27-pagos-facturas.test.ts` y `cu29-billeteras-externas.test.ts`.
+
+=== Iteración 26: Enrutamiento real y validación de sesión en api-gateway
+
+*Fecha y hora:* 20 de septiembre de 2026, 17:48 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación \
+*Commit:* #link("https://github.com/javer-ia-nos/api-gateway/commit/f7b331cc052691cdd5142582da85c7648b9dcdae", [f7b331c · «implementar enrutamiento real y validación de sesión contra ms-seguridad»]) \
+*Archivos:*
+#link("https://github.com/javer-ia-nos/api-gateway/tree/main/index.ts", [index.ts]),
+#link("https://github.com/javer-ia-nos/api-gateway/tree/main/src/services/securityService.ts", [securityService.ts]),
+#link("https://github.com/javer-ia-nos/api-gateway/tree/main/tests/security.test.ts", [security.test.ts])
+
+==== Descripción
+
+Objetivo: reemplazar el enrutamiento y la validación de sesión simulados del
+API Gateway por una integración real contra `ms-seguridad`, de modo que cada
+petición hacia los microservicios internos pase primero por la verificación
+de sesión activa.
+
+Se amplió `index.ts` para enrutar dinámicamente hacia los microservicios de
+backend y se reescribió `securityService.ts` para consultar la sesión del
+usuario contra `ms-seguridad` en cada petición entrante, en lugar de la
+lógica simulada anterior. Se agregó el workflow `docker-publish.yaml` y el
+`Dockerfile` del gateway (antes ausentes) y se ampliaron `security.test.ts`
+e `intent-audit.test.ts` para cubrir los nuevos casos de sesión válida,
+sesión expirada y ausencia de token.
+
+=== Iteración 27: Páginas de seguridad y ajustes visuales en el frontend Web
+
+*Fecha y hora:* 20 de septiembre de 2026, entre las 16:51 y las 17:51 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación \
+*Commit:*
+#link(commit_web_url + "025688e207ca22619a543036b73a9a99a61b3cea", [025688e · «Añadir pagina principal»]),
+#link(commit_web_url + "dc85c2542a5e4f9e7d484aefe289e7a5e7798882", [dc85c25 · «Fix de datos quemados»]),
+#link(commit_web_url + "a6048d8ee55e9a60702171e75c6d5d9670f4df1c", [a6048d8 · «Actualizacion de componentes»]) \
+*Archivos:*
+#link(git_web_base_url + "/src/pages/seguridad.astro", [seguridad.astro]),
+#link(git_web_base_url + "/src/components/PaginaSeguridad.tsx", [PaginaSeguridad.tsx]),
+#link(git_web_base_url + "/src/components/PaginaPrincipal.tsx", [PaginaPrincipal.tsx]),
+#link(git_web_base_url + "/src/components/FormularioTransferencia.tsx", [FormularioTransferencia.tsx])
+
+==== Descripción
+
+Objetivo: dar a la aplicación Web una página propia para la gestión de
+seguridad de la cuenta (CU-17/CU-19) y eliminar los datos quemados que
+todavía traían la página principal y el formulario de transferencia.
+
+Se creó la página `seguridad.astro` con el componente `PaginaSeguridad.tsx`,
+que consume los componentes de `ui-shared` para dispositivos confiables y
+límites de transacción. Se corrigió `PaginaPrincipal.tsx` y
+`FormularioTransferencia.tsx` para dejar de mostrar valores fijos y
+consumir los datos reales expuestos por los hooks de `ui-shared`, y se
+ajustó `astro.config.mjs` para el nuevo enrutamiento.
+
+=== Iteración 28: Eliminación de datos quemados y exigencia de sesión en ui-shared
+
+*Fecha y hora:* 20 de septiembre de 2026, entre las 16:51 y las 17:50 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Implementación \
+*Commit:*
+#link(commit_ui_shared_url + "82c84f2ba3a0666dddb76ccaf099721130e56a34", [82c84f2 · «Test visual y prueba de algunos casos de uso»]),
+#link(commit_ui_shared_url + "b3ab49a21870ada50a06d759b7fb30b3a993eae6", [b3ab49a · «Componentes sin datos quemados»]),
+#link(commit_ui_shared_url + "826d492fd15e9e6e04f592dbd8e4cf89b96997ef", [826d492 · «Exigir sesion»]) \
+*Archivos:*
+#link(git_ui_shared_base_url + "/src/components/FormularioLimites.tsx", [FormularioLimites.tsx]),
+#link(git_ui_shared_base_url + "/src/components/FormularioLogin.tsx", [FormularioLogin.tsx]),
+#link(git_ui_shared_base_url + "/src/components/PantallaDispositivosConfiables.tsx", [PantallaDispositivosConfiables.tsx]),
+#link(git_ui_shared_base_url + "/src/components/PantallaInicioCuentas.tsx", [PantallaInicioCuentas.tsx]),
+#link(git_ui_shared_base_url + "/src/hooks/useSesion.ts", [useSesion.ts]),
+#link(git_ui_shared_base_url + "/src/hooks/useInicioCuentas.ts", [useInicioCuentas.ts])
+
+==== Descripción
+
+*Drivers:* los componentes de `ui-shared` construidos hasta la Iteración 13
+renderizaban datos fijos de prueba; para que Web y Móvil pudieran mostrar
+información real de cada usuario autenticado hacía falta un hook de sesión
+compartido y que cada componente lo consumiera antes de pedir datos de
+negocio.
+
+*Conceptos de diseño analizados:* mantener el estado de sesión duplicado en
+cada pantalla frente a centralizarlo en un hook headless (`useSesion`)
+consumido por el resto de hooks de dominio.
+
+*Análisis preliminar de resultados:* se agregaron `FormularioLimites`,
+`FormularioLogin` y `PantallaDispositivosConfiables`, junto con sus hooks
+(`useLimites`, `useLogin`, `useDispositivos`), como primera prueba visual
+sobre CU-17, CU-18 y CU-19. Se creó `useSesion.ts` y `useInicioCuentas.ts`
+para reemplazar los datos quemados de `PantallaInicioCuentas.tsx` y
+`EncabezadoApp.tsx` por el saldo y los movimientos reales del usuario. Por
+último, se modificaron `useDispositivos`, `useInicioCuentas`, `useLimites` y
+`useTransferencia` para exigir una sesión activa antes de resolver sus
+peticiones, devolviendo un estado de "sin autenticar" en vez de datos
+simulados.
+
+=== Iteración 29: Automatización de despliegue, autoescalado y rotación de secretos en infra
+
+*Fecha y hora:* 20 de septiembre de 2026, entre las 00:11 y las 17:49 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + DevOps / Infraestructura \
+*Commit:*
+#link(commit_infra_url + "edbbbb6ed174a5e5355d8a9f24697c2b566b6e6f", [edbbbb6 · «Actualizacion del makefile para evitar errores»]),
+#link(commit_infra_url + "a374299bc403df4aad3a95e48dc2356ae12f88fb", [a374299 · «Keel para actualizar los cambios en nuevas imagenes de ghcr»]),
+#link(commit_infra_url + "71faaf0a8465a051282caf80bd600018e1713d3e", [71faaf0 · «Forzar rollout de los microservicios»]),
+#link(commit_infra_url + "4accbd530e43c071d299020a0a645d51e079fee6", [4accbd5 · «Se añáde un playbook que destruye configuraciones para dejar maquinas en blanco»]),
+#link(commit_infra_url + "01e207b59ef3600a815f8184140deed2e4ff6ca9", [01e207b · «Adicion de ultima maquina para el cluster de kubernetes»]),
+#link(commit_infra_url + "9baf58a56669363a4fe804a21d1798decafeab48", [9baf58a · «Despliegue automatico de pods al momento de montaje»]),
+#link(commit_infra_url + "20dbbeebf4120ea5d401eb48f0d8d006c8aa6565", [20dbbee · «Usar el repositorio APT para instalacion de helm»]),
+#link(commit_infra_url + "4ecba52bf943b89ab70fd6f6d6bc93c7527a9e9f", [4ecba52 · «Instalar binario directo para evitar certificados rotos»]),
+#link(commit_infra_url + "f59a91b4dea518251f9853607a87f541dba26ab9", [f59a91b · «Añádir el usuario explicitamente»]),
+#link(commit_infra_url + "d7e75546b354b5e8cd6dbb5b6c176fe0e1221b74", [d7e7554 · «Actualizar local path storage»]),
+#link(commit_infra_url + "79d18444a8a7f3969ea8315c0ef3f600171afbe9", [79d1844 · «Depuracion temporal»]),
+#link(commit_infra_url + "29cb79af1fd08e70bf3c4d76d0ddd0adb12712f6", [29cb79a · «Adicion de firma»]),
+#link(commit_infra_url + "eef58287afceecfaf898bf8437f9e8ed60d580bc", [eef5828 · «Revertir depuracion temporal»]),
+#link(commit_infra_url + "1a6b482dd96b4df120eaa21194e653b61fdbcc02", [1a6b482 · «Inclusion de HPA para autoescalado»]),
+#link(commit_infra_url + "543f258124c97e8fff6e19a09cdcc05690f0b916", [543f258 · «Arreglar bug de comillas que estaba generando error»]),
+#link(commit_infra_url + "a701bec7654a053af8344324e13bf9cb050f412f", [a701bec · «Retirar keel y remplazar por cron job»]),
+#link(commit_infra_url + "f62617aa6b37782674200e39f16f797331b62bbe", [f62617a · «Configuracion del ingress»]),
+#link(commit_infra_url + "ff618f6e3d804104b4a465c0fb06c34283229b86", [ff618f6 · «Añádir el api gateway a la infraestructura»]),
+#link(commit_infra_url + "e5f884ded812e2391e9a1b791b36ccb26afea317", [e5f884d · «Nuevo token generado»]),
+#link(commit_infra_url + "2acf3af780c8428a13893dc037783a502b195fd5", [2acf3af · «Fix de deployment»]) \
+*Archivos:*
+#link(git_infra_base_url + "/Makefile", [Makefile]),
+#link(git_infra_base_url + "/charts/microservice/templates/hpa.yaml", [hpa.yaml]),
+#link(git_infra_base_url + "/charts/javer-ia-nos/templates/ingress-api.yaml", [ingress-api.yaml]),
+#link(git_infra_base_url + "/playbooks/12-app.yml", [12-app.yml]),
+#link(git_infra_base_url + "/playbooks/99-teardown.yml", [99-teardown.yml])
+
+==== Descripción
+
+*Drivers:* con las imágenes ya publicándose en GHCR (Iteración 23) faltaba
+que el clúster las desplegara y actualizara automáticamente, tolerara
+picos de carga, incorporara el sexto nodo del equipo y expusiera el API
+Gateway hacia el exterior, todo con secretos gestionados de forma segura.
+
+*Conceptos de diseño analizados:* para refrescar los pods con imágenes
+nuevas se evaluó primero Keel (operador de auto-actualización por polling
+sobre GHCR) frente a un `CronJob` propio de `kubectl rollout restart`; se
+adoptó Keel primero (`a374299`) y se retiró horas después
+(`a701bec`) por comportamiento poco predecible en el clúster bare-metal,
+sustituyéndolo por el CronJob. Para el autoescalado se optó por un
+`HorizontalPodAutoscaler` nativo de Kubernetes (`hpa.yaml`) en vez de un
+umbral fijo de réplicas en el chart.
+
+*Análisis preliminar de resultados:* se endureció el `Makefile` para
+detectar errores tempranos, se agregó `playbooks/99-teardown.yml` para dejar
+máquinas en blanco antes de reprovisionarlas, se incorporó el nodo de
+Juliana como sexto miembro del clúster (`inventory/host_vars/juliana`), se
+corrigió la instalación de Helm (primero por repositorio APT, luego por
+binario directo, para evitar certificados rotos), se ajustó el usuario
+explícito en los playbooks de almacenamiento e ingress, se agregó el
+`HorizontalPodAutoscaler` por microservicio, se configuró
+`ingress-api.yaml` para exponer el API Gateway y se integró su despliegue
+en el chart paraguas. Los cambios de `vault.yml` («Adicion de firma»,
+«Nuevo token generado») rotaron los secretos de conexión del clúster tras
+detectar credenciales comprometidas durante las pruebas. Un cambio de
+depuración temporal en `12-app.yml` se revirtió el mismo día
+(`79d1844`/`eef5828`).
+
+==== Tareas asignadas
+
+Confirmar que el `CronJob` de rollout cubre el mismo caso de uso que
+resolvía Keel (actualización automática al publicarse una imagen nueva) sin
+reintroducir el comportamiento inestable observado.

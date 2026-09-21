@@ -38,4 +38,9 @@
   [2026-09-19],
   [Casos de uso],
 
+  [8],
+  [Se modificaron/arreglaron los diagramas de ER de crm y tarjetas],
+  [2026-09-20],
+  [Diagramas],
+
 )

@@ -494,6 +494,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   - Explicación del diagrama.
 ]
 
+El diagrama de contexto (@fig-system-context) ubica al Sistema Bancario en el centro y muestra los dieciséis actores que interactúan con él. Los clientes finales, la persona natural y la persona jurídica, consultan saldos, realizan transferencias, gestionan tarjetas y solicitan productos financieros desde los canales web y móvil. El resto son roles internos del banco: el cajero atiende las operaciones de ventanilla, el personal de atención al cliente presencial y virtual resuelve dudas y asigna turnos, y el asesor comercial, el funcionario de créditos, el jefe de la sucursal, el especialista en comercio exterior, el gerente de Banca Corporativa y el ejecutivo de relación cumplen funciones administrativas y comerciales, cada uno con una relación distinta hacia el sistema.
+
+Hacia afuera, el sistema se integra con seis sistemas externos. El proveedor de notificaciones envía alertas y eventos de seguridad. Las billeteras digitales externas se sincronizan con las tarjetas vinculadas del cliente. La central de riesgo entrega el score crediticio necesario para aprobar los préstamos. Los proveedores de servicios públicos reciben los pagos de facturas registradas. La pasarela de pagos internacionales procesa las transferencias al exterior. Y el ente regulador financiero recibe los reportes de auditoría y cumplimiento. Cada relación queda etiquetada con el propósito del intercambio de información, siguiendo la notación de c4model.com.
+
 = Vista de contenedores
 
 #figure(
@@ -511,6 +515,8 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   Describir los contenedores y sus relaciones entre sí. \
   *Contenido:* C4 Container Diagram y explicación del diagrama.
 ]
+
+El diagrama de contenedores (@fig-container-view) describe tres puntos de entrada para los actores humanos. La Single-Page Application, construida en React y TypeScript, atiende a los clientes que operan desde el navegador. La Aplicación Móvil, en React Native, atiende a los clientes desde el smartphone y todavía consume la API de cada microservicio directamente, sin pasar por un API Gateway. El Portal de Atención y Backoffice, también en React, permite que el Agente de Atención al Cliente gestione PQRS, reclamaciones y chats de soporte. Los tres llaman al dominio de backend, compuesto por los mismos ocho microservicios ya presentados en la Vista de componentes: Autenticación y Seguridad, Cuentas, Tarjetas, Transacciones, Financiero, CRM, Notificaciones y Auditoría. Estos microservicios se comunican entre sí de forma asíncrona a través del Broker de Eventos Kafka, salvo las validaciones de saldo y cupo, que viajan por gRPC directo hacia Cuentas porque requieren respuesta inmediata. Hacia afuera, cada microservicio dueño de la integración correspondiente se comunica directamente con su sistema externo: Transacciones con la Pasarela de Pagos Internacionales, los Proveedores de Servicios Públicos y las Billeteras Digitales; Financiero con la Central de Riesgo; Notificaciones con el Proveedor de Notificaciones; y Auditoría con el Ente Regulador Financiero.
 
 = Vista de componentes
 
@@ -557,6 +563,10 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \
   *Contenido:* C4 Component Diagram (al menos uno por cada contenedor de la sección anterior) y explicación de cada diagrama.
 ]
+
+El componente de Back-end (@fig-backend-component-view) descompone el backend en ocho microservicios, cada uno con su propia base de datos PostgreSQL. Autenticación y Seguridad cubre el inicio de sesión, las sesiones, los roles, los dispositivos confiables y los límites de transacción. Cuentas cubre el CRUD de cuentas corrientes y de ahorro, las subcuentas y el ahorro automático. Tarjetas cubre la emisión, el bloqueo y desbloqueo, y los avances de crédito. Transacciones cubre las transferencias, los pagos con código QR, los pagos automáticos, las facturas y las billeteras externas. Financiero cubre los CDT, las inversiones, los préstamos y los certificados. CRM cubre el chat de soporte, los beneficiarios, las PQRS y las reclamaciones. Notificaciones orquesta el envío de alertas. Y Auditoría registra la actividad y la trazabilidad del sistema. Las validaciones de saldo y cupo que exigen respuesta inmediata viajan por gRPC entre Transacciones, Tarjetas y Cuentas, mientras que el resto de la comunicación entre microservicios es asíncrona a través del Broker de Eventos Kafka: cada servicio publica sus eventos de dominio y Auditoría los consume todos para construir la bitácora del sistema, mientras que CRM y Notificaciones consumen los eventos relevantes para abrir reclamaciones o enviar alertas. La Aplicación Móvil aún consume la API de cada microservicio directamente, sin pasar por un API Gateway.
+
+Los diagramas de componentes de Web (@fig-webpage-component-view) y Móvil (@fig-mobile-component-view) son estructuralmente idénticos entre sí, ya que ambos frontends reutilizan los mismos componentes de negocio desde la librería compartida ui-shared. Se organizan en tres franjas: la primera agrupa Autenticación, Seguridad, Inicio, Tarjetas y Soporte; la segunda agrupa Cuentas, Transacciones, Notificaciones, Billeteras y pagos digitales, y Financiero; y la tercera agrupa Pagos, Documentos, Perfil y Configuración. Cada componente de frontend está coloreado según el microservicio de backend con el que se comunica, y ambos reciben actualizaciones de estado empujadas por WebSocket para reflejar movimientos y alertas sin necesidad de refrescar la pantalla.
 
 = Vista de procesos
 
@@ -631,6 +641,20 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
 ]
 
+Los seis diagramas dinámicos modelan, en estilo secuencia, los flujos más críticos para los atributos de calidad descritos en la Introducción. Todos comparten un mismo patrón: el componente de dominio valida contra Cuentas por gRPC, persiste el movimiento, publica un evento asíncrono en el Broker de Eventos Kafka sin esperar respuesta, y Auditoría y Notificaciones consumen ese evento en paralelo para registrar la bitácora y avisar al cliente por un canal externo.
+
+La programación de ahorro automático, correspondiente al caso de uso CU-09 (@fig-proc-ahorro-automatico), tiene dos fases. En la primera fase el cliente configura el monto, la frecuencia y las cuentas involucradas. En la segunda fase un disparador interno ejecuta la transferencia programada en la fecha correspondiente; si el saldo es insuficiente, el ciclo se omite y la programación permanece activa para el siguiente intento, en vez de fallar o cancelarse.
+
+La solicitud de CDT e inversiones, correspondiente al caso de uso CU-12 (@fig-proc-cdt-inversiones), valida la sesión, consulta la tasa vigente y el saldo disponible antes de crear el CDT o la inversión; si el saldo es insuficiente, la solicitud se rechaza sin crear el registro. Incluye además una segunda fase de consulta de rendimientos proyectados y actuales.
+
+La solicitud y gestión de préstamos, correspondiente al caso de uso CU-13 (@fig-proc-gestion-prestamos), consulta el historial crediticio en la Central de Riesgo externa antes de aprobar el préstamo; si el score o la capacidad de pago no alcanzan, la solicitud se rechaza. Su segunda fase cubre el pago de cuotas y la actualización del plan de amortización.
+
+La gestión de transferencias internacionales y nacionales, correspondiente al caso de uso CU-26 (@fig-proc-transferencias-internacionales-nacionales), separa la transferencia internacional, que pasa por la Pasarela de Pagos Internacionales, de la transferencia nacional interbancaria, ambas con la misma validación de saldo previa al débito.
+
+El pago de facturas y servicios, correspondiente al caso de uso CU-27 (@fig-proc-pago-facturas-servicios), valida el convenio registrado contra el proveedor de servicios públicos antes de procesar el pago, y cubre además la recarga a operadores móviles en su segunda fase.
+
+Las transferencias entre cuentas propias y a terceros, correspondientes al caso de uso CU-30 (@fig-proc-transferencias-propias-terceros), validan en su primera fase que ambas cuentas sean del mismo cliente; en la segunda fase, hacia un tercero, primero se consultan los beneficiarios registrados en CRM antes de ejecutar la transferencia.
+
 = Vista física
 #instruction[
   Para cada ambiente de ejecución (desarrollo, pruebas y producción), describir cómo se desplegarán los contenedores del sistema. \
@@ -685,12 +709,32 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   align(center, image("diagrams/code/codigo_pagos(web).png", width: 80%)),
 ) <fig-code-pagos-web>
 
+#instruction[
+  C4 Code Diagram (nivel 4) para los componentes de mayor complejidad o criticidad, con explicación de cada uno.
+]
+
+Los diagramas de código detallan, a nivel de clases, los componentes backend de Transacciones y Auditoría, y el flujo completo desde la presentación hasta el dominio, pasando por el view-model, el caso de uso y el repositorio, de Financiero y Pagos tanto en Web como en Móvil.
+
+El back-end de Transacciones (@fig-code-backend-transacciones) expone en su controlador las rutas para transferencias, pagos de factura, generación de código QR y transferencias internacionales, cada una delegada a su propio caso de uso. Todos dependen del repositorio de transacciones para persistir y del cliente de Cuentas para validar y actualizar el saldo; los casos de uso de transferencia y pago publican eventos en el cliente de eventos de Kafka en vez de llamar directamente a Auditoría o Notificaciones, coherente con la migración a mensajería asíncrona registrada en la bitácora.
+
+El back-end de Auditoría (@fig-code-backend-auditoria) recibe, en el extremo opuesto del flujo, los eventos publicados por los demás microservicios a través de un consumidor de Kafka, que los delega al caso de uso encargado de registrarlos como eventos de auditoría persistidos. De forma independiente, el controlador de Auditoría expone consultas síncronas sobre el historial y el reporte periódico de cumplimiento hacia el Ente Regulador externo.
+
+Financiero, en su back-end (@fig-code-financiero-backend), tiene un modelo de dominio más rico, con préstamos, cuotas de préstamo, CDT e inversiones orquestados por sus respectivos servicios detrás de un controlador financiero único. Las validaciones de saldo pasan por el servicio de cuentas y la consulta de historial crediticio por el servicio de la Central de Riesgo externa; todos publican eventos de dominio a través del servicio de eventos.
+
+Los cuatro diagramas de frontend de Financiero y Pagos, tanto en Móvil como en Web (@fig-code-financiero-mobile, @fig-code-financiero-web, @fig-code-pagos-mobile, @fig-code-pagos-web), comparten la misma arquitectura en capas: la pantalla invoca un view-model que a su vez invoca el caso de uso correspondiente, este depende de un repositorio, y el repositorio se apoya en la conexión a la API. Son estructuralmente idénticos entre Web y Móvil porque ambos consumen los mismos componentes de la librería compartida ui-shared; solo cambia la capa de presentación, construida en React para la web y en React Native para el móvil.
+
 = Vista de navegación
 
 #figure(
   caption: "Grafo de navegación",
   align(center, image("diagrams/navigation/grafo_navegacion.png", width: 80%)),
 ) <fig-navigation>
+
+#instruction[
+  Diagrama de navegación de las aplicaciones cliente (web/móvil), mostrando las pantallas y los flujos entre ellas.
+]
+
+El grafo de navegación (@fig-navigation) parte de las pantallas de registro, inicio de sesión y recuperación de contraseña, que confluyen en la pantalla principal tras autenticarse. Desde ahí, un menú principal despliega ocho módulos: Auditoría, CRM y Atención al Cliente, Cuentas, Financiero, Notificaciones, Seguridad, Tarjetas y Transacciones, cada uno con su propia jerarquía de pantallas hijas. Las flechas sólidas representan la navegación directa desde el menú, mientras que las punteadas representan la navegación cruzada entre módulos, lo que evidencia que varias pantallas, como los comprobantes de pago o el detalle de intereses, son compartidas por más de un caso de uso.
 
 = Modelo de datos
 
@@ -786,6 +830,24 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   Si aplica, esta sección debe mostrar todos los modelos de datos persistentes usados en la aplicación: modelos ER, modelos de entidades, etc. Si es una arquitectura distribuida, indicar claramente a qué componentes o contenedores aplica cada modelo de datos. \
   *Contenido:* diagramas y su correspondiente explicación.
 ]
+
+Al ser una arquitectura de microservicios con base de datos propia por servicio, cada uno de los ocho diagramas entidad-relación corresponde exactamente a la base de datos de un microservicio. No existen tablas compartidas entre dominios, solo referencias por identificador que se resuelven vía gRPC o eventos en tiempo de ejecución, nunca por llave foránea física entre bases de datos distintas.
+
+En Auditoría (@fig-er-auditoria), el registro de auditoría es la tabla central de eventos, con el detalle de auditoría para el cambio campo a campo, la política de auditoría para las reglas de retención por servicio y entidad, y la exportación de auditoría junto con el sistema externo de auditoría para las exportaciones hacia el ente regulador.
+
+En Autenticación y Seguridad (@fig-er-auth-seguridad), el usuario es la raíz, de la que cuelgan la credencial con el hash, la sal y el segundo factor, la sesión con los tokens activos, el dispositivo y su confianza asociada, el límite de transacción y el esquema de roles del usuario.
+
+En CRM (@fig-er-crm), el cliente centraliza los datos y se relaciona con su dirección, la interacción que agrupa los mensajes de chat por canal, la solicitud de servicio para las PQRS, la disputa para las reclamaciones y la segmentación de campañas. El mensaje de chat se incorporó recientemente para soportar el historial de chat de atención.
+
+En Cuentas (@fig-er-cuentas), la cuenta, tipada por su tipo de cuenta, es dueña de la subcuenta, la meta de ahorro, el titular de cuenta para las cuentas conjuntas y corporativas, y la programación de ahorro automático, que referencia opcionalmente una subcuenta o una meta de ahorro como destino.
+
+En Financiero (@fig-er-financiero), conviven tres líneas de producto independientes bajo un mismo usuario: el préstamo con su plan de cuotas, el CDT y la inversión, además de la tasa de interés como catálogo de tasas vigentes por tipo de producto.
+
+En Notificaciones (@fig-er-notificaciones), la plantilla y el canal de notificación definen el contenido y el medio; la notificación es el envío concreto a un usuario, con la referencia de entrega del proveedor externo y la preferencia de notificación por canal.
+
+En Tarjetas (@fig-er-tarjetas), la tarjeta, catalogada por su producto y su estado, es dueña del límite de tarjeta y del avance de efectivo, con el procesador de tarjeta externo como referencia a la red de pagos.
+
+En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, especializada según el tipo de operación en transferencia, pago con código QR, pago de factura o referencia a la pasarela externa; el pago programado modela los pagos automáticos recurrentes de forma independiente, antes de materializarse como una transacción.
 
 = Registros de Decisiones Arquitectónicas (ADR)
 #instruction[

@@ -53,4 +53,9 @@
   [2026-09-21],
   [Test],
 
+  [11],
+  [Se realizó el diagrama de modelo de dominio],
+  [2026-09-22],
+  [Diagrama],
+
 )

@@ -43,4 +43,9 @@
   [2026-09-20],
   [Diagramas],
 
+  [9],
+  [Se modificaron/arreglaron los casos de uso 2-4-5-14-20-21-22-23 con algunas cosas que faltaban],
+  [2026-09-21],
+  [Casos de uso],
+
 )

@@ -51,10 +51,10 @@
 // ]
 
 = Historial de Cambios
-#instruction[
-  *Propósito:* Describir brevemente los cambios que ha sufrido el documento, con el fin de llevar una adecuada administración de configuración. \
-  *Contenido:* Una tabla que indique los cambios que ha sufrido el documento. Debe incluir, al menos: fecha del cambio, descripción del cambio y persona(s) que realizaron el cambio.
-]
+// #instruction[
+//   *Propósito:* Describir brevemente los cambios que ha sufrido el documento, con el fin de llevar una adecuada administración de configuración. \
+//   *Contenido:* Una tabla que indique los cambios que ha sufrido el documento. Debe incluir, al menos: fecha del cambio, descripción del cambio y persona(s) que realizaron el cambio.
+// ]
 
 #align(center)[
   #table(
@@ -101,15 +101,15 @@
 #counter(page).update(1)
 
 = Introducción
-#instruction[
-  *Propósito:* que el lector entienda los elementos más generales del documento y determine si vale la pena seguir leyéndolo. \
-  *Contenido:*
-  - Una breve explicación de qué trata el sistema.
-  - Principales objetivos de negocio que el sistema debe cumplir.
-  - Principales atributos de calidad que debe satisfacer la arquitectura.
-  - Cuáles son las principales secciones del documento y de qué trata cada una. \
-  *Tamaño recomendado:* 1-2 páginas
-]
+// #instruction[
+//   *Propósito:* que el lector entienda los elementos más generales del documento y determine si vale la pena seguir leyéndolo. \
+//   *Contenido:*
+//   - Una breve explicación de qué trata el sistema.
+//   - Principales objetivos de negocio que el sistema debe cumplir.
+//   - Principales atributos de calidad que debe satisfacer la arquitectura.
+//   - Cuáles son las principales secciones del documento y de qué trata cada una. \
+//   *Tamaño recomendado:* 1-2 páginas
+// ]
 
 En la actualidad, las personas realizan sus operaciones financieras cotidianas a través de aplicaciones y plataformas digitales. Por ello, este proyecto consiste en diseñar y desarrollar un sistema bancario organizado en módulos especializados como auditoría, atención al cliente, cuentas, productos financieros, notificaciones, seguridad, tarjetas y transacciones para que los usuarios puedan gestionar su dinero de forma fácil y segura.
 
@@ -318,12 +318,12 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 #set text(size: 7pt)
 
 = Modelo de dominio
-#instruction[
-  Diagrama que muestra los principales conceptos del sistema y sus relaciones. \
-  *Contenido:* \
-  - Diagramas de clases UML, donde cada clase representa un concepto del sistema (ver https://www.uml-diagrams.org/examples/hospital-domain-diagram.html) \
-  - Tabla con las siguientes columnas: Concepto, Explicación
-]
+// #instruction[
+//   Diagrama que muestra los principales conceptos del sistema y sus relaciones. \
+//   *Contenido:* \
+//   - Diagramas de clases UML, donde cada clase representa un concepto del sistema (ver https://www.uml-diagrams.org/examples/hospital-domain-diagram.html) \
+//   - Tabla con las siguientes columnas: Concepto, Explicación
+// ]
 
 #table(
   columns: (1fr, 3fr),
@@ -333,9 +333,9 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 )
 
 = Stakeholders e intereses
-#instruction[
-  Una tabla que especifique cada stakeholder, su información de contacto y qué intereses o expectativas tiene sobre el sistema que se está desarrollando (cómo espera beneficiarse del mismo).
-]
+// #instruction[
+//   Una tabla que especifique cada stakeholder, su información de contacto y qué intereses o expectativas tiene sobre el sistema que se está desarrollando (cómo espera beneficiarse del mismo).
+// ]
 
 #set text(size: 9pt)
 #table(
@@ -460,12 +460,12 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 #set text(size: 11pt)
 
 = Restricciones
-#instruction[
-  Indique cualquier restricción que limite la libertad de los ingenieros a la hora de decidir la arquitectura del sistema y las soluciones a los ASR. Las principales categorías de restricciones son: \
-  - *Técnicas:* Directamente relacionadas con las tecnologías, métodos de ingeniería, sistemas de software, etc. \
-  - *Organizacionales/políticas:* Situaciones internas o externas a la organización y de las personas que limiten las decisiones arquitectónicas del sistema. \
-  - *Convencionales:* Necesidades de seguimiento de estándares, guías de codificación, leyes, etc.
-]
+// #instruction[
+//   Indique cualquier restricción que limite la libertad de los ingenieros a la hora de decidir la arquitectura del sistema y las soluciones a los ASR. Las principales categorías de restricciones son: \
+//   - *Técnicas:* Directamente relacionadas con las tecnologías, métodos de ingeniería, sistemas de software, etc. \
+//   - *Organizacionales/políticas:* Situaciones internas o externas a la organización y de las personas que limiten las decisiones arquitectónicas del sistema. \
+//   - *Convencionales:* Necesidades de seguimiento de estándares, guías de codificación, leyes, etc.
+// ]
 
 #table(
   columns: (1fr, 1fr, 2fr),
@@ -487,12 +487,12 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
   ),
 ) <fig-system-context>
 
-#instruction[
-  Relación entre el sistema y su entorno (personas y otros sistemas). \
-  *Contenido:* \
-  - C4 Context Diagram o C4 System Landscape Diagram. Debe incluir todos los elementos externos relevantes (Actores, Sistemas externos). \
-  - Explicación del diagrama.
-]
+// #instruction[
+//   Relación entre el sistema y su entorno (personas y otros sistemas). \
+//   *Contenido:* \
+//   - C4 Context Diagram o C4 System Landscape Diagram. Debe incluir todos los elementos externos relevantes (Actores, Sistemas externos). \
+//   - Explicación del diagrama.
+// ]
 
 El diagrama de contexto (@fig-system-context) ubica al Sistema Bancario en el centro y muestra los dieciséis actores que interactúan con él. Los clientes finales, la persona natural y la persona jurídica, consultan saldos, realizan transferencias, gestionan tarjetas y solicitan productos financieros desde los canales web y móvil. El resto son roles internos del banco: el cajero atiende las operaciones de ventanilla, el personal de atención al cliente presencial y virtual resuelve dudas y asigna turnos, y el asesor comercial, el funcionario de créditos, el jefe de la sucursal, el especialista en comercio exterior, el gerente de Banca Corporativa y el ejecutivo de relación cumplen funciones administrativas y comerciales, cada uno con una relación distinta hacia el sistema.
 
@@ -511,10 +511,10 @@ Hacia afuera, el sistema se integra con seis sistemas externos. El proveedor de 
   ),
 ) <fig-container-view>
 
-#instruction[
-  Describir los contenedores y sus relaciones entre sí. \
-  *Contenido:* C4 Container Diagram y explicación del diagrama.
-]
+// #instruction[
+//   Describir los contenedores y sus relaciones entre sí. \
+//   *Contenido:* C4 Container Diagram y explicación del diagrama.
+// ]
 
 El diagrama de contenedores (@fig-container-view) describe tres puntos de entrada para los actores humanos. La Single-Page Application, construida en React y TypeScript, atiende a los clientes que operan desde el navegador. La Aplicación Móvil, en React Native, atiende a los clientes desde el smartphone y todavía consume la API de cada microservicio directamente, sin pasar por un API Gateway. El Portal de Atención y Backoffice, también en React, permite que el Agente de Atención al Cliente gestione PQRS, reclamaciones y chats de soporte. Los tres llaman al dominio de backend, compuesto por los mismos ocho microservicios ya presentados en la Vista de componentes: Autenticación y Seguridad, Cuentas, Tarjetas, Transacciones, Financiero, CRM, Notificaciones y Auditoría. Estos microservicios se comunican entre sí de forma asíncrona a través del Broker de Eventos Kafka, salvo las validaciones de saldo y cupo, que viajan por gRPC directo hacia Cuentas porque requieren respuesta inmediata. Hacia afuera, cada microservicio dueño de la integración correspondiente se comunica directamente con su sistema externo: Transacciones con la Pasarela de Pagos Internacionales, los Proveedores de Servicios Públicos y las Billeteras Digitales; Financiero con la Central de Riesgo; Notificaciones con el Proveedor de Notificaciones; y Auditoría con el Ente Regulador Financiero.
 
@@ -559,10 +559,10 @@ El diagrama de contenedores (@fig-container-view) describe tres puntos de entrad
   ),
 ) <fig-mobile-component-view>
 
-#instruction[
-  Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \
-  *Contenido:* C4 Component Diagram (al menos uno por cada contenedor de la sección anterior) y explicación de cada diagrama.
-]
+// #instruction[
+//   Para cada contenedor de la sección anterior, describir sus componentes y relaciones entre sí. \
+//   *Contenido:* C4 Component Diagram (al menos uno por cada contenedor de la sección anterior) y explicación de cada diagrama.
+// ]
 
 El componente de Back-end (@fig-backend-component-view) descompone el backend en ocho microservicios, cada uno con su propia base de datos PostgreSQL. Autenticación y Seguridad cubre el inicio de sesión, las sesiones, los roles, los dispositivos confiables y los límites de transacción. Cuentas cubre el CRUD de cuentas corrientes y de ahorro, las subcuentas y el ahorro automático. Tarjetas cubre la emisión, el bloqueo y desbloqueo, y los avances de crédito. Transacciones cubre las transferencias, los pagos con código QR, los pagos automáticos, las facturas y las billeteras externas. Financiero cubre los CDT, las inversiones, los préstamos y los certificados. CRM cubre el chat de soporte, los beneficiarios, las PQRS y las reclamaciones. Notificaciones orquesta el envío de alertas. Y Auditoría registra la actividad y la trazabilidad del sistema. Las validaciones de saldo y cupo que exigen respuesta inmediata viajan por gRPC entre Transacciones, Tarjetas y Cuentas, mientras que el resto de la comunicación entre microservicios es asíncrona a través del Broker de Eventos Kafka: cada servicio publica sus eventos de dominio y Auditoría los consume todos para construir la bitácora del sistema, mientras que CRM y Notificaciones consumen los eventos relevantes para abrir reclamaciones o enviar alertas. La Aplicación Móvil aún consume la API de cada microservicio directamente, sin pasar por un API Gateway.
 
@@ -636,10 +636,10 @@ Los diagramas de componentes de Web (@fig-webpage-component-view) y Móvil (@fig
   ),
 ) <fig-proc-transferencias-propias-terceros>
 
-#instruction[
-  Describir el comportamiento de las partes más críticas del sistema. No es necesario detallar el comportamiento de todos los elementos del sistema, sino solo aquellos más críticos en relación con los atributos de calidad. \
-  *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
-]
+// #instruction[
+//   Describir el comportamiento de las partes más críticas del sistema. No es necesario detallar el comportamiento de todos los elementos del sistema, sino solo aquellos más críticos en relación con los atributos de calidad. \
+//   *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
+// ]
 
 Los seis diagramas dinámicos modelan, en estilo secuencia, los flujos más críticos para los atributos de calidad descritos en la Introducción. Todos comparten un mismo patrón: el componente de dominio valida contra Cuentas por gRPC, persiste el movimiento, publica un evento asíncrono en el Broker de Eventos Kafka sin esperar respuesta, y Auditoría y Notificaciones consumen ese evento en paralelo para registrar la bitácora y avisar al cliente por un canal externo.
 
@@ -656,10 +656,10 @@ El pago de facturas y servicios, correspondiente al caso de uso CU-27 (@fig-proc
 Las transferencias entre cuentas propias y a terceros, correspondientes al caso de uso CU-30 (@fig-proc-transferencias-propias-terceros), validan en su primera fase que ambas cuentas sean del mismo cliente; en la segunda fase, hacia un tercero, primero se consultan los beneficiarios registrados en CRM antes de ejecutar la transferencia.
 
 = Vista física
-#instruction[
-  Para cada ambiente de ejecución (desarrollo, pruebas y producción), describir cómo se desplegarán los contenedores del sistema. \
-  *Contenido:* C4 Deployment Diagram, al menos uno por cada ambiente de ejecución, y explicación de cada diagrama.
-]
+// #instruction[
+//   Para cada ambiente de ejecución (desarrollo, pruebas y producción), describir cómo se desplegarán los contenedores del sistema. \
+//   *Contenido:* C4 Deployment Diagram, al menos uno por cada ambiente de ejecución, y explicación de cada diagrama.
+// ]
 
 #figure(
   caption: "Diagrama de despliegue",
@@ -709,9 +709,9 @@ Las transferencias entre cuentas propias y a terceros, correspondientes al caso 
   align(center, image("diagrams/code/codigo_pagos(web).png", width: 80%)),
 ) <fig-code-pagos-web>
 
-#instruction[
-  C4 Code Diagram (nivel 4) para los componentes de mayor complejidad o criticidad, con explicación de cada uno.
-]
+// #instruction[
+//   C4 Code Diagram (nivel 4) para los componentes de mayor complejidad o criticidad, con explicación de cada uno.
+// ]
 
 Los diagramas de código detallan, a nivel de clases, los componentes backend de Transacciones y Auditoría, y el flujo completo desde la presentación hasta el dominio, pasando por el view-model, el caso de uso y el repositorio, de Financiero y Pagos tanto en Web como en Móvil.
 
@@ -730,9 +730,9 @@ Los cuatro diagramas de frontend de Financiero y Pagos, tanto en Móvil como en 
   align(center, image("diagrams/navigation/grafo_navegacion.png", width: 80%)),
 ) <fig-navigation>
 
-#instruction[
-  Diagrama de navegación de las aplicaciones cliente (web/móvil), mostrando las pantallas y los flujos entre ellas.
-]
+// #instruction[
+//   Diagrama de navegación de las aplicaciones cliente (web/móvil), mostrando las pantallas y los flujos entre ellas.
+// ]
 
 El grafo de navegación (@fig-navigation) parte de las pantallas de registro, inicio de sesión y recuperación de contraseña, que confluyen en la pantalla principal tras autenticarse. Desde ahí, un menú principal despliega ocho módulos: Auditoría, CRM y Atención al Cliente, Cuentas, Financiero, Notificaciones, Seguridad, Tarjetas y Transacciones, cada uno con su propia jerarquía de pantallas hijas. Las flechas sólidas representan la navegación directa desde el menú, mientras que las punteadas representan la navegación cruzada entre módulos, lo que evidencia que varias pantallas, como los comprobantes de pago o el detalle de intereses, son compartidas por más de un caso de uso.
 
@@ -826,10 +826,10 @@ El grafo de navegación (@fig-navigation) parte de las pantallas de registro, in
   ),
 ) <fig-er-transacciones>
 
-#instruction[
-  Si aplica, esta sección debe mostrar todos los modelos de datos persistentes usados en la aplicación: modelos ER, modelos de entidades, etc. Si es una arquitectura distribuida, indicar claramente a qué componentes o contenedores aplica cada modelo de datos. \
-  *Contenido:* diagramas y su correspondiente explicación.
-]
+// #instruction[
+//   Si aplica, esta sección debe mostrar todos los modelos de datos persistentes usados en la aplicación: modelos ER, modelos de entidades, etc. Si es una arquitectura distribuida, indicar claramente a qué componentes o contenedores aplica cada modelo de datos. \
+//   *Contenido:* diagramas y su correspondiente explicación.
+// ]
 
 Al ser una arquitectura de microservicios con base de datos propia por servicio, cada uno de los ocho diagramas entidad-relación corresponde exactamente a la base de datos de un microservicio. No existen tablas compartidas entre dominios, solo referencias por identificador que se resuelven vía gRPC o eventos en tiempo de ejecución, nunca por llave foránea física entre bases de datos distintas.
 
@@ -850,23 +850,23 @@ En Tarjetas (@fig-er-tarjetas), la tarjeta, catalogada por su producto y su esta
 En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, especializada según el tipo de operación en transferencia, pago con código QR, pago de factura o referencia a la pasarela externa; el pago programado modela los pagos automáticos recurrentes de forma independiente, antes de materializarse como una transacción.
 
 = Registros de Decisiones Arquitectónicas (ADR)
-#instruction[
-  Detallar la solución a cada ASR de alta prioridad mencionado en la sección "Requisitos Arquitectónicamente Significativos (ASR)". Cada ASR puede tener asociado uno o varios Registros de Decisiones de Diseño (ADR). \
-  *Contenido:* Para cada decisión de alta prioridad, una subsección con los siguientes elementos: \
-  - ID y Título del ADR. \
-  - ID y Título del ASR. \
-  - Problema: Descripción detallada del problema a resolver. \
-  - Solución: Descripción detallada de la decisión. Típicamente requiere referenciar diagramas. Detallar: Tecnologías seleccionadas, Patrones y estilos, Metodologías/procesos. \
-  - Consecuencias: positivas y negativas de dicha decisión.
-]
+// #instruction[
+//   Detallar la solución a cada ASR de alta prioridad mencionado en la sección "Requisitos Arquitectónicamente Significativos (ASR)". Cada ASR puede tener asociado uno o varios Registros de Decisiones de Diseño (ADR). \
+//   *Contenido:* Para cada decisión de alta prioridad, una subsección con los siguientes elementos: \
+//   - ID y Título del ADR. \
+//   - ID y Título del ASR. \
+//   - Problema: Descripción detallada del problema a resolver. \
+//   - Solución: Descripción detallada de la decisión. Típicamente requiere referenciar diagramas. Detallar: Tecnologías seleccionadas, Patrones y estilos, Metodologías/procesos. \
+//   - Consecuencias: positivas y negativas de dicha decisión.
+// ]
 
 = Riesgos técnicos
-#instruction[
-  Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
-  *Contenido:* Tabla de riesgos ordenados por prioridad (Alta probabilidad + alto impacto = alta prioridad; Baja probabilidad + bajo impacto = baja prioridad). \
-  - *Plan de mitigación:* qué hacer para reducir la probabilidad de que ocurra el riesgo. \
-  - *Plan de contingencia:* qué hacer si el riesgo se materializa ("plan B").
-]
+// #instruction[
+//   Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
+//   *Contenido:* Tabla de riesgos ordenados por prioridad (Alta probabilidad + alto impacto = alta prioridad; Baja probabilidad + bajo impacto = baja prioridad). \
+//   - *Plan de mitigación:* qué hacer para reducir la probabilidad de que ocurra el riesgo. \
+//   - *Plan de contingencia:* qué hacer si el riesgo se materializa ("plan B").
+// ]
 
 #set text(size: 9pt)
 #table(
@@ -910,6 +910,6 @@ Este glosario define los términos técnicos y de negocio utilizados a lo largo 
 + *Usabilidad*: Medida en la que el sistema y su interfaz gráfica permiten a los usuarios operar de manera intuitiva, rápida y sin fricciones técnicas.
 
 = Referencias
-#instruction[
-  Referencias bibliográficas en formato APA o IEEE que hayan sido usadas en el documento[cite: 1].
-]
+// #instruction[
+//   Referencias bibliográficas en formato APA o IEEE que hayan sido usadas en el documento[cite: 1].
+// ]

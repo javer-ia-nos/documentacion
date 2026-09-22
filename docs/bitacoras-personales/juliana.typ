@@ -35,4 +35,9 @@
   [Realice la implementación del caso de uso 10 (certificados bancarios).],
   [2026-09-19],
   [Implementación de Casos de uso #10 - Certificados Bancarios],
+  [9],
+  [Realice la implementación de los test de integración 10, 11 y 12 (individualmente) y junto a Miguel Vargas hicimos los test 4, 5 y 6 de integración],
+  [2026-09-21],
+  [Implementación de test de itegración],
+  
 )

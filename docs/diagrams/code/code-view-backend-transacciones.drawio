@@ -20,7 +20,7 @@
         <mxCell id="lbl-107" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CONTRATOS DE SERIALIZACIÓN (REQUEST / RESPONSE)" vertex="1">
           <mxGeometry height="24" width="500" x="60" y="564" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR (CLIENTS HTTP)" vertex="1">
+        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR (CLIENTS HTTP / EVENTOS KAFKA)" vertex="1">
           <mxGeometry height="24" width="500" x="50" y="720" as="geometry" />
         </mxCell>
         <mxCell id="lbl-109" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="MODELOS DE DOMINIO" vertex="1">
@@ -129,19 +129,12 @@
         <mxCell id="row-c1" parent="uml-cuentas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ consultarSaldo(cuentaId)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
         <mxCell id="row-c2" parent="uml-cuentas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ actualizarSaldo(id, monto)" vertex="1"><mxGeometry height="26" width="240" y="72" as="geometry" /></mxCell>
 
-        <mxCell id="uml-notif" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ NotificacionesClient" vertex="1">
-          <mxGeometry height="72" width="240" x="570" y="754" as="geometry" />
+        <mxCell id="uml-notif" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#FFE6CC;strokeColor=#D79B00;fillColor=#FFE6CC;fontSize=13;html=1;" value="Ⓒ ▲ EventosClient (Kafka)" vertex="1">
+          <mxGeometry height="72" width="240" x="690" y="754" as="geometry" />
         </mxCell>
         <mxCell id="div-n1" parent="uml-notif" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
         <mxCell id="div-n2" parent="uml-notif" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
-        <mxCell id="row-n1" parent="uml-notif" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ enviarEvento(movimiento)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
-
-        <mxCell id="uml-audit" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ AuditoriaClient" vertex="1">
-          <mxGeometry height="72" width="240" x="840" y="754" as="geometry" />
-        </mxCell>
-        <mxCell id="div-a1" parent="uml-audit" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="30" as="geometry" /></mxCell>
-        <mxCell id="div-a2" parent="uml-audit" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="240" y="38" as="geometry" /></mxCell>
-        <mxCell id="row-a1" parent="uml-audit" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ registrarEvento(transaccion)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-n1" parent="uml-notif" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ publicar(topic, payload)" vertex="1"><mxGeometry height="26" width="240" y="46" as="geometry" /></mxCell>
 
         <mxCell id="uml-pasarela" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ PasarelaPagosClient" vertex="1">
           <mxGeometry height="98" width="240" x="1110" y="754" as="geometry" />
@@ -223,11 +216,11 @@
         <mxCell id="e-16" edge="1" parent="1" source="uml-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-cuentas" value="Valida y actualiza saldo">
           <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="380" /><mxPoint x="420" y="380" /><mxPoint x="420" y="754" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Envía evento de movimiento">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="360" /><mxPoint x="690" y="360" /><mxPoint x="690" y="754" /></Array></mxGeometry>
+        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Publica evento (async, sin esperar respuesta)">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="360" /><mxPoint x="770" y="360" /><mxPoint x="770" y="754" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e-18" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-audit" value="Registra transacción">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="350" /><mxPoint x="960" y="350" /><mxPoint x="960" y="754" /></Array></mxGeometry>
+        <mxCell id="e-18" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Publica evento (async, sin esperar respuesta)">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="350" /><mxPoint x="850" y="350" /><mxPoint x="850" y="754" /></Array></mxGeometry>
         </mxCell>
         <mxCell id="e-19" edge="1" parent="1" source="uml-140b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-pasarela" value="Envía y recibe fondos">
           <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1230" y="500" /></Array></mxGeometry>

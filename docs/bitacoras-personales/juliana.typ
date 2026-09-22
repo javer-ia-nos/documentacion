@@ -27,4 +27,17 @@
   [Se realizó el grafo de navegación de la web.],
   [2026-09-15],
   [Grafo de navegación - Aplicación web],
+  [7],
+  [Realice la implementación (individualmente) de los casos de uso  06, 07 y 08 en el ms-cuenta, junto a Sara Rodriguez realice el 21 y 22.],
+  [2026-09-19],
+  [Implementación de Casos de uso (6 - 8) (21 -22 )],
+  [8],
+  [Realice la implementación del caso de uso 10 (certificados bancarios).],
+  [2026-09-19],
+  [Implementación de Casos de uso #10 - Certificados Bancarios],
+  [9],
+  [Realice la implementación de los test de integración 10, 11 y 12 (individualmente) y junto a Miguel Vargas hicimos los test 4, 5 y 6 de integración],
+  [2026-09-21],
+  [Implementación de test de itegración],
+  
 )

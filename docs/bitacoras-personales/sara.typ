@@ -33,4 +33,24 @@
   [2026-09-15],
   [Diagrama],
 
+  [7],
+  [Se realizaron los casos de usos correspondientes 2-4-5-14-20-21-22-23 donde el 21 y 22 se hizo con ayuda de Juliana Novoa],
+  [2026-09-19],
+  [Casos de uso],
+
+  [8],
+  [Se modificaron/arreglaron los diagramas de ER de crm y tarjetas],
+  [2026-09-20],
+  [Diagramas],
+
+  [9],
+  [Se modificaron/arreglaron los casos de uso 2-4-5-14-20-21-22-23 con algunas cosas que faltaban],
+  [2026-09-21],
+  [Casos de uso],
+
+  [10],
+  [Se realizaron algunos de los test de integración],
+  [2026-09-21],
+  [Test],
+
 )

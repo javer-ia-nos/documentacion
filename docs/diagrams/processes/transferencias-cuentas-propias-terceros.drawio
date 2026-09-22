@@ -24,19 +24,22 @@
         <mxCell id="p-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Cuentas&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="200" x="950" y="80" as="geometry" />
         </mxCell>
-        <object placeholders="1" c4Name="Base de Datos Transaccional" c4Type="database: PostgreSQL" c4Description="Persiste Transaction, Transfer y las cuentas asociadas." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
+        <object placeholders="1" c4Name="BD Transacciones" c4Type="database: PostgreSQL" c4Description="Base de datos exclusiva del microservicio Transacciones. Persiste Transaction y Transfer (el saldo de las cuentas vive únicamente en BD Cuentas, propiedad del microservicio Cuentas)." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
           <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
             <mxGeometry height="100" width="200" x="1250" y="70" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="p-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · CRM&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+        <mxCell id="p-kafka" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#D79B00;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Broker de Eventos (Kafka)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Infraestructura]&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="200" x="1550" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="p-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+        <mxCell id="p-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · CRM&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="200" x="1850" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="p-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+        <mxCell id="p-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="200" x="2150" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="2450" y="80" as="geometry" />
         </mxCell>
         <mxCell id="ll-cliente" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
           <mxGeometry relative="1" as="geometry">
@@ -68,22 +71,28 @@
             <mxPoint x="1350" y="1760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-crm" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+        <mxCell id="ll-kafka" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1650" y="170" as="sourcePoint" />
             <mxPoint x="1650" y="1760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-audit" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+        <mxCell id="ll-crm" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1950" y="170" as="sourcePoint" />
             <mxPoint x="1950" y="1760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ll-notif" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+        <mxCell id="ll-audit" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="2250" y="170" as="sourcePoint" />
             <mxPoint x="2250" y="1760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ll-notif" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2550" y="170" as="sourcePoint" />
+            <mxPoint x="2550" y="1760" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="phase1-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Fase 1 — Transferencia entre cuentas propias" vertex="1">
@@ -147,83 +156,104 @@
             <mxPoint x="750" y="910" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step10" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="10. Registra la transacción">
+        <mxCell id="step10" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="10. Publica evento TransacciónRealizada (async, sin esperar respuesta)">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="750" y="980" as="sourcePoint" />
-            <mxPoint x="1950" y="980" as="targetPoint" />
+            <mxPoint x="1650" y="980" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step11" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="11. Notifica el movimiento">
+        <mxCell id="step11" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="11. Responde con el comprobante de la transferencia">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="750" y="1050" as="sourcePoint" />
-            <mxPoint x="2250" y="1050" as="targetPoint" />
+            <mxPoint x="450" y="1050" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step12" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="12. Responde con el comprobante de la transferencia">
+        <mxCell id="step12" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="12. Muestra el comprobante de la transferencia entre cuentas propias">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="1120" as="sourcePoint" />
-            <mxPoint x="450" y="1120" as="targetPoint" />
+            <mxPoint x="450" y="1120" as="sourcePoint" />
+            <mxPoint x="150" y="1120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step13" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="13. Muestra el comprobante de la transferencia entre cuentas propias">
+        <mxCell id="step13" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="13. Consume evento — registra en bitácora (async)">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="1190" as="sourcePoint" />
-            <mxPoint x="150" y="1190" as="targetPoint" />
+            <mxPoint x="1650" y="1160" as="sourcePoint" />
+            <mxPoint x="2250" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step13b" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="14. Consume evento — envía alerta al cliente (async)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1650" y="1190" as="sourcePoint" />
+            <mxPoint x="2550" y="1190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="divider" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#B0B0B0;strokeWidth=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="40" y="1230" as="sourcePoint" />
-            <mxPoint x="2350" y="1230" as="targetPoint" />
+            <mxPoint x="2700" y="1230" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="phase2-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=center;verticalAlign=middle;" value="Fase 2 — Transferencia a un tercero" vertex="1">
           <mxGeometry height="24" width="700" x="500" y="1240" as="geometry" />
         </mxCell>
-        <mxCell id="step14" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="14. Solicita transferir a un tercero">
+        <mxCell id="step14" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="15. Solicita transferir a un tercero">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="150" y="1290" as="sourcePoint" />
             <mxPoint x="450" y="1290" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step15" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="15. Consulta los beneficiarios registrados del cliente">
+        <mxCell id="step15" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="16. Consulta los beneficiarios registrados del cliente">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="450" y="1360" as="sourcePoint" />
-            <mxPoint x="1650" y="1360" as="targetPoint" />
+            <mxPoint x="1950" y="1360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step16" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="16. Retorna la lista de beneficiarios y sus cuentas">
+        <mxCell id="step16" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="17. Retorna la lista de beneficiarios y sus cuentas">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650" y="1430" as="sourcePoint" />
+            <mxPoint x="1950" y="1430" as="sourcePoint" />
             <mxPoint x="450" y="1430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step17" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="17. Crea la transferencia hacia la cuenta del beneficiario seleccionado (API)">
+        <mxCell id="step17" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="18. Crea la transferencia hacia la cuenta del beneficiario seleccionado (API)">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="450" y="1500" as="sourcePoint" />
             <mxPoint x="750" y="1500" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step18" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="18. Valida el saldo, registra el débito en la cuenta origen y el crédito en la cuenta del tercero">
+        <mxCell id="step18" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="19. Valida el saldo, registra el débito en la cuenta origen y el crédito en la cuenta del tercero">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="750" y="1570" as="sourcePoint" />
             <mxPoint x="1050" y="1570" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step19" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="19. Responde con el comprobante de la transferencia">
+        <mxCell id="step19" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="20. Responde con el comprobante de la transferencia">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="750" y="1640" as="sourcePoint" />
             <mxPoint x="450" y="1640" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="step20" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="20. Muestra el comprobante de la transferencia al tercero">
+        <mxCell id="step20" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="21. Muestra el comprobante de la transferencia al tercero">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="450" y="1710" as="sourcePoint" />
             <mxPoint x="150" y="1710" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo secuencia)" vertex="1">
-          <mxGeometry height="270" width="360" x="-640" y="80" as="geometry" />
+          <mxGeometry height="330" width="360" x="-640" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-sw-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;arcSize=20;" vertex="1">
+          <mxGeometry height="24" width="38" x="-622" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Infraestructura — Broker de eventos" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-ln-7" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#D79B00;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-622" y="358" as="sourcePoint" />
+            <mxPoint x="-584" y="358" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-tx-7" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=0;" value="Publica / consume evento (asíncrono)" vertex="1">
+          <mxGeometry height="24" width="280" x="-574" y="346" as="geometry" />
         </mxCell>
         <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
           <mxGeometry height="24" width="38" x="-622" y="126" as="geometry" />

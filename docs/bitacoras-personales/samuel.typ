@@ -23,3 +23,12 @@
   [Se configuro Bun en el entorno de desarrollo y elaboré pruebas automatizadas para validar flujos exitosos, reglas de negocio y validaciones de los cuatro casos de uso. Se verificó la ejecución correcta de 14 pruebas y la validación de tipos con TypeScript.],
   [2026-09-15],
   [Pruebas],
+
+  [6],
+  [Se construyeron y ejecutaron exitosamente las pruebas de integración automatizadas INT-13, INT-14 e INT-15 en Bun, validando la comunicación HTTP punto a punto y el flujo transaccional entre ms-cuentas, ms-financiero y ms-transacciones.],
+  [2026-09-22],
+  [Pruebas],
+
+  
+
+ 

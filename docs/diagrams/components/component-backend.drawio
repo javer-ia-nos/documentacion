@@ -224,7 +224,7 @@
             <mxGeometry height="150" width="280" x="1280" y="380" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="mobile-caption" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#666666;fontStyle=2;" value="Consume la API de cada microservicio directamente (sin API Gateway aún)" vertex="1">
+        <mxCell id="mobile-caption" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#666666;fontStyle=2;" value="Se comunica a través del API Gateway perimetral" vertex="1">
           <mxGeometry height="20" width="500" x="1170" y="535" as="geometry" />
         </mxCell>
         <object placeholders="1" c4Name="Proveedores de Servicios Públicos" c4Type="Sistema de software" c4Description="Empresas con convenio de recaudo para pago de facturas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/div&gt;" id="ext-serviciospublicos">

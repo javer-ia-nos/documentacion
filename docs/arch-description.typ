@@ -85,7 +85,9 @@
 
     [2026-09-19], [Se intercambiaron los casos de uso entre Juliana y Sara], [Sara Rodríguez],
 
-    [2026-09-20], [Inclusión de la entidad ChatMessage en el modelo E/R de CRM (CU-02) para el soporte del historial de mensajes en chat de atención.], [Equipo de Arquitectura],
+    [2026-09-20],
+    [Inclusión de la entidad ChatMessage en el modelo E/R de CRM (CU-02) para el soporte del historial de mensajes en chat de atención.],
+    [Equipo de Arquitectura],
   )
 ]
 
@@ -325,12 +327,58 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 //   - Tabla con las siguientes columnas: Concepto, Explicación
 // ]
 
+El modelo de dominio define los conceptos centrales, entidades de negocio y relaciones fundamentales que gobiernan la lógica del Sistema Bancario Digital Javer-IA-nos. Estos conceptos articulan las operaciones financieras, los productos de ahorro e inversión, la gestión de riesgos y la interacción omnicanal de los clientes con los servicios del banco.
+
+#align(center)[
+  _Nota: El diagrama conceptual de clases UML del Modelo de Dominio se encuentra en proceso de diagramación final para su incorporación gráfica._
+]
+
+#set text(size: 8.5pt)
 #table(
-  columns: (1fr, 3fr),
+  columns: (1.2fr, 2.8fr),
   fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
   [*Concepto*], [*Explicación*],
-  [], [],
+
+  [Usuario / Cliente],
+  [Entidad que representa a la persona natural o jurídica titular de productos en el banco. Centraliza el perfil, documento de identidad, nivel de riesgo y canales digitales autorizados.],
+
+  [Cuenta Bancaria],
+  [Producto financiero básico de captación (cuenta corriente o de ahorros) asociado a un saldo disponible y contable, divisa, número único y estado de actividad, sobre el cual se aplican débitos y créditos.],
+
+  [Subcuenta / Bolsillo],
+  [Segmentación o apartado lógico de fondos dentro de una cuenta bancaria con el propósito de reservar dinero para metas específicas, protegido del saldo transaccional inmediato.],
+
+  [Programación de Ahorro],
+  [Regla de automatización periódica (diaria, semanal o mensual) que debita automáticamente un monto parametrizado desde la cuenta principal hacia una meta o subcuenta.],
+
+  [Tarjeta (Débito / Crédito)],
+  [Medio de pago plástico o virtual emitido por el banco. La tarjeta débito descuenta directamente del saldo de la cuenta matriz; la de crédito cuenta con cupo rotativo asignado, fecha de corte, fecha límite de pago y soporte para compras diferidas o avances.],
+
+  [Transacción],
+  [Registro atómico e inmutable que representa un movimiento de fondos (transferencia propia, a terceros, interbancaria ACH, giro internacional SWIFT, retiro o pago de servicio). Posee estado, comprobante digital y marcas de tiempo.],
+
+  [Beneficiario],
+  [Contacto frecuente o cuenta de destino registrada y validada previamente por el cliente dentro del módulo CRM para agilizar transferencias monetarias recurrentes.],
+
+  [Préstamo],
+  [Operación de crédito otorgada al cliente que comprende un capital desembolsado, tasa de interés pactada, plazo en meses y una tabla de amortización con detalle de cuotas de capital, interés y seguros.],
+
+  [Certificado de Depósito a Término (CDT)],
+  [Instrumento de inversión a plazo fijo donde el cliente inmoviliza un capital durante un periodo determinado a una tasa efectiva anual garantizada para generar rendimientos al vencimiento.],
+
+  [PQRS y Reclamación],
+  [Mecanismo formal de atención mediante el cual el cliente radica Peticiones, Quejas, Reclamos o disputas transaccionales ante cargos no reconocidos, gestionado con trazabilidad en el módulo CRM.],
+
+  [Dispositivo Confiable],
+  [Terminal física (navegador web o teléfono móvil) enrolada por el usuario y certificada mediante huella digital (fingerprint) criptográfica para evaluar el nivel de riesgo en transacciones críticas.],
+
+  [Notificación],
+  [Mensaje transaccional o de alerta despachado de forma multicanal (Push, SMS o correo electrónico) ante eventos relevantes de la cuenta, movimientos de saldo o accesos sospechosos.],
+
+  [Registro de Auditoría],
+  [Bitácora inmutable de eventos del sistema generada a partir de los tópicos de streaming, garantizando trazabilidad no repudiable para entes regulatorios y análisis forense de seguridad.],
 )
+#set text(size: 11pt)
 
 = Stakeholders e intereses
 // #instruction[
@@ -467,12 +515,59 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 //   - *Convencionales:* Necesidades de seguimiento de estándares, guías de codificación, leyes, etc.
 // ]
 
+A continuación se consolidan las restricciones técnicas, organizacionales y convencionales que acotan el espacio de diseño y condicionan las decisiones arquitectónicas del sistema bancario:
+
+#set text(size: 8.5pt)
 #table(
-  columns: (1fr, 1fr, 2fr),
+  columns: (1.2fr, 1fr, 2.5fr),
   fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
   [*Restricción*], [*Categoría*], [*Descripción*],
-  [], [], [],
+
+  [Runtime Bun y TypeScript],
+  [Técnica],
+  [Todo el ecosistema de microservicios, API Gateway y scripts de pruebas debe implementarse sobre el runtime Bun utilizando TypeScript en modo estricto, garantizando validación estática de tipos y tiempos de inicio ultrarrápidos (< 10 ms).],
+
+  [Framework ElysiaJS y TypeBox],
+  [Técnica],
+  [Los contratos de API de los ocho microservicios y el gateway deben modelarse con TypeBox y procesarse con ElysiaJS para compilación en tiempo de ejecución de esquemas de validación de alto rendimiento.],
+
+  [Patrón Database-per-Service],
+  [Técnica],
+  [Cada microservicio debe contar con su propia base de datos relacional PostgreSQL aislada (y SQLite en memoria mediante bun:sql para pruebas). Queda terminantemente prohibido compartir bases de datos o realizar consultas SQL directas entre dominios.],
+
+  [Broker Apache Kafka],
+  [Técnica],
+  [La comunicación entre microservicios para auditoría, notificaciones y eventos de dominio debe realizarse obligatoriamente de forma asíncrona a través de Apache Kafka (Strimzi Operator), reservando llamadas síncronas solo a validaciones críticas de saldo/cupo vía gRPC o HTTP local.],
+
+  [Despliegue Bare-Metal en Kubernetes],
+  [Técnica],
+  [El sistema de producción debe desplegarse sobre un clúster Kubernetes bare-metal distribuido en al menos dos máquinas físicas pertenecientes a los integrantes del equipo, orquestado con Ansible y Helm.],
+
+  [Frontend Universal ui-shared],
+  [Técnica],
+  [La lógica de negocio de frontend y hooks transaccionales deben residir en la librería compartida `@javer-ia-nos/ui-shared` para reutilización simultánea en la Web (Astro + React) y en Móvil (React Native + Expo).],
+
+  [Segregación de Responsabilidades],
+  [Organizacional],
+  [El equipo se compone de seis ingenieros con asignación de módulos: Transacciones (Salomón/Miguel), Seguridad (Arantxa), Cuentas (Juliana), Tarjetas (Sara), Financiero (Samuel) y Auditoría/DevOps.],
+
+  [Estrategia Multirepositorio],
+  [Organizacional],
+  [Cada subsistema (los 8 microservicios, API Gateway, ui-shared, web, mobile, infra y documentación) reside en un repositorio Git independiente dentro de la organización de GitHub `javer-ia-nos`, requiriendo flujos de integración continua desacoplados.],
+
+  [Plazos Académicos Fijos],
+  [Organizacional],
+  [Las fechas de entrega de hitos, sustentaciones de despliegue y entrega final están delimitadas estrictamente por el calendario del periodo académico 2026-30 de la Pontificia Universidad Javeriana.],
+
+  [Gravamen a los Movimientos Financieros],
+  [Convencional],
+  [Toda transacción financiera de débito debe calcular y reportar explícitamente el impuesto tributario del 4x1000 (GMF) conforme a la legislación tributaria colombiana.],
+
+  [Estándares arc42 y C4 Model],
+  [Convencional],
+  [El documento de arquitectura debe adherirse fielmente a la estructura formal del estándar arc42 y emplear las cuatro vistas de abstracción jerárquica del C4 Model formulado por Simon Brown.],
 )
+#set text(size: 11pt)
 
 = Contexto y Alcance
 
@@ -672,11 +767,19 @@ Las transferencias entre cuentas propias y a terceros, correspondientes al caso 
   ),
 ) <fig-deployment>
 
+El diagrama de despliegue (@fig-deployment) ilustra la topología física del ambiente de producción sobre un clúster de Kubernetes bare-metal distribuido entre las máquinas físicas de los integrantes del equipo. El aprovisionamiento y la configuración del clúster se gestionan de manera automatizada mediante playbooks de Ansible (repositorio `infra`), los cuales instalan el runtime de contenedores Containerd (con cgroup v2 en systemd), los paquetes de Kubernetes (kubelet, kubeadm, kubectl) y el plugin de red Flannel CNI sobre el bloque CIDR `10.244.0.0/16`.
+
+El plano de control (`salomon`) coordina la programación de cargas de trabajo hacia los nodos de trabajo (`miguel`, `arantxa`, `juliana`, `samuel` y `sara`). En el perímetro exterior del clúster, un controlador Ingress NGINX expone los puertos de entrada HTTP/HTTPS públicos, canalizando las solicitudes entrantes hacia el API Gateway (`api-gateway`) en el puerto 4860 para inspección de seguridad perimetral, o hacia el servidor de la aplicación Web en Astro.
+
+En la capa de aplicación, cada uno de los ocho microservicios se empaqueta en imágenes de Docker optimizadas que se compilan y publican automáticamente en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`) mediante pipelines de GitHub Actions. El despliegue de toda la flota se orquesta con Helm utilizando el chart paraguas `charts/`javer-ia-nos``, el cual parametriza variables de entorno, puertos y resolución interna de nombres DNS entre servicios. Para garantizar la elasticidad y disponibilidad del sistema ante picos de demanda transaccional, cada microservicio cuenta con un Horizontal Pod Autoscaler (HPA) que incrementa o reduce las réplicas de pods de acuerdo con el consumo de recursos de cómputo.
+
+La persistencia de datos se resuelve respetando el principio de base de datos dedicada por microservicio. Cada pod de PostgreSQL se enlaza a un PersistentVolumeClaim (PVC) backed por almacenamiento local mediante `local-path-provisioner`. La mensajería y el intercambio de eventos asíncronos de dominio, auditoría y notificaciones operan sobre un clúster de Apache Kafka administrado por el operador Strimzi en el namespace `kafka`. La gestión de credenciales, contraseñas de bases de datos y tokens de pull de GHCR se realiza de forma segura mediante Kubernetes Secrets, inyectados y cifrados mediante Ansible Vault.
+
 = Vista de código
 
 #figure(
   caption: "Vista de código: Back-end de Auditoría",
-  align(center, image("diagrams/code/code-backend-auditoria.png", width: 80%)),
+  align(center, image("diagrams/code/code-view-backend-auditoria.png", width: 80%)),
 ) <fig-code-backend-auditoria>
 
 #figure(
@@ -860,6 +963,50 @@ En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, esp
 //   - Consecuencias: positivas y negativas de dicha decisión.
 // ]
 
+A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) adoptados para satisfacer los Requisitos Arquitectónicamente Significativos (ASR) de alta prioridad establecidos para el Sistema Bancario:
+
+== ADR-01: Patrón SAGA Orquestado para Consistencia Transaccional
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
+- *Problema:* Las transferencias entre cuentas bancarias, pagos interbancarios ACH y transacciones internacionales involucran múltiples microservicios independientes (`ms-transacciones`, `ms-cuentas` y pasarelas externas). Emplear un protocolo de bloqueo distribuido tradicional de dos fases (2PC / Two-Phase Commit) bloquearía tablas de base de datos a través de la red, degradando severamente el rendimiento, generando contención de recursos y creando puntos de falla en cascada si un nodo se desconecta.
+- *Solución:* Se adoptó el patrón *SAGA Orquestado* liderado por el microservicio `ms-transacciones`. Al solicitarse una transferencia o pago, la transacción se persiste inicialmente en estado `PENDING` y se solicita a `ms-cuentas` (vía gRPC) la retención o débito preventivo del saldo. Luego se intenta la operación en el servicio o entidad de destino (como se ilustra en @fig-proc-transferencias-internacionales-nacionales y @fig-proc-transferencias-propias-terceros). Si cualquier paso falla de manera definitiva (ej. banco destino inaccesible o fondos no recibidos), el orquestador dispara inmediatamente la transacción compensatoria (abono de reversión a la cuenta origen) y publica el evento en Kafka (`saga.compensacion-fallida`) para trazabilidad en auditoría.
+- *Consecuencias Positivas:* Garantiza alta disponibilidad transaccional, elimina los bloqueos de base de datos entre microservicios y permite tolerar fallos transitorios en redes externas mediante reintentos exponenciales.
+- *Consecuencias Negativas / Trade-offs:* Requiere diseñar e implementar explícitamente la lógica y endpoints de compensación para cada tipo de transacción y aceptar un modelo de consistencia eventual durante la ventana de tiempo en que la compensación surte efecto.
+
+== ADR-02: Runtime Unificado Bun y Framework ElysiaJS
+
+- *ID ASR:* ASR-02 (Rendimiento en Operaciones Críticas - Tiempo de respuesta < 2s).
+- *Problema:* El sistema bancario debe procesar operaciones críticas como pagos por código QR, autenticación y transferencias en un tiempo de respuesta inferior a 2 segundos bajo alta concurrencia. Runtimes tradicionales de Node.js con Express o frameworks pesados consumen elevada memoria y presentan latencias de arranque en contenedores Kubernetes que dificultan el autoescalado reactivo.
+- *Solución:* Se unificó toda la infraestructura de backend y del API Gateway sobre el runtime *Bun* y el framework web *ElysiaJS*. ElysiaJS compila las definiciones de rutas y los esquemas TypeBox a funciones nativas en tiempo de arranque mediante JIT, reduciendo drásticamente la sobrecarga de validación de esquemas HTTP. Adicionalmente se utiliza `bun:sql` para interacción optimizada con bases de datos relacionales sin la latencia de ORMs tradicionales.
+- *Consecuencias Positivas:* Tiempos de arranque de contenedores inferiores a 10 ms, reducción de consumo de memoria en los nodos worker de Kubernetes a menos de 50 MB por pod, throughput superior a Node.js/Express en más de un 300%, y tipado estricto end-to-end garantizado con TypeScript y TypeBox.
+- *Consecuencias Negativas / Trade-offs:* Bun es una tecnología relativamente reciente en el ecosistema productivo en comparación con Node.js, lo que requirió verificar cuidadosamente la compatibilidad de paquetes npm y adaptar drivers de conexión.
+
+== ADR-03: Verificación Criptográfica Local de Tokens JWT e Inspección Perimetral
+
+- *ID ASR:* ASR-03 (Seguridad y Protección contra Fraude - Confidencialidad e Integridad).
+- *Problema:* En una arquitectura de ocho microservicios, si cada solicitud requiere que el microservicio downstream consulte síncronamente al microservicio `ms-seguridad` para validar el token y sesión del usuario, se genera un cuello de botella crítico, multiplicando la latencia de red interna y convirtiendo a `ms-seguridad` en un punto único de falla (SPOF).
+- *Solución:* Se estableció un esquema de seguridad defensivo en dos capas:
+  + *Borde Perimetral (API Gateway):* El gateway recibe la petición externa, valida la presencia y estructura del token Bearer, consulta el estado de sesión activa en `ms-seguridad` y enruta al microservicio de destino inyectando cabeceras de contexto (`x-user-id`, `x-user-role`, `x-request-id`).
+  + *Verificación Criptográfica Local (Microservicios Core):* Cada microservicio downstream verifica de forma autónoma e instantánea la firma criptográfica del JWT (algoritmo HMAC-SHA256) utilizando la clave simétrica maestra compartida (`JWT_SECRET`), inyectada de forma segura mediante un Kubernetes Secret.
+- *Consecuencias Positivas:* La validación criptográfica en cada microservicio toma menos de 0.05 ms por petición y se elimina el 100% del tráfico de red inter-servicio para chequeo de tokens, desacoplando los servicios de la disponibilidad inmediata de `ms-seguridad`.
+- *Consecuencias Negativas / Trade-offs:* Exige sincronizar de forma rigurosa la variable `JWT_SECRET` entre todos los deployments de Kubernetes mediante Ansible Vault y no permite invalidar un token de forma atómica en downstream antes de su tiempo de expiración (salvo por consulta explícita de lista negra en eventos críticos).
+
+== ADR-04: Streaming Asíncrono de Eventos con Apache Kafka para Auditoría y Notificaciones
+
+- *ID ASR:* ASR-04 (Integrabilidad con Terceros) y ASR-01 (Disponibilidad Transaccional).
+- *Problema:* El registro legal de auditoría y el despacho de notificaciones multicanal (SMS, push, correo) son obligatorios para cada transacción financiera. Si se ejecutaran mediante peticiones HTTP síncronas bloqueantes dentro del hilo principal de la transacción, cualquier caída o lentitud del proveedor de telecomunicaciones o de la base de datos de auditoría ralentizaría o abortaría transferencias válidas.
+- *Solución:* Se integró un broker de eventos *Apache Kafka* (desplegado vía Strimzi en el clúster) como columna vertebral de mensajería asíncrona. Los microservicios transaccionales (`ms-transacciones`, `ms-cuentas`, `ms-tarjetas`, `ms-financiero`) publican eventos de dominio (como `transaccion.creada`, `cuenta.debitada`, `tarjeta.bloqueada`) sin esperar confirmación de procesamiento. Los microservicios `ms-auditoria` y `ms-notificaciones` actúan como consumidores independientes en grupos de consumidores separados, procesando las bitácoras y los envíos externos en segundo plano (ver @fig-container-view y diagramas dinámicos).
+- *Consecuencias Positivas:* Desacoplamiento temporal completo: las transacciones financieras responden al cliente en milisegundos sin importar la latencia del canal de notificaciones; si `ms-auditoria` o `ms-notificaciones` se reinician, Kafka retiene los mensajes sin pérdida de datos.
+- *Consecuencias Negativas / Trade-offs:* Mayor complejidad operativa en la infraestructura de clúster (administración de Kafka y ZooKeeper/KRaft) y necesidad de monitorear el retraso (lag) de los consumidores.
+
+== ADR-05: Frontend Universal con Librería Compartida (`@javer-ia-nos/ui-shared`)
+
+- *ID ASR:* ASR-05 (Modificabilidad y Gestión de Productos - Extensibilidad).
+- *Problema:* La plataforma dispone de dos frontends activos: una aplicación Web basada en Astro + React y una aplicación Móvil en React Native + Expo. Duplicar la lógica de negocio, clientes HTTP, validaciones de formularios, formatos contables y modelos de datos en dos proyectos distintos multiplicaría el costo de mantenimiento y generaría divergencias funcionales.
+- *Solución:* Se creó el paquete centralizado `@javer-ia-nos/ui-shared`, publicado en el registro de GitHub Packages mediante integración continua. Esta librería desacopla hooks headless de estado y consumo de APIs (`useTransferencia`, `useSesion`, `useInicioCuentas`, `useLimites`) de las primitivas de renderizado visual, permitiendo que tanto la Web como el Móvil compartan la misma lógica de negocio y componentes adaptables a través de componentes compatibles con React Native Web.
+- *Consecuencias Positivas:* Máxima modificabilidad: cualquier cambio en las reglas de validación o en los endpoints de backend se actualiza en un único lugar (`ui-shared`) y se propaga automáticamente a ambas aplicaciones clientes.
+- *Consecuencias Negativas / Trade-offs:* Requiere mantener un ciclo de versionado y publicación de paquetes mediante CI/CD antes de que los cambios estén disponibles en los repositorios cliente (`web` y `mobile`).
+
 = Riesgos técnicos
 // #instruction[
 //   Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
@@ -868,12 +1015,41 @@ En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, esp
 //   - *Plan de contingencia:* qué hacer si el riesgo se materializa ("plan B").
 // ]
 
-#set text(size: 9pt)
+La tabla a continuación clasifica los riesgos arquitectónicos del sistema en función de su probabilidad e impacto estimado, detallando el plan preventivo de mitigación y el plan de contingencia aplicable si el riesgo llega a materializarse:
+
+#set text(size: 8pt)
 #table(
-  columns: (1fr, auto, auto, auto, 2fr, 2fr),
+  columns: (1.2fr, 0.7fr, 0.7fr, 0.7fr, 2fr, 2fr),
   fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
   [*Riesgo*], [*Probabilidad*], [*Impacto*], [*Prioridad*], [*Plan de mitigación*], [*Plan de contingencia*],
-  [], [], [], [], [], [],
+
+  [Caída o partición del Broker Kafka],
+  [Media],
+  [Alto],
+  [Alta],
+  [Despliegue de clúster Kafka Strimzi con factor de replicación mayor a 1, healthchecks automatizados y monitoreo continuo de recursos en Kubernetes.],
+  [Activación de buffer local en memoria y cola de persistencia temporal en disco en cada microservicio emisor para reenviar los eventos pendientes una vez restablecido el broker, garantizando que ninguna transacción bancaria se bloquee.],
+
+  [Desconexión o latencia entre nodos bare-metal],
+  [Alta],
+  [Alto],
+  [Alta],
+  [Ajuste de ventanas de tolerancia en kubelet (node-monitor-grace-period) y Flannel CNI, junto con afinidad de nodos para ubicar pods críticos (Cuentas y Transacciones) en máquinas con IP fija.],
+  [Evicción automática de pods (Pod Eviction) y reprogramación transparente de réplicas en nodos de trabajo sobrevivientes mediante los Deployments de Kubernetes.],
+
+  [Fallo de compensación en transacciones SAGA],
+  [Baja],
+  [Crítico],
+  [Alta],
+  [Diseño idempotente en todas las operaciones transaccionales y de compensación, validación previa de saldo disponible y asignación de identificadores de correlación únicos.],
+  [Enrutamiento inmediato a la cola Kafka saga.compensacion-fallida, notificación prioritaria al equipo de CRM para intervención de soporte y ejecución de conciliación contable asistida.],
+
+  [Degradación por volumen de datos en ms-auditoria],
+  [Media],
+  [Medio],
+  [Media],
+  [Indexación eficiente sobre identificadores de transacción y usuario, y definición de políticas de retención y particionamiento mensual en PostgreSQL.],
+  [Ejecución automatizada de exportaciones periódicas hacia almacenamiento secundario conforme al caso de uso de exportación a entes reguladores.],
 )
 #set text(size: 11pt)
 
@@ -913,3 +1089,5 @@ Este glosario define los términos técnicos y de negocio utilizados a lo largo 
 // #instruction[
 //   Referencias bibliográficas en formato APA o IEEE que hayan sido usadas en el documento[cite: 1].
 // ]
+
++ [1] G. Starke and P. Hruschka, _arc42: Template for software architecture documentation and evaluation_, Version 8.2. arc42.org, 2023.

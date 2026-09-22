@@ -96,8 +96,9 @@
 
     Se define el uso de terraform y se designa a Salomón para revisar terraform.
   ],
-  [5],
+  [Todos],
 
+  [5],
   [Trabajo en clase],
   [01-09-2026],
   [
@@ -122,6 +123,7 @@
     - Samuel Beltrán Martínez
   ],
 
+  [6],
   [Trabajo en clase],
   [03-09-2026],
   [
@@ -141,6 +143,7 @@
     Todos
   ],
 
+  [7],
   [Reunión],
   [07-09-2026],
   [
@@ -148,7 +151,7 @@
     - Se revisan las maquinas virtuales.
       - Juliana, Miguel y Arantxa necesitan preguntar por más maquinas virtuales para la clase.
     - Preguntas para el profesor
-      - Preguntar si estan bien los stakeholders o toca añádir más.
+      - Preguntar si estan bien los stakeholders o toca añadir más.
       - Revisar los diagramas.
       - Preguntar si hay que tener desinstalado kubernetes para la sustentación de deployment.
       - Hay que hacer un code diagrama por cada componente?
@@ -161,6 +164,49 @@
     - Salomon Alfredo Avila Larrotta
     - Arantxa Marian Espejo Malagon
   ],
+
+  [8],
+  [Trabajo de equipo y avances],
+  [08-09-2026 a 12-09-2026],
+  [
+    - Revisión de diagramas de código (Arantxa: código transacciones y vista física).
+    - Ordenamiento y re-organización de archivos de diagramas (Miguel).
+    - Eliminación de CU-32 duplicado y fusión con CU-27 (Miguel).
+    - Desarrollo de plantilla Docker y DB para ms-cuentas (Miguel).
+    - Mejora de diagrama de componentes móvil (Juliana).
+  ],
+  [
+    - Miguel Francisco Vargas
+    - Arantxa Marian Espejo Malagon
+    - Juliana Sofia Novoa Solano
+    - Sara Rodriguez Urueña
+    - Samuel Beltrán Martínez
+  ],
+
+  [9],
+  [Implementación e integración],
+  [15-09-2026 a 21-09-2026],
+  [
+    - Implementación masiva de CUs asignados individualmente.
+    - Intercambio de CUs entre Juliana y Sara (CU-20 a CU-23 van a Sara; CU-06 a CU-08 van a Juliana).
+    - Estandarización de READMEs y modelos E/R en todos los microservicios.
+    - Creación del API Gateway y repositorio de integración E2E.
+    - Implementación de tests unitarios y de integración.
+    - Configuración de CI/CD con GitHub Actions y publicación a GHCR.
+    - Corrección de diagramas E/R de CRM y Tarjetas.
+    - Inclusión de entidad ChatMessage en modelo E/R de CRM.
+  ],
+  [Todos],
+
+  [10],
+  [Auditoría y cierre],
+  [22-09-2026],
+  [
+    - Revisión final de entregables y auditoría del proyecto.
+    - Correcciones de documentación y bitácoras.
+    - Preparación para sustentación.
+  ],
+  [Todos],
 )
 
 = Bitacoras personales

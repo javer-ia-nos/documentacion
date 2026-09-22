@@ -64,7 +64,7 @@
     fill: (col, row) => if row == 0 { rgb("f0f0f0") } else { none },
     [*Fecha*], [*Descripción del cambio*], [*Autor(es)*],
     [2026-08-18],
-    [Se incorporaron los 30 casos de uso categorizados y aprobados por el docente. Asimismo, se integró una versión preliminar de la introducción y la primera iteración del glosario del documento. Por ultimo, se realizo la primera iteración de los requisitos arquitectónicamente significativos],
+    [Se incorporaron los 31 casos de uso categorizados y aprobados por el docente. Asimismo, se integró una versión preliminar de la introducción y la primera iteración del glosario del documento. Por ultimo, se realizo la primera iteración de los requisitos arquitectónicamente significativos],
     [Salomón Avila],
 
     [2026-08-30],
@@ -123,7 +123,7 @@ Para detallar todo esto, el documento presenta primero una visión general de lo
 
 = Visión general de los requisitos funcionales
 
-A continuación se detallan los 30 casos de uso funcionales del sistema bancario, estructurados de forma modular y con identificadores únicos, desglosando componentes clave como cuentas, tarjetas, canales de atención y seguridad:
+A continuación se detallan los 31 casos de uso funcionales del sistema bancario, estructurados de forma modular y con identificadores únicos, desglosando componentes clave como cuentas, tarjetas, canales de atención y seguridad:
 
 #set text(size: 7pt)
 #table(
@@ -329,9 +329,16 @@ A continuación se detallan los 30 casos de uso funcionales del sistema bancario
 
 El modelo de dominio define los conceptos centrales, entidades de negocio y relaciones fundamentales que gobiernan la lógica del Sistema Bancario Digital Javer-IA-nos. Estos conceptos articulan las operaciones financieras, los productos de ahorro e inversión, la gestión de riesgos y la interacción omnicanal de los clientes con los servicios del banco.
 
-#align(center)[
-  _Nota: El diagrama conceptual de clases UML del Modelo de Dominio se encuentra en proceso de diagramación final para su incorporación gráfica._
-]
+#figure(
+  caption: "Diagrama conceptual de clases del modelo de dominio",
+  align(
+    center,
+    image(
+      "diagrams/domain-model.png",
+      width: 95%,
+    ),
+  ),
+) <fig-domain-model>
 
 #set text(size: 8.5pt)
 #table(

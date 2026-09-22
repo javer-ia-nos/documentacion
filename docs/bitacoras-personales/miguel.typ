@@ -98,4 +98,24 @@
   [Desarrollo de pruebas de integración E2E automatizadas para los flujos asignados: INT-07 (Beneficiarios), INT-08 (Pagos QR) e INT-09 (Ahorro automático). Se corrigieron condiciones de arranque en servidores Docker (ms-crm, ms-notificaciones, ms-tarjetas) y se implementó el workflow en GitHub Actions para ejecución continua de pruebas de integración.],
   [2026-09-21],
   [Pruebas e integración],
+
+  [18],
+  [Implementación en `ms-transacciones` de validación de dispositivos confiables (INT-03) y validación de topes transaccionales por operación en JWT (ASR-02). Eliminación de bypasses de prueba en clientes de producción y aislamiento de tests para ejecución autónoma en CI sin dependencias externas.],
+  [2026-09-21],
+  [Servicios y seguridad],
+
+  [19],
+  [Integración del flujo de auditoría entre el API Gateway y `ms-auditoria`: reenvío asíncrono/HTTP de intenciones de auditoría desde el gateway hacia `ms-auditoria`, inclusión de detalles en la consulta de historial por servicio, y corrección del consumidor de eventos Kafka y manejo de puertos efímeros en servidores.],
+  [2026-09-21],
+  [Servicios y auditoría],
+
+  [20],
+  [Implementación de pruebas de integración E2E para INT-03 (dispositivos confiables y validación de topes), configuración de red e interconexión multi-servicio en Docker Compose, y restauración de aserciones contables de saldo con aprovisionamiento real de cuentas.],
+  [2026-09-21],
+  [Pruebas e integración],
+
+  [21],
+  [Revisión y actualización de textos y guías de documentación arquitectónica en Typst, auditoría del repositorio y preparación de entregables para sustentación.],
+  [2026-09-22],
+  [Documentación y auditoría],
 )

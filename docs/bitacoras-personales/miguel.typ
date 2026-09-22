@@ -42,23 +42,60 @@
   [2026-09-03],
   [Repos y documentación],
 
-  [7],
-  [Ordenar archivos de diagrama de componentes],
-  [2026-09-12],
-  [Repo y documentación],
+  [7], [Ordenar archivos de diagrama de componentes], [2026-09-12], [Repo y documentación],
 
-  [8],
-  [Revisión y re-organización de diagramas],
-  [2026-09-12],
-  [Repo y documentación],
+  [8], [Revisión y re-organización de diagramas], [2026-09-12], [Repo y documentación],
 
   [9],
   [Cu-32 estaba duplicado, entonces se elimino y agrego la información extra al CU-27],
   [2026-09-12],
   [Repo y documentación],
-  
+
   [10],
   [Se desarrolla parte del docker y la db para el servicio de cuentas a modo de plantilla para el desarrollo de los demás servicios.],
   [2026-09-12],
-  [Servicios y código]
+  [Servicios y código],
+
+  [11],
+  [Revisión y ajuste de los casos de uso y responsabilidades arquitectónicas asignadas al servicio de CRM, actualizando tanto la especificación arquitectónica como el README del repositorio.],
+  [2026-09-18],
+  [Documentación y arquitectura],
+
+  [12],
+  [Estandarización y alineación arquitectónica de casos de uso y responsabilidades en los README de todos los microservicios (Auditoría, CRM, Cuentas, Financiero, Notificaciones, Seguridad, Tarjetas y Transacciones). Adicionalmente en la documentación general:
+    - Inclusión de la entidad ChatMessage en el modelo E/R de CRM (CU-02).
+    - Actualización de la arquitectura de pruebas en `dev.typ`.
+    - Creación de la tabla maestra de responsables de pruebas de integración (INT-01 a INT-18).
+  ],
+  [2026-09-20],
+  [Documentación y arquitectura],
+
+  [13],
+  [Creación desde cero del repositorio y servicio de API Gateway (`api-gateway`) con ElysiaJS y Bun: configuración de la arquitectura base, proxy inverso hacia los microservicios, middleware de auditoría, endpoints de healthcheck y documentación de responsabilidades y rutas en su README.],
+  [2026-09-20],
+  [Servicios y código],
+
+  [14],
+  [Creación desde cero del repositorio de integración E2E (`integracion`), configurando la orquestación multi-servicio mediante Docker Compose y la suite de pruebas automatizadas con Bun Test para validar la comunicación e interoperabilidad de todo el sistema.],
+  [2026-09-20],
+  [Infraestructura y pruebas],
+
+  [15],
+  [Implementación de casos de uso asignados en los microservicios de negocio:
+    - *ms-cuentas*: Gestión de beneficiarios y contactos frecuentes (CU-03), y programación/ejecución de ahorro automático en bolsillos (CU-09).
+    - *ms-transacciones*: Generación, lectura y procesamiento de cobros/pagos mediante códigos QR dinámicos y estáticos (CU-25).
+    - *ms-financiero*: Consulta de saldos, movimientos y extractos bancarios de posición consolidada (CU-11), además de corrección en scripts de seed.
+  ],
+  [2026-09-21],
+  [Servicios y backend],
+
+  [16],
+  [Estandarización transversal del modelo canónico de usuario y sesión (User / UserSession / LoginResult): corrección y serialización de fechas en SQLite y constraints en ms-seguridad, actualización de tipos compartidos en ui-shared y adaptación del consumo de sesión en el frontend web.],
+  [2026-09-21],
+  [Servicios y frontend],
+
+  [17],
+  [Desarrollo de pruebas de integración E2E automatizadas para los flujos asignados: INT-07 (Beneficiarios), INT-08 (Pagos QR) e INT-09 (Ahorro automático). Se corrigieron condiciones de arranque en servidores Docker (ms-crm, ms-notificaciones, ms-tarjetas) y se implementó el workflow en GitHub Actions para ejecución continua de pruebas de integración.],
+  [2026-09-21],
+  [Pruebas e integración],
 )

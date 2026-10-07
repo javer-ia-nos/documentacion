@@ -59,7 +59,7 @@ Para asegurar que los microservicios, el API Gateway y los brokers de mensajerí
   [api-gateway \
     ms-auditoria],
   [CU-01],
-  [Asegurar que cada interacción cliente genere trazas con x-request-id y x-correlation-id. El Gateway captura la intención antes de ejecutar y la respuesta final, enviándolas de forma asíncrona a ms-auditoria para su persistencia inmutable sanitizando credenciales y datos sensibles.],
+  [Asegurar que cada interacción cliente genere trazas con x-request-id y x-correlation-id. El Gateway captura la intención antes de ejecutar y la respuesta final, publicándolas de forma asíncrona en Kafka (`auditoria.peticion` y `auditoria.respuesta`) para que ms-auditoria las consuma y persista de forma inmutable sanitizando credenciales y datos sensibles.],
 
   [INT-03],
   [*Políticas de Dispositivo Confiable y Control de Topes*],
@@ -77,7 +77,7 @@ Para asegurar que los microservicios, el API Gateway y los brokers de mensajerí
   [ms-transacciones \
     ms-cuentas],
   [CU-30],
-  [Probar que una transferencia entre cuentas del mismo banco mueva saldo de forma atómica: se debita la cuenta origen y se acredita la cuenta destino en una transacción coordinada. Si alguna de las operaciones falla o no hay saldo suficiente, se debita y acredita de forma atómica o se realiza rollback completo.],
+  [Probar que una transferencia entre cuentas del mismo banco mueva saldo de forma atómica: se debita la cuenta origen y se acredita la cuenta destino en una transacción coordinada. Si alguna de las operaciones falla o no hay saldo suficiente, no se aplica ningún movimiento neto: la solicitud se rechaza antes del débito o se compensa el débito ya aplicado (SAGA), y ambos saldos quedan intactos.],
 
   [INT-05],
   [*Transferencia ACH Interbancaria y Orquestación de Estados*],
@@ -251,47 +251,75 @@ const GATEWAY_URL = process.env.GATEWAY_URL ?? "http://localhost:4860";
 
 describe("INT-04: Transferencia Bancaria Atómica (ms-transacciones <-> ms-cuentas)", () => {
   let tokenAuth: string;
-  const CUENTA_ORIGEN = "acc-100-test";
-  const CUENTA_DESTINO = "acc-200-test";
+  let cuentaOrigen: string;
+  let cuentaDestino: string;
+  const SALDO_ORIGEN = 500_000;
+  const SALDO_DESTINO = 100_000;
+  const MONTO = 150_000;
+
+  const auth = () => ({
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${tokenAuth}`,
+  });
+
+  const abrirCuenta = async (userId: string, depositoInicial: number) => {
+    const res = await fetch(`${GATEWAY_URL}/cuentas/ahorros`, {
+      method: "POST",
+      headers: auth(),
+      body: JSON.stringify({ userId, depositoInicial }),
+    });
+    expect(res.status).toBe(201);
+    return ((await res.json()) as any).id as string; // UUID real
+  };
+
+  const saldo = async (id: string) => {
+    const res = await fetch(`${GATEWAY_URL}/cuentas/${id}/saldo`, { headers: auth() });
+    return ((await res.json()) as any).saldoDisponible as number;
+  };
 
   beforeAll(async () => {
-    // 1. Obtener token real autenticándose en ms-seguridad a través del Gateway
-    const loginRes = await fetch(`${GATEWAY_URL}/auth/login`, {
+    // 1. Autenticarse en ms-seguridad a través del Gateway
+    const loginRes = await fetch(`${GATEWAY_URL}/seguridad/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: "test@banco.com", password: "Prueba123!" }),
     });
-    const loginData = await loginRes.json();
+    const loginData = (await loginRes.json()) as any;
     tokenAuth = loginData.token;
+
+    // 2. Crear dos cuentas reales del mismo titular en ms-cuentas
+    cuentaOrigen = await abrirCuenta(loginData.user.id, SALDO_ORIGEN);
+    cuentaDestino = await abrirCuenta(loginData.user.id, SALDO_DESTINO);
   });
 
   it("Debe debitar la cuenta origen y acreditar la cuenta destino de forma atómica", async () => {
-    // 2. Disparar la transferencia real
+    // 3. Disparar la transferencia real entre cuentas propias
     const res = await fetch(`${GATEWAY_URL}/transacciones/transferencias`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokenAuth}`,
-        "x-correlation-id": "corr-int-04-real",
-      },
-      body: JSON.stringify({
-        cuentaOrigen: CUENTA_ORIGEN,
-        cuentaDestino: CUENTA_DESTINO,
-        monto: 50000,
-      }),
+      headers: { ...auth(), "x-correlation-id": "corr-int-04-real" },
+      body: JSON.stringify({ cuentaOrigen, cuentaDestino, monto: MONTO, esPropia: true }),
     });
 
-    expect(res.status).toBe(200);
-    const data = await res.json();
+    expect(res.status).toBe(201);
+    const data = (await res.json()) as any;
     expect(data.estado).toBe("COMPLETED");
     expect(data.numeroComprobante).toBeDefined();
 
-    // 3. Consultar saldo real en ms-cuentas para certificar la consistencia
-    const saldoRes = await fetch(`${GATEWAY_URL}/cuentas/${CUENTA_ORIGEN}/saldo`, {
-      headers: { "Authorization": `Bearer ${tokenAuth}` },
+    // 4. Certificar la consistencia contable en ms-cuentas
+    expect(await saldo(cuentaOrigen)).toBe(SALDO_ORIGEN - MONTO);
+    expect(await saldo(cuentaDestino)).toBe(SALDO_DESTINO + MONTO);
+  });
+
+  it("Debe rechazar sin mover saldo si el monto excede el saldo disponible", async () => {
+    const res = await fetch(`${GATEWAY_URL}/transacciones/transferencias`, {
+      method: "POST",
+      headers: auth(),
+      body: JSON.stringify({ cuentaOrigen, cuentaDestino, monto: 999_999_999, esPropia: true }),
     });
-    const saldoData = await saldoRes.json();
-    expect(saldoData.saldoDisponible).toBeDefined();
+
+    expect(res.status).toBe(400);
+    expect(await saldo(cuentaOrigen)).toBe(SALDO_ORIGEN - MONTO);
+    expect(await saldo(cuentaDestino)).toBe(SALDO_DESTINO + MONTO);
   });
 });
 ```

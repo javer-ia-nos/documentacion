@@ -1090,3 +1090,108 @@ depuración temporal en `12-app.yml` se revirtió el mismo día
 Confirmar que el `CronJob` de rollout cubre el mismo caso de uso que
 resolvía Keel (actualización automática al publicarse una imagen nueva) sin
 reintroducir el comportamiento inestable observado.
+
+=== Iteración 30: Alineación del diseño de CU-30 con la implementación y endurecimiento de seguridad del flujo
+
+*Fecha y hora:* 7 de octubre de 2026 (hora no registrada) \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección + Decisión de diseño + Diagrama / Modelado \
+*Commit:* pendiente \
+*Archivos:*
+#link(git_base_url + "/docs/arch-description.typ", [arch-description.typ]),
+#link(git_base_url + "/docs/dev.typ", [dev.typ]),
+#link(git_base_url + "/docs/diagrams/processes/transferencias-cuentas-propias-terceros.drawio", [transferencias-cuentas-propias-terceros.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-backend.drawio", [component-backend.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-web.drawio", [component-web.drawio]),
+#link(git_base_url + "/docs/diagrams/components/component-mobile.drawio", [component-mobile.drawio]),
+#link(git_base_url + "/docs/diagrams/er/transacciones_er.drawio", [transacciones_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/cuentas_er.drawio", [cuentas_er.drawio]),
+#link(git_base_url + "/docs/diagrams/container-view.drawio", [container-view.drawio])
+
+==== Descripción
+
+*Drivers:* al contrastar la documentación de CU-30 con el código de
+`ms-transacciones`, `ms-cuentas`, `ms-crm`, `ui-shared`, `api-gateway` y la
+suite de `integracion`, se encontraron inconsistencias entre el diseño y lo
+implementado, además de controles de seguridad del flujo que el diseño no
+reflejaba. Al tratarse de un sistema bancario, ASR-01 y ASR-02 exigen que el
+flujo de transferencia sea explícito en cuanto a autenticación,
+autorización, atomicidad e idempotencia.
+
+*Conceptos de diseño analizados:* se decidió conservar gRPC como mecanismo
+de comunicación síncrona entre microservicios en el documento de
+arquitectura y migrar la implementación (hoy HTTP) en la siguiente
+iteración. Se fijó además el criterio de comunicación del flujo: gRPC
+únicamente donde se requiere una respuesta inmediata (sesión, dispositivo,
+titularidad, saldo, débito y crédito) y Kafka para todo lo demás (auditoría
+del gateway y de Cuentas, eventos de Transacciones mediante el patrón
+_transactional outbox_ y la compensación SAGA como comando
+`cuentas.compensar-debito` con cola de mensajes fallidos). Se descartó
+llevar también el débito y el crédito a Kafka porque obligaría a responder
+`202 Accepted` y rompería el comprobante inmediato exigido por ASR-02. Los
+controles de seguridad se documentaron únicamente dentro del flujo de
+CU-30, no como una sección transversal. Para la bitácora se optó
+por registrar esta corrección en una iteración nueva en lugar de reescribir
+las Iteraciones 9 y 17.
+
+*Diagramas preliminares:* se rehízo el diagrama dinámico de CU-30
+(`transferencias-cuentas-propias-terceros.drawio`) con una línea de vida
+propia para el API Gateway y otra para Autenticación y Seguridad,
+eliminando la línea de vida de CRM.
+
+*Análisis preliminar de resultados:* se corrigieron las siguientes
+inconsistencias:
+- Los beneficiarios (CU-03) pertenecen a Cuentas y no a CRM, como ya
+  establecían la tabla de casos de uso, INT-07 y el código; se corrigió el
+  texto de la vista de componentes, la descripción del flujo de CU-30 y los
+  tres diagramas de componentes.
+- El alcance de CU-30 se limitó a transferencias intrabancarias (propias y
+  a terceros); las interbancarias quedan en CU-26.
+- El diagrama ahora muestra que toda llamada del cliente pasa por el API
+  Gateway, la validación de sesión, el control de tope por operación, el
+  dispositivo confiable, la titularidad de la cuenta origen, el
+  comportamiento _fail-closed_ ante fallas de Cuentas, los estados `PENDING`
+  y `COMPLETED`, el débito y crédito idempotentes y la compensación SAGA.
+- El evento genérico `TransacciónRealizada` se reemplazó por los tópicos
+  reales `auditoria.evento-transaccion` y `notificaciones.evento-transaccion`.
+- La compensación SAGA pasó de reintentos dentro de la petición HTTP a un
+  flujo asíncrono por Kafka con el estado intermedio `COMPENSATING`.
+- La restricción técnica del broker Kafka y el ADR-04 se reescribieron con
+  el criterio gRPC/Kafka y el patrón _transactional outbox_; INT-02 y el
+  diagrama de componentes del backend ahora nombran los tópicos reales.
+- Se agregaron al ER de Cuentas la tabla `Beneficiary`, que existía en el
+  código pero no en ningún ER, y `AccountMovement` con clave de
+  idempotencia única; a ambos ER se les agregó `OutboxEvent` y al de
+  Transacciones la lista de estados de la transacción.
+- La vista de contenedores no incluía el API Gateway: las aplicaciones
+  aparecían llamando directamente a los microservicios, en contradicción con
+  el texto del documento. Se rehízo el diagrama con el gateway como punto de
+  entrada único (HTTPS/JSON desde los clientes, gRPC hacia Seguridad y los
+  microservicios, auditoría hacia Kafka), se ubicó el broker entre las dos
+  filas de microservicios para eliminar los cruces de flechas y se
+  corrigieron las descripciones de Cuentas y CRM.
+- El ADR-01 ahora distingue `REVERSED` (compensación exitosa, evento
+  `FALLO_TRANSFERENCIA_COMPENSADA`) de `FAILED` (compensación fallida,
+  evento `saga.compensacion-fallida`), que en la Iteración 17 se habían
+  descrito como un único estado `FAILED` con el evento
+  `TRANSFERENCIA_FALLIDA_COMPENSADA`.
+- En `dev.typ` se corrigió la redacción de INT-04 y se alineó su ejemplo de
+  prueba con la suite real: login en `/seguridad/auth/login`, cuentas con
+  UUID reales, respuesta `201` y verificación exacta de saldos.
+
+==== Tareas asignadas
+
+Migrar a gRPC las llamadas síncronas de `ms-transacciones` hacia
+`ms-cuentas` y `ms-seguridad` y del API Gateway hacia los microservicios.
+Llevar a Kafka la auditoría del gateway (hoy un `fetch` HTTP síncrono a
+`ms-auditoria`), implementar la tabla _outbox_ con su _relay_ (hoy
+`eventos.client.ts` descarta en silencio los eventos si Kafka falla) y la
+compensación por comando con el estado `COMPENSATING`. Implementar en el código los controles que el
+nuevo diagrama exige y que hoy faltan o se pueden saltar:
+- en el API Gateway, una _allowlist_ de rutas que no exponga
+  `/cuentas/{id}/movimiento`;
+- en `ms-cuentas`, autenticación entre servicios, autorización por
+  titularidad, actualización atómica del saldo y claves de idempotencia;
+- en `ms-transacciones`, verificación de la firma del JWT, fingerprint y
+  tope obligatorios, y eliminación del comportamiento _fail-open_ de
+  `cuentas.client.ts`.

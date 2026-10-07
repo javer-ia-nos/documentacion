@@ -1,302 +1,104 @@
 <mxfile host="Electron">
   <diagram id="proc-transf-propias-terceros" name="TransferenciasCuentasPropiasTerceros">
-    <mxGraphModel dx="6228" dy="1692" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3400" pageHeight="1850" math="0" shadow="0">
+    <mxGraphModel dx="6228" dy="1692" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3100" pageHeight="3700" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" parent="1" style="text;html=1;fontSize=18;fontStyle=1;fontColor=#333333;align=left;verticalAlign=middle;" value="Diagrama Dinámico (C4) — Transferencias entre cuentas propias y a terceros (CU-30)" vertex="1">
-          <mxGeometry height="30" width="1500" x="40" y="10" as="geometry" />
-        </mxCell>
-        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=12;fontColor=#666666;align=left;verticalAlign=middle;" value="Estilo secuencia (c4model.com/diagrams/dynamic) · Componente Transacciones · flujo de transferencia entre cuentas propias y transferencia a un tercero" vertex="1">
-          <mxGeometry height="20" width="1700" x="40" y="42" as="geometry" />
-        </mxCell>
-        <object placeholders="1" c4Name="Cliente bancario" c4Type="Persona" c4Description="Usuario que transfiere entre sus propias cuentas y hacia cuentas de terceros." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-cliente">
-          <mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;shape=mxgraph.c4.person2;strokeWidth=2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1">
-            <mxGeometry height="110" width="160" x="70" y="60" as="geometry" />
-          </mxCell>
-        </object>
-        <mxCell id="p-app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;Aplicación (Móvil / Web)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Contenedor]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="350" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="p-trans" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Transacciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="650" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="p-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Cuentas&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="950" y="80" as="geometry" />
-        </mxCell>
-        <object placeholders="1" c4Name="BD Transacciones" c4Type="database: PostgreSQL" c4Description="Base de datos exclusiva del microservicio Transacciones. Persiste Transaction y Transfer (el saldo de las cuentas vive únicamente en BD Cuentas, propiedad del microservicio Cuentas)." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db">
-          <mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1">
-            <mxGeometry height="100" width="200" x="1250" y="70" as="geometry" />
-          </mxCell>
-        </object>
-        <mxCell id="p-kafka" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#D79B00;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Broker de Eventos (Kafka)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Infraestructura]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1550" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="p-crm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · CRM&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="1850" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="p-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="2150" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="p-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="200" x="2450" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="ll-cliente" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="150" y="170" as="sourcePoint" />
-            <mxPoint x="150" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-app" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="170" as="sourcePoint" />
-            <mxPoint x="450" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-trans" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="170" as="sourcePoint" />
-            <mxPoint x="750" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-cuentas" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1050" y="170" as="sourcePoint" />
-            <mxPoint x="1050" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-db" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1350" y="170" as="sourcePoint" />
-            <mxPoint x="1350" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-kafka" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650" y="170" as="sourcePoint" />
-            <mxPoint x="1650" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-crm" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1950" y="170" as="sourcePoint" />
-            <mxPoint x="1950" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-audit" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2250" y="170" as="sourcePoint" />
-            <mxPoint x="2250" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ll-notif" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2550" y="170" as="sourcePoint" />
-            <mxPoint x="2550" y="1760" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="phase1-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Fase 1 — Transferencia entre cuentas propias" vertex="1">
-          <mxGeometry height="24" width="440" x="40" y="195" as="geometry" />
-        </mxCell>
-        <mxCell id="step1" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="1. Solicita transferir entre sus propias cuentas&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(cuenta origen, cuenta destino, monto)&lt;/font&gt;">
-          <mxGeometry relative="1" y="-50" as="geometry">
-            <mxPoint as="offset" />
-            <mxPoint x="150" y="230" as="sourcePoint" />
-            <mxPoint x="450" y="230" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step2" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="2. Crea la transferencia (API)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="300" as="sourcePoint" />
-            <mxPoint x="750" y="300" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step3" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="3. Valida que ambas cuentas sean del mismo cliente y el saldo de la cuenta origen">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="370" as="sourcePoint" />
-            <mxPoint x="1050" y="370" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step4" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="4. Confirma la titularidad y el saldo disponible">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1050" y="440" as="sourcePoint" />
-            <mxPoint x="750" y="440" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="note-saldo" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Si el saldo es insuficiente o la cuenta destino no es propia: se rechaza la solicitud y no se crea la transferencia." vertex="1">
-          <mxGeometry height="80" width="290" x="1090" y="455" as="geometry" />
-        </mxCell>
-        <mxCell id="step5" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="5. Crea la Transaction y el Transfer (isInternational = false)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="630" as="sourcePoint" />
-            <mxPoint x="1350" y="630" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step6" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="6. Registra el débito en la cuenta origen">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="700" as="sourcePoint" />
-            <mxPoint x="1050" y="700" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step7" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="7. Confirma el débito">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1050" y="770" as="sourcePoint" />
-            <mxPoint x="750" y="770" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step8" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="8. Registra el crédito en la cuenta destino">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="840" as="sourcePoint" />
-            <mxPoint x="1050" y="840" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step9" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="9. Confirma el crédito">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1050" y="910" as="sourcePoint" />
-            <mxPoint x="750" y="910" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step10" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="10. Publica evento TransacciónRealizada (async, sin esperar respuesta)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="980" as="sourcePoint" />
-            <mxPoint x="1650" y="980" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step11" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="11. Responde con el comprobante de la transferencia">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="1050" as="sourcePoint" />
-            <mxPoint x="450" y="1050" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step12" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="12. Muestra el comprobante de la transferencia entre cuentas propias">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="1120" as="sourcePoint" />
-            <mxPoint x="150" y="1120" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step13" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="13. Consume evento — registra en bitácora (async)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650" y="1160" as="sourcePoint" />
-            <mxPoint x="2250" y="1160" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step13b" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="14. Consume evento — envía alerta al cliente (async)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650" y="1190" as="sourcePoint" />
-            <mxPoint x="2550" y="1190" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="divider" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#B0B0B0;strokeWidth=1;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="40" y="1230" as="sourcePoint" />
-            <mxPoint x="2700" y="1230" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="phase2-label" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=center;verticalAlign=middle;" value="Fase 2 — Transferencia a un tercero" vertex="1">
-          <mxGeometry height="24" width="700" x="500" y="1240" as="geometry" />
-        </mxCell>
-        <mxCell id="step14" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="15. Solicita transferir a un tercero">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="150" y="1290" as="sourcePoint" />
-            <mxPoint x="450" y="1290" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step15" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="16. Consulta los beneficiarios registrados del cliente">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="1360" as="sourcePoint" />
-            <mxPoint x="1950" y="1360" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step16" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="17. Retorna la lista de beneficiarios y sus cuentas">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1950" y="1430" as="sourcePoint" />
-            <mxPoint x="450" y="1430" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step17" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="18. Crea la transferencia hacia la cuenta del beneficiario seleccionado (API)">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="1500" as="sourcePoint" />
-            <mxPoint x="750" y="1500" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step18" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="19. Valida el saldo, registra el débito en la cuenta origen y el crédito en la cuenta del tercero">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="1570" as="sourcePoint" />
-            <mxPoint x="1050" y="1570" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step19" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="20. Responde con el comprobante de la transferencia">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="750" y="1640" as="sourcePoint" />
-            <mxPoint x="450" y="1640" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="step20" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="21. Muestra el comprobante de la transferencia al tercero">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="1710" as="sourcePoint" />
-            <mxPoint x="150" y="1710" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo secuencia)" vertex="1">
-          <mxGeometry height="330" width="360" x="-640" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="-622" y="316" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Infraestructura — Broker de eventos" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="316" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-ln-7" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#D79B00;strokeWidth=2;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-622" y="358" as="sourcePoint" />
-            <mxPoint x="-584" y="358" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="legend-tx-7" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=0;" value="Publica / consume evento (asíncrono)" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="346" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="-622" y="126" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E8B00;fontStyle=1;" value="Persona" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="126" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="-622" y="156" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor / Componente backend" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="156" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1">
-          <mxGeometry height="24" width="38" x="-622" y="186" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Almacén de datos" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="186" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-ln-3" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#404040;strokeWidth=1.5;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-622" y="228" as="sourcePoint" />
-            <mxPoint x="-584" y="228" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje numerado (llamada)" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="216" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-ln-4" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#404040;strokeWidth=1.5;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-622" y="258" as="sourcePoint" />
-            <mxPoint x="-584" y="258" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje de retorno / confirmación" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="246" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-sw-5" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;size=6;" vertex="1">
-          <mxGeometry height="24" width="38" x="-622" y="286" as="geometry" />
-        </mxCell>
-        <mxCell id="legend-tx-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Nota — comportamiento crítico" vertex="1">
-          <mxGeometry height="24" width="280" x="-574" y="286" as="geometry" />
-        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=18;fontStyle=1;fontColor=#333333;align=left;verticalAlign=middle;" value="Diagrama Dinámico (C4) — Transferencias entre cuentas propias y a terceros (CU-30)" vertex="1"><mxGeometry height="30" width="1500" x="40" y="10" as="geometry" /></mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=12;fontColor=#666666;align=left;verticalAlign=middle;" value="Estilo secuencia (c4model.com/diagrams/dynamic) · Componente Transacciones · toda llamada de la Aplicación pasa por el API Gateway · gRPC solo donde se requiere respuesta inmediata; todo lo demás por Kafka (patrón outbox)" vertex="1"><mxGeometry height="20" width="1900" x="40" y="42" as="geometry" /></mxCell>
+        <object placeholders="1" c4Name="Cliente bancario" c4Type="Persona" c4Description="Usuario que transfiere entre sus propias cuentas y hacia cuentas de terceros." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-cliente"><mxCell parent="1" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#2E8B00;fontColor=#2E8B00;shape=mxgraph.c4.person2;strokeWidth=2;align=center;verticalAlign=top;spacingTop=8;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" vertex="1"><mxGeometry height="110" width="160" x="70" y="60" as="geometry" /></mxCell></object>
+        <object placeholders="1" c4Name="BD Transacciones" c4Type="database: PostgreSQL" c4Description="Base de datos exclusiva del microservicio Transacciones. Persiste Transaction y Transfer (el saldo de las cuentas vive únicamente en BD Cuentas, propiedad del microservicio Cuentas)." label="&lt;font style=&quot;font-size: 13px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[%c4Type%]&lt;/div&gt;" id="p-db"><mxCell parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFFFFF;strokeColor=#85BBF0;fontColor=#5B8EB8;align=center;strokeWidth=2;metaEdit=1;resizable=0;" vertex="1"><mxGeometry height="100" width="200" x="1850" y="70" as="geometry" /></mxCell></object>
+        <mxCell id="ll-cliente" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="150" y="170" as="sourcePoint" /><mxPoint x="150" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;Aplicación (Móvil / Web)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Contenedor]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="350" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-app" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="170" as="sourcePoint" /><mxPoint x="450" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-gw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;fontColor=#438DD5;align=center;arcSize=6;strokeColor=#438DD5;strokeWidth=2;verticalAlign=middle;fontSize=12;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Contenedor]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="650" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-gw" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="170" as="sourcePoint" /><mxPoint x="750" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-seg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Autenticación y Seguridad&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="950" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-seg" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="1050" y="170" as="sourcePoint" /><mxPoint x="1050" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-trans" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Transacciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="1250" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-trans" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="170" as="sourcePoint" /><mxPoint x="1350" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-cuentas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Cuentas&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="1550" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-cuentas" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="170" as="sourcePoint" /><mxPoint x="1650" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="ll-db" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="1950" y="170" as="sourcePoint" /><mxPoint x="1950" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-kafka" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#D79B00;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Broker de Eventos (Kafka)&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Infraestructura]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="2150" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-kafka" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="2250" y="170" as="sourcePoint" /><mxPoint x="2250" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Auditoría&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="2450" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-audit" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="2550" y="170" as="sourcePoint" /><mxPoint x="2550" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="p-notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;fontColor=#438DD5;fontSize=12;align=center;verticalAlign=middle;arcSize=10;" value="&lt;b&gt;Backend · Notificaciones&lt;/b&gt;&lt;div style=&quot;font-size:10px&quot;&gt;[Componente backend]&lt;/div&gt;" vertex="1"><mxGeometry height="90" width="200" x="2750" y="80" as="geometry" /></mxCell>
+        <mxCell id="ll-notif" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="2850" y="170" as="sourcePoint" /><mxPoint x="2850" y="3650" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lbl0" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Fase 1 — Transferencia entre cuentas propias" vertex="1"><mxGeometry height="24" width="600" x="40" y="215" as="geometry" /></mxCell>
+        <mxCell id="m1" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="1. Solicita transferir entre sus propias cuentas&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(cuenta origen, cuenta destino, monto)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="150" y="280" as="sourcePoint" /><mxPoint x="450" y="280" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m2" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="2. POST /transacciones/transferencias&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(HTTPS · JWT, x-device-fingerprint, Idempotency-Key)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="340" as="sourcePoint" /><mxPoint x="750" y="340" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="3. Valida firma y vigencia del JWT&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="400" as="sourcePoint" /><mxPoint x="1050" y="400" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="4. Sesión válida (usuario autenticado)"><mxGeometry relative="1" as="geometry"><mxPoint x="1050" y="460" as="sourcePoint" /><mxPoint x="750" y="460" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="5. Publica la intención de la petición en auditoria.peticion&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(sin esperar respuesta)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="520" as="sourcePoint" /><mxPoint x="2250" y="520" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="note6" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Gateway: solo enruta rutas públicas permitidas (allowlist). Rutas internas como el movimiento de saldo de Cuentas nunca se exponen. Sin sesión válida → 401 (también auditado)." vertex="1"><mxGeometry height="75" width="300" x="770" y="535" as="geometry" /></mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="6. Reenvía la solicitud autenticada&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="680" as="sourcePoint" /><mxPoint x="1350" y="680" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="note8" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Transacciones verifica de nuevo la firma del JWT y toma el usuario de su claim sub. Rechaza si: monto ≤ 0, origen = destino, falta el token o el fingerprint, o el monto supera el tope por operación (ASR-02)." vertex="1"><mxGeometry height="90" width="300" x="1370" y="695" as="geometry" /></mxCell>
+        <mxCell id="m7" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="7. Verifica el dispositivo confiable (fingerprint)&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC · INT-03)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="855" as="sourcePoint" /><mxPoint x="1050" y="855" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m8" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="8. Dispositivo confiable / no confiable"><mxGeometry relative="1" as="geometry"><mxPoint x="1050" y="915" as="sourcePoint" /><mxPoint x="1350" y="915" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m9" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="9. Consulta titularidad y saldo de la cuenta origen y de la cuenta destino&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC, credencial de servicio)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="975" as="sourcePoint" /><mxPoint x="1650" y="975" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m10" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="10. Retorna titular y saldo disponible de cada cuenta"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="1035" as="sourcePoint" /><mxPoint x="1350" y="1035" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="note13" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Se rechaza sin crear la transferencia si: el usuario no es titular de la cuenta origen (403), la cuenta destino no es propia, el saldo es insuficiente, el dispositivo no es confiable (403, exige 2FA) o Cuentas no responde (fail-closed: nunca se asume saldo)." vertex="1"><mxGeometry height="95" width="300" x="1670" y="1050" as="geometry" /></mxCell>
+        <mxCell id="m11" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="11. Crea la Transaction (estado PENDING) y el Transfer (isInternational = false)&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(una sola transacción de BD)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1215" as="sourcePoint" /><mxPoint x="1950" y="1215" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m12" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="12. Debita la cuenta origen&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC, clave de idempotencia transactionId:debit)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1275" as="sourcePoint" /><mxPoint x="1650" y="1275" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m13" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="13. Confirma el débito&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(actualización atómica: solo si el saldo resultante ≥ 0)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="1335" as="sourcePoint" /><mxPoint x="1350" y="1335" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m14" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="14. Acredita la cuenta destino&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC, clave de idempotencia transactionId:credit)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1395" as="sourcePoint" /><mxPoint x="1650" y="1395" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m15" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="15. Confirma el crédito"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="1455" as="sourcePoint" /><mxPoint x="1350" y="1455" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m16" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="16. Publica auditoria.evento-cuenta por cada movimiento&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(outbox de Cuentas)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="1515" as="sourcePoint" /><mxPoint x="2250" y="1515" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m17" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="17. Actualiza la Transaction a COMPLETED y registra los eventos en la tabla outbox&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(misma transacción de BD: ningún evento se pierde aunque Kafka no esté disponible)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1575" as="sourcePoint" /><mxPoint x="1950" y="1575" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m18" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="18. El relay del outbox publica auditoria.evento-transaccion y notificaciones.evento-transaccion&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(sin esperar respuesta)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1635" as="sourcePoint" /><mxPoint x="2250" y="1635" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m19" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="19. Responde 201 con el comprobante de la transferencia&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="1695" as="sourcePoint" /><mxPoint x="750" y="1695" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m20" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="20. Retorna el comprobante"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="1755" as="sourcePoint" /><mxPoint x="450" y="1755" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m21" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="21. Publica la respuesta emitida en auditoria.respuesta"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="1815" as="sourcePoint" /><mxPoint x="2250" y="1815" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m22" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="22. Muestra el comprobante de la transferencia entre cuentas propias"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="1875" as="sourcePoint" /><mxPoint x="150" y="1875" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m23" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="23. Consume auditoria.* — registra en bitácora"><mxGeometry relative="1" as="geometry"><mxPoint x="2250" y="1935" as="sourcePoint" /><mxPoint x="2550" y="1935" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m24" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="24. Consume notificaciones.evento-transaccion — envía alerta al cliente"><mxGeometry relative="1" as="geometry"><mxPoint x="2250" y="1995" as="sourcePoint" /><mxPoint x="2850" y="1995" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="divider-alt" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#D79B00;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="40" y="2025" as="sourcePoint" /><mxPoint x="3000" y="2025" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lbl29" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Flujo alterno — Compensación SAGA por Kafka (solo si el débito o el crédito fallan)" vertex="1"><mxGeometry height="24" width="600" x="40" y="2065" as="geometry" /></mxCell>
+        <mxCell id="note30" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Los pasos 12–15 se reintentan por gRPC con backoff exponencial y timeout; un resultado incierto se consulta por la clave de idempotencia antes de decidir. Si el débito no llegó a aplicarse no hay nada que compensar: se responde el error. Si el crédito falla de forma definitiva con el débito aplicado:" vertex="1"><mxGeometry height="90" width="560" x="1370" y="2085" as="geometry" /></mxCell>
+        <mxCell id="m25" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="25. Marca la Transaction como COMPENSATING y registra el comando en la tabla outbox"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="2245" as="sourcePoint" /><mxPoint x="1950" y="2245" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m26" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="26. Publica el comando cuentas.compensar-debito&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(clave de partición = cuenta origen)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="2305" as="sourcePoint" /><mxPoint x="2250" y="2305" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m27" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="27. Responde error: transferencia no realizada, reintegro en proceso&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="2365" as="sourcePoint" /><mxPoint x="750" y="2365" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m28" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="28. Retorna el error y el estado COMPENSATING al cliente"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="2425" as="sourcePoint" /><mxPoint x="450" y="2425" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m29" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="29. Consume el comando y reintegra el monto a la cuenta origen&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(consumidor idempotente por transactionId)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="2250" y="2485" as="sourcePoint" /><mxPoint x="1650" y="2485" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m30" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="30. Publica cuentas.debito-compensado"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="2545" as="sourcePoint" /><mxPoint x="2250" y="2545" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m31" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="31. Consume el evento y marca la Transaction como REVERSED"><mxGeometry relative="1" as="geometry"><mxPoint x="2250" y="2605" as="sourcePoint" /><mxPoint x="1350" y="2605" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m32" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontColor=#8a6d1d;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="32. Publica FALLO_TRANSFERENCIA_COMPENSADA y el aviso al cliente&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(vía outbox)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="2665" as="sourcePoint" /><mxPoint x="2250" y="2665" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="note39" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Si el reintegro agota sus reintentos, el comando pasa a la cola de mensajes fallidos (DLQ) saga.compensacion-fallida: la Transaction queda en FAILED y Auditoría alerta para la reconciliación manual." vertex="1"><mxGeometry height="80" width="300" x="2270" y="2680" as="geometry" /></mxCell>
+        <mxCell id="divider" edge="1" parent="1" style="html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#B0B0B0;strokeWidth=1;"><mxGeometry relative="1" as="geometry"><mxPoint x="40" y="2810" as="sourcePoint" /><mxPoint x="3000" y="2810" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lbl41" parent="1" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#666666;align=left;verticalAlign=middle;" value="Fase 2 — Transferencia a un tercero (beneficiario registrado, CU-03)" vertex="1"><mxGeometry height="24" width="600" x="40" y="2850" as="geometry" /></mxCell>
+        <mxCell id="m33" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="33. Solicita transferir a un tercero"><mxGeometry relative="1" as="geometry"><mxPoint x="150" y="2915" as="sourcePoint" /><mxPoint x="450" y="2915" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m34" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="34. GET /cuentas/beneficiarios&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(HTTPS · JWT; sesión validada y auditada como en los pasos 3–5)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="2975" as="sourcePoint" /><mxPoint x="750" y="2975" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m35" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="35. Reenvía la consulta autenticada&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="3035" as="sourcePoint" /><mxPoint x="1650" y="3035" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="note45" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left;verticalAlign=middle;spacing=6;size=12;" value="Cuentas devuelve solo los beneficiarios del usuario del JWT. El userId nunca se toma de query ni body (evita IDOR)." vertex="1"><mxGeometry height="60" width="300" x="1670" y="3050" as="geometry" /></mxCell>
+        <mxCell id="m36" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="36. Retorna la lista de beneficiarios y sus cuentas"><mxGeometry relative="1" as="geometry"><mxPoint x="1650" y="3180" as="sourcePoint" /><mxPoint x="750" y="3180" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m37" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="37. Retorna la lista de beneficiarios"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="3240" as="sourcePoint" /><mxPoint x="450" y="3240" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m38" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="38. POST /transacciones/transferencias hacia la cuenta del beneficiario seleccionado&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(HTTPS · esPropia = false, JWT, x-device-fingerprint, Idempotency-Key)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="3300" as="sourcePoint" /><mxPoint x="750" y="3300" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m39" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="39. Reenvía la solicitud autenticada&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="3360" as="sourcePoint" /><mxPoint x="1350" y="3360" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m40" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="40. Ejecuta las validaciones, el SAGA y la publicación por outbox de los pasos 7–18&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(titularidad del origen, dispositivo, tope, saldo; débito y crédito idempotentes por gRPC; compensación por Kafka)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="3420" as="sourcePoint" /><mxPoint x="1650" y="3420" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m41" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="41. Responde 201 con el comprobante (TRANSFER_THIRD)&lt;br&gt;&lt;font style=&quot;font-size:9px&quot; color=&quot;#888888&quot;&gt;(gRPC)&lt;/font&gt;"><mxGeometry relative="1" as="geometry"><mxPoint x="1350" y="3480" as="sourcePoint" /><mxPoint x="750" y="3480" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m42" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="42. Retorna el comprobante"><mxGeometry relative="1" as="geometry"><mxPoint x="750" y="3540" as="sourcePoint" /><mxPoint x="450" y="3540" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m43" edge="1" parent="1" style="html=1;endArrow=blockThin;endFill=1;endSize=10;startArrow=none;dashed=1;strokeColor=#404040;strokeWidth=1.5;fontSize=11;fontColor=#262626;align=center;verticalAlign=bottom;labelBackgroundColor=#F5F5F5;spacingBottom=6;" value="43. Muestra el comprobante de la transferencia al tercero"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="3600" as="sourcePoint" /><mxPoint x="150" y="3600" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;fontSize=14;fontStyle=1;spacing=8;arcSize=4;" value="Nomenclatura (C4 - estilo secuencia)" vertex="1"><mxGeometry height="360" width="360" x="-640" y="80" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B00;strokeWidth=2;arcSize=20;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="126" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E8B00;fontStyle=1;" value="Persona" vertex="1"><mxGeometry height="24" width="280" x="-574" y="126" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#438DD5;strokeWidth=2;arcSize=20;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="156" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#438DD5;fontStyle=1;" value="Contenedor / Componente backend" vertex="1"><mxGeometry height="24" width="280" x="-574" y="156" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#85BBF0;strokeWidth=2;arcSize=20;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="186" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#85BBF0;fontStyle=1;" value="Almacén de datos" vertex="1"><mxGeometry height="24" width="280" x="-574" y="186" as="geometry" /></mxCell>
+        <mxCell id="legend-ln-3" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#404040;strokeWidth=1.5;"><mxGeometry relative="1" as="geometry"><mxPoint x="-622" y="228" as="sourcePoint" /><mxPoint x="-584" y="228" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend-tx-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje numerado (llamada)" vertex="1"><mxGeometry height="24" width="280" x="-574" y="216" as="geometry" /></mxCell>
+        <mxCell id="legend-ln-4" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;dashed=1;strokeColor=#404040;strokeWidth=1.5;"><mxGeometry relative="1" as="geometry"><mxPoint x="-622" y="258" as="sourcePoint" /><mxPoint x="-584" y="258" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend-tx-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#404040;fontStyle=0;" value="Mensaje de retorno / confirmación" vertex="1"><mxGeometry height="24" width="280" x="-574" y="246" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-5" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;size=6;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="276" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Nota — comportamiento crítico" vertex="1"><mxGeometry height="24" width="280" x="-574" y="276" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-6" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;size=6;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="306" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#b85450;fontStyle=1;" value="Nota — control de seguridad" vertex="1"><mxGeometry height="24" width="280" x="-574" y="306" as="geometry" /></mxCell>
+        <mxCell id="legend-sw-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;arcSize=20;" vertex="1"><mxGeometry height="24" width="38" x="-622" y="336" as="geometry" /></mxCell>
+        <mxCell id="legend-tx-7" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=1;" value="Infraestructura — Broker de eventos" vertex="1"><mxGeometry height="24" width="280" x="-574" y="336" as="geometry" /></mxCell>
+        <mxCell id="legend-ln-8" edge="1" parent="1" style="endArrow=blockThin;endFill=1;html=1;strokeColor=#D79B00;strokeWidth=2;"><mxGeometry relative="1" as="geometry"><mxPoint x="-622" y="378" as="sourcePoint" /><mxPoint x="-584" y="378" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend-tx-8" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#8a6d1d;fontStyle=0;" value="Publica / consume evento (asíncrono)" vertex="1"><mxGeometry height="24" width="280" x="-574" y="366" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

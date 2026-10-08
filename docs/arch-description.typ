@@ -186,7 +186,7 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [*Programación de ahorro automático*],
   [Automatización de transferencias periódicas hacia metas o subcuentas de ahorro.],
   [Cuentas],
-  [Miguel Francisco Vargas],
+  [Arantxa Marian Espejo Malagon],
 
   [CU-10],
   [*Certificados bancarios*],
@@ -220,15 +220,15 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
 
   [CU-15],
   [*Autenticación de usuarios*],
-  [Acceso al sistema mediante credenciales.],
+  [Acceso al sistema mediante credenciales. Esto incluye registro, restablecer contraseña, entre otros.],
   [Seguridad],
-  [Arantxa Marian Espejo Malagon],
+  [Miguel Francisco Vargas],
 
   [CU-16],
   [*Autorización y control de roles*],
   [Verificación de permisos según el perfil del usuario autenticado.],
   [Seguridad],
-  [Arantxa Marian Espejo Malagon],
+  [Miguel Francisco Vargas],
 
   [CU-17],
   [*Gestión de dispositivos confiables*],
@@ -258,7 +258,7 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [*Emisión y gestión de tarjetas de crédito*],
   [Solicitud, activación y configuración de tarjetas de crédito. Consulta de cupo, visualización de movimientos, pago de extracto a cuotas y avances de efectivo.],
   [Tarjetas],
-  [Sara Rodriguez Urueña],
+  [Miguel Francisco Vargas],
 
   [CU-22],
   [*Emisión y gestión de tarjetas de débito*],
@@ -282,7 +282,7 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [*Generación y escaneo de códigos QR*],
   [Cobros y pagos inmediatos mediante códigos QR.],
   [Transacciones],
-  [Miguel Francisco Vargas],
+  [Arantxa Marian Espejo Malagon],
 
   [CU-26],
   [*Gestión de transferencias internacionales y nacionales*],

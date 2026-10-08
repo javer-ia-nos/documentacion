@@ -351,3 +351,47 @@ bun run test:e2e
   ```bash
   bun run down
   ```
+
+#pagebreak()
+
+== Comunicación gRPC entre microservicios
+
+Las llamadas síncronas entre servicios (las que necesitan respuesta inmediata, como saldo, débito, crédito o verificación de dispositivo) usan gRPC. Todo lo demás viaja por Kafka mediante la tabla _outbox_ de cada servicio. Elysia sigue atendiendo el HTTP que llega del API Gateway; el servidor gRPC corre en el mismo proceso pero en su propio puerto, sin pasar por Elysia.
+
+=== Librerías
+
+- *`@grpc/grpc-js`*: implementación oficial de gRPC para JavaScript, en JavaScript puro, por lo que funciona en Bun y en el binario de `bun build --compile`. Se verificó en Bun 1.4.2: llamadas unarias, los tres tipos de _streaming_, plazos, cancelación, metadatos, códigos de error, compresión, balanceo `round_robin` y reintentos.
+- *`ts-proto`*: genera desde el `.proto` el código TypeScript con los mensajes tipados y los stubs de cliente y servidor para `grpc-js`. La generación usa *`@bufbuild/buf`*, instalado por npm, sin necesidad de `protoc` en el sistema.
+
+=== Contratos `.proto`
+
+- El contrato canónico vive en el repositorio del servicio que lo implementa: `ms-cuentas/proto/cuentas.proto` y `ms-seguridad/proto/seguridad.proto`. Los clientes, como `ms-transacciones`, guardan una copia idéntica.
+- Después de cambiar un `.proto`, regenerar con `bun run proto:gen` y versionar el código generado (`src/grpc/generated/`). `bun run proto:check` avisa si la copia de un cliente quedó desalineada respecto a la canónica.
+- Los montos viajan como texto decimal (`"150000.00"`), nunca como número de punto flotante.
+- Códigos de error: `NOT_FOUND` (no existe), `FAILED_PRECONDITION` (rechazo definitivo: no se aplicó nada) y `UNAUTHENTICATED` (falta el token interno). Cualquier otro código significa un resultado incierto: se reintenta con la misma clave de idempotencia y, si persiste, la transferencia pasa a compensación.
+
+=== Claves de idempotencia del CU-30
+
+Cada movimiento en Cuentas lleva la clave `<transactionId>:debit`, `<transactionId>:credit` o `<transactionId>:compensation`. Repetir una llamada con la misma clave devuelve el resultado original sin mover saldo otra vez, así que reintentar es seguro.
+
+=== Variables de entorno
+
+#table(
+  columns: (auto, 1fr),
+  [*Variable*], [*Uso*],
+  [`GRPC_PORT`], [Puerto del servidor gRPC (50051) en `ms-cuentas` y `ms-seguridad`.],
+  [`CUENTAS_GRPC_URL`, `SEGURIDAD_GRPC_URL`], [Destino de los clientes en `ms-transacciones`. En el clúster: `dns:///<servicio>-grpc.<namespace>.svc.cluster.local:50051` (Service _headless_, balanceo `round_robin`); en local: `localhost:50051` y `localhost:50052`.],
+  [`INTERNAL_SERVICE_TOKEN`], [Token interno de servicio que viaja en el metadato `x-internal-token`. Sin él, los servidores responden `UNAUTHENTICATED`. En el clúster sale de Ansible Vault; en local, cualquier valor igual en ambos servicios.],
+  [`KAFKA_BROKERS`], [Brokers de Kafka para el _relay_ del _outbox_ y los consumidores. Si no está definida, los eventos quedan pendientes en la tabla _outbox_ y no se pierden.],
+)
+
+=== Probar un servidor gRPC a mano
+
+Cuando el servidor tiene _reflection_ habilitado se puede usar `grpcurl`. Si no, se le pasa el `.proto`:
+
+```bash
+grpcurl -plaintext -import-path proto -proto cuentas.proto \
+  -H "x-internal-token: $INTERNAL_SERVICE_TOKEN" \
+  -d '{"cuentaId": "b1000000-0000-4000-8000-000000000001"}' \
+  localhost:50051 javerianos.cuentas.v1.CuentasService/ConsultarCuenta
+```

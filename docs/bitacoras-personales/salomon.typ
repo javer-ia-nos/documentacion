@@ -1195,3 +1195,86 @@ nuevo diagrama exige y que hoy faltan o se pueden saltar:
 - en `ms-transacciones`, verificación de la firma del JWT, fingerprint y
   tope obligatorios, y eliminación del comportamiento _fail-open_ de
   `cuentas.client.ts`.
+
+=== Iteración 31: Revisión de la infraestructura y diseño de alta disponibilidad, respaldos y detalle de CU-30
+
+*Fecha y hora:* 7 de octubre de 2026 (hora no registrada) \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Revisión + Decisión de diseño + Diagrama / Modelado \
+*Commit:* pendiente \
+*Archivos:*
+#link(git_base_url + "/docs/arch-description.typ", [arch-description.typ]),
+#link(git_base_url + "/docs/dev.typ", [dev.typ]),
+#link(git_base_url + "/docs/diagrams/deployment-produccion.drawio", [deployment-produccion.drawio]),
+#link(git_base_url + "/docs/diagrams/deployment.drawio", [deployment.drawio]),
+#link(git_base_url + "/docs/diagrams/code/code-view-backend-transacciones.drawio", [code-view-backend-transacciones.drawio]),
+#link(git_base_url + "/docs/diagrams/er/cuentas_er.drawio", [cuentas_er.drawio]),
+#link(git_base_url + "/docs/diagrams/er/transacciones_er.drawio", [transacciones_er.drawio]),
+#link(git_base_url + "/docs/diagrams/processes/transferencias-cuentas-propias-terceros.drawio", [transferencias-cuentas-propias-terceros.drawio])
+
+==== Descripción
+
+*Drivers:* una revisión en vivo del clúster mostró que la plataforma
+respondía correctamente, pero tenía puntos únicos de falla que comprometen
+ASR-01. El plano de control estaba en una sola máquina, que además es una
+estación de trabajo y se reinició durante la revisión. Cada base de datos
+era una única instancia de PostgreSQL en un volumen local, Kafka tenía un
+solo broker con factor de replicación 1, y los Secrets estaban en texto
+plano en etcd. Los respaldos vivían en el mismo clúster, que el
+procedimiento de reconstrucción borra. Ninguna de estas condiciones estaba
+reflejada en la vista física, que aún describía Flannel y un único plano de
+control, y el diagrama de despliegue solo cubría el ambiente de desarrollo.
+
+*Conceptos de diseño analizados:* se midió el uso real de las máquinas
+(disco, memoria y CPU) antes de decidir. Los recursos alcanzaban de sobra
+para replicar todo: el riesgo era de disponibilidad, no de capacidad. Se
+descartó una IP virtual para el plano de control, porque la red de la
+universidad no permite administrarla, en favor de un HAProxy local en cada
+nodo. Se eligió Cilium sobre Calico y Flannel porque permite NetworkPolicies
+a nivel de aplicación, observabilidad con Hubble y balanceo por petición de
+gRPC. Para PostgreSQL se eligió replicación síncrona con bloqueo de
+escrituras si caen ambas réplicas (RPO igual a cero), con tres instancias
+para que una réplica caída no bloquee el servicio. Para los respaldos se
+evaluó una copia cifrada en Google Drive y se descartó en favor de copias en
+otras máquinas del clúster, aceptando explícitamente el riesgo de un
+desastre que afecte a todo el laboratorio. Para gRPC se verificó en Bun
+que `@grpc/grpc-js` soporta todos los tipos de llamada y funciona en el
+binario compilado, y se eligió `ts-proto` para tener contratos tipados.
+
+*Diagramas preliminares:* se creó el diagrama de despliegue de producción
+(`deployment-produccion.drawio`) con las seis máquinas, sus roles y los
+namespaces. Se corrigieron las flechas HTTP del diagrama de desarrollo y se
+agregaron a la vista de código de Transacciones los clientes gRPC, el
+_relay_ del outbox, el consumidor SAGA y el verificador de JWT.
+
+*Análisis preliminar de resultados:*
+- La vista física se reescribió para producción y se agregaron los ADR-06
+  (plano de control en alta disponibilidad y Cilium), ADR-07 (PostgreSQL
+  replicado y síncrono) y ADR-08 (respaldos con tres copias en tres discos).
+- El ADR-03 se corrigió: el gateway ya no propaga la identidad por
+  cabeceras, sino que elimina las que envía el cliente, y cada servicio
+  toma el usuario del JWT verificado.
+- En el flujo de CU-30 se documentaron el token interno de servicio, la
+  huella de dispositivo obligatoria, los tres resultados de la compensación
+  (`REINTEGRADO`, `SIN_DEBITO`, `CREDITO_YA_APLICADO`) y el proceso que
+  envía a compensación las transferencias que se quedan en `PENDING`.
+- Los ER de Cuentas y Transacciones se completaron: tipo y estado del
+  movimiento de cuenta, y clave de partición e intentos en `OutboxEvent`.
+- Los riesgos técnicos se actualizaron y se agregaron cuatro nuevos:
+  quórum de etcd, desastre del sitio, pérdida de la contraseña del vault y
+  la falta de mantenimiento de `kafkajs`.
+- La revisión del clúster actual encontró además configuraciones que
+  impiden que el flujo funcione completo: falta `KAFKA_BROKERS` en cuatro
+  servicios (Auditoría y Notificaciones nunca arrancan sus consumidores),
+  ms-transacciones apunta a sí mismo para verificar dispositivos, y quince
+  alertas falsas de monitoreo, una de ellas crítica.
+
+==== Tareas asignadas
+
+Implementar en el código lo documentado en esta iteración y en la anterior:
+servidores gRPC en `ms-cuentas` y `ms-seguridad`, clientes en
+`ms-transacciones`, débito y crédito atómicos e idempotentes, _outbox_ con
+_relay_, compensación por Kafka y los controles de seguridad del gateway.
+Luego, reconstruir el clúster con la nueva topología mediante los playbooks
+de Ansible, con un respaldo previo verificado de todas las bases y un plan de
+vuelta atrás.

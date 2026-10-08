@@ -1,12 +1,12 @@
 <mxfile host="Electron">
   <diagram name="C4 - Codigo - Transacciones (Backend)" id="c4-code-transacciones-backend">
-    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1150" math="0" shadow="0">
+    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1230" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
 
         <mxCell id="frame-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;" value="" vertex="1">
-          <mxGeometry height="1050" width="1300" x="10" y="50" as="geometry" />
+          <mxGeometry height="1150" width="1360" x="10" y="50" as="geometry" />
         </mxCell>
         <mxCell id="lbl-103" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CAPA DE API (Elysia Routes)" vertex="1">
           <mxGeometry height="24" width="500" x="50" y="70" as="geometry" />
@@ -20,7 +20,7 @@
         <mxCell id="lbl-107" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="CONTRATOS DE SERIALIZACIÓN (REQUEST / RESPONSE)" vertex="1">
           <mxGeometry height="24" width="500" x="60" y="564" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR (CLIENTS HTTP / EVENTOS KAFKA)" vertex="1">
+        <mxCell id="lbl-108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="INFRAESTRUCTURA AUXILIAR (CLIENTES HTTP Y gRPC / OUTBOX Y EVENTOS KAFKA)" vertex="1">
           <mxGeometry height="24" width="500" x="50" y="720" as="geometry" />
         </mxCell>
         <mxCell id="lbl-109" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#888888;fontStyle=1;" value="MODELOS DE DOMINIO" vertex="1">
@@ -156,10 +156,13 @@
         <mxCell id="div-186" parent="uml-181" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="280" y="168" as="geometry" /></mxCell>
 
         <mxCell id="uml-estado" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ EstadoTransaccion" vertex="1">
-          <mxGeometry height="46" width="220" x="400" y="974" as="geometry" />
+          <mxGeometry height="124" width="220" x="400" y="974" as="geometry" />
         </mxCell>
         <mxCell id="div-e1" parent="uml-estado" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="220" y="30" as="geometry" /></mxCell>
         <mxCell id="div-e2" parent="uml-estado" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="220" y="38" as="geometry" /></mxCell>
+        <mxCell id="row-e1" parent="uml-estado" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ PENDING · COMPLETED" vertex="1"><mxGeometry height="26" width="220" y="46" as="geometry" /></mxCell>
+        <mxCell id="row-e2" parent="uml-estado" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ COMPENSATING" vertex="1"><mxGeometry height="26" width="220" y="72" as="geometry" /></mxCell>
+        <mxCell id="row-e3" parent="uml-estado" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="□ REVERSED · FAILED" vertex="1"><mxGeometry height="26" width="220" y="98" as="geometry" /></mxCell>
 
         <mxCell id="lbl-221" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontColor=#1a1a1a;fontStyle=1;" value="Code View: Banca Digital — Backend — Componente Transacciones" vertex="1">
           <mxGeometry height="24" width="1200" x="20" y="10" as="geometry" />
@@ -216,8 +219,8 @@
         <mxCell id="e-16" edge="1" parent="1" source="uml-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#000000;strokeColor=#000000;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="uml-cuentas" value="Valida y actualiza saldo">
           <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="380" /><mxPoint x="420" y="380" /><mxPoint x="420" y="754" /></Array></mxGeometry>
         </mxCell>
-        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Publica evento (async, sin esperar respuesta)">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="360" /><mxPoint x="770" y="360" /><mxPoint x="770" y="754" /></Array></mxGeometry>
+        <mxCell id="e-17" edge="1" parent="1" source="uml-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uml-outbox" value="Encola eventos en OutboxEvent (misma transacción de BD)">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="360" /><mxPoint x="650" y="360" /><mxPoint x="650" y="1077" /></Array></mxGeometry>
         </mxCell>
         <mxCell id="e-18" edge="1" parent="1" source="uml-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;endSize=10;dashed=1;fontSize=12;fontColor=#8a6d1d;strokeColor=#D79B00;strokeWidth=2;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;" target="uml-notif" value="Publica evento (async, sin esperar respuesta)">
           <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1010" y="350" /><mxPoint x="850" y="350" /><mxPoint x="850" y="754" /></Array></mxGeometry>
@@ -236,6 +239,31 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
+        <mxCell id="grp-cu30" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=3;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=11;fontColor=#555555;fontStyle=1;" value="CU-30 — usados por TransferirFondosUseCase (JwtVerifier: por TransaccionController)" vertex="1"><mxGeometry height="300" width="680" x="670" y="870" as="geometry" /></mxCell>
+        <mxCell id="uml-cuentas-grpc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ CuentasGrpcClient" vertex="1"><mxGeometry height="98" width="320" x="685" y="905" as="geometry" /></mxCell>
+        <mxCell id="uml-cuentas-grpc-d1" parent="uml-cuentas-grpc" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="uml-cuentas-grpc-d2" parent="uml-cuentas-grpc" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="uml-cuentas-grpc-r0" parent="uml-cuentas-grpc" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ consultarCuenta(cuentaId)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+        <mxCell id="uml-cuentas-grpc-r1" parent="uml-cuentas-grpc" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ aplicarMovimiento(cuenta, tipo, monto, clave)" vertex="1"><mxGeometry height="26" width="320" y="72" as="geometry" /></mxCell>
+        <mxCell id="uml-seg-grpc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ SeguridadGrpcClient" vertex="1"><mxGeometry height="72" width="320" x="1020" y="905" as="geometry" /></mxCell>
+        <mxCell id="uml-seg-grpc-d1" parent="uml-seg-grpc" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="uml-seg-grpc-d2" parent="uml-seg-grpc" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="uml-seg-grpc-r0" parent="uml-seg-grpc" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ verificarDispositivo(usuarioId, huella)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#FFE6CC;strokeColor=#D79B00;fillColor=#FFE6CC;fontSize=13;html=1;" value="Ⓒ ▲ OutboxRelay (Kafka)" vertex="1"><mxGeometry height="124" width="320" x="685" y="1015" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox-d1" parent="uml-outbox" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox-d2" parent="uml-outbox" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox-r0" parent="uml-outbox" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ encolar(tx, evento)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox-r1" parent="uml-outbox" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ publicarPendientes()" vertex="1"><mxGeometry height="26" width="320" y="72" as="geometry" /></mxCell>
+        <mxCell id="uml-outbox-r2" parent="uml-outbox" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ barrerPendientesHuerfanas()" vertex="1"><mxGeometry height="26" width="320" y="98" as="geometry" /></mxCell>
+        <mxCell id="uml-saga" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#FFE6CC;strokeColor=#D79B00;fillColor=#FFE6CC;fontSize=13;html=1;" value="Ⓒ ▲ SagaConsumer (Kafka)" vertex="1"><mxGeometry height="98" width="320" x="1020" y="990" as="geometry" /></mxCell>
+        <mxCell id="uml-saga-d1" parent="uml-saga" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="uml-saga-d2" parent="uml-saga" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="uml-saga-r0" parent="uml-saga" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ onDebitoCompensado(evento)" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
+        <mxCell id="uml-saga-r1" parent="uml-saga" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ onCompensacionFallida(evento)" vertex="1"><mxGeometry height="26" width="320" y="72" as="geometry" /></mxCell>
+        <mxCell id="uml-jwt" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=0;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneFillColor=#ffffff;strokeColor=#000000;fillColor=#ffffff;fontSize=13;html=1;" value="Ⓒ ▲ JwtVerifier" vertex="1"><mxGeometry height="72" width="320" x="1020" y="1098" as="geometry" /></mxCell>
+        <mxCell id="uml-jwt-d1" parent="uml-jwt" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="30" as="geometry" /></mxCell>
+        <mxCell id="uml-jwt-d2" parent="uml-jwt" style="line;html=1;strokeColor=#000000;" value="" vertex="1"><mxGeometry height="8" width="320" y="38" as="geometry" /></mxCell>
+        <mxCell id="uml-jwt-r0" parent="uml-jwt" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=4;overflow=hidden;fontSize=12;" value="○ verificar(token): JwtVerificado | null" vertex="1"><mxGeometry height="26" width="320" y="46" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

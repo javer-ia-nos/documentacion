@@ -19,7 +19,7 @@
         <mxCell id="dev-mobile" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#2E6295;fontColor=#1a1a1a;fontSize=11;align=center;verticalAlign=middle;" value="mobile&#xa;[Expo / Metro Bundler]&#xa;Emulador o Expo Go" vertex="1">
           <mxGeometry height="80" width="260" x="420" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="node-gateway" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E6295;strokeColor=#1a3f5c;fontColor=#ffffff;fontSize=12;align=center;verticalAlign=middle;fontStyle=1;" value="api-gateway&#xa;[Container]&#xa;&#xa;Punto de entrada único (*)&#xa;alcance aún por definir" vertex="1">
+        <mxCell id="node-gateway" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E6295;strokeColor=#1a3f5c;fontColor=#ffffff;fontSize=12;align=center;verticalAlign=middle;fontStyle=1;" value="api-gateway&#xa;[Container]&#xa;&#xa;Punto de entrada único&#xa;sesión, allowlist de rutas,&#xa;auditoría por Kafka" vertex="1">
           <mxGeometry height="100" width="300" x="450" y="280" as="geometry" />
         </mxCell>
         <mxCell id="node-mocks" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;arcSize=6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=10;fontStyle=1;fontColor=#666666;fontSize=12;" value="Mocks de Sistemas Externos" vertex="1">
@@ -85,7 +85,7 @@
         <mxCell id="e-mobile-gw" edge="1" parent="1" source="dev-mobile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0.3;exitY=1;entryX=0.7;entryY=0;" target="node-gateway" value="HTTP">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-gw-docker" edge="1" parent="1" source="node-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;" target="node-docker" value="Enruta solicitudes al microservicio correspondiente">
+        <mxCell id="e-gw-docker" edge="1" parent="1" source="node-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontStyle=1;" target="node-docker" value="gRPC: enruta al microservicio correspondiente">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="600" y="420" />
@@ -124,16 +124,16 @@
         <mxCell id="e-crm-db" edge="1" parent="1" source="svc-crm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="db-crm" value="pg">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-transacciones-cuentas" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.3;entryX=1;entryY=0.3;" target="svc-cuentas" value="HTTP (valida saldo)">
+        <mxCell id="e-transacciones-cuentas" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.3;entryX=1;entryY=0.3;" target="svc-cuentas" value="gRPC (saldo, débito)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-transacciones-auditoria" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-auditoria" value="HTTP (registra evento)">
+        <mxCell id="e-transacciones-auditoria" edge="1" parent="1" source="svc-transacciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-auditoria" value="Kafka (evento de auditoría)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-financiero-auditoria" edge="1" parent="1" source="svc-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" target="svc-auditoria" value="HTTP (registra evento)">
+        <mxCell id="e-financiero-auditoria" edge="1" parent="1" source="svc-financiero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" target="svc-auditoria" value="Kafka (evento de auditoría)">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-tarjetas-notificaciones" edge="1" parent="1" source="svc-tarjetas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-notificaciones" value="HTTP (notifica)">
+        <mxCell id="e-tarjetas-notificaciones" edge="1" parent="1" source="svc-tarjetas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;fontSize=9;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="svc-notificaciones" value="Kafka (evento de notificación)">
           <mxGeometry relative="1" x="-0.0811" y="10" as="geometry">
             <mxPoint as="offset" />
             <Array as="points">

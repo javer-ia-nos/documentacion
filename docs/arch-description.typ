@@ -88,6 +88,10 @@
     [2026-09-20],
     [Inclusión de la entidad ChatMessage en el modelo E/R de CRM (CU-02) para el soporte del historial de mensajes en chat de atención.],
     [Equipo de Arquitectura],
+
+    [2026-10-07],
+    [Se rediseñó la vista física para alta disponibilidad: plano de control en tres máquinas, red con Cilium, PostgreSQL replicado con CloudNativePG, Kafka con tres brokers, cifrado de Secrets en reposo y estrategia de respaldos con tres copias, con un diagrama de despliegue de producción y los ADR-06, ADR-07 y ADR-08. Se detalló en el flujo de CU-30 el token interno de servicio, la huella de dispositivo obligatoria, los resultados de la compensación y la recuperación de transferencias pendientes; se corrigió el ADR-03 (el gateway ya no propaga la identidad por cabeceras) y se actualizaron los riesgos técnicos.],
+    [Salomón Avila],
   )
 ]
 
@@ -755,7 +759,7 @@ La gestión de transferencias internacionales y nacionales, correspondiente al c
 
 El pago de facturas y servicios, correspondiente al caso de uso CU-27 (@fig-proc-pago-facturas-servicios), valida el convenio registrado contra el proveedor de servicios públicos antes de procesar el pago, y cubre además la recarga a operadores móviles en su segunda fase.
 
-Las transferencias entre cuentas propias y a terceros, correspondientes al caso de uso CU-30 (@fig-proc-transferencias-propias-terceros), entran siempre por el API Gateway, que valida la sesión contra Autenticación y Seguridad por gRPC, publica la intención de la petición en Kafka para Auditoría y solo enruta rutas públicas permitidas; los endpoints internos de movimiento de saldo de Cuentas nunca se exponen al cliente. Transacciones vuelve a verificar el JWT, toma el usuario de su _claim_ `sub` y rechaza la operación antes de crear cualquier registro si el monto es inválido, supera el tope por operación, el dispositivo no es confiable o el usuario no es titular de la cuenta origen; ante una falla de Cuentas el flujo se cierra (_fail-closed_) y nunca asume un saldo. En la primera fase valida además que ambas cuentas sean del mismo cliente; en la segunda fase, hacia un tercero, la aplicación consulta primero los beneficiarios registrados del cliente en Cuentas (CU-03), que solo devuelve los del usuario autenticado. El criterio de comunicación del flujo es usar gRPC únicamente donde se requiere una respuesta inmediata (validación de sesión, dispositivo, titularidad, saldo, débito y crédito, necesarios para entregar el comprobante dentro del límite de ASR-02) y Kafka para todo lo demás. En ambas fases la transacción se crea en estado `PENDING`, el débito y el crédito se solicitan a Cuentas por gRPC con una clave de idempotencia y se aplican de forma atómica sobre el saldo. Al completarse, la transacción pasa a `COMPLETED` y en la misma transacción de base de datos se registran en una tabla _outbox_ los eventos `auditoria.evento-transaccion` y `notificaciones.evento-transaccion`, que un _relay_ publica en Kafka, de modo que ningún evento se pierde aunque el broker no esté disponible; Cuentas publica a su vez `auditoria.evento-cuenta` por cada movimiento. Si el crédito falla con el débito ya aplicado, la compensación se ejecuta de forma asíncrona por Kafka según el ADR-01.
+Las transferencias entre cuentas propias y a terceros, correspondientes al caso de uso CU-30 (@fig-proc-transferencias-propias-terceros), entran siempre por el API Gateway, que valida la sesión contra Autenticación y Seguridad por gRPC, publica la intención de la petición en Kafka para Auditoría y solo enruta rutas públicas permitidas; los endpoints internos de movimiento de saldo de Cuentas nunca se exponen al cliente. Transacciones vuelve a verificar el JWT, toma el usuario de su _claim_ `sub` y rechaza la operación antes de crear cualquier registro si el monto es inválido, supera el tope por operación, la petición no trae la huella del dispositivo o el dispositivo no es confiable, o el usuario no es titular de la cuenta origen; ante una falla de Cuentas el flujo se cierra (_fail-closed_) y nunca asume un saldo. Las llamadas gRPC hacia Cuentas y Seguridad llevan un token interno de servicio (metadato `x-internal-token`), sin el cual esos servicios rechazan la llamada, de modo que ningún pod del clúster puede mover saldo sin identificarse como un servicio autorizado. En la primera fase valida además que ambas cuentas sean del mismo cliente; en la segunda fase, hacia un tercero, la aplicación consulta primero los beneficiarios registrados del cliente en Cuentas (CU-03), que solo devuelve los del usuario autenticado. El criterio de comunicación del flujo es usar gRPC únicamente donde se requiere una respuesta inmediata (validación de sesión, dispositivo, titularidad, saldo, débito y crédito, necesarios para entregar el comprobante dentro del límite de ASR-02) y Kafka para todo lo demás. En ambas fases la transacción se crea en estado `PENDING`, el débito y el crédito se solicitan a Cuentas por gRPC con una clave de idempotencia y se aplican de forma atómica sobre el saldo. Al completarse, la transacción pasa a `COMPLETED` y en la misma transacción de base de datos se registran en una tabla _outbox_ los eventos `auditoria.evento-transaccion` y `notificaciones.evento-transaccion`, que un _relay_ publica en Kafka, de modo que ningún evento se pierde aunque el broker no esté disponible; Cuentas publica a su vez `auditoria.evento-cuenta` por cada movimiento, también mediante su propia tabla _outbox_. Si Cuentas rechaza el débito, no se movió dinero y la transacción termina en `FAILED`. Si el crédito falla, o si no se sabe con certeza si el débito o el crédito se aplicaron (por ejemplo, por un tiempo de espera agotado), la transacción pasa a `COMPENSATING`, el cliente recibe la respuesta de que la operación no se realizó y de que el reintegro está en proceso, y la compensación continúa de forma asíncrona por Kafka según el ADR-01. Al procesar el comando de compensación, Cuentas decide en una sola transacción de su base de datos usando las claves de idempotencia: si el crédito ya se había aplicado, responde `CREDITO_YA_APLICADO` y la transferencia se da por completada; si no, anula la clave del crédito, para que un crédito que llegue tarde sea rechazado, y reintegra el débito si existía (`REINTEGRADO`) o no hace nada si nunca se aplicó (`SIN_DEBITO`); en estos dos casos la transacción termina en `REVERSED`. Por último, un proceso periódico de Transacciones envía a compensación las transferencias que permanezcan en `PENDING` más de dos minutos, lo que cubre el caso en que el servicio se detenga entre el débito y el registro del resultado.
 
 = Vista física
 // #instruction[
@@ -764,7 +768,32 @@ Las transferencias entre cuentas propias y a terceros, correspondientes al caso 
 // ]
 
 #figure(
-  caption: "Diagrama de despliegue",
+  caption: "Diagrama de despliegue: ambiente de producción",
+  align(
+    center,
+    image(
+      "diagrams/deployment-produccion.png",
+      width: 100%,
+    ),
+  ),
+) <fig-deployment-prod>
+
+El diagrama de despliegue de producción (@fig-deployment-prod) ilustra la topología física del sistema sobre un clúster de Kubernetes bare-metal distribuido entre las seis máquinas físicas de los integrantes del equipo. El aprovisionamiento y la configuración del clúster se gestionan de manera automatizada mediante playbooks de Ansible (repositorio `infra`), que instalan el runtime de contenedores Containerd (con cgroup v2 en systemd) y los paquetes de Kubernetes (kubelet, kubeadm, kubectl), y que permiten reconstruir el clúster completo desde máquinas en blanco.
+
+El plano de control es de alta disponibilidad (ADR-06): tres máquinas (`salomon`, `miguel` y `sara`) ejecutan el API server, el controller manager, el scheduler y un miembro de etcd cada una, de modo que el clúster sigue operando aunque una de ellas se reinicie o se apague, ya que etcd conserva el quórum con dos de tres miembros. Las seis máquinas, incluidas las del plano de control, ejecutan cargas de trabajo. Ningún componente depende de la dirección de una máquina concreta: cada nodo ejecuta un balanceador HAProxy local (`127.0.0.1:16443`) que reparte las peticiones entre los tres API servers, y el endpoint del clúster es un nombre (`k8s-api.javerianos.local`) que cada nodo resuelve hacia su propio balanceador. Como las máquinas también se usan como estaciones de trabajo, el kubelet reserva recursos para el sistema operativo y realiza un apagado ordenado de los pods cuando la máquina se reinicia.
+
+La red del clúster la provee Cilium (ADR-06), que reemplaza tanto al plugin Flannel como a kube-proxy. Cilium enruta el tráfico entre pods mediante túneles VXLAN sobre el bloque CIDR `10.244.0.0/16`, necesarios porque las máquinas están en subredes distintas de la red de la universidad, y hace cumplir las NetworkPolicies, que Flannel no aplicaba. Su componente Hubble permite observar qué servicio llama a cuál. Las llamadas síncronas por gRPC se dirigen a un Service _headless_ de cada microservicio, de modo que el cliente conoce todas las réplicas y reparte las llamadas entre ellas (`round_robin`); además, el servidor cierra las conexiones cada 30 segundos para que el cliente descubra las réplicas nuevas que crea el autoescalado.
+
+En el perímetro, un controlador Ingress NGINX desplegado en todos los nodos expone los puertos HTTP/HTTPS, con certificados emitidos por cert-manager. Las rutas `/api/*` se entregan al API Gateway (`api-gateway`, puerto 3000), único punto de entrada hacia los microservicios, y el resto se entrega a la aplicación Web en Astro; Grafana y pgAdmin se publican bajo `/grafana` y `/pgadmin`. Cada microservicio se empaqueta en una imagen que GitHub Actions compila y publica en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`), y el despliegue de toda la flota se orquesta con Helm mediante el chart paraguas `charts/`javer-ia-nos``. Cada microservicio ejecuta un único proceso por pod y cuenta con un Horizontal Pod Autoscaler (HPA) que ajusta el número de réplicas entre una y tres según el consumo de CPU.
+
+La persistencia respeta el principio de base de datos dedicada por microservicio, y cada base es un clúster de PostgreSQL administrado por el operador CloudNativePG (ADR-07). Cada clúster tiene tres instancias, una primaria y dos réplicas, ubicadas obligatoriamente en máquinas distintas y cada una con su propio volumen local (`local-path-provisioner`). La replicación es síncrona: un `COMMIT` solo se confirma cuando al menos una réplica lo tiene, así que el apagado de la máquina primaria no pierde transacciones confirmadas. Los microservicios se conectan al Service `<servicio>-db-rw`, que siempre apunta a la primaria vigente; si la primaria falla, CloudNativePG promueve una réplica automáticamente. La mensajería asíncrona opera sobre un clúster de Apache Kafka administrado por el operador Strimzi, con tres nodos (controlador y broker) en máquinas distintas, factor de replicación 3 y un mínimo de dos réplicas sincronizadas por tópico, de modo que la caída de un broker no detiene la publicación de eventos ni las compensaciones SAGA.
+
+Las credenciales (contraseñas de bases de datos, `JWT_SECRET`, el token interno entre servicios y el token de GHCR) se versionan cifradas con Ansible Vault en el repositorio `infra` y se inyectan como Kubernetes Secrets, que a su vez se almacenan cifrados en etcd (cifrado en reposo con `aescbc`). El API server registra en una bitácora de auditoría todas las operaciones sobre el clúster.
+
+Los respaldos siguen una estrategia de tres copias en tres discos distintos (ADR-08). Un servidor MinIO, ejecutado en `salomon` fuera de Kubernetes, recibe el archivado continuo del WAL y un respaldo base diario de cada clúster de PostgreSQL, lo que permite recuperar cualquier base a un punto en el tiempo de los últimos siete días. También recibe un volcado lógico diario (`pg_dump`) de cada base y una instantánea de etcd cada seis horas. Una vez al día, los dos volcados más recientes de cada base y la última instantánea de etcd se copian cifrados a `/srv/respaldos` en `miguel` y `sara`. Prometheus alerta si cualquiera de estos respaldos supera las 26 horas de antigüedad.
+
+#figure(
+  caption: "Diagrama de despliegue: ambiente de desarrollo",
   align(
     center,
     image(
@@ -774,13 +803,7 @@ Las transferencias entre cuentas propias y a terceros, correspondientes al caso 
   ),
 ) <fig-deployment>
 
-El diagrama de despliegue (@fig-deployment) ilustra la topología física del ambiente de producción sobre un clúster de Kubernetes bare-metal distribuido entre las máquinas físicas de los integrantes del equipo. El aprovisionamiento y la configuración del clúster se gestionan de manera automatizada mediante playbooks de Ansible (repositorio `infra`), los cuales instalan el runtime de contenedores Containerd (con cgroup v2 en systemd), los paquetes de Kubernetes (kubelet, kubeadm, kubectl) y el plugin de red Flannel CNI sobre el bloque CIDR `10.244.0.0/16`.
-
-El plano de control (`salomon`) coordina la programación de cargas de trabajo hacia los nodos de trabajo (`miguel`, `arantxa`, `juliana`, `samuel` y `sara`). En el perímetro exterior del clúster, un controlador Ingress NGINX expone los puertos de entrada HTTP/HTTPS públicos, canalizando las solicitudes entrantes hacia el API Gateway (`api-gateway`) en el puerto 4860 para inspección de seguridad perimetral, o hacia el servidor de la aplicación Web en Astro.
-
-En la capa de aplicación, cada uno de los ocho microservicios se empaqueta en imágenes de Docker optimizadas que se compilan y publican automáticamente en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`) mediante pipelines de GitHub Actions. El despliegue de toda la flota se orquesta con Helm utilizando el chart paraguas `charts/`javer-ia-nos``, el cual parametriza variables de entorno, puertos y resolución interna de nombres DNS entre servicios. Para garantizar la elasticidad y disponibilidad del sistema ante picos de demanda transaccional, cada microservicio cuenta con un Horizontal Pod Autoscaler (HPA) que incrementa o reduce las réplicas de pods de acuerdo con el consumo de recursos de cómputo.
-
-La persistencia de datos se resuelve respetando el principio de base de datos dedicada por microservicio. Cada pod de PostgreSQL se enlaza a un PersistentVolumeClaim (PVC) backed por almacenamiento local mediante `local-path-provisioner`. La mensajería y el intercambio de eventos asíncronos de dominio, auditoría y notificaciones operan sobre un clúster de Apache Kafka administrado por el operador Strimzi en el namespace `kafka`. La gestión de credenciales, contraseñas de bases de datos y tokens de pull de GHCR se realiza de forma segura mediante Kubernetes Secrets, inyectados y cifrados mediante Ansible Vault.
+En el ambiente de desarrollo (@fig-deployment), cada integrante ejecuta en su máquina los microservicios con `bun dev`, cada uno con su propia base de datos PostgreSQL en Docker Compose, y los frontends con el servidor de desarrollo de Astro y Expo. Las llamadas síncronas entre servicios usan gRPC y los eventos usan Kafka igual que en producción; cuando no hay un broker disponible, los eventos quedan pendientes en la tabla _outbox_ de cada servicio hasta que se configure uno. Los sistemas externos se reemplazan por simuladores locales.
 
 = Vista de código
 
@@ -949,7 +972,7 @@ En Autenticación y Seguridad (@fig-er-auth-seguridad), el usuario es la raíz, 
 
 En CRM (@fig-er-crm), el cliente centraliza los datos y se relaciona con su dirección, la interacción que agrupa los mensajes de chat por canal, la solicitud de servicio para las PQRS, la disputa para las reclamaciones y la segmentación de campañas. El mensaje de chat se incorporó recientemente para soportar el historial de chat de atención.
 
-En Cuentas (@fig-er-cuentas), la cuenta, tipada por su tipo de cuenta, es dueña de la subcuenta, la meta de ahorro, el titular de cuenta para las cuentas conjuntas y corporativas, y la programación de ahorro automático, que referencia opcionalmente una subcuenta o una meta de ahorro como destino. El beneficiario agrupa los contactos frecuentes de transferencia de cada usuario (CU-03), con alias único por usuario. El movimiento de cuenta registra cada débito, crédito o reintegro con una clave de idempotencia única, de modo que un reintento o un mensaje repetido nunca aplica dos veces el mismo movimiento, y el evento de _outbox_ guarda los eventos pendientes de publicar en Kafka.
+En Cuentas (@fig-er-cuentas), la cuenta, tipada por su tipo de cuenta, es dueña de la subcuenta, la meta de ahorro, el titular de cuenta para las cuentas conjuntas y corporativas, y la programación de ahorro automático, que referencia opcionalmente una subcuenta o una meta de ahorro como destino. El beneficiario agrupa los contactos frecuentes de transferencia de cada usuario (CU-03), con alias único por usuario. El movimiento de cuenta registra cada débito, crédito o reintegro con una clave de idempotencia única, de modo que un reintento o un mensaje repetido nunca aplica dos veces el mismo movimiento; su estado distingue los movimientos aplicados (`APPLIED`) de las claves anuladas por una compensación (`VOIDED`), que impiden aplicar un crédito que llegue tarde, y el evento de _outbox_ guarda los eventos pendientes de publicar en Kafka.
 
 En Financiero (@fig-er-financiero), conviven tres líneas de producto independientes bajo un mismo usuario: el préstamo con su plan de cuotas, el CDT y la inversión, además de la tasa de interés como catálogo de tasas vigentes por tipo de producto.
 
@@ -957,7 +980,7 @@ En Notificaciones (@fig-er-notificaciones), la plantilla y el canal de notificac
 
 En Tarjetas (@fig-er-tarjetas), la tarjeta, catalogada por su producto y su estado, es dueña del límite de tarjeta y del avance de efectivo, con el procesador de tarjeta externo como referencia a la red de pagos.
 
-En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, especializada según el tipo de operación en transferencia, pago con código QR, pago de factura o referencia a la pasarela externa; el pago programado modela los pagos automáticos recurrentes de forma independiente, antes de materializarse como una transacción. El estado de la transacción recorre `PENDING`, `COMPLETED`, `COMPENSATING`, `REVERSED` y `FAILED` según el ADR-01, y el evento de _outbox_ guarda, en la misma transacción de base de datos que cada cambio de estado, los eventos pendientes de publicar en Kafka.
+En Transacciones (@fig-er-transacciones), la transacción es la tabla raíz, especializada según el tipo de operación en transferencia, pago con código QR, pago de factura o referencia a la pasarela externa; el pago programado modela los pagos automáticos recurrentes de forma independiente, antes de materializarse como una transacción. El estado de la transacción recorre `PENDING`, `COMPLETED`, `COMPENSATING`, `REVERSED` y `FAILED` según el ADR-01, y el evento de _outbox_ guarda, en la misma transacción de base de datos que cada cambio de estado, los eventos pendientes de publicar en Kafka, con su clave de partición (que preserva el orden de los eventos de una misma cuenta) y el número de intentos y el último error de publicación, que el _relay_ actualiza mientras el broker no esté disponible.
 
 = Registros de Decisiones Arquitectónicas (ADR)
 // #instruction[
@@ -976,7 +999,7 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 
 - *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
 - *Problema:* Las transferencias entre cuentas bancarias, pagos interbancarios ACH y transacciones internacionales involucran múltiples microservicios independientes (`ms-transacciones`, `ms-cuentas` y pasarelas externas). Emplear un protocolo de bloqueo distribuido tradicional de dos fases (2PC / Two-Phase Commit) bloquearía tablas de base de datos a través de la red, degradando severamente el rendimiento, generando contención de recursos y creando puntos de falla en cascada si un nodo se desconecta.
-- *Solución:* Se adoptó el patrón *SAGA Orquestado* liderado por el microservicio `ms-transacciones`. Al solicitarse una transferencia o pago, la transacción se persiste inicialmente en estado `PENDING` y se solicita a `ms-cuentas` (vía gRPC) la retención o débito preventivo del saldo. Luego se intenta la operación en el servicio o entidad de destino (como se ilustra en @fig-proc-transferencias-internacionales-nacionales y @fig-proc-transferencias-propias-terceros). Si cualquier paso falla de manera definitiva (ej. banco destino inaccesible o fondos no recibidos), el orquestador marca la transacción como `COMPENSATING` y publica, mediante el patrón _transactional outbox_, el comando `cuentas.compensar-debito` en Kafka (particionado por cuenta origen), respondiendo al cliente que la operación no se realizó y que el reintegro está en proceso. Cuentas consume el comando de forma idempotente por identificador de transacción, reintegra el monto y publica `cuentas.debito-compensado`; al consumirlo, el orquestador marca la transacción como `REVERSED` y publica el evento de auditoría correspondiente (p. ej. `FALLO_TRANSFERENCIA_COMPENSADA`). Si el reintegro agota sus reintentos, el comando pasa a la cola de mensajes fallidos `saga.compensacion-fallida`, la transacción queda en estado `FAILED` y Auditoría alerta para su reconciliación manual. Así la compensación sobrevive a caídas de los microservicios sin depender de que la petición HTTP original siga activa.
+- *Solución:* Se adoptó el patrón *SAGA Orquestado* liderado por el microservicio `ms-transacciones`. Al solicitarse una transferencia o pago, la transacción se persiste inicialmente en estado `PENDING` y se solicita a `ms-cuentas` (vía gRPC) la retención o débito preventivo del saldo. Luego se intenta la operación en el servicio o entidad de destino (como se ilustra en @fig-proc-transferencias-internacionales-nacionales y @fig-proc-transferencias-propias-terceros). Si cualquier paso falla de manera definitiva (ej. banco destino inaccesible o fondos no recibidos), el orquestador marca la transacción como `COMPENSATING` y publica, mediante el patrón _transactional outbox_, el comando `cuentas.compensar-debito` en Kafka (particionado por cuenta origen), respondiendo al cliente que la operación no se realizó y que el reintegro está en proceso. Cuentas consume el comando de forma idempotente por identificador de transacción, reintegra el monto y publica `cuentas.debito-compensado`; al consumirlo, el orquestador marca la transacción como `REVERSED` y publica el evento de auditoría correspondiente (p. ej. `FALLO_TRANSFERENCIA_COMPENSADA`). Si al compensar Cuentas encuentra que el crédito sí se había aplicado (resultado `CREDITO_YA_APLICADO`), no reintegra nada y el orquestador marca la transacción como `COMPLETED`, porque la transferencia sí ocurrió. Si el reintegro agota sus reintentos, el comando pasa a la cola de mensajes fallidos `saga.compensacion-fallida`, la transacción queda en estado `FAILED` y Auditoría alerta para su reconciliación manual. Así la compensación sobrevive a caídas de los microservicios sin depender de que la petición HTTP original siga activa.
 - *Consecuencias Positivas:* Garantiza alta disponibilidad transaccional, elimina los bloqueos de base de datos entre microservicios y permite tolerar fallos transitorios en redes externas mediante reintentos exponenciales.
 - *Consecuencias Negativas / Trade-offs:* Requiere diseñar e implementar explícitamente la lógica y endpoints de compensación para cada tipo de transacción y aceptar un modelo de consistencia eventual durante la ventana de tiempo en que la compensación surte efecto.
 
@@ -993,8 +1016,8 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *ID ASR:* ASR-03 (Seguridad y Protección contra Fraude - Confidencialidad e Integridad).
 - *Problema:* En una arquitectura de ocho microservicios, si cada solicitud requiere que el microservicio downstream consulte síncronamente al microservicio `ms-seguridad` para validar el token y sesión del usuario, se genera un cuello de botella crítico, multiplicando la latencia de red interna y convirtiendo a `ms-seguridad` en un punto único de falla (SPOF).
 - *Solución:* Se estableció un esquema de seguridad defensivo en dos capas:
-  + *Borde Perimetral (API Gateway):* El gateway recibe la petición externa, valida la presencia y estructura del token Bearer, consulta el estado de sesión activa en `ms-seguridad` y enruta al microservicio de destino inyectando cabeceras de contexto (`x-user-id`, `x-user-role`, `x-request-id`).
-  + *Verificación Criptográfica Local (Microservicios Core):* Cada microservicio downstream verifica de forma autónoma e instantánea la firma criptográfica del JWT (algoritmo HMAC-SHA256) utilizando la clave simétrica maestra compartida (`JWT_SECRET`), inyectada de forma segura mediante un Kubernetes Secret.
+  + *Borde Perimetral (API Gateway):* El gateway recibe la petición externa, valida la presencia y estructura del token Bearer, consulta el estado de la sesión activa en `ms-seguridad` y enruta al microservicio de destino propagando solo cabeceras de trazabilidad (`x-request-id`, `x-correlation-id`). El gateway *no* comunica la identidad del usuario mediante cabeceras: elimina de la petición cualquier cabecera de identidad o de uso interno que envíe el cliente (`x-user-id`, `x-usuario-id`, `x-internal-token`), porque un microservicio que confiara en ellas permitiría suplantar a otro usuario. Además, nunca enruta hacia los endpoints internos de movimiento de saldo de Cuentas.
+  + *Verificación Criptográfica Local (Microservicios Core):* Cada microservicio downstream verifica de forma autónoma e instantánea la firma criptográfica del JWT (algoritmo HMAC-SHA256) utilizando la clave simétrica maestra compartida (`JWT_SECRET`), inyectada de forma segura mediante un Kubernetes Secret. Solo acepta el algoritmo `HS256`, rechaza tokens expirados y toma la identidad del usuario exclusivamente del _claim_ `sub` del token verificado.
 - *Consecuencias Positivas:* La validación criptográfica en cada microservicio toma menos de 0.05 ms por petición y se elimina el 100% del tráfico de red inter-servicio para chequeo de tokens, desacoplando los servicios de la disponibilidad inmediata de `ms-seguridad`.
 - *Consecuencias Negativas / Trade-offs:* Exige sincronizar de forma rigurosa la variable `JWT_SECRET` entre todos los deployments de Kubernetes mediante Ansible Vault y no permite invalidar un token de forma atómica en downstream antes de su tiempo de expiración (salvo por consulta explícita de lista negra en eventos críticos).
 
@@ -1013,6 +1036,30 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Solución:* Se creó el paquete centralizado `@javer-ia-nos/ui-shared`, publicado en el registro de GitHub Packages mediante integración continua. Esta librería desacopla hooks headless de estado y consumo de APIs (`useTransferencia`, `useSesion`, `useInicioCuentas`, `useLimites`) de las primitivas de renderizado visual, permitiendo que tanto la Web como el Móvil compartan la misma lógica de negocio y componentes adaptables a través de componentes compatibles con React Native Web.
 - *Consecuencias Positivas:* Máxima modificabilidad: cualquier cambio en las reglas de validación o en los endpoints de backend se actualiza en un único lugar (`ui-shared`) y se propaga automáticamente a ambas aplicaciones clientes.
 - *Consecuencias Negativas / Trade-offs:* Requiere mantener un ciclo de versionado y publicación de paquetes mediante CI/CD antes de que los cambios estén disponibles en los repositorios cliente (`web` y `mobile`).
+
+== ADR-06: Plano de Control en Alta Disponibilidad y Red con Cilium
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
+- *Problema:* El clúster tenía un único plano de control en una máquina que también es estación de trabajo de un integrante y que se reinicia. Mientras esa máquina está apagada, Kubernetes no puede reprogramar pods ni ejecutar el _failover_ de las bases de datos, así que la caída de cualquier otro nodo en ese intervalo deja servicios fuera de línea. Además, todos los nodos apuntaban a la dirección IP de esa máquina, y el plugin de red Flannel no hace cumplir NetworkPolicies, por lo que cualquier pod podía llamar directamente a los endpoints internos de Cuentas sin pasar por el API Gateway.
+- *Solución:* El plano de control se ejecuta en tres máquinas (`salomon`, `miguel` y `sara`) con etcd apilado, que también ejecutan cargas de trabajo. El endpoint del clúster es un nombre que cada nodo resuelve hacia un HAProxy local, que reparte las peticiones entre los tres API servers, sin depender de una IP virtual que la red de la universidad no permite administrar. El plugin de red Flannel y kube-proxy se reemplazan por Cilium, que aplica NetworkPolicies a nivel de red y de aplicación (HTTP y gRPC), reparte por petición el tráfico gRPC y ofrece observabilidad del tráfico entre servicios con Hubble.
+- *Consecuencias Positivas:* El clúster tolera la pérdida de cualquier máquina sin perder la API de Kubernetes. Se pueden restringir por red qué servicios llaman a cuáles, como defensa en profundidad del API Gateway y del token interno de servicio. Desaparecen las alertas falsas de monitoreo del plano de control y de kube-proxy.
+- *Consecuencias Negativas / Trade-offs:* etcd exige mayoría: si dos de las tres máquinas del plano de control se apagan a la vez, el clúster queda sin API. etcd comparte disco y CPU con el escritorio de esas máquinas, por lo que se le reservan recursos. Cilium consume más memoria por nodo que Flannel (del orden de 300 a 500 MiB) y es más complejo de operar. Adoptarlo exige reconstruir el clúster.
+
+== ADR-07: PostgreSQL Replicado con CloudNativePG y Replicación Síncrona
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
+- *Problema:* Cada microservicio tenía una única instancia de PostgreSQL en un volumen local amarrado a una máquina. Si esa máquina se apaga, la base de datos queda fuera de línea hasta que vuelva, y si su disco falla se pierden los datos posteriores al último respaldo. Una replicación asíncrona no basta en un sistema bancario: si la primaria falla justo después de confirmar una transferencia, esa transacción confirmada al cliente puede perderse.
+- *Solución:* Cada base de datos es un clúster de PostgreSQL administrado por el operador CloudNativePG, con tres instancias (una primaria y dos réplicas) ubicadas obligatoriamente en máquinas distintas. La replicación es síncrona y exige que al menos una réplica confirme cada `COMMIT`. Si ninguna réplica está disponible, las escrituras se bloquean en lugar de continuar con una sola copia. Los microservicios se conectan siempre al Service `<servicio>-db-rw`, que apunta a la primaria vigente, y el operador promueve una réplica automáticamente cuando la primaria falla.
+- *Consecuencias Positivas:* Ninguna transacción confirmada se pierde ante la caída de una máquina (RPO igual a cero). El _failover_ es automático y la aplicación no necesita conocer la topología. La pérdida de una réplica no tiene efecto visible.
+- *Consecuencias Negativas / Trade-offs:* Cada `COMMIT` espera la confirmación de una réplica, lo que agrega algunos milisegundos de latencia. Un apagado brusco de la primaria deja la base sin escrituras entre 30 y 60 segundos mientras se detecta la falla y se promueve una réplica, y las operaciones en curso en ese intervalo fallan y deben resolverse con la SAGA. Si las dos réplicas caen a la vez, se bloquean las escrituras. Con volúmenes locales, si una máquina se pierde para siempre, su instancia debe recrearse manualmente en otro nodo.
+
+== ADR-08: Estrategia de Respaldos con Tres Copias en Tres Discos
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional) y ASR-06 (Testabilidad y Auditoría del Sistema).
+- *Problema:* Los respaldos diarios de cada base se guardaban en volúmenes del mismo clúster, en algunos casos en la misma máquina que los datos. El procedimiento de reconstrucción del clúster borra esos volúmenes, y no existía respaldo del estado del propio clúster (etcd). Un respaldo que nunca se ha restaurado, o cuyo fallo nadie detecta, no garantiza la recuperación.
+- *Solución:* Un servidor MinIO, ejecutado en `salomon` fuera de Kubernetes, recibe el archivado continuo del WAL y un respaldo base diario de cada clúster de PostgreSQL (recuperación a un punto en el tiempo durante siete días), un volcado lógico diario por base y una instantánea de etcd cada seis horas. Una vez al día, los dos volcados más recientes de cada base y la última instantánea de etcd se copian cifrados a `miguel` y `sara`, en un directorio que el procedimiento de reconstrucción no toca. Todas las claves de cifrado y credenciales se guardan en Ansible Vault, y Prometheus alerta si cualquier respaldo no se actualiza a tiempo.
+- *Consecuencias Positivas:* Hay tres copias en tres discos distintos, y la pérdida de cualquier máquina o la reconstrucción del clúster no pierden datos. Se puede recuperar una base al estado de un instante concreto, por ejemplo justo antes de un error de la aplicación.
+- *Consecuencias Negativas / Trade-offs:* Todas las copias están en el mismo laboratorio, así que un evento que afecte a todo el sitio (corte eléctrico prolongado, robo o incendio) las perdería todas; el equipo aceptó este riesgo al descartar el almacenamiento en la nube. La recuperación depende de la contraseña de Ansible Vault, que debe guardarse fuera de las máquinas del clúster. Un error detectado después de siete días no se puede recuperar.
 
 = Riesgos técnicos
 // #instruction[
@@ -1034,15 +1081,15 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Media],
   [Alto],
   [Alta],
-  [Despliegue de clúster Kafka Strimzi con factor de replicación mayor a 1, healthchecks automatizados y monitoreo continuo de recursos en Kubernetes.],
-  [Activación de buffer local en memoria y cola de persistencia temporal en disco en cada microservicio emisor para reenviar los eventos pendientes una vez restablecido el broker, garantizando que ninguna transacción bancaria se bloquee.],
+  [Clúster Kafka Strimzi con tres brokers en máquinas distintas, factor de replicación 3 y mínimo de dos réplicas sincronizadas por tópico, healthchecks automatizados y monitoreo continuo en Kubernetes.],
+  [Cada microservicio emisor escribe sus eventos en una tabla _outbox_ dentro de la misma transacción que el cambio de negocio; mientras el broker no está disponible los eventos quedan pendientes en la base de datos y el _relay_ los publica cuando el broker se restablece, sin bloquear ninguna transacción bancaria ni perder eventos.],
 
   [Desconexión o latencia entre nodos bare-metal],
   [Alta],
   [Alto],
   [Alta],
-  [Ajuste de ventanas de tolerancia en kubelet (node-monitor-grace-period) y Flannel CNI, junto con afinidad de nodos para ubicar pods críticos (Cuentas y Transacciones) en máquinas con IP fija.],
-  [Evicción automática de pods (Pod Eviction) y reprogramación transparente de réplicas en nodos de trabajo sobrevivientes mediante los Deployments de Kubernetes.],
+  [Plano de control en tres máquinas (ADR-06), red con Cilium, apagado ordenado del kubelet en las máquinas que se reinician, y bases de datos y brokers de Kafka con réplicas obligatoriamente en máquinas distintas (ADR-07).],
+  [Reprogramación automática de los pods en los nodos sobrevivientes, promoción automática de una réplica de PostgreSQL por CloudNativePG y elección de un nuevo líder de partición en Kafka; las transferencias en curso se resuelven mediante la SAGA (ADR-01).],
 
   [Fallo de compensación en transacciones SAGA],
   [Baja],
@@ -1057,6 +1104,34 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Media],
   [Indexación eficiente sobre identificadores de transacción y usuario, y definición de políticas de retención y particionamiento mensual en PostgreSQL.],
   [Ejecución automatizada de exportaciones periódicas hacia almacenamiento secundario conforme al caso de uso de exportación a entes reguladores.],
+
+  [Pérdida de quórum de etcd (dos de las tres máquinas del plano de control apagadas a la vez)],
+  [Baja],
+  [Alto],
+  [Media],
+  [Elegir para el plano de control máquinas que permanecen encendidas, reservar recursos del sistema para etcd y alertar en Prometheus cuando un miembro de etcd no responde.],
+  [Encender una de las máquinas para recuperar el quórum; si no es posible, restaurar el clúster desde la última instantánea de etcd (ADR-08). Las aplicaciones siguen atendiendo mientras tanto, pero sin reprogramación ni _failover_.],
+
+  [Desastre en el sitio (corte eléctrico prolongado, robo o incendio en el laboratorio)],
+  [Baja],
+  [Crítico],
+  [Media],
+  [Tres copias de los respaldos en tres discos distintos (ADR-08); revisión periódica de que las copias se restauran correctamente.],
+  [Riesgo aceptado por el equipo: al estar todas las copias en el mismo sitio, la recuperación depende de que sobreviva al menos una máquina. Reconsiderar una copia cifrada fuera del sitio si el sistema pasa a manejar datos reales.],
+
+  [Pérdida de la contraseña de Ansible Vault],
+  [Baja],
+  [Crítico],
+  [Media],
+  [Guardar la contraseña en un gestor de contraseñas fuera de las máquinas del clúster y probar periódicamente una recuperación desde otra máquina.],
+  [Sin la contraseña no se pueden descifrar los respaldos ni reconstruir los Secrets: se deben regenerar todas las credenciales y se pierden los respaldos cifrados.],
+
+  [Librería `kafkajs` sin mantenimiento activo (sin versiones nuevas desde 2023)],
+  [Media],
+  [Medio],
+  [Media],
+  [Fijar la versión, aislar su uso en un único módulo por servicio (publicación del _relay_ y consumidores) y cubrirlo con pruebas.],
+  [Reemplazar el módulo por otro cliente de Kafka compatible con Bun sin modificar los casos de uso, ya que solo el _relay_ y los consumidores dependen de la librería.],
 )
 #set text(size: 11pt)
 

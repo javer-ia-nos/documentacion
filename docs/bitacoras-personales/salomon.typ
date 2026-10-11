@@ -1093,10 +1093,10 @@ reintroducir el comportamiento inestable observado.
 
 === Iteración 30: Alineación del diseño de CU-30 con la implementación y endurecimiento de seguridad del flujo
 
-*Fecha y hora:* 7 de octubre de 2026 (hora no registrada) \
+*Fecha y hora:* 7 de octubre de 2026, 17:53 \
 *Personas involucradas:* Salomón Alfredo Ávila Larrotta \
 *Tipo de entrada:* Corrección + Decisión de diseño + Diagrama / Modelado \
-*Commit:* pendiente \
+*Commit:* #link(commit_url + "e47de9c31f0b4e68fa364cfd734547bf79796a07", [e47de9c · «fix de diagramas»]) \
 *Archivos:*
 #link(git_base_url + "/docs/arch-description.typ", [arch-description.typ]),
 #link(git_base_url + "/docs/dev.typ", [dev.typ]),
@@ -1198,10 +1198,10 @@ nuevo diagrama exige y que hoy faltan o se pueden saltar:
 
 === Iteración 31: Revisión de la infraestructura y diseño de alta disponibilidad, respaldos y detalle de CU-30
 
-*Fecha y hora:* 7 de octubre de 2026 (hora no registrada) \
+*Fecha y hora:* 7 de octubre de 2026, 23:08 \
 *Personas involucradas:* Salomón Alfredo Ávila Larrotta \
 *Tipo de entrada:* Revisión + Decisión de diseño + Diagrama / Modelado \
-*Commit:* pendiente \
+*Commit:* #link(commit_url + "29f912ac7eb7466c252c4684c812a775fafde322", [29f912a · «fix de arquitectura»]) \
 *Archivos:*
 #link(git_base_url + "/docs/arch-description.typ", [arch-description.typ]),
 #link(git_base_url + "/docs/dev.typ", [dev.typ]),

@@ -127,7 +127,7 @@ Para detallar todo esto, el documento presenta primero una visión general de lo
 
 = Visión general de los requisitos funcionales
 
-A continuación se detallan los 31 casos de uso funcionales del sistema bancario, estructurados de forma modular y con identificadores únicos, desglosando componentes clave como cuentas, tarjetas, canales de atención y seguridad:
+A continuación se detallan los 36 casos de uso funcionales del sistema bancario, estructurados de forma modular y con identificadores únicos, desglosando componentes clave como cuentas, tarjetas, canales de atención, seguridad y administración operativa:
 
 #set text(size: 7pt)
 #table(
@@ -150,7 +150,7 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [*Gestión de beneficiarios*],
   [Registro, actualización y administración de contactos frecuentes para transferencias.],
   [Cuentas],
-  [Miguel Francisco Vargas],
+  [Juliana Sofia Novoa Solano],
 
   [CU-04],
   [*Gestión de solicitudes PQRS*],
@@ -270,7 +270,7 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [*Realización de avances de tarjeta de crédito*],
   [Desembolso de efectivo a partir del cupo de la tarjeta de crédito.],
   [Tarjetas],
-  [Sara Rodríguez Urueña],
+  [Miguel Francisco Vargas],
 
   [CU-24],
   [*Administración de pagos automáticos*],
@@ -319,6 +319,25 @@ A continuación se detallan los 31 casos de uso funcionales del sistema bancario
   [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o creditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
   [Transacciones],
   [Samuel Beltrán Martínez],
+
+  [CU-32],
+  [*Conmutación y cambio dinámico de rol de usuario*],
+  [Permite a usuarios autenticados con múltiples perfiles (ej. cliente regular y funcionario bancario o administrador) alternar de forma inmediata entre el entorno personal de banca digital (cuentas, tarjetas y ahorros propios) y la consola de administración bancaria mediante conmutación de contexto de sesión en ms-seguridad, emitiendo un token actualizado sin requerir reautenticación completa.],
+  [Seguridad],
+  [Miguel Francisco Vargas],
+
+  [CU-33],
+  [*Evaluación y aprobación de solicitudes de tarjetas de crédito*],
+  [Bandeja administrativa para la revisión, consulta de capacidad de endeudamiento o score y resolución formal (aprobación, rechazo motivado o ajuste de cupo inicial) de solicitudes de emisión de tarjetas de crédito radicadas por los clientes, con registro de trazabilidad y auditoría del funcionario evaluador.],
+  [Administración],
+  [Samuel Beltrán Martínez],
+
+  [CU-34],
+  [*Gestión de solicitudes de incremento de cupo crediticio*],
+  [Revisión y dictamen administrativo de peticiones radicadas por titulares para aumentar el cupo de sus tarjetas de crédito activas, analizando historial de pagos, aplicando el nuevo cupo en el sistema o registrando la causal de rechazo.],
+  [Administración],
+  [Arantxa Marian Espejo Malagon],
+
 )
 
 #set text(size: 7pt)
@@ -484,7 +503,7 @@ El modelo de dominio define los conceptos centrales, entidades de negocio y rela
   [Seguridad y Protección contra Fraude],
   [Security],
   [Confidencialidad e Integridad],
-  [CU-01, CU-02, CU-15, CU-18, CU-19, CU-26],
+  [CU-01, CU-02, CU-15, CU-18, CU-19, CU-26, CU-32, CU-35],
   [Un usuario no autorizado intenta acceder a la plataforma o vulnerar los controles de roles y doble factor; el sistema debe bloquear el acceso de forma inmediata y registrar el evento en auditoría.],
   [Alta],
   [Arantxa Marian Espejo Malagon],
@@ -502,7 +521,7 @@ El modelo de dominio define los conceptos centrales, entidades de negocio y rela
   [Modificabilidad y Gestión de Productos],
   [Modifiability],
   [Extensibilidad],
-  [CU-04, CU-05, CU-06, CU-07, CU-08, CU-12, CU-13, CU-21, CU-22],
+  [CU-04, CU-05, CU-06, CU-07, CU-08, CU-12, CU-13, CU-21, CU-22, CU-33, CU-34, CU-36],
   [Ante el lanzamiento de una nueva regulación o tipo de producto financiero (crédito, ahorro, CDT, préstamos o tarjetas), los desarrolladores deben poder modificar o añadir la lógica del producto sin alterar los módulos transaccionales centrales.],
   [Media],
   [Juliana Sofia Novoa Solano],
@@ -867,7 +886,7 @@ Los cuatro diagramas de frontend de Financiero y Pagos, tanto en Móvil como en 
 //   Diagrama de navegación de las aplicaciones cliente (web/móvil), mostrando las pantallas y los flujos entre ellas.
 // ]
 
-El grafo de navegación (@fig-navigation) parte de las pantallas de registro, inicio de sesión y recuperación de contraseña, que confluyen en la pantalla principal tras autenticarse. Desde ahí, un menú principal despliega ocho módulos: Auditoría, CRM y Atención al Cliente, Cuentas, Financiero, Notificaciones, Seguridad, Tarjetas y Transacciones, cada uno con su propia jerarquía de pantallas hijas. Las flechas sólidas representan la navegación directa desde el menú, mientras que las punteadas representan la navegación cruzada entre módulos, lo que evidencia que varias pantallas, como los comprobantes de pago o el detalle de intereses, son compartidas por más de un caso de uso.
+El grafo de navegación (@fig-navigation) parte de las pantallas de registro, inicio de sesión y recuperación de contraseña, que confluyen en la pantalla principal tras autenticarse. Desde ahí, un menú principal despliega ocho módulos: Auditoría, CRM y Atención al Cliente, Cuentas, Financiero, Notificaciones, Seguridad, Tarjetas y Transacciones, cada uno con su propia jerarquía de pantallas hijas. Las flechas sólidas representan la navegación directa desde el menú, mientras que las punteadas representan la navegación cruzada entre módulos, lo que evidencia que varias pantallas, como los comprobantes de pago o el detalle de intereses, son compartidas por más de un caso de uso. Asimismo, para los usuarios con roles elevados de funcionario bancario o administrador (CU-32), la aplicación integra el acceso al portal administrativo (/admin), que incorpora la gestión y dictamen de solicitudes de tarjetas de crédito (CU-33), incremento de cupo (CU-34), bloqueo y desbloqueo preventivo de tarjetas (CU-35) y la parametrización de productos del banco (CU-36).
 
 = Modelo de datos
 

@@ -46,5 +46,9 @@
   [11],
   [Realice la primera iteración del caso de uso #06 (Cuentas Corrientes)],
   [2026-10-13],
-  [Primera iteración en el código del caso de uso #06], 
+  [Primera iteración en el código del caso de uso #06],
+  [12],
+  [Realice la primera iteración del caso de uso #03 (Gestión de beneficiarios)],
+  [2026-10-13],
+  [Primera iteración en el código del caso de uso #03], 
 )

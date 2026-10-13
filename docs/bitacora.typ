@@ -207,6 +207,42 @@
     - Preparación para sustentación.
   ],
   [Todos],
+
+  [11],
+  [Reglas],
+  [07-10-2026],
+  [
+    Se define una serie de reglas a cumplir para la entrega final del proyecto de arquitectura de software. Comprende las semanas desde la 9 hasta la ultima de clase.
+
+    Todos los integrantes aceptan por unanicidad.
+
+    En general es cada semana realizar al menos un CU y exponerlo el lunes siguiente en una reunión. 8PM lunes.
+  ],
+  [Todos],
+
+  [12],
+  [Repos],
+  [08-10-2026],
+  [Se define con el profesor modificaciones importantes en los servicios. Se elimina ms-cuentas y ms-transacciones para crear un nuevo ms-core. Se elimina ui-shared y mobile para reducir un poco el alcance del proyecto sin afectar partes importantes del sistema.],
+  [Todos],
+
+  [13],
+  [Reunión],
+  [12-10-2026],
+  [
+    Se revisa que cada persona tenga el entorno de trabajo funcional.
+
+    Samuel queda pendiente de revisión para el día siguiente, 13 de octubre.
+
+    Se empieza oficialmente el desarrollo del primer sprint. De todas formas Miguel, Salomón, Arantxa y Juliana ya han empezado sus casos.
+  ],
+  [
+    - Miguel Francisco Vargas
+    - Arantxa Marian Espejo Malagon
+    - Juliana Sofia Novoa Solano
+    - Sara Rodriguez Urueña
+    - Samuel Beltrán Martínez
+  ]
 )
 
 = Bitacoras personales

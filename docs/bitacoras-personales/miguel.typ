@@ -118,4 +118,34 @@
   [Revisión y actualización de textos y guías de documentación arquitectónica en Typst, auditoría del repositorio y preparación de entregables para sustentación.],
   [2026-09-22],
   [Documentación y auditoría],
+
+  [22],
+  [Reestructuración arquitectónica mayor para la entrega final (v2): creación del repositorio unificado `ms-core` (PostgreSQL, Dockerfile y scripts de migración), incorporación de la rama `v2` en todos los repositorios, y actualización de dependencias reproducibles con `bun.lock`.],
+  [2026-10-08],
+  [Arquitectura e infraestructura],
+
+  [23],
+  [Actualización de asignación formal de casos de uso en `arch-description.typ` (asumiendo CU-15, CU-16, CU-21, CU-23 y cediendo CU-03, CU-09, CU-25). Desarrollo del Splash Screen animado y sistema de notificaciones/toasts flotantes en el frontend web.],
+  [2026-10-08],
+  [Casos de uso y frontend],
+
+  [24],
+  [Implementación completa del backend de autenticación en `ms-seguridad` (CU-15): registro con hashing seguro, inicio de sesión con JWT firmado (15 min), cierre de sesión con revocación de tokens en BD y endpoint de perfil `/me`.],
+  [2026-10-09],
+  [Seguridad y backend],
+
+  [25],
+  [Implementación del API Gateway v2 con seguridad perimetral: validación de tokens JWT en `/auth/validar` contra `ms-seguridad`, enrutamiento gRPC hacia `ms-core` para operaciones críticas, proxy inverso HTTP hacia microservicios y eliminación de cabeceras de suplantación de identidad.],
+  [2026-10-11],
+  [API Gateway y seguridad],
+
+  [26],
+  [Estandarización transversal de CI en microservicios mediante GitHub Actions con PostgreSQL y precarga de `seed.sql`. Implementación del frontend de autenticación (CU-15) en Astro/React y suite de pruebas E2E automatizadas con `Bun.WebView` y Chrome DevTools Protocol (CDP) en `integracion`.],
+  [2026-10-11],
+  [Pruebas E2E y CI],
+
+  [27],
+  [Implementación completa del módulo de Gestión de Tarjetas (CU-21 y CU-23): endpoints de emisión, consulta, estados y borrado lógico en `ms-tarjetas`, componente reactivo `CardsManager.tsx` y vista de tarjetas en frontend web. Formalización de casos de uso administrativos CU-32 a CU-36 en la documentación arquitectónica.],
+  [2026-10-12],
+  [Backend, frontend y arquitectura],
 )

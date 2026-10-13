@@ -43,4 +43,8 @@
   [Realice la presentación final del proyecto],
   [2026-09-22],
   [Diapositivas presentación final], 
+  [11],
+  [Realice la primera iteración del caso de uso #06 (Cuentas Corrientes)],
+  [2026-10-13],
+  [Primera iteración en el código del caso de uso #06], 
 )

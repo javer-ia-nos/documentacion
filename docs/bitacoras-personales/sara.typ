@@ -58,4 +58,14 @@
   [2026-09-22],
   [Diagrama],
 
+  [12],
+  [Se actualizaron todos los archivos y se descargó la BD],
+  [2026-10-11],
+  [Descargas],
+
+  [13],
+  [Se realizó el CU-14. Backend, frontend y BD],
+  [2026-10-15],
+  [Casos de uso],
+
 )

@@ -68,4 +68,9 @@
   [2026-10-15],
   [Casos de uso],
 
+  [14],
+  [Se realizó el CU-20. Backend, frontend y BD],
+  [2026-10-15],
+  [Casos de uso],
+
 )

@@ -148,4 +148,29 @@
   [Implementación completa del módulo de Gestión de Tarjetas (CU-21 y CU-23): endpoints de emisión, consulta, estados y borrado lógico en `ms-tarjetas`, componente reactivo `CardsManager.tsx` y vista de tarjetas en frontend web. Formalización de casos de uso administrativos CU-32 a CU-36 en la documentación arquitectónica.],
   [2026-10-12],
   [Backend, frontend y arquitectura],
+
+  [28],
+  [Asociación obligatoria de tarjetas débito a cuentas bancarias existentes en `ms-tarjetas` y `CardsManager.tsx`. Estandarización institucional del nombre del banco en `infra`, `ms-core`, `integracion` y `web`. Corrección y estabilización de pruebas E2E para el flujo de bienvenida (`/welcome`) y ajustes de paleta y limpieza en frontend.],
+  [2026-10-13],
+  [Backend, frontend y pruebas],
+
+  [29],
+  [Incorporación transversal del campo de nombre completo (`nombre_completo`): actualización de esquema relacional y seed en `ms-seguridad`, soporte en endpoints y pruebas unitarias de autenticación, adaptación de formularios de registro y visualización en perfil y bienvenida en el frontend web (`AuthForm.tsx`, `profile.astro`, `home.astro`), y actualización de helpers de integración E2E.],
+  [2026-10-14],
+  [Seguridad, backend y frontend],
+
+  [30],
+  [Implementación completa del módulo de consulta de movimientos de cuentas bancarias: servicio, endpoints con soporte de filtros y paginación en `ms-core`, y desarrollo de su suite de pruebas unitarias (`cuentas-movimientos.test.ts`). En frontend web, desarrollo del carrusel de cuentas (`AccountsOverflow.tsx`), vista detallada (`/cuenta/[id]`) y componentes reactivos de saldo, filtros y transacciones (`AccountDetailsAndMovements.tsx`, `AccountBalanceCard.tsx`, `AccountMovementItem.tsx`).],
+  [2026-10-15],
+  [Backend y frontend],
+
+  [31],
+  [Estandarización transversal de pruebas unitarias y de integración en todos los microservicios (`ms-core`, `ms-financiero`, `ms-notificaciones`, `ms-seguridad`, `ms-tarjetas`), migrando a llamadas tipadas estrictas mediante Elysia Treaty (`treaty(app)`). Desacoplamiento condicional del levantamiento de servidores en sus puntos de entrada (`index.ts`) para prevenir colisiones de puertos en entornos de test.],
+  [2026-10-16],
+  [Arquitectura y pruebas],
+
+  [32],
+  [Refactorización y optimización de UX/UI en la plataforma web: mejoras de robustez en el proveedor de notificaciones (`NotificationsProvider.astro`), emisión simplificada de tarjetas infiriendo el nombre del titular automáticamente sin entrada manual en `ms-tarjetas` y `CardsManager.tsx`, ajustes visuales de responsividad en pantallas, y estabilización de la suite de pruebas E2E en `integracion`.],
+  [2026-10-16],
+  [Backend, frontend y pruebas],
 )

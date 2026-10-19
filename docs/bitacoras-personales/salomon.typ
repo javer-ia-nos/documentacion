@@ -14,6 +14,8 @@
 #let git_infra_base_url = "https://github.com/javer-ia-nos/infra/tree/main"
 #let commit_infra_url = "https://github.com/javer-ia-nos/infra/commit/"
 #let commit_cuentas_url = "https://github.com/javer-ia-nos/ms-cuentas/commit/"
+#let git_core_base_url = "https://github.com/javer-ia-nos/ms-core/tree/main"
+#let commit_core_url = "https://github.com/javer-ia-nos/ms-core/commit/"
 #let commit_auditoria_url = "https://github.com/javer-ia-nos/ms-auditoria/commit/"
 #let commit_crm_url = "https://github.com/javer-ia-nos/ms-crm/commit/"
 #let commit_notificaciones_url = "https://github.com/javer-ia-nos/ms-notificaciones/commit/"
@@ -1278,3 +1280,198 @@ _relay_, compensación por Kafka y los controles de seguridad del gateway.
 Luego, reconstruir el clúster con la nueva topología mediante los playbooks
 de Ansible, con un respaldo previo verificado de todas las bases y un plan de
 vuelta atrás.
+
+=== Iteración 32: Implementación de CU-30 (transferencias propias y a terceros) en ms-core y Web
+
+*Fecha y hora:* 11 de octubre de 2026, 18:11 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación \
+*Commit:*
+#link(commit_core_url + "309ad54a1058c5c3cb2cbd50d60f34f4a1053ee8", [309ad54 · «CU-30» (ms-core)]),
+#link(commit_web_url + "1c75f7780af0adcf8bd62fdb2519ab1868443e16", [1c75f77 · «CU-30» (web)]) \
+*Archivos:*
+#link(git_core_base_url + "/src/modules/transferencias/service.ts", [transferencias/service.ts]),
+#link(git_core_base_url + "/src/grpc/server.ts", [grpc/server.ts]),
+#link(git_core_base_url + "/src/kafka.ts", [kafka.ts]),
+#link(git_core_base_url + "/proto/core.proto", [core.proto]),
+#link(git_core_base_url + "/init/sql/seed.sql", [seed.sql]),
+#link(git_web_base_url + "/src/components/TransferForm.tsx", [TransferForm.tsx]),
+#link(git_web_base_url + "/src/lib/api.ts", [api.ts])
+
+==== Descripción
+
+*Drivers:* llevar a código lo diseñado en las iteraciones 30 y 31 para CU-30,
+ya sobre `ms-core`, el servicio que fusiona Cuentas y Transacciones.
+
+*Análisis preliminar de resultados:*
+- `ms-core` expone el servidor gRPC definido en `core.proto`, con verificación
+  del JWT, token interno de servicio y huella de dispositivo obligatoria.
+- La transferencia mueve el saldo de forma atómica, es idempotente por
+  `Idempotency-Key` y registra los eventos de auditoría y notificación en el
+  _outbox_ dentro de la misma transacción. Un _relay_ los publica en Kafka.
+- Se aplican los topes por operación y diario de CU-19 que publica
+  `ms-seguridad` por Kafka, con valores por defecto si aún no existen.
+- Se rechazan saldo insuficiente, cuentas ajenas o inactivas, beneficiarios de
+  otro usuario (IDOR) y beneficiarios de otro banco (eso es CU-26).
+- En Web se agregó la página de transferencias con su formulario y el cliente
+  de API correspondiente.
+- Pruebas de integración en `cu30-transferencias.test.ts` y de manejo de
+  montos en `money.test.ts`.
+
+=== Iteración 33: Implementación de CU-26 (transferencias interbancarias e internacionales) en ms-core y Web
+
+*Fecha y hora:* 11 de octubre de 2026, entre las 18:42 y las 18:44 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación \
+*Commit:*
+#link(commit_core_url + "1bd550b32f93aac44b28edfa2731dca41d61775c", [1bd550b · «CU-26» (ms-core)]),
+#link(commit_web_url + "8cf4a4babeb98df87f6370d7c93fc146a1b4fea6", [8cf4a4b · «CU-26» (web)]) \
+*Archivos:*
+#link(git_core_base_url + "/src/modules/transferencias-externas/service.ts", [transferencias-externas/service.ts]),
+#link(git_core_base_url + "/src/modules/transferencias-externas/pasarela.ts", [pasarela.ts]),
+#link(git_core_base_url + "/src/modules/transferencias-externas/catalogo.ts", [catalogo.ts]),
+#link(git_web_base_url + "/src/components/ExternalTransferForm.tsx", [ExternalTransferForm.tsx])
+
+==== Descripción
+
+*Drivers:* completar el flujo de transferencias hacia otros bancos: nacionales
+por la red ACH e internacionales por la Pasarela de Pagos Internacionales
+(SWIFT), cumpliendo ASR-01 cuando estos sistemas externos fallan o no responden.
+
+*Conceptos de diseño analizados:* como ACH y la pasarela son sistemas de
+terceros y no microservicios, se integran por su API HTTP y no por gRPC o
+Kafka. La referencia de cada orden es el id de la transacción, de modo que
+reenviarla no la duplica.
+
+*Análisis preliminar de resultados:*
+- Internacional: convierte el monto a COP con la tasa de referencia, debita,
+  liquida en la pasarela y reintegra el débito si la pasarela rechaza.
+- Nacional (ACH): congela el saldo y deja la orden en `PENDING` hasta que ACH
+  la liquida. Si la rechaza después de aceptarla, se reintegra.
+- Un reconciliador revisa cada 5 s las órdenes pendientes: si la red no
+  respondió a tiempo o estaba caída, la reenvía sin duplicarla, y resolver la
+  misma orden dos veces a la vez reintegra una sola vez.
+- Se reutilizan los controles de CU-30: topes de CU-19, IDOR, huella de
+  dispositivo, token interno, JWT e idempotencia.
+- En Web se agregó la página de transferencias externas con el catálogo de
+  bancos ACH y divisas.
+- Pruebas en `cu26-transferencias-externas.test.ts` y `cu26-validaciones.test.ts`.
+
+=== Iteración 34: Adaptación de infra a ms-core y simulador de pagos externos
+
+*Fecha y hora:* 11 de octubre de 2026, entre las 20:12 y las 20:20 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura \
+*Commit:*
+#link(commit_infra_url + "2a60748c1aba23855be9a65fea2124091a9469d8", [2a60748 · «Fix de infraestructura para nuevos repositorios»]),
+#link(commit_infra_url + "e2c3d0d37bce0cd924cb7336e5d270549a931ac1", [e2c3d0d · «Cambio de variables»]),
+#link(commit_infra_url + "ac591dd38c87ef12d543131e51db44c5970ca305", [ac591dd · «Cambio ne playbook 12»]),
+#link(commit_infra_url + "c734abfff12bde950377cabc49a44e62f94f7fc2", [c734abf · «Añadir logs»]) \
+*Archivos:*
+#link(git_infra_base_url + "/charts/javer-ia-nos/values.yaml", [values.yaml]),
+#link(git_infra_base_url + "/charts/javer-ia-nos/templates/mock-pagos-externos.yaml", [mock-pagos-externos.yaml]),
+#link(git_infra_base_url + "/migrations/ms-core/001-cu26-transferencias-externas.sql", [001-cu26-transferencias-externas.sql]),
+#link(git_infra_base_url + "/playbooks/12-app.yml", [12-app.yml])
+
+==== Descripción
+
+*Drivers:* desplegar en el clúster lo implementado en las iteraciones 32 y 33.
+
+*Análisis preliminar de resultados:*
+- El chart reemplaza `ms-cuentas` y `ms-transacciones` (archivados) por
+  `ms-core`, con su puerto gRPC 50051, y actualiza seeds y datos de prueba.
+- Se agregó un simulador de la red ACH y de la pasarela internacional
+  (`mock-pagos-externos`) mientras no haya convenio con los sistemas reales.
+- Se agregó la primera migración de esquema de `ms-core` para CU-26 y los
+  topics de Kafka nuevos.
+- Se actualizaron las variables del vault.
+- `12-app.yml` ahora muestra solo el error de Helm cuando el despliegue falla,
+  sin imprimir los secretos, y admite `-e mostrar_salida_helm=true` para
+  depurar en local.
+
+=== Iteración 35: Secretos de aplicación y reconstrucción limpia de la red del clúster
+
+*Fecha y hora:* 13 de octubre de 2026, entre las 09:04 y las 10:29 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura + Corrección \
+*Commit:*
+#link(commit_infra_url + "e04bc19c4348ce41ec34821d6996f085bae703e8", [e04bc19 · «Add app secret yo infra»]),
+#link(commit_infra_url + "c5f8c93d7fbfc63ee1e73f449bf3493ea0615021", [c5f8c93 · «FIx bug»]),
+#link(commit_infra_url + "03530bea83d25718b8fb0781ce5a9106623e2dec", [03530be · «Fix de eliminacion al momento del teardown»]),
+#link(commit_infra_url + "cff2b7f45db9cb8f5063fcb778e05e74649cd99e", [cff2b7f · «New DB init»]) \
+*Archivos:*
+#link(git_infra_base_url + "/charts/microservice/templates/app-secret.yaml", [app-secret.yaml]),
+#link(git_infra_base_url + "/playbooks/06-join-workers.yml", [06-join-workers.yml]),
+#link(git_infra_base_url + "/playbooks/99-teardown.yml", [99-teardown.yml]),
+#link(git_infra_base_url + "/charts/microservice/db-seeds/ms-tarjetas.sql", [ms-tarjetas.sql])
+
+==== Descripción
+
+*Drivers:* al reconstruir el clúster, los pods de algunos nodos no obtenían
+red, y secretos como `INTERNAL_SERVICE_TOKEN` quedaban en claro dentro del
+Deployment.
+
+*Análisis preliminar de resultados:*
+- Los secretos de cada servicio pasan a un Secret de Kubernetes
+  (`app-secret.yaml`), con valores obligatorios que llegan desde Ansible Vault.
+- Causa del fallo de red: la interfaz `cni0` y el archivo
+  `/run/flannel/subnet.env` del clúster anterior sobrevivían al _teardown_, y
+  Flannel armaba la red con la subred vieja. `06-join-workers.yml` ahora borra
+  ese estado antes de unir un nodo, y `99-teardown.yml` también borra
+  `/run/flannel`.
+- Se agregó el seed de `ms-tarjetas` y se retiró el de `ms-financiero`.
+
+=== Iteración 36: Reemplazo de pgAdmin por CloudBeaver y estabilización del despliegue
+
+*Fecha y hora:* 19 de octubre de 2026, entre las 12:55 y las 13:34 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura + Corrección \
+*Commit:*
+#link(commit_infra_url + "44706944b4e1dad16b2c2a8c14289556d1231371", [4470694 · «Cambios para DBeaver»]),
+#link(commit_infra_url + "34b6cd73f8e8fd3b0738aa0ea8ac0b345989b0ae", [34b6cd7 · «Añadir tux para que se vea mejor»]),
+#link(commit_notificaciones_url + "b0798f575729ee1dccfbc128af22b96a6a44b9bd", [b0798f5 · «conectar a Postgres por campos en vez de URL» (ms-notificaciones)]),
+#link(commit_infra_url + "cfff0884f1aadfb0116d859d3a319ba971899f55", [cfff088 · «Agregar seeds a las BDs»]),
+#link(commit_infra_url + "75970cf34fca0fa6467d293412e9f5878db7b854", [75970cf · «Cambio de valores de recursos para autoescalado»]) \
+*Archivos:*
+#link(git_infra_base_url + "/cloudbeaver.yaml", [cloudbeaver.yaml]),
+#link(git_infra_base_url + "/scripts/cloudbeaver-secrets.sh", [cloudbeaver-secrets.sh]),
+#link(git_infra_base_url + "/playbooks/14-cloudbeaver.yml", [14-cloudbeaver.yml]),
+#link(git_infra_base_url + "/charts/javer-ia-nos/values.yaml", [values.yaml])
+
+==== Descripción
+
+*Drivers:* usar DBeaver en lugar de pgAdmin para inspeccionar las bases de
+datos de los microservicios, y corregir los problemas que aparecieron al
+reconstruir el clúster completo.
+
+*Conceptos de diseño analizados:* DBeaver es una aplicación de escritorio y
+las bases de datos solo son accesibles dentro del clúster, así que se eligió
+CloudBeaver, su versión web, publicada por el mismo Ingress que Web y Grafana.
+Se descartó DBeaver de escritorio porque exigía exponer las bases o abrir
+túneles SSH.
+
+*Análisis preliminar de resultados:*
+- CloudBeaver queda en `/dbeaver` con las 7 bases precargadas y sin pedir
+  contraseña. Las credenciales salen de los Secrets `<svc>-db-credentials`
+  de la app, el acceso anónimo está desactivado y el administrador es
+  `cbadmin` (con `vault_cloudbeaver_password`). Se retiró todo lo de pgAdmin.
+- `ms-notificaciones` fallaba al arrancar con «Invalid URL» porque la
+  contraseña de su base tiene `/` y `+`, que rompían la URL de conexión.
+  Ahora se conecta pasando los datos por separado. CI no lo detectaba porque
+  usa una contraseña sin caracteres especiales.
+- Las bases de `ms-notificaciones` y `ms-financiero` arrancaban vacías porque
+  el chart no tenía su seed. Se agregaron. Los de `ms-auditoria` y `ms-crm`
+  están vacíos en sus repositorios, así que no se incluyeron.
+- `ms-core` y `ms-notificaciones` escalaban a 3 réplicas sin tráfico: en
+  reposo gastan unos 60m de CPU frente a un request de 50m. Apagando Kafka el
+  consumo bajó a 1m, lo que señala a `kafkajs` sobre Bun. Se subió su request
+  a 150m.
+- Se configuró Ansible para mostrar a Tux en lugar de la vaca de `cowsay`.
+
+==== Tareas asignadas
+
+- Evaluar reemplazar `kafkajs` por `@confluentinc/kafka-javascript` en
+  `ms-core` y `ms-notificaciones` para bajar el consumo de CPU en reposo.
+- Usar en CI una contraseña de base de datos con caracteres especiales para
+  detectar errores como el de `ms-notificaciones`.
+- Definir el esquema de `ms-auditoria` y `ms-crm` si llegan a necesitar tablas.

@@ -596,6 +596,40 @@ A continuación se consolidan las restricciones técnicas, organizacionales y co
   [Estándares arc42 y C4 Model],
   [Convencional],
   [El documento de arquitectura debe adherirse fielmente a la estructura formal del estándar arc42 y emplear las cuatro vistas de abstracción jerárquica del C4 Model formulado por Simon Brown.],
+
+  [Cambio Metodológico],
+  [Organizacional],
+  [Posterior a la primera entrega del proyecto, se opta por una nueva metodología basada en SCRUM gracias a su enfoque iterativo. Adicionalmente, se utiliza Kanban para la delegacion de tareas conforme a la iteración en curso.],
+
+  [Eliminacion de front compartido y ajuste de alcance],
+  [Organizacional],
+  [Posterior a la primera entrega del proyecto, se decide acotar el alcance de las interfaces visuales para dejar unicamente vista web para celular con posibilidad de ampliar a pagina web de escritorio.],
+
+  [Fusión de microservicios de cuenta y transacciones],
+  [Organizacional],
+  [Para garantizar la consistencia de los datos, se decide fusionar estos microservicios fundamentales para todo el proceso transaccional en uno solo de nombre ms-core.],
+
+  [Transactional outbox],
+  [Técnica],
+  [Al hacer una amplia investigacion sobre patrones para transacciones distribuidas, optamos por la inclusión del patron Transactional outbox el cual nos permite resolver el problema de la doble escritura atómica en sistemas distribuidos, asegurando que los datos de negocio y los eventos asociados se guarden o se desechen juntos.],
+
+
+  [Cambio en el cliente de kafka],
+  [Técnica],
+  [En la primera iteracion se uso kafkajs como cliente para interactuar con el servicio de mensajeria Kafka, sin embargo en estado ocioso se tenía un uso de CPU alto dadas las implementaciones en TypeScript. Por ello, se decide el cambio al cliente platformatic/kafka escrito nativamente en nuestro mismo lenguaje usado.],
+
+  [Generacion de reporte de testing],
+  [Técnica],
+  [Siguiendo retroalimentaciones, por cada testeo exitoso en el runner de github actions, se genera un breve resumen con las estadísticas y un artefacto con un archivo comprimido que contiene una visualizacion web y un reporte a modo de PDF.],
+
+  [Implementacion estandar ISO-20022],
+  [Técnica y Organizacional],
+  [Por motivos de integrabilidad, se debe garantizar que en la teoría el sistema soporte integración con pasarelas internacionales, usando este estandar internacional de mensajería electrónica que define un lenguaje común, estructurado y enriquecido para la industria financiera a nivel global.],
+
+  [Cambio de cliente de monitoreo para bases de datos],
+  [Técnica],
+  [Para simplicidad, se opto por un cambio respecto al pgadmin anterior, a DBeaver, servicio web que mediante autenticación permite la visualización de esquemas relacionados a las bases de datos existentes y, consultas sobre las mismas],
+
 )
 #set text(size: 11pt)
 

@@ -106,3 +106,15 @@ dispositivos, y se eliminó código muerto (funciones de repositorio sin
 ningún uso real). Cobertura final: 96% de funciones, 95% de líneas.
 #link("https://github.com/javer-ia-nos/ms-seguridad/commit/1e059dd", "1e059dd"),
 #link("https://github.com/javer-ia-nos/documentacion/commit/6b1be23", "6b1be23")
+
+=== 14/10/2026 - Implementacion CU-19
+En ms-seguridad, el usuario puede consultar y actualizar su límite diario y su límite por operación,
+con validación de permisos y de que el tope por operación no supere al diario. Los cambios se publican 
+en Kafka mediante el patrón transactional outbox y ms-core los aplica al validar las transferencias, 
+controlando tanto el tope por operación como el acumulado diario. Ante el cambio de requerimiento, 
+rediseñé el caso para que los límites sean por cuenta y no por usuario: actualicé la tabla de límites, 
+las rutas y el evento de Kafka, la validación de ms-core (que ahora usa la cuenta de origen) y la web, 
+donde agregué un selector de cuenta. También agregué MS_CORE_URL en el compose de integracion y actualicé 
+el test de integración INT-04. Las pruebas automáticas pasan (38 en ms-seguridad y 107 en ms-core), y 
+comprobé desde la web y en la base de datos que cada cuenta guarda y aplica sus propios límites. 
+Los cambios se subieron a los repositorios de ms-seguridad, ms-core, web e integracion.

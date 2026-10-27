@@ -206,6 +206,15 @@ Para asegurar que los microservicios, el API Gateway y los brokers de mensajerí
     ms-notificaciones],
   [CU-14],
   [Validar que ante eventos publicados en Kafka (transacciones por montos relevantes, bloqueos o inicios de sesión sospechosos), ms-notificaciones consuma el mensaje y despache la alerta según el canal preferido del usuario (SMS, Push o Correo).],
+
+  [INT-19],
+  [*Ciclo de Vida de Dispositivos Confiables*],
+  [Salomon Alfredo Avila Larrotta],
+  [API Gateway \
+    ms-seguridad \
+    Broker Kafka],
+  [CU-17],
+  [Verificar que cada inicio de sesión desde un dispositivo nuevo (identificado por el encabezado `x-device-fingerprint`) lo registre y emita `seguridad.dispositivo-nuevo`; que el usuario lo consulte y lo enrole como confiable confirmando su contraseña (con vigencia opcional); y que al revocarlo el API Gateway rechace con 401 los tokens emitidos a ese dispositivo mientras los de los demás siguen válidos, publicando `seguridad.dispositivo-revocado` por _outbox_.],
 )
 
 #set text(size: 11pt)

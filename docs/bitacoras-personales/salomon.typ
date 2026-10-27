@@ -1475,3 +1475,57 @@ túneles SSH.
 - Usar en CI una contraseña de base de datos con caracteres especiales para
   detectar errores como el de `ms-notificaciones`.
 - Definir el esquema de `ms-auditoria` y `ms-crm` si llegan a necesitar tablas.
+
+=== Iteración 37: Reimplementación de dispositivos confiables (CU-17) sobre v2
+
+*Fecha y hora:* 27 de octubre de 2026 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación + Pruebas \
+*Commit:* pendiente \
+*Archivos:*
+`ms-seguridad/src/modules/dispositivos/` (`index.ts`, `model.ts`, `service.ts`),
+`ms-seguridad/src/tests/dispositivos.test.ts`,
+`infra/migrations/ms-seguridad/002-cu17-dispositivos-confiables.sql`,
+`web/src/components/Dispositivos.tsx`,
+`integracion/src/tests/int-19-cu17-dispositivos.test.ts`,
+`integracion/src/tests/web-cu17-dispositivos.test.ts`
+
+==== Descripción
+
+*Drivers:* la reescritura de `ms-seguridad` en `v2` dejó solo la tabla
+`known_devices`, que el login llenaba, sin forma de consultar ni revocar
+dispositivos; la web tampoco enviaba el identificador del dispositivo al iniciar sesión, así que los
+usuarios web no quedaban registrados.
+
+*Conceptos de diseño analizados:*
+- Se siguió la definición del glosario: un dispositivo confiable es una
+  terminal *enrolada por el usuario*. Todo login con identificador del dispositivo registra el
+  dispositivo como conocido, y el usuario lo marca como confiable confirmando
+  su contraseña, con vigencia opcional. La confianza vive en `device_trust`,
+  como en el diagrama entidad-relación.
+- Revocar cierra la sesión del dispositivo: el login agrega al JWT el claim
+  `did` con el id del dispositivo, y `/auth/validar`, que el API Gateway
+  consulta en cada petición, rechaza los tokens de un dispositivo revocado.
+- El usuario se toma siempre del `sub` del JWT y un dispositivo ajeno responde
+  404, para no repetir el riesgo de IDOR de la versión anterior.
+- El alta del dispositivo y su evento `seguridad.dispositivo-nuevo` quedan en
+  la misma transacción (antes iban por separado), y la revocación publica
+  `seguridad.dispositivo-revocado` por _outbox_.
+
+*Análisis preliminar de resultados:*
+- `ms-seguridad`: módulo `dispositivos` con `GET /dispositivos`,
+  `PATCH /dispositivos/:id`, `PUT` y `DELETE /dispositivos/:id/confianza` y
+  `DELETE /dispositivos/:id`. Pruebas unitarias contra Postgres real.
+- `web`: el login envía el identificador y un nombre legible del dispositivo, y la
+  página `/dispositivos` permite consultar, renombrar, enrolar y revocar.
+- `infra`: migración idempotente, seed sincronizado y tópico de Kafka nuevo.
+- Pruebas de integración INT-19 por el API Gateway y prueba web con
+  `Bun.WebView`.
+
+==== Tareas asignadas
+
+- Coordinar con Arantxa (INT-03) que `ms-core` consulte la confianza del
+  dispositivo antes de aprobar transferencias.
+- Evitar la alerta duplicada de dispositivo nuevo: hoy sale por Kafka y
+  también por HTTP directo a `ms-notificaciones`.
+

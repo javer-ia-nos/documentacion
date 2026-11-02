@@ -597,39 +597,7 @@ A continuación se consolidan las restricciones técnicas, organizacionales y co
   [Convencional],
   [El documento de arquitectura debe adherirse fielmente a la estructura formal del estándar arc42 y emplear las cuatro vistas de abstracción jerárquica del C4 Model formulado por Simon Brown.],
 
-  [Cambio Metodológico],
-  [Organizacional],
-  [Posterior a la primera entrega del proyecto, se opta por una nueva metodología basada en SCRUM gracias a su enfoque iterativo. Adicionalmente, se utiliza Kanban para la delegacion de tareas conforme a la iteración en curso.],
-
-  [Eliminacion de front compartido y ajuste de alcance],
-  [Organizacional],
-  [Posterior a la primera entrega del proyecto, se decide acotar el alcance de las interfaces visuales para dejar unicamente vista web para celular con posibilidad de ampliar a pagina web de escritorio.],
-
-  [Fusión de microservicios de cuenta y transacciones],
-  [Organizacional],
-  [Para garantizar la consistencia de los datos, se decide fusionar estos microservicios fundamentales para todo el proceso transaccional en uno solo de nombre ms-core.],
-
-  [Transactional outbox],
-  [Técnica],
-  [Al hacer una amplia investigacion sobre patrones para transacciones distribuidas, optamos por la inclusión del patron Transactional outbox el cual nos permite resolver el problema de la doble escritura atómica en sistemas distribuidos, asegurando que los datos de negocio y los eventos asociados se guarden o se desechen juntos.],
-
-
-  [Cambio en el cliente de kafka],
-  [Técnica],
-  [En la primera iteracion se uso kafkajs como cliente para interactuar con el servicio de mensajeria Kafka, sin embargo en estado ocioso se tenía un uso de CPU alto dadas las implementaciones en TypeScript. Por ello, se decide el cambio al cliente platformatic/kafka escrito nativamente en nuestro mismo lenguaje usado.],
-
-  [Generacion de reporte de testing],
-  [Técnica],
-  [Siguiendo retroalimentaciones, por cada testeo exitoso en el runner de github actions, se genera un breve resumen con las estadísticas y un artefacto con un archivo comprimido que contiene una visualizacion web y un reporte a modo de PDF.],
-
-  [Implementacion estandar ISO-20022],
-  [Técnica y Organizacional],
-  [Por motivos de integrabilidad, se debe garantizar que en la teoría el sistema soporte integración con pasarelas internacionales, usando este estandar internacional de mensajería electrónica que define un lenguaje común, estructurado y enriquecido para la industria financiera a nivel global.],
-
-  [Cambio de cliente de monitoreo para bases de datos],
-  [Técnica],
-  [Para simplicidad, se opto por un cambio respecto al pgadmin anterior, a DBeaver, servicio web que mediante autenticación permite la visualización de esquemas relacionados a las bases de datos existentes y, consultas sobre las mismas],
-
+  
 )
 #set text(size: 11pt)
 
@@ -1113,6 +1081,70 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Solución:* Un servidor MinIO, ejecutado en `salomon` fuera de Kubernetes, recibe el archivado continuo del WAL y un respaldo base diario de cada clúster de PostgreSQL (recuperación a un punto en el tiempo durante siete días), un volcado lógico diario por base y una instantánea de etcd cada seis horas. Una vez al día, los dos volcados más recientes de cada base y la última instantánea de etcd se copian cifrados a `miguel` y `sara`, en un directorio que el procedimiento de reconstrucción no toca. Todas las claves de cifrado y credenciales se guardan en Ansible Vault, y Prometheus alerta si cualquier respaldo no se actualiza a tiempo.
 - *Consecuencias Positivas:* Hay tres copias en tres discos distintos, y la pérdida de cualquier máquina o la reconstrucción del clúster no pierden datos. Se puede recuperar una base al estado de un instante concreto, por ejemplo justo antes de un error de la aplicación.
 - *Consecuencias Negativas / Trade-offs:* Todas las copias están en el mismo laboratorio, así que un evento que afecte a todo el sitio (corte eléctrico prolongado, robo o incendio) las perdería todas; el equipo aceptó este riesgo al descartar el almacenamiento en la nube. La recuperación depende de la contraseña de Ansible Vault, que debe guardarse fuera de las máquinas del clúster. Un error detectado después de siete días no se puede recuperar.
+
+== ADR-09: Metodología Iterativa con Scrum y Kanban
+
+- *ID ASR:* No se asocia a un ASR específico (decisión organizacional); habilita la entrega incremental de todos los ASR.
+- *Problema:* En la primera entrega el trabajo se planeó de forma secuencial, lo que dificultaba incorporar la retroalimentación recibida, repartir los casos de uso entre los integrantes y saber en qué estado estaba cada uno.
+- *Solución:* Después de la primera entrega se adoptó una metodología basada en *Scrum*, por su enfoque iterativo: el trabajo se organiza en iteraciones con un alcance definido al inicio y revisado al final. Dentro de cada iteración se usa un tablero *Kanban* para delegar las tareas y seguir su avance.
+- *Consecuencias Positivas:* La retroalimentación de cada entrega se incorpora en la iteración siguiente, cada integrante tiene claras sus tareas y el estado del proyecto es visible para todo el equipo.
+- *Consecuencias Negativas / Trade-offs:* Exige disciplina para mantener el tablero actualizado y dedicar tiempo a la planeación y revisión de cada iteración, además del tiempo de desarrollo.
+
+== ADR-10: Eliminación del Frontend Compartido y Ajuste de Alcance
+
+- *ID ASR:* ASR-05 (Modificabilidad y Gestión de Productos - Extensibilidad). Reemplaza al ADR-05.
+- *Problema:* Mantener dos aplicaciones cliente (Web y Móvil) con una librería compartida (`@javer-ia-nos/ui-shared`) obligaba a versionar y publicar el paquete en cada cambio, y a probar cada funcionalidad en dos plataformas, un costo que no se justificaba para el tamaño del equipo y el alcance del proyecto.
+- *Solución:* Después de la primera entrega se acotó el alcance de las interfaces visuales a una única aplicación web (Astro + React) diseñada para el celular, con la posibilidad de ampliarla a una página de escritorio. Se eliminan la aplicación móvil nativa y la librería compartida; la lógica de presentación vive en el repositorio `web`.
+- *Consecuencias Positivas:* Un único frontend que mantener y probar, sin un ciclo de publicación de paquetes intermedio: un cambio en la web se despliega directamente.
+- *Consecuencias Negativas / Trade-offs:* No hay aplicación nativa, por lo que se pierden capacidades propias del dispositivo; ampliar la vista a escritorio requiere adaptar el diseño de las pantallas.
+
+== ADR-11: Fusión de los Microservicios de Cuentas y Transacciones en `ms-core`
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos) y ASR-02 (Rendimiento en Operaciones Críticas).
+- *Problema:* Cuentas y Transacciones intervienen juntos en cada movimiento de dinero. Como microservicios separados, cada transferencia requería varias llamadas de red entre ellos y coordinar dos bases de datos, con el riesgo de que un fallo intermedio dejara el saldo y la transacción inconsistentes.
+- *Solución:* Para garantizar la consistencia de los datos se fusionaron ambos en un único microservicio, `ms-core`, con una sola base de datos. Las referencias a `ms-transacciones` y `ms-cuentas` de este documento corresponden a módulos internos de `ms-core`, que conservan su separación lógica.
+- *Consecuencias Positivas:* El débito, el crédito y el cambio de estado de la transacción se pueden confirmar en una misma transacción de base de datos, se eliminan llamadas de red del camino crítico y se simplifican las compensaciones de la SAGA (ADR-01).
+- *Consecuencias Negativas / Trade-offs:* `ms-core` concentra más responsabilidad: no se pueden escalar ni desplegar por separado las cuentas y las transacciones, y un fallo en el servicio afecta a ambas funciones.
+
+== ADR-12: Patrón _Transactional Outbox_ para la Publicación de Eventos
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional) y ASR-04 (Integrabilidad con Terceros).
+- *Problema:* Cada cambio de negocio (por ejemplo, una transferencia completada) debe guardarse en la base de datos y, además, publicarse como evento en Kafka. Hacer las dos escrituras por separado (doble escritura) no es atómico: si el broker no está disponible o el servicio se detiene entre ambas, el dato queda guardado sin su evento, o el evento se publica sin que el cambio se haya confirmado.
+- *Solución:* Tras investigar patrones para transacciones distribuidas, se adoptó el patrón *Transactional Outbox*: el evento se escribe en una tabla _outbox_ dentro de la misma transacción de base de datos que el cambio de negocio, y un _relay_ lo publica en Kafka y registra la fecha de publicación, los intentos y el último error.
+- *Consecuencias Positivas:* Los datos de negocio y sus eventos se guardan o se descartan juntos, y ningún evento se pierde aunque el broker esté caído: queda pendiente y se publica cuando se restablece.
+- *Consecuencias Negativas / Trade-offs:* La entrega es al menos una vez, por lo que los consumidores deben ser idempotentes; el evento llega con un pequeño retraso y la tabla _outbox_ debe depurarse periódicamente.
+
+== ADR-13: Cambio del Cliente de Kafka a `@platformatic/kafka`
+
+- *ID ASR:* ASR-02 (Rendimiento en Operaciones Críticas - Tiempo de respuesta).
+- *Problema:* En la primera iteración se usó `kafkajs` como cliente de Kafka, pero presentaba un uso alto de CPU en estado ocioso, que se multiplicaba por cada microservicio y réplica del clúster y competía con el procesamiento de las peticiones.
+- *Solución:* Se reemplazó `kafkajs` por el cliente `@platformatic/kafka`, escrito en TypeScript, el mismo lenguaje del sistema, en todos los microservicios que producen o consumen eventos.
+- *Consecuencias Positivas:* Menor consumo de CPU en reposo y un cliente con tipos nativos, coherente con el tipado estricto del resto del sistema (ADR-02).
+- *Consecuencias Negativas / Trade-offs:* Es una librería más reciente y con una comunidad más pequeña que `kafkajs`, y el cambio exigió adaptar los productores y consumidores existentes.
+
+== ADR-14: Generación de Reportes de Pruebas en la Integración Continua
+
+- *ID ASR:* ASR-06 (Testabilidad y Auditoría del Sistema - Aislamiento y Trazabilidad).
+- *Problema:* Los resultados de las pruebas solo quedaban en los registros de cada ejecución de GitHub Actions, lo que dificultaba revisarlos y presentarlos como evidencia de calidad, como se pidió en la retroalimentación.
+- *Solución:* En cada ejecución de pruebas en GitHub Actions se genera un resumen breve con las estadísticas, visible en la página de la ejecución, y un artefacto comprimido con un reporte web navegable y un reporte en PDF generado con Typst.
+- *Consecuencias Positivas:* Cada cambio queda con evidencia de las pruebas que pasaron, fácil de consultar y de compartir sin ejecutar nada localmente.
+- *Consecuencias Negativas / Trade-offs:* Aumenta la duración de los flujos de integración continua y el mantenimiento de las plantillas de reporte.
+
+== ADR-15: Adopción del Estándar ISO 20022
+
+- *ID ASR:* ASR-04 (Integrabilidad con Terceros y Billeteras - Interoperabilidad).
+- *Problema:* Las transferencias nacionales e internacionales (CU-26) deben intercambiar mensajes con pasarelas y bancos externos. Un formato propio obligaría a construir un traductor distinto por cada entidad con la que se integre el sistema.
+- *Solución:* Por motivos de integrabilidad, la mensajería con entidades externas usa *ISO 20022*, el estándar internacional que define un lenguaje común, estructurado y enriquecido para la industria financiera. Se implementan los mensajes `pacs.008` (orden de pago), `pacs.002` (estado), `pacs.004` (devolución) y `pacs.028` (consulta de estado), junto con sus catálogos de códigos de propósito y de motivos de rechazo.
+- *Consecuencias Positivas:* En principio el sistema puede integrarse con cualquier pasarela que hable el estándar, y los rechazos se informan con códigos normalizados que se traducen al cliente.
+- *Consecuencias Negativas / Trade-offs:* Los mensajes XML son extensos y requieren validación estricta; además, el estándar se implementa sobre un simulador de pasarela externa, no sobre una red interbancaria real.
+
+== ADR-16: Cambio de pgAdmin a DBeaver (CloudBeaver) para Consultar las Bases de Datos
+
+- *ID ASR:* ASR-06 (Testabilidad y Auditoría del Sistema - Aislamiento y Trazabilidad).
+- *Problema:* Con una base de datos dedicada por microservicio, el equipo necesitaba revisar esquemas y datos de varias bases en el clúster, y la configuración anterior con pgAdmin resultaba más compleja de mantener.
+- *Solución:* Por simplicidad se reemplazó pgAdmin por DBeaver en su versión web (CloudBeaver), desplegado en el clúster con autenticación, que permite visualizar los esquemas de las bases existentes y ejecutar consultas sobre ellas. Las conexiones se generan a partir de los Secrets de Kubernetes.
+- *Consecuencias Positivas:* Un único punto de acceso, protegido con credenciales, para inspeccionar todas las bases, sin exponerlas fuera del clúster ni instalar herramientas en cada máquina.
+- *Consecuencias Negativas / Trade-offs:* Es otro componente que desplegar y actualizar, y su acceso debe restringirse, ya que permite consultar directamente datos bancarios.
 
 = Riesgos técnicos
 // #instruction[

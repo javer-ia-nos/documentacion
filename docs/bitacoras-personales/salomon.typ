@@ -21,6 +21,9 @@
 #let commit_notificaciones_url = "https://github.com/javer-ia-nos/ms-notificaciones/commit/"
 #let commit_seguridad_url = "https://github.com/javer-ia-nos/ms-seguridad/commit/"
 #let commit_tarjetas_url = "https://github.com/javer-ia-nos/ms-tarjetas/commit/"
+#let commit_gateway_url = "https://github.com/javer-ia-nos/api-gateway/commit/"
+#let commit_integracion_url = "https://github.com/javer-ia-nos/integracion/commit/"
+#let commit_demo_url = "https://github.com/javer-ia-nos/demo/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -1476,12 +1479,267 @@ túneles SSH.
   detectar errores como el de `ms-notificaciones`.
 - Definir el esquema de `ms-auditoria` y `ms-crm` si llegan a necesitar tablas.
 
-=== Iteración 37: Reimplementación de dispositivos confiables (CU-17) sobre v2
+=== Iteración 37: Cambio del cliente de Kafka a `@platformatic/kafka` y conexión a Postgres por campos
 
-*Fecha y hora:* 27 de octubre de 2026 \
+*Fecha y hora:* 19 de octubre de 2026, entre las 13:52 y las 14:58 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación + Corrección \
+*Commit:*
+#link(commit_infra_url + "b966ae31d2705616dd2579ef3cfa71cf5daba7b6", [b966ae3 · «Ajustes en valores para el HPA»]),
+#link(commit_notificaciones_url + "08612497b5e4f6cbb8e48cda1596c08d052cf30a", [0861249 · «Migracion a platfotmatic/kafka como cliente» (ms-notificaciones)]),
+#link(commit_core_url + "d0d4c07f71d60b9c478851a32062bafdc9371f14", [d0d4c07 · «conectar a Postgres por campos en vez de URL y cambio de cliente de kafka» (ms-core)]),
+#link(commit_web_url + "8d48decfb63245d3b82c592644a9a19e1490f491", [8d48dec · «Cambio de pgadmin por dbeaver» (web)]) \
+*Archivos:*
+`ms-core/src/kafka.ts`, `ms-core/src/db/index.ts`, `ms-core/build.ts`,
+`ms-notificaciones/src/kafka.ts`, `infra/charts/javer-ia-nos/values.yaml`,
+`web/nginx.conf`
+
+==== Descripción
+
+*Drivers:* resolver la tarea abierta en la iteración 36: `ms-core` y
+`ms-notificaciones` consumían unos 60m de CPU en reposo por el cliente
+`kafkajs`, lo que disparaba el autoescalado sin tráfico.
+
+*Conceptos de diseño analizados:* se había anotado evaluar
+`@confluentinc/kafka-javascript`, que es un envoltorio de la librería nativa
+`librdkafka`. Se eligió `@platformatic/kafka`, escrito en TypeScript y sin
+dependencias nativas (queda registrado como ADR-13).
+
+*Análisis preliminar de resultados:*
+- `ms-core` y `ms-notificaciones` usan `@platformatic/kafka`. El servicio se
+  compila con `build.ts` y el `Dockerfile` copia solo el resultado.
+- `ms-core` se conecta a Postgres pasando host, usuario y contraseña por
+  separado, igual que se corrigió en `ms-notificaciones` en la iteración 36,
+  para que los caracteres especiales de la contraseña no rompan la URL.
+- Se ajustaron los valores del HPA en el chart.
+- En `web/nginx.conf` se cambió la ruta de pgAdmin por la de DBeaver.
+
+=== Iteración 38: Reportes de pruebas en HTML y PDF en GitHub Actions
+
+*Fecha y hora:* 19 de octubre de 2026, entre las 15:05 y las 16:10; corrección el 27 de octubre de 2026, 16:27 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura + Corrección \
+*Commit:*
+#link(commit_core_url + "550eca68b9559f51fc38a22162a843b85999c981", [550eca6 · «Generacion de reportes al momento de hacer los tests del actions» (ms-core)]),
+#link(commit_core_url + "1b799f89b151930e7e4428d0a2565a230c35be53", [1b799f8 · «Fix tests» (ms-core)]),
+#link(commit_core_url + "51b0d3a0eaab43adb920603c4208c4e56a7070c7", [51b0d3a · «reporte de pruebas en HTML y PDF» (ms-core y los demás microservicios)]),
+#link(commit_core_url + "6a0c1c93f51c51b6dd4d6c2b81fc3a05ba0611d2", [6a0c1c9 · «Reporte de pruebas arreglado» (ms-core y los demás microservicios)]) \
+*Archivos:*
+`reportes/generar.ts`, `reportes/plantilla.html`, `reportes/reporte.typ` y
+`.github/workflows/test.yaml` en `ms-core`, `api-gateway`, `ms-auditoria`,
+`ms-crm`, `ms-financiero`, `ms-notificaciones`, `ms-seguridad` y `ms-tarjetas`
+
+==== Descripción
+
+*Drivers:* atender la retroalimentación de que los resultados de las pruebas
+solo quedaban en los registros de GitHub Actions y no servían como evidencia
+(ADR-14).
+
+*Análisis preliminar de resultados:*
+- Cada ejecución de pruebas publica un resumen con las estadísticas en la
+  página de la ejecución (`GITHUB_STEP_SUMMARY`) y un artefacto
+  `reporte-pruebas` con un reporte web y un PDF generado con Typst.
+- Se empezó en `ms-core` y luego se llevó el mismo generador a los ocho
+  repositorios de backend.
+- En `ms-core` se corrigieron pruebas y se agregaron las de movimientos por
+  usuario, débito de inversiones (CU-12), alertas por umbral y errores y
+  seguridad.
+- El 27 de octubre se corrigió el reporte: ahora agrupa las líneas sin cubrir
+  en tramos y muestra su código fuente.
+
+=== Iteración 39: ISO 20022 en las transferencias externas (CU-26)
+
+*Fecha y hora:* 19 de octubre de 2026, entre las 16:38 y las 18:06 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Implementación \
+*Commit:*
+#link(commit_core_url + "96804e308e65b8ff593cdba3f0dc4a3d9ae39f0a", [96804e3 · «Implementacion parcial de ISO 20022 y actualizacion de BD» (ms-core)]),
+#link(commit_core_url + "2796ed1dbd55110f9f7fcdc2ae36032a664075b6", [2796ed1 · «CU-26 con ISO 20022: pacs.008, pacs.028, pacs.002 y devoluciones pacs.004» (ms-core)]),
+#link(commit_gateway_url + "d94a2c95d6c421c074495c4e9cc0017241d16ded", [d94a2c9 · «Campos ISO 20022 en CU-26 y bloqueo de la ruta iso20022» (api-gateway)]),
+#link(commit_web_url + "0a4bfaccdae3d75d0e032a38a98a0cf7c951bbb8", [0a4bfac · «Ciudad y propósito en transferencias a otros bancos» (web)]),
+#link(commit_infra_url + "9e727a55fafe6b72b08af93a0bf8ab58911a524f", [9e727a5 · «ISO 20022 en CU-26, migraciones y clave de pagos desde el vault» (infra)]),
+#link(commit_integracion_url + "6ef262b1af09e4f73bc539f118edb7472aee7295", [6ef262b · «Simulador de pagos y pruebas e2e con ISO 20022» (integracion)]),
+#link(commit_infra_url + "42c34187fb639f42626652f7190dd3d73a89c894", [42c3418 · «Cmabios en BDs» (infra)]),
+#link(commit_core_url + "7400005fe1d75160ac4c6c3eadfbcd77e36404d5", [7400005 · «Kafka fix» (ms-core)]),
+#link(commit_notificaciones_url + "003e1cdd7c66e64046b00f8da4581cd37924d944", [003e1cd · «Kafka fix» (ms-notificaciones)]),
+#link(commit_infra_url + "21c6ad9046a5468b7c8a50008859e82a84e208d2", [21c6ad9 · «Kafka fix» (infra)]) \
+*Archivos:*
+`ms-core/src/modules/transferencias-externas/iso20022/` (`pacs008.ts`,
+`pacs002.ts`, `pacs004.ts`, `pacs028.ts`, `codigos.ts`, `xml.ts`),
+`ms-core/src/modules/transferencias-externas/devoluciones.ts`,
+`ms-core/src/modules/transferencias-externas/ordenante.ts`,
+`api-gateway/src/tests/iso20022-bloqueo.test.ts`,
+`infra/charts/javer-ia-nos/files/mock-pagos-externos.ts`,
+`infra/migrations/ms-core/003-cu26-iso20022.sql`,
+`infra/kafka-cluster.yaml`
+
+==== Descripción
+
+*Drivers:* ASR-04 (integrabilidad): las transferencias de CU-26 deben poder
+integrarse con pasarelas y redes reales, que hablan ISO 20022, y no con un
+formato propio (ADR-15).
+
+*Conceptos de diseño analizados:* se implementaron solo los mensajes de la
+familia `pacs` que usa el flujo de CU-26: `pacs.008` (orden de pago),
+`pacs.002` (estado), `pacs.004` (devolución) y `pacs.028` (consulta de
+estado). Cada mensaje se valida contra su XSD oficial en las pruebas.
+
+*Análisis preliminar de resultados:*
+- `ms-core` arma el `pacs.008` con los datos del ordenante y del beneficiario
+  (ciudad y propósito del pago, que la web ahora pide), interpreta el
+  `pacs.002` y, si la red no responde, pregunta el estado con `pacs.028`.
+- Las devoluciones (`pacs.004`) llegan por un endpoint protegido con una clave
+  compartida con la red. Aplicar la misma devolución dos veces no reintegra
+  dos veces, y una devolución con otro monto o de una orden no liquidada se
+  rechaza.
+- Los rechazos usan los códigos ISO (`AC01`, `AM04`, etc.) traducidos al
+  español para el cliente.
+- El API Gateway bloquea la ruta `iso20022` para que solo la red pueda usarla.
+- El simulador de pagos externos de `infra` y de `integracion` habla ISO 20022,
+  con pruebas de extremo a extremo.
+- Corrección de Kafka: con `@platformatic/kafka`, si uno de los tópicos aún no
+  existía, la suscripción completa fallaba con «Unknown topic». Se activó
+  `autocreateTopics` y se declararon todos los tópicos en `kafka-cluster.yaml`.
+- Migraciones para sincronizar los esquemas de `ms-seguridad` y `ms-tarjetas`
+  en producción.
+
+=== Iteración 40: Implementación de CU-24 (pagos automáticos) y programador de tareas genérico
+
+*Fecha y hora:* 19 de octubre de 2026, entre las 19:19 y las 21:02 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Implementación \
+*Commit:*
+#link(commit_core_url + "0c24ef45d7c54c63d8a07d7faa39302ea9bf4b88", [0c24ef4 · «Programador de tareas genérico (CU-24, reutilizable por CU-09)» (ms-core)]),
+#link(commit_gateway_url + "02827fa5ea48ff5611aeb6504eea8702e78beb77", [02827fa · «CU-24: rutas de pagos automáticos hacia ms-core por gRPC» (api-gateway)]),
+#link(commit_web_url + "be29d95ad81f9fa35c0b33f3b1ffd671deca7a52", [be29d95 · «CU-24: pantalla de pagos automáticos» (web)]),
+#link(commit_notificaciones_url + "15c5dee2d397db81bf859177acb386dfcf748b73", [15c5dee · «Guardar metadata de notificaciones como objeto JSON y no como texto» (ms-notificaciones)]),
+#link(commit_infra_url + "c649da71290c750d7f61b336dd918b99aaaea8b7", [c649da7 · «migraciones, topics de Kafka y datos de prueba de pagos automáticos» (infra)]),
+#link(commit_infra_url + "ee9b2e50ba4697516040fb2762e603c0c49dbbd9", [ee9b2e5 · «Add seed» (infra)]),
+#link(commit_infra_url + "acc88fd0045aac069c1a3840751f952eccaaec47", [acc88fd · «pasar el token interno» (infra)]) \
+*Archivos:*
+`ms-core/src/modules/programador/` (`programador.ts`, `recurrencia.ts`),
+`ms-core/src/modules/pagos-automaticos/` (`service.ts`, `grpc.ts`),
+`ms-core/proto/core.proto`,
+`ms-notificaciones/src/modules/notificaciones/pago-automatico.ts`,
+`web/src/components/PagosAutomaticos.tsx`,
+`infra/migrations/ms-core/004-cu24-pagos-automaticos.sql`,
+`infra/migrations/ms-notificaciones/001-cu24-avisos.sql`
+
+==== Descripción
+
+*Drivers:* CU-24 permite al cliente programar transferencias que se repiten o
+que se hacen una vez en una fecha. ASR-01 exige que un pago programado nunca
+se ejecute dos veces, aunque haya varias réplicas o el servicio se caiga a
+mitad del pago.
+
+*Conceptos de diseño analizados:* en lugar de un temporizador propio de CU-24
+se construyó un programador de tareas genérico en `ms-core`. Cada caso de uso
+registra su tipo de tarea y el motor decide cuándo ejecutarla, para que CU-09
+(ahorro automático) lo reutilice. Se descartó un cron de Kubernetes porque no
+garantiza que un ciclo se ejecute una sola vez.
+
+*Análisis preliminar de resultados:*
+- Cada ciclo (tarea + fecha) tiene una restricción única y se reclama con
+  `SKIP LOCKED`, así que se ejecuta una sola vez aunque corran varias réplicas.
+  Si el proceso muere, otra réplica lo retoma con el mismo intento y la clave
+  de idempotencia `prog:<ciclo>:<intento>` evita repetir el pago.
+- Si el servicio estuvo detenido, no se ejecutan de golpe todos los ciclos
+  perdidos, solo el más reciente.
+- El pago se ejecuta como CU-30 (propias o beneficiario) o como CU-26 (otro
+  banco o exterior, con ISO 20022), con sus mismos controles.
+- Sin saldo o por un tope de CU-19, el ciclo falla con una advertencia, el
+  cliente puede reintentarlo y el pago sigue activo.
+- `ms-notificaciones` envía el recordatorio 24 horas antes, el pago ejecutado
+  y el pago fallido.
+- El API Gateway expone las rutas por gRPC hacia `ms-core` y la web tiene la
+  pantalla de pagos automáticos.
+- `infra`: migraciones, tópico `notificaciones.pago-automatico`, datos de
+  prueba y el token interno de servicio para `ms-core`.
+
+=== Iteración 41: Registro de las decisiones tomadas tras la primera entrega
+
+*Fecha y hora:* 19 de octubre de 2026, 20:50 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Documentación \
+*Commit:* #link(commit_url + "f41231c2412b8de99d95cf517a1ef6ab35202b4b", [f41231c · «Actualizacion de decisiones arquitectonicas»]) \
+*Archivos:* #link(git_base_url + "/docs/arch-description.typ", [arch-description.typ])
+
+==== Descripción
+
+Se registraron en el documento de arquitectura ocho decisiones tomadas
+después de la primera entrega: Scrum con Kanban, eliminación del frontend
+compartido, fusión de Cuentas y Transacciones en `ms-core`, _transactional
+outbox_, cambio del cliente de Kafka, reportes de pruebas en CI, ISO 20022 y
+cambio de pgAdmin por DBeaver. Quedaron como filas de una tabla; en la
+iteración 48 se convirtieron en ADR.
+
+=== Iteración 42: Linter y Dependabot en ms-core
+
+*Fecha y hora:* 22 de octubre de 2026, entre las 12:06 y las 12:35 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura \
+*Commit:*
+#link(commit_core_url + "50852c2bacf1fdf74e126062b99fbea92abe4140", [50852c2 · «Añadir dependabot»]),
+#link(commit_core_url + "dd4c0116e13798d0df0d42f7f64ae760cabd350b", [dd4c011 · «Añadir linter»]),
+#link(commit_core_url + "509e67d473b0c1e0b309c47b9813c5b52db59774", [509e67d · «Arreglar correcciones propuestas por el linter»]) \
+*Archivos:* `ms-core/.github/dependabot.yml`, `ms-core/.oxlintrc.json`,
+`ms-core/.github/workflows/test.yaml`
+
+==== Descripción
+
+- Dependabot revisa las dependencias de `ms-core` y abre _pull requests_ con
+  las actualizaciones.
+- Se agregó `oxlint` como linter y un paso en el workflow de pruebas que lo
+  ejecuta, y se corrigieron los avisos que encontró.
+
+=== Iteración 43: Migraciones de producción para CU-09, CU-12, CU-13 y CU-20
+
+*Fecha y hora:* 27 de octubre de 2026, entre las 09:39 y las 18:40 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura + Corrección \
+*Commit:*
+#link(commit_infra_url + "961f7fad35ef938695008c25a59d408c94c04148", [961f7fa · «Añadir cambios a la BD»]),
+#link(commit_infra_url + "1b18f531e4407ee6035bb5970131c964280e393e", [1b18f53 · «Arreglar BD de produccion»]),
+#link(commit_infra_url + "7cff987b84d04a6512bc26958899efaa1e9340dd", [7cff987 · «Actualizacion contraseña de dbeaver»]),
+#link(commit_infra_url + "d6e2ec35492c3813cfaffbab0b9cb334bb4c76d4", [d6e2ec3 · «Fix llave duplicada»]),
+#link(commit_infra_url + "976343d3402986d156afc670bb44285b8d974e03", [976343d · «Fix de base de datos»]),
+#link(commit_gateway_url + "1216308774c05d3067b1e2a63402677a81024518", [1216308 · «CU-12 y CU-13» (api-gateway)]) \
+*Archivos:*
+`infra/migrations/ms-core/005-cu12-pago-inversiones.sql`,
+`infra/migrations/ms-core/006-cu09-ahorro-automatico.sql`,
+`infra/migrations/ms-core/007-cu13-prestamos.sql`,
+`infra/migrations/ms-financiero/002-cu13-prestamos.sql`,
+`infra/migrations/ms-tarjetas/002-historial-bloqueos-columnas.sql`,
+`infra/inventory/group_vars/all/vault.yml`
+
+==== Descripción
+
+*Drivers:* los casos de uso de otros integrantes (CU-09, CU-12, CU-13 y
+CU-20/22) funcionaban en local pero fallaban en el clúster, porque las bases
+de producción se habían creado con seeds anteriores y no tenían sus tablas ni
+columnas nuevas.
+
+*Análisis preliminar de resultados:*
+- Migraciones idempotentes para el pago de inversiones (CU-12), el ahorro
+  automático (CU-09, sobre el programador de la iteración 40) y los préstamos
+  (CU-13) en `ms-core` y `ms-financiero`. Seeds del chart sincronizados.
+- `historial_bloqueos_tarjeta` existía con una versión anterior y
+  `CREATE TABLE IF NOT EXISTS` no agrega columnas, así que congelar o
+  reactivar una tarjeta respondía 500. Se agregaron las columnas faltantes.
+- Se corrigieron en el vault una llave duplicada y la contraseña de DBeaver.
+- Pruebas en el API Gateway de las rutas de CU-12 y CU-13 hacia `ms-core`.
+
+=== Iteración 44: Reimplementación de dispositivos confiables (CU-17) sobre v2
+
+*Fecha y hora:* 27 de octubre de 2026, entre las 17:24 y las 17:38 \
 *Personas involucradas:* Salomón Alfredo Ávila Larrotta \
 *Tipo de entrada:* Implementación + Pruebas \
-*Commit:* pendiente \
+*Commit:*
+#link(commit_seguridad_url + "33fcb281c8bc88370e1efc577396c8e15be7f028", [33fcb28 · «CU-17» (ms-seguridad)]),
+#link(commit_gateway_url + "8e5288cd4ad38f0face1e5ff21a34509e6efcac7", [8e5288c · «CU-17» (api-gateway)]),
+#link(commit_infra_url + "85dbcda535005cde1eb0c039ceb4c76a9c3f3a6d", [85dbcda · «CU-17» (infra)]),
+#link(commit_web_url + "8a823a604bdb7a5e89e7fdaaa4a07f7ba676504e", [8a823a6 · «CU-17» (web)]),
+#link(commit_integracion_url + "abc4ceeb424c2eaf24ca8a9b11dd725e9eeb2799", [abc4cee · «CU-17» (integracion)]) \
 *Archivos:*
 `ms-seguridad/src/modules/dispositivos/` (`index.ts`, `model.ts`, `service.ts`),
 `ms-seguridad/src/tests/dispositivos.test.ts`,
@@ -1529,3 +1787,170 @@ usuarios web no quedaban registrados.
 - Evitar la alerta duplicada de dispositivo nuevo: hoy sale por Kafka y
   también por HTTP directo a `ms-notificaciones`.
 
+=== Iteración 45: Demo automatizada de los casos de uso con Playwright
+
+*Fecha y hora:* 27 de octubre de 2026, entre las 17:59 y las 18:54 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación + DevOps / Infraestructura \
+*Commit:*
+#link(commit_demo_url + "4e206d537b8302fc1e60ec70f66f6be3d16e13a4", [4e206d5 · «init»]),
+#link(commit_demo_url + "a608355ca4a059035a38cba7b636aef5e299cf0e", [a608355 · «Primera iteracion de la demostracion»]),
+#link(commit_demo_url + "b45bbd44628c21489ad22b710607d7399016d98d", [b45bbd4 · «Scroll smoothing»]) \
+*Archivos:*
+`demo/casos/` (un archivo por caso de uso), `demo/lib/` (`caso.ts`,
+`entorno.ts`, `preparar.ts`, `sesion.ts`), `demo/orden.ts`,
+`demo/recorrido.spec.ts`, `demo/playwright.config.ts`, `demo/README.md`
+
+==== Descripción
+
+*Drivers:* demostrar los casos de uso implementados sobre el clúster
+desplegado, de forma repetible y con evidencia, sin depender de que alguien
+los recorra a mano.
+
+*Conceptos de diseño analizados:* se usó Playwright contra la web publicada
+por el Ingress, no contra un entorno local, para mostrar lo que está realmente
+en producción. Cada caso es independiente: prepara sus propias precondiciones
+por el API Gateway y nunca escribe directamente en las bases de datos.
+
+*Análisis preliminar de resultados:*
+- Nuevo repositorio `demo` con 15 casos automatizados (CU-03, 06, 11, 12, 13,
+  14, 15, 17, 19, 21, 22, 24, 26, 30 y 31), con un paso por fase del caso de
+  uso y una verificación de lo que se ve en pantalla.
+- `bun run demo` recorre todos los casos en el orden de la historia de un
+  cliente (`orden.ts`); `bun run demo cu-30 cu-26` corre solo los pedidos.
+- Cada caso deja un video, capturas por paso, una traza de Playwright y un
+  reporte HTML.
+- Usa los clientes sembrados de `infra/test-data`; la dirección del clúster se
+  cambia con `DEMO_URL` (también por túnel SSH).
+
+=== Iteración 46: Implementación de CU-28 (pagos físicos y transacciones presenciales), rol de cajero y portal de funcionarios
+
+*Fecha y hora:* 2 de noviembre de 2026, entre las 12:43 y las 16:34 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Implementación + DevOps / Infraestructura \
+*Commit:*
+#link(commit_core_url + "c9a85aa5144feb62d701fc3895dbe09449d1031d", [c9a85aa · «CU-28» (ms-core)]),
+#link(commit_seguridad_url + "1e9d6f96641a1ea4514d7826d506dd20eaad0e0c", [1e9d6f9 · «Cambio de permisos» (ms-seguridad)]),
+#link(commit_gateway_url + "2473578ff1e1254ef03117a89a2e50d513bd4c83", [2473578 · «Actualizacion RBAC» (api-gateway)]),
+#link(commit_web_url + "e874d829dd9ac6df3422517685b823b0a5b294dc", [e874d82 · «CU-28» (web)]),
+#link(commit_web_url + "8b91f1f90ee2a6564b786f4d6cf705fe9811abe4", [8b91f1f · «Portal actualizado» (web)]),
+#link(commit_web_url + "aa473c1e3a03eec817a1e6ca599bbe336b43780a", [aa473c1 · «Quitar boton de depositar en el cliente» (web)]),
+#link(commit_infra_url + "590f23bd1613f2e515d46ce92e3c9f160dac9d41", [590f23b · «CU-28» (infra)]),
+#link(commit_infra_url + "d152f99dec057a955c00506e49c5cbcd0720fe6a", [d152f99 · «Uusarios de prueba» (infra)]) \
+*Archivos:*
+`ms-core/src/modules/ventanilla/` (`index.ts`, `service.ts`),
+`ms-core/src/tests/cu28-ventanilla.test.ts`,
+`ms-seguridad/src/modules/roles/permissions.ts`,
+`api-gateway/src/rbac.ts`,
+`web/src/components/Ventanilla.tsx`, `web/src/layouts/StaffLayout.astro`,
+`web/src/lib/roles.ts`, `web/src/middleware.ts`,
+`web/src/components/RoleSwitcher.tsx`,
+`infra/migrations/ms-core/008-cu28-ventanilla.sql`,
+`infra/migrations/ms-seguridad/003-cu16-roles.sql`,
+`infra/test-data/ms-seguridad.sql`
+
+==== Descripción
+
+*Drivers:* CU-28 cubre las operaciones que un cajero hace en la oficina sobre
+la cuenta de un cliente: consignar efectivo, consignar un cheque y retirar
+efectivo. Ningún rol existente correspondía al cajero, y la web solo tenía la
+interfaz del cliente.
+
+*Conceptos de diseño analizados:*
+- Se creó el rol `ROLE_TELLER` (cajero) en lugar de reutilizar
+  `ROLE_ADMIN`, para dar solo los permisos de ventanilla
+  (`teller:operate`, `teller:checks:resolve`, `accounts:read`). El
+  administrador también puede operar la ventanilla.
+- El cheque no se acredita de inmediato: queda como saldo retenido hasta el
+  canje (24 horas por defecto), y el cajero lo libera o lo rechaza con un
+  motivo. Un mismo cheque (banco y número) no se puede consignar dos veces,
+  salvo que haya sido rechazado.
+- Todo ocurre dentro del banco, así que no se usan mensajes ISO 20022 (que son
+  para pagos entre entidades, CU-26). Se sigue el mismo camino de CU-30:
+  transacción interna, idempotencia y eventos por _outbox_.
+- La web se separó en dos interfaces: la del cliente y un portal de
+  funcionarios (`/admin`), con la misma estética, en el que la ventanilla es
+  una sección propia.
+
+*Análisis preliminar de resultados:*
+- `ms-core`: módulo `ventanilla` en `/transacciones-presenciales` con
+  consulta de cuenta (saldo disponible y retenido), consignación en efectivo,
+  retiro (exige el documento de quien retira y valida el saldo), consignación
+  de cheque, bandeja de canje con liberar y rechazar, últimas operaciones y la
+  vista del cliente de sus cheques. Verifica él mismo el JWT y el rol activo,
+  usa `Idempotency-Key` y entrega un comprobante `VEN-XXXXXXXX`. 14 pruebas
+  nuevas; la suite completa pasa (383 de 383).
+- `ms-seguridad` y `api-gateway`: rol `ROLE_TELLER` y permisos corregidos para
+  mis casos de uso (CU-17, CU-24, CU-26, CU-28 y CU-30), con pruebas de RBAC
+  (82 de 82 en el gateway). Asignar un rol canónico que aún no está en la
+  tabla `roles` ya no responde 404: lo crea.
+- `web`: portal de funcionarios con `StaffLayout`, página
+  `/admin/ventanilla` y _middleware_ que lleva a cada rol a su interfaz y
+  bloquea al cliente fuera de `/admin`. Se corrigió el «Error de red» al
+  cambiar de rol: `RoleSwitcher` llamaba a `localhost` en lugar de usar el
+  cliente de API. Se quitó el botón «Depositar» de la pantalla del cliente,
+  que llevaba a una página inexistente.
+- `infra`: migración de ventanilla y migración de roles, porque producción no
+  tenía la tabla `roles`. Usuarios de prueba `cajero.prueba` (solo
+  `ROLE_TELLER`) y `admin.prueba` (solo `ROLE_ADMIN`).
+
+==== Tareas asignadas
+
+- Automatizar CU-28 en el repositorio `demo`.
+- Revisar que el rechazo de un cheque use códigos ISO del catálogo de CU-26 en
+  vez de un motivo libre, si el equipo lo considera necesario.
+
+=== Iteración 47: Demo en vivo controlada por el presentador y Node.js en Ansible
+
+*Fecha y hora:* 2 de noviembre de 2026, entre las 16:36 y las 16:44 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Implementación + DevOps / Infraestructura \
+*Commit:*
+#link(commit_demo_url + "f44f1020d9a6890a85751bf7339f2204ab81700a", [f44f102 · «Demo en vivo»]),
+#link(commit_demo_url + "35648abe1337cb58e581833b77c226cff394c05a", [35648ab · «Fix de la demo»]),
+#link(commit_demo_url + "58c11d07de53304f2f4947793ed9ac67b72d57ee", [58c11d0 · «Demo paso a paso»]),
+#link(commit_infra_url + "9dcbbfb9e270ecd884338ad330e8c9f7ce930dc1", [9dcbbfb · «Añadir node» (infra)]) \
+*Archivos:*
+`demo/lib/caso.ts`, `demo/playwright.config.ts`, `demo/scripts/demo.ts`,
+`demo/package.json`, `infra/playbooks/17-demo.yml`,
+`infra/playbooks/platform.yml`
+
+==== Descripción
+
+*Drivers:* el profesor pidió ver la demo en vivo, en cámara lenta y con
+control sobre la página.
+
+*Análisis preliminar de resultados:*
+- Nuevo modo `bun run demo:control`: navegador visible, acciones lentas y una
+  pausa antes de cada paso. Se avanza con _Resume_ en el Playwright Inspector
+  y, mientras está en pausa, se puede usar la página a mano. No tiene límite de
+  tiempo por caso.
+- En `salomon` la demo terminaba sin hacer nada y sin reporte: la causa era que
+  no tenía Node.js, que Playwright necesita, y `bunx` no mostraba ningún
+  error. `scripts/demo.ts` ahora avisa si falta Node o si no hay pantalla, e
+  informa el código de salida.
+- Nuevo playbook `17-demo.yml`, incluido en `platform.yml`: instala Node.js 22
+  (NodeSource), Bun y, si el repositorio `demo` está clonado, Chromium y las
+  librerías del sistema que necesita.
+
+=== Iteración 48: ADR-09 a ADR-16
+
+*Fecha y hora:* 2 de noviembre de 2026, 16:47 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Documentación \
+*Commit:* #link(commit_url + "cb8e385b84fe8527fbf7fa96870a65e88476ebe2", [cb8e385 · «Modificacion de los ADR»]) \
+*Archivos:* #link(git_base_url + "/docs/arch-description.typ", [arch-description.typ])
+
+==== Descripción
+
+Las ocho decisiones registradas en la iteración 41 se convirtieron en ADR con
+el formato del documento (ASR relacionado, problema, solución y consecuencias
+positivas y negativas): ADR-09 (Scrum y Kanban), ADR-10 (eliminación del
+frontend compartido, que reemplaza al ADR-05), ADR-11 (fusión en `ms-core`),
+ADR-12 (_transactional outbox_), ADR-13 (cliente `@platformatic/kafka`),
+ADR-14 (reportes de pruebas), ADR-15 (ISO 20022) y ADR-16 (CloudBeaver).
+
+==== Tareas asignadas
+
+- Actualizar el ADR-05 y las menciones a `ms-transacciones` y `ms-cuentas` del
+  ADR-01 para que sean coherentes con los ADR-10 y ADR-11.

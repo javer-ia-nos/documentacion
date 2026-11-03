@@ -51,4 +51,8 @@
   [Realice la primera iteración del caso de uso #03 (Gestión de beneficiarios)],
   [2026-10-13],
   [Primera iteración en el código del caso de uso #03], 
+  [13],
+  [Realice la primera iteración del caso de uso #07 (Gestión Cuentas de Ahorros)],
+  [2026-11-03],
+  [Primera iteración en el código del caso de uso #07],
 )

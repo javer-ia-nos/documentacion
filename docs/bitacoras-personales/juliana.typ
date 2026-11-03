@@ -55,4 +55,8 @@
   [Realice la primera iteración del caso de uso #07 (Gestión Cuentas de Ahorros)],
   [2026-11-03],
   [Primera iteración en el código del caso de uso #07],
+  [14],
+  [Realice la primera iteracion del caso de uso #08 (Gestion de subcuentas y bolsillos de ahorro)],
+  [2026-11-03],
+  [Primera iteracion en el codigo del caso de uso #08],
 )

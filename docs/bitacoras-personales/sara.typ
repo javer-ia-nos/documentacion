@@ -73,4 +73,9 @@
   [2026-10-15],
   [Casos de uso],
 
+  [15],
+  [Se realizó el CU-04 y parte del CU-05. Backend, frontend y BD],
+  [2026-11-3],
+  [Casos de uso],
+
 )

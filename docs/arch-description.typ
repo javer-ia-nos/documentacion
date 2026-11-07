@@ -92,6 +92,10 @@
     [2026-10-07],
     [Se rediseñó la vista física para alta disponibilidad: plano de control en tres máquinas, red con Cilium, PostgreSQL replicado con CloudNativePG, Kafka con tres brokers, cifrado de Secrets en reposo y estrategia de respaldos con tres copias, con un diagrama de despliegue de producción y los ADR-06, ADR-07 y ADR-08. Se detalló en el flujo de CU-30 el token interno de servicio, la huella de dispositivo obligatoria, los resultados de la compensación y la recuperación de transferencias pendientes; se corrigió el ADR-03 (el gateway ya no propaga la identidad por cabeceras) y se actualizaron los riesgos técnicos.],
     [Salomón Avila],
+
+    [2026-11-07],
+    [Se actualizó la vista física con la infraestructura que quedará en producción: un único plano de control, Flannel, una instancia de PostgreSQL por microservicio, Kafka de un solo nodo y respaldos diarios con `pg_dump`. Se agregó el ADR-17, que reemplaza a los ADR-06, ADR-07 y ADR-08, y se ajustaron los riesgos técnicos.],
+    [Salomón Avila],
   )
 ]
 
@@ -801,17 +805,17 @@ Las transferencias entre cuentas propias y a terceros, correspondientes al caso 
 
 El diagrama de despliegue de producción (@fig-deployment-prod) ilustra la topología física del sistema sobre un clúster de Kubernetes bare-metal distribuido entre las seis máquinas físicas de los integrantes del equipo. El aprovisionamiento y la configuración del clúster se gestionan de manera automatizada mediante playbooks de Ansible (repositorio `infra`), que instalan el runtime de contenedores Containerd (con cgroup v2 en systemd) y los paquetes de Kubernetes (kubelet, kubeadm, kubectl), y que permiten reconstruir el clúster completo desde máquinas en blanco.
 
-El plano de control es de alta disponibilidad (ADR-06): tres máquinas (`salomon`, `miguel` y `sara`) ejecutan el API server, el controller manager, el scheduler y un miembro de etcd cada una, de modo que el clúster sigue operando aunque una de ellas se reinicie o se apague, ya que etcd conserva el quórum con dos de tres miembros. Las seis máquinas, incluidas las del plano de control, ejecutan cargas de trabajo. Ningún componente depende de la dirección de una máquina concreta: cada nodo ejecuta un balanceador HAProxy local (`127.0.0.1:16443`) que reparte las peticiones entre los tres API servers, y el endpoint del clúster es un nombre (`k8s-api.javerianos.local`) que cada nodo resuelve hacia su propio balanceador. Como las máquinas también se usan como estaciones de trabajo, el kubelet reserva recursos para el sistema operativo y realiza un apagado ordenado de los pods cuando la máquina se reinicia.
+El clúster tiene un único nodo de plano de control (ADR-17): `salomon` ejecuta el API server, el controller manager, el scheduler y etcd, y las otras cinco máquinas (`arantxa`, `sara`, `samuel`, `miguel` y `juliana`) se unen como workers y ejecutan las cargas de trabajo. Todos los nodos apuntan a la dirección de `salomon` para comunicarse con el API server. Si `salomon` se apaga, los pods que ya están en ejecución siguen atendiendo, pero el clúster no puede reprogramar pods ni aplicar cambios hasta que la máquina vuelva.
 
-La red del clúster la provee Cilium (ADR-06), que reemplaza tanto al plugin Flannel como a kube-proxy. Cilium enruta el tráfico entre pods mediante túneles VXLAN sobre el bloque CIDR `10.244.0.0/16`, necesarios porque las máquinas están en subredes distintas de la red de la universidad, y hace cumplir las NetworkPolicies, que Flannel no aplicaba. Su componente Hubble permite observar qué servicio llama a cuál. Las llamadas síncronas por gRPC se dirigen a un Service _headless_ de cada microservicio, de modo que el cliente conoce todas las réplicas y reparte las llamadas entre ellas (`round_robin`); además, el servidor cierra las conexiones cada 30 segundos para que el cliente descubra las réplicas nuevas que crea el autoescalado.
+La red del clúster la provee Flannel junto con kube-proxy (ADR-17). Flannel enruta el tráfico entre pods mediante túneles VXLAN sobre el bloque CIDR `10.244.0.0/16`, necesarios porque las máquinas están en subredes distintas de la red de la universidad. Flannel no aplica NetworkPolicies, así que no hay segmentación de red entre pods: el aislamiento entre microservicios depende de la autenticación (JWT del usuario validado por el API Gateway y token interno entre servicios). Las llamadas síncronas por gRPC se dirigen a un Service _headless_ de cada microservicio, de modo que el cliente conoce todas las réplicas y reparte las llamadas entre ellas (`round_robin`); además, el servidor cierra las conexiones cada 30 segundos para que el cliente descubra las réplicas nuevas que crea el autoescalado.
 
-En el perímetro, un controlador Ingress NGINX desplegado en todos los nodos expone los puertos HTTP/HTTPS, con certificados emitidos por cert-manager. Las rutas `/api/*` se entregan al API Gateway (`api-gateway`, puerto 3000), único punto de entrada hacia los microservicios, y el resto se entrega a la aplicación Web en Astro; Grafana y pgAdmin se publican bajo `/grafana` y `/pgadmin`. Cada microservicio se empaqueta en una imagen que GitHub Actions compila y publica en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`), y el despliegue de toda la flota se orquesta con Helm mediante el chart paraguas `charts/`javer-ia-nos``. Cada microservicio ejecuta un único proceso por pod y cuenta con un Horizontal Pod Autoscaler (HPA) que ajusta el número de réplicas entre una y tres según el consumo de CPU.
+En el perímetro, un controlador Ingress NGINX desplegado en todos los nodos expone los puertos HTTP/HTTPS, con certificados emitidos por cert-manager. El sistema tiene dos entradas: desde la red de la universidad se llega directamente al Ingress de cualquier nodo, y desde Internet se accede por el dominio público `fpe.acha.dev`, que se sirve a través de Cloudflare (el DNS resuelve a Cloudflare, que actúa como proxy inverso y termina TLS en su borde) antes de reenviar el tráfico al Ingress del clúster. Las rutas `/api/*` se entregan al API Gateway (`api-gateway`, puerto 3000), único punto de entrada hacia los microservicios, y el resto se entrega a la aplicación Web en Astro; Grafana y CloudBeaver (ADR-16) se publican bajo `/grafana` y `/dbeaver`. Cada microservicio se empaqueta en una imagen que GitHub Actions compila y publica en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`), y el despliegue de toda la flota se orquesta con Helm mediante el chart paraguas `charts/`javer-ia-nos``. Un temporizador de systemd en `salomon` compara cada dos minutos el _digest_ de la etiqueta `latest` en GHCR con el de cada pod en ejecución y reinicia el Deployment cuando cambia, de modo que cada imagen publicada se despliega automáticamente. Cada microservicio ejecuta un único proceso por pod y cuenta con un Horizontal Pod Autoscaler (HPA) que ajusta el número de réplicas entre una y tres según el consumo de CPU.
 
-La persistencia respeta el principio de base de datos dedicada por microservicio, y cada base es un clúster de PostgreSQL administrado por el operador CloudNativePG (ADR-07). Cada clúster tiene tres instancias, una primaria y dos réplicas, ubicadas obligatoriamente en máquinas distintas y cada una con su propio volumen local (`local-path-provisioner`). La replicación es síncrona: un `COMMIT` solo se confirma cuando al menos una réplica lo tiene, así que el apagado de la máquina primaria no pierde transacciones confirmadas. Los microservicios se conectan al Service `<servicio>-db-rw`, que siempre apunta a la primaria vigente; si la primaria falla, CloudNativePG promueve una réplica automáticamente. La mensajería asíncrona opera sobre un clúster de Apache Kafka administrado por el operador Strimzi, con tres nodos (controlador y broker) en máquinas distintas, factor de replicación 3 y un mínimo de dos réplicas sincronizadas por tópico, de modo que la caída de un broker no detiene la publicación de eventos ni las compensaciones SAGA.
+La persistencia respeta el principio de base de datos dedicada por microservicio: cada microservicio tiene su propia instancia de PostgreSQL, desplegada como un Deployment de una réplica con un volumen local (`local-path-provisioner`) amarrado a la máquina donde se creó (ADR-17). Los microservicios se conectan a la base mediante su Service. Si la máquina que aloja una base se apaga, ese microservicio queda sin base de datos hasta que la máquina vuelva. La mensajería asíncrona opera sobre Apache Kafka administrado por el operador Strimzi, con un único nodo que cumple los roles de controlador y broker (modo KRaft) y `min.insync.replicas` igual a 1; mientras el broker no está disponible, los eventos quedan pendientes en la tabla _outbox_ de cada servicio (ADR-12).
 
-Las credenciales (contraseñas de bases de datos, `JWT_SECRET`, el token interno entre servicios y el token de GHCR) se versionan cifradas con Ansible Vault en el repositorio `infra` y se inyectan como Kubernetes Secrets, que a su vez se almacenan cifrados en etcd (cifrado en reposo con `aescbc`). El API server registra en una bitácora de auditoría todas las operaciones sobre el clúster.
+Las credenciales (contraseñas de bases de datos, `JWT_SECRET`, el token interno entre servicios y el token de GHCR) se versionan cifradas con Ansible Vault en el repositorio `infra` y se inyectan como Kubernetes Secrets. Los Secrets no se cifran en reposo en etcd y el API server no tiene configurada una bitácora de auditoría.
 
-Los respaldos siguen una estrategia de tres copias en tres discos distintos (ADR-08). Un servidor MinIO, ejecutado en `salomon` fuera de Kubernetes, recibe el archivado continuo del WAL y un respaldo base diario de cada clúster de PostgreSQL, lo que permite recuperar cualquier base a un punto en el tiempo de los últimos siete días. También recibe un volcado lógico diario (`pg_dump`) de cada base y una instantánea de etcd cada seis horas. Una vez al día, los dos volcados más recientes de cada base y la última instantánea de etcd se copian cifrados a `/srv/respaldos` en `miguel` y `sara`. Prometheus alerta si cualquiera de estos respaldos supera las 26 horas de antigüedad.
+Los respaldos los realiza un CronJob por microservicio que todos los días a las 08:00 UTC ejecuta `pg_dump` de su base y guarda el volcado en un volumen del clúster, conservando los últimos siete días (ADR-17). No hay archivado continuo del WAL, por lo que una base solo se puede recuperar al estado del último volcado diario, ni respaldos de etcd o copias fuera del clúster.
 
 #figure(
   caption: "Diagrama de despliegue: ambiente de desarrollo",
@@ -825,6 +829,7 @@ Los respaldos siguen una estrategia de tres copias en tres discos distintos (ADR
 ) <fig-deployment>
 
 En el ambiente de desarrollo (@fig-deployment), cada integrante ejecuta en su máquina los microservicios con `bun dev`, cada uno con su propia base de datos PostgreSQL en Docker Compose, y los frontends con el servidor de desarrollo de Astro y Expo. Las llamadas síncronas entre servicios usan gRPC y los eventos usan Kafka igual que en producción; cuando no hay un broker disponible, los eventos quedan pendientes en la tabla _outbox_ de cada servicio hasta que se configure uno. Los sistemas externos se reemplazan por simuladores locales.
+
 
 = Vista de código
 
@@ -1060,6 +1065,7 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 
 == ADR-06: Plano de Control en Alta Disponibilidad y Red con Cilium
 
+- *Estado:* Reemplazado por el ADR-17; no se implementó.
 - *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
 - *Problema:* El clúster tenía un único plano de control en una máquina que también es estación de trabajo de un integrante y que se reinicia. Mientras esa máquina está apagada, Kubernetes no puede reprogramar pods ni ejecutar el _failover_ de las bases de datos, así que la caída de cualquier otro nodo en ese intervalo deja servicios fuera de línea. Además, todos los nodos apuntaban a la dirección IP de esa máquina, y el plugin de red Flannel no hace cumplir NetworkPolicies, por lo que cualquier pod podía llamar directamente a los endpoints internos de Cuentas sin pasar por el API Gateway.
 - *Solución:* El plano de control se ejecuta en tres máquinas (`salomon`, `miguel` y `sara`) con etcd apilado, que también ejecutan cargas de trabajo. El endpoint del clúster es un nombre que cada nodo resuelve hacia un HAProxy local, que reparte las peticiones entre los tres API servers, sin depender de una IP virtual que la red de la universidad no permite administrar. El plugin de red Flannel y kube-proxy se reemplazan por Cilium, que aplica NetworkPolicies a nivel de red y de aplicación (HTTP y gRPC), reparte por petición el tráfico gRPC y ofrece observabilidad del tráfico entre servicios con Hubble.
@@ -1068,6 +1074,7 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 
 == ADR-07: PostgreSQL Replicado con CloudNativePG y Replicación Síncrona
 
+- *Estado:* Reemplazado por el ADR-17; no se implementó.
 - *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos).
 - *Problema:* Cada microservicio tenía una única instancia de PostgreSQL en un volumen local amarrado a una máquina. Si esa máquina se apaga, la base de datos queda fuera de línea hasta que vuelva, y si su disco falla se pierden los datos posteriores al último respaldo. Una replicación asíncrona no basta en un sistema bancario: si la primaria falla justo después de confirmar una transferencia, esa transacción confirmada al cliente puede perderse.
 - *Solución:* Cada base de datos es un clúster de PostgreSQL administrado por el operador CloudNativePG, con tres instancias (una primaria y dos réplicas) ubicadas obligatoriamente en máquinas distintas. La replicación es síncrona y exige que al menos una réplica confirme cada `COMMIT`. Si ninguna réplica está disponible, las escrituras se bloquean en lugar de continuar con una sola copia. Los microservicios se conectan siempre al Service `<servicio>-db-rw`, que apunta a la primaria vigente, y el operador promueve una réplica automáticamente cuando la primaria falla.
@@ -1076,6 +1083,7 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 
 == ADR-08: Estrategia de Respaldos con Tres Copias en Tres Discos
 
+- *Estado:* Reemplazado por el ADR-17; no se implementó.
 - *ID ASR:* ASR-01 (Disponibilidad Transaccional) y ASR-06 (Testabilidad y Auditoría del Sistema).
 - *Problema:* Los respaldos diarios de cada base se guardaban en volúmenes del mismo clúster, en algunos casos en la misma máquina que los datos. El procedimiento de reconstrucción del clúster borra esos volúmenes, y no existía respaldo del estado del propio clúster (etcd). Un respaldo que nunca se ha restaurado, o cuyo fallo nadie detecta, no garantiza la recuperación.
 - *Solución:* Un servidor MinIO, ejecutado en `salomon` fuera de Kubernetes, recibe el archivado continuo del WAL y un respaldo base diario de cada clúster de PostgreSQL (recuperación a un punto en el tiempo durante siete días), un volcado lógico diario por base y una instantánea de etcd cada seis horas. Una vez al día, los dos volcados más recientes de cada base y la última instantánea de etcd se copian cifrados a `miguel` y `sara`, en un directorio que el procedimiento de reconstrucción no toca. Todas las claves de cifrado y credenciales se guardan en Ansible Vault, y Prometheus alerta si cualquier respaldo no se actualiza a tiempo.
@@ -1146,6 +1154,14 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Consecuencias Positivas:* Un único punto de acceso, protegido con credenciales, para inspeccionar todas las bases, sin exponerlas fuera del clúster ni instalar herramientas en cada máquina.
 - *Consecuencias Negativas / Trade-offs:* Es otro componente que desplegar y actualizar, y su acceso debe restringirse, ya que permite consultar directamente datos bancarios.
 
+== ADR-17: Mantener el Clúster con un Único Plano de Control y Flannel
+
+- *ID ASR:* ASR-01 (Disponibilidad Transaccional - Tolerancia a fallos). Reemplaza a los ADR-06, ADR-07 y ADR-08.
+- *Problema:* El rediseño de alta disponibilidad (plano de control en tres máquinas, Cilium, PostgreSQL replicado con CloudNativePG, Kafka con tres brokers y respaldos en tres discos) exigía reconstruir el clúster completo y operar componentes considerablemente más complejos, con un costo de tiempo que no era compatible con el cronograma restante del proyecto ni con el uso de las máquinas como estaciones de trabajo.
+- *Solución:* Se mantiene la infraestructura existente: un único plano de control en `salomon` y cinco workers, red con Flannel y kube-proxy, una instancia de PostgreSQL por microservicio con volumen local, Kafka (Strimzi) con un solo nodo y respaldos diarios con `pg_dump` dentro del clúster. No se implementarán los ADR-06, ADR-07 y ADR-08.
+- *Consecuencias Positivas:* No es necesario reconstruir el clúster; la infraestructura es más simple de operar y consume menos recursos en máquinas que también son estaciones de trabajo. El equipo puede dedicar el tiempo a los casos de uso.
+- *Consecuencias Negativas / Trade-offs:* `salomon`, cada base de datos y el broker de Kafka son puntos únicos de falla: si su máquina se apaga, la parte correspondiente del sistema queda fuera de línea hasta que vuelva. Sin NetworkPolicies, cualquier pod puede alcanzar a cualquier servicio o base del clúster, por lo que la seguridad entre servicios depende solo de la autenticación. Los respaldos están dentro del mismo clúster y la pérdida de datos posible es de hasta un día.
+
 = Riesgos técnicos
 // #instruction[
 //   Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
@@ -1166,15 +1182,16 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Media],
   [Alto],
   [Alta],
-  [Clúster Kafka Strimzi con tres brokers en máquinas distintas, factor de replicación 3 y mínimo de dos réplicas sincronizadas por tópico, healthchecks automatizados y monitoreo continuo en Kubernetes.],
+  [Broker Kafka administrado por Strimzi, que lo reinicia automáticamente si falla; healthchecks y monitoreo continuo con Prometheus. Al ser un único nodo (ADR-17), la caída de su máquina detiene la publicación de eventos hasta que vuelva.],
   [Cada microservicio emisor escribe sus eventos en una tabla _outbox_ dentro de la misma transacción que el cambio de negocio; mientras el broker no está disponible los eventos quedan pendientes en la base de datos y el _relay_ los publica cuando el broker se restablece, sin bloquear ninguna transacción bancaria ni perder eventos.],
 
   [Desconexión o latencia entre nodos bare-metal],
   [Alta],
   [Alto],
   [Alta],
-  [Plano de control en tres máquinas (ADR-06), red con Cilium, apagado ordenado del kubelet en las máquinas que se reinician, y bases de datos y brokers de Kafka con réplicas obligatoriamente en máquinas distintas (ADR-07).],
-  [Reprogramación automática de los pods en los nodos sobrevivientes, promoción automática de una réplica de PostgreSQL por CloudNativePG y elección de un nuevo líder de partición en Kafka; las transferencias en curso se resuelven mediante la SAGA (ADR-01).],
+  [Mantener encendidas las máquinas que alojan el plano de control (`salomon`), el broker de Kafka y las bases de datos; monitorear el estado de los nodos con Prometheus y Alertmanager.],
+  [Los pods sin estado (microservicios, API Gateway y web) se reprograman en los nodos sobrevivientes. Las bases de datos y el broker de Kafka están amarrados a su máquina por el volumen local, así que el servicio afectado queda fuera de línea hasta que esa máquina vuelva (ADR-17); las transferencias en curso se resuelven mediante la SAGA (ADR-01) y los eventos quedan en el _outbox_.],
+
 
   [Fallo de compensación en transacciones SAGA],
   [Baja],
@@ -1190,19 +1207,19 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Indexación eficiente sobre identificadores de transacción y usuario, y definición de políticas de retención y particionamiento mensual en PostgreSQL.],
   [Ejecución automatizada de exportaciones periódicas hacia almacenamiento secundario conforme al caso de uso de exportación a entes reguladores.],
 
-  [Pérdida de quórum de etcd (dos de las tres máquinas del plano de control apagadas a la vez)],
-  [Baja],
-  [Alto],
+  [Caída de la máquina del plano de control (`salomon`)],
   [Media],
-  [Elegir para el plano de control máquinas que permanecen encendidas, reservar recursos del sistema para etcd y alertar en Prometheus cuando un miembro de etcd no responde.],
-  [Encender una de las máquinas para recuperar el quórum; si no es posible, restaurar el clúster desde la última instantánea de etcd (ADR-08). Las aplicaciones siguen atendiendo mientras tanto, pero sin reprogramación ni _failover_.],
+  [Alto],
+  [Alta],
+  [Mantener `salomon` encendida y conectada; no usarla para tareas que impliquen reinicios frecuentes.],
+  [Las aplicaciones en ejecución siguen atendiendo, pero no hay reprogramación de pods ni despliegues hasta que `salomon` vuelva. Si su disco se pierde, se reconstruye el clúster con los playbooks de Ansible y se restauran las bases desde los volcados diarios.],
 
   [Desastre en el sitio (corte eléctrico prolongado, robo o incendio en el laboratorio)],
   [Baja],
   [Crítico],
   [Media],
-  [Tres copias de los respaldos en tres discos distintos (ADR-08); revisión periódica de que las copias se restauran correctamente.],
-  [Riesgo aceptado por el equipo: al estar todas las copias en el mismo sitio, la recuperación depende de que sobreviva al menos una máquina. Reconsiderar una copia cifrada fuera del sitio si el sistema pasa a manejar datos reales.],
+  [Volcados diarios con `pg_dump` conservados siete días; revisión periódica de que los volcados se restauran correctamente.],
+  [Riesgo aceptado por el equipo (ADR-17): los respaldos están dentro del mismo clúster, por lo que un desastre en el sitio los perdería junto con los datos. Reconsiderar una copia fuera del sitio si el sistema pasa a manejar datos reales.],
 
   [Pérdida de la contraseña de Ansible Vault],
   [Baja],

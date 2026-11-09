@@ -178,6 +178,24 @@ reporte regulatorio, la política de retención y la exportación que aparecen e
 pertenecen al reporte de cumplimiento y no al CU-01, y decidí no registrar los intentos de acceso con un
 usuario inexistente, porque no hay a quién atribuirlos. Las pruebas pasan (16 nuevas en ms-auditoria, 4 en
 ms-seguridad y 6 en api-gateway; en el gateway sigue fallando un test de `x-user-id` que ya fallaba antes de
-mis cambios) [y probé el flujo completo con el stack levantado: el login, el intento fallido y el logout
-aparecen en la pantalla y en la base de datos, y la bitácora rechaza el DELETE]. Los cambios se subieron a
+mis cambios) y probé el flujo completo con el stack levantado: el login, el intento fallido y el logout
+aparecen en la pantalla y en la base de datos, y la bitácora rechaza el DELETE. Los cambios se subieron a
 ms-auditoria, ms-seguridad, api-gateway, web e integracion.
+
+=== 09/11/2026 — Implementación CU-25 (Generación y escaneo de códigos QR)
+Implementé en ms-core el cobro y el pago con códigos QR. Quien cobra genera un QR vinculado a una de sus
+cuentas, con monto fijo o abierto y una vigencia; el texto del QR va firmado con HMAC-SHA256 y lleva el id,
+el comercio, el monto y el vencimiento, nunca el número de cuenta, así que un código alterado se rechaza
+antes de tocar la base de datos. Quien paga lo escanea o pega su texto, ms-core valida firma, estado y
+vencimiento, y el pago debita y acredita en una sola transacción de base de datos reutilizando lo de CU-30
+y CU-19: movimientos idempotentes, topes por operación y diarios, y bloqueo de las filas para que dos pagos
+simultáneos del mismo QR de monto fijo no se cobren dos veces. Un QR de monto fijo se cobra una sola vez y
+uno abierto sigue activo hasta que venza o su dueño lo cancele. Agregué las tablas `qr_codes` y `qr_payments`
+(el E/R solo traía `QRPayment`, así que `qr_codes` hay que sumarla a los diagramas) y el tipo de
+transacción `QR_PAYMENT`, y el pago publica por outbox los eventos de auditoría (`PAGO_QR`, que CU-01 ya muestra
+en el historial de actividad) y de notificación. Lo expuse por gRPC y por el API Gateway
+(`/transacciones/qr`) y creé la pantalla `/qr` con las pestañas Pagar y Cobrar, el QR dibujado, el escaneo
+con la cámara y la opción de pegar el código, además de la etiqueta del movimiento en el historial de la
+cuenta. Las pruebas pasan (17 nuevas en ms-core, 7 en api-gateway y la prueba de integración INT-08, de la que
+comprobé todo salvo la parte que depende de Kafka) y lo probé desde la web con dos usuarios y la cámara real.
+Los cambios se subieron a ms-core, api-gateway, web e integracion.

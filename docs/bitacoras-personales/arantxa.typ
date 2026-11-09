@@ -155,4 +155,29 @@ autenticadora y el campo del código en el login. Dejé fuera el bloqueo por int
 documentación no define si es automático o lo hace un administrador. Las pruebas pasan (29 nuevas en
 ms-seguridad, que queda en 102, y 32 en ms-notificaciones) y lo probé desde la web con una app
 autenticadora real y en la base de datos. Los cambios se subieron a ms-seguridad, ms-notificaciones y web.
-#link("https://github.com/javer-ia-nos/ms-seguridad/commit/XXXXXXX", "XXXXXXX")
+
+=== 08/11/2026 — Implementación CU-01 (Historial de actividad y sesiones) e INT-02
+Construí desde cero el microservicio ms-auditoria, que hasta ahora solo tenía el endpoint de salud, y con
+él el CU-01 y la integración INT-02 (trazabilidad perimetral). ms-auditoria consume por Kafka los eventos
+de los demás servicios (`auditoria.peticion`, `auditoria.respuesta`, `auditoria.evento-sesion`,
+`auditoria.evento-transaccion`, `seguridad.dispositivo-nuevo`, `seguridad.cambio-cuenta`, entre otros) y los
+guarda en la tabla `audit_logs`. Cada mensaje se identifica por `tópico:partición:offset`, así que si Kafka
+lo reentrega no se duplica el registro, y antes de guardar se sanitiza todo lo sensible (contraseñas, tokens,
+códigos de verificación). Para cumplir la inmutabilidad que pide INT-02 agregué triggers en la base de datos
+que rechazan UPDATE, DELETE y TRUNCATE sobre la bitácora. Expone `GET /auditoria/actividad` (con filtros por
+categoría y fechas, y paginación), `GET /auditoria/sesiones` y la consulta `GET /eventos/:usuarioId` del
+diagrama de código; el usuario sale siempre del JWT, de modo que cada cliente solo ve lo suyo, y solo un
+administrador puede consultar a otro usuario. En ms-seguridad el login exitoso, el login fallido (con el
+motivo: clave o código 2FA incorrecto) y el logout publican `auditoria.evento-sesion` por el outbox; como
+ms-seguridad no guarda sesiones (el JWT es sin estado), decidí derivar las "sesiones" de estos eventos y no
+agregar una tabla nueva. El API Gateway ahora publica `auditoria.peticion` antes de ejecutar y
+`auditoria.respuesta` al terminar, con el mismo `x-request-id`, sin guardar cuerpos, cabeceras ni query
+string, y sin que una falla de Kafka afecte al cliente. En la web creé la pantalla `/historial` (pestañas
+Actividad y Sesiones, filtros y paginación), enlazada desde `/seguridad`. Dejé fuera de esta entrega el
+reporte regulatorio, la política de retención y la exportación que aparecen en el modelo E/R, porque
+pertenecen al reporte de cumplimiento y no al CU-01, y decidí no registrar los intentos de acceso con un
+usuario inexistente, porque no hay a quién atribuirlos. Las pruebas pasan (16 nuevas en ms-auditoria, 4 en
+ms-seguridad y 6 en api-gateway; en el gateway sigue fallando un test de `x-user-id` que ya fallaba antes de
+mis cambios) [y probé el flujo completo con el stack levantado: el login, el intento fallido y el logout
+aparecen en la pantalla y en la base de datos, y la bitácora rechaza el DELETE]. Los cambios se subieron a
+ms-auditoria, ms-seguridad, api-gateway, web e integracion.

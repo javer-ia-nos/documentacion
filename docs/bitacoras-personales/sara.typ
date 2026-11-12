@@ -78,4 +78,9 @@
   [2026-11-3],
   [Casos de uso],
 
+  [16],
+  [Se realizó el CU-02. Backend, frontend y BD],
+  [2026-11-12],
+  [Casos de uso],
+
 )

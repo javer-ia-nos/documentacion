@@ -96,6 +96,10 @@
     [2026-11-07],
     [Se actualizó la vista física con la infraestructura que quedará en producción: un único plano de control, Flannel, una instancia de PostgreSQL por microservicio, Kafka de un solo nodo y respaldos diarios con `pg_dump`. Se agregó el ADR-17, que reemplaza a los ADR-06, ADR-07 y ADR-08, y se ajustaron los riesgos técnicos.],
     [Salomón Avila],
+
+    [2026-11-15],
+    [Se agregó el ADR-18 con el análisis OWASP Top 10:2025 y sus correcciones: identidad y rol solo desde el JWT, bloqueo temporal por intentos fallidos, secretos obligatorios en producción, CORS restringido, cabeceras de seguridad y CSP, y el pipeline de escaneo continuo. Se corrigió el ADR-03 (el gateway sí propaga la identidad verificada, pero ningún servicio autoriza con ella), se actualizó la vista física (puerto del gateway, Secrets por servicio, cabeceras del Ingress y alertas) y se agregaron riesgos de seguridad.],
+    [Salomón Avila],
   )
 ]
 
@@ -809,11 +813,13 @@ El clúster tiene un único nodo de plano de control (ADR-17): `salomon` ejecuta
 
 La red del clúster la provee Flannel junto con kube-proxy (ADR-17). Flannel enruta el tráfico entre pods mediante túneles VXLAN sobre el bloque CIDR `10.244.0.0/16`, necesarios porque las máquinas están en subredes distintas de la red de la universidad. Flannel no aplica NetworkPolicies, así que no hay segmentación de red entre pods: el aislamiento entre microservicios depende de la autenticación (JWT del usuario validado por el API Gateway y token interno entre servicios). Las llamadas síncronas por gRPC se dirigen a un Service _headless_ de cada microservicio, de modo que el cliente conoce todas las réplicas y reparte las llamadas entre ellas (`round_robin`); además, el servidor cierra las conexiones cada 30 segundos para que el cliente descubra las réplicas nuevas que crea el autoescalado.
 
-En el perímetro, un controlador Ingress NGINX desplegado en todos los nodos expone los puertos HTTP/HTTPS, con certificados emitidos por cert-manager. El sistema tiene dos entradas: desde la red de la universidad se llega directamente al Ingress de cualquier nodo, y desde Internet se accede por el dominio público `fpe.acha.dev`, que se sirve a través de Cloudflare (el DNS resuelve a Cloudflare, que actúa como proxy inverso y termina TLS en su borde) antes de reenviar el tráfico al Ingress del clúster. Las rutas `/api/*` se entregan al API Gateway (`api-gateway`, puerto 3000), único punto de entrada hacia los microservicios, y el resto se entrega a la aplicación Web en Astro; Grafana y CloudBeaver (ADR-16) se publican bajo `/grafana` y `/dbeaver`. Cada microservicio se empaqueta en una imagen que GitHub Actions compila y publica en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`), y el despliegue de toda la flota se orquesta con Helm mediante el chart paraguas `charts/`javer-ia-nos``. Un temporizador de systemd en `salomon` compara cada dos minutos el _digest_ de la etiqueta `latest` en GHCR con el de cada pod en ejecución y reinicia el Deployment cuando cambia, de modo que cada imagen publicada se despliega automáticamente. Cada microservicio ejecuta un único proceso por pod y cuenta con un Horizontal Pod Autoscaler (HPA) que ajusta el número de réplicas entre una y tres según el consumo de CPU.
+En el perímetro, un controlador Ingress NGINX desplegado en todos los nodos expone los puertos HTTP/HTTPS, con certificados emitidos por cert-manager. El sistema tiene dos entradas: desde la red de la universidad se llega directamente al Ingress de cualquier nodo, y desde Internet se accede por el dominio público `fpe.acha.dev`, que se sirve a través de Cloudflare (el DNS resuelve a Cloudflare, que actúa como proxy inverso y termina TLS en su borde) antes de reenviar el tráfico al Ingress del clúster. Las rutas `/api/*` se entregan al API Gateway (`api-gateway`, puerto 4860), único punto de entrada hacia los microservicios, y el resto se entrega a la aplicación Web en Astro; Grafana y CloudBeaver (ADR-16) se publican bajo `/grafana` y `/dbeaver`, protegidos solo por su propio inicio de sesión. El Ingress agrega a todas las respuestas las cabeceras de seguridad `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` y `Permissions-Policy`, y la Web envía su propia `Content-Security-Policy` (ADR-18). Cada microservicio se empaqueta en una imagen que GitHub Actions compila y publica en GitHub Container Registry (`ghcr.io/`javer-ia-nos`/<repo>`), y el despliegue de toda la flota se orquesta con Helm mediante el chart paraguas `charts/`javer-ia-nos``. Un temporizador de systemd en `salomon` compara cada dos minutos el _digest_ de la etiqueta `latest` en GHCR con el de cada pod en ejecución y reinicia el Deployment cuando cambia, de modo que cada imagen publicada se despliega automáticamente; después de cada despliegue dispara el escaneo de seguridad del repositorio `owasp` (ADR-18). Cada microservicio ejecuta un único proceso por pod y cuenta con un Horizontal Pod Autoscaler (HPA) que ajusta el número de réplicas entre una y tres según el consumo de CPU.
 
 La persistencia respeta el principio de base de datos dedicada por microservicio: cada microservicio tiene su propia instancia de PostgreSQL, desplegada como un Deployment de una réplica con un volumen local (`local-path-provisioner`) amarrado a la máquina donde se creó (ADR-17). Los microservicios se conectan a la base mediante su Service. Si la máquina que aloja una base se apaga, ese microservicio queda sin base de datos hasta que la máquina vuelva. La mensajería asíncrona opera sobre Apache Kafka administrado por el operador Strimzi, con un único nodo que cumple los roles de controlador y broker (modo KRaft) y `min.insync.replicas` igual a 1; mientras el broker no está disponible, los eventos quedan pendientes en la tabla _outbox_ de cada servicio (ADR-12).
 
-Las credenciales (contraseñas de bases de datos, `JWT_SECRET`, el token interno entre servicios y el token de GHCR) se versionan cifradas con Ansible Vault en el repositorio `infra` y se inyectan como Kubernetes Secrets. Los Secrets no se cifran en reposo en etcd y el API server no tiene configurada una bitácora de auditoría.
+Las credenciales (contraseñas de bases de datos, `JWT_SECRET`, el token interno entre servicios, las llaves del 2FA y de los QR, y el token de GHCR) se versionan cifradas con Ansible Vault en el repositorio `infra` y se inyectan como Kubernetes Secrets. Cada microservicio lee `JWT_SECRET` y el token interno de su propio Secret (`<servicio>-auth`) mediante `secretKeyRef`, así que no aparecen en texto plano en el Deployment, y sus pods se reinician solos cuando el Secret cambia. Los Secrets no se cifran en reposo en etcd y el API server no tiene configurada una bitácora de auditoría.
+
+El monitoreo lo hace kube-prometheus-stack (Prometheus, Alertmanager y Grafana). Además de las reglas por defecto, hay dos alertas propias para el espacio de nombres de la aplicación: `MicroservicioReiniciandose` (más de dos reinicios en 15 minutos) y `DespliegueIncompleto` (un despliegue que lleva 30 minutos sin terminar). Las alertas no se envían a ningún canal externo: se revisan en Grafana.
 
 Los respaldos los realiza un CronJob por microservicio que todos los días a las 08:00 UTC ejecuta `pg_dump` de su base y guarda el volcado en un volumen del clúster, conservando los últimos siete días (ADR-17). No hay archivado continuo del WAL, por lo que una base solo se puede recuperar al estado del último volcado diario, ni respaldos de etcd o copias fuera del clúster.
 
@@ -1042,10 +1048,10 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *ID ASR:* ASR-03 (Seguridad y Protección contra Fraude - Confidencialidad e Integridad).
 - *Problema:* En una arquitectura de ocho microservicios, si cada solicitud requiere que el microservicio downstream consulte síncronamente al microservicio `ms-seguridad` para validar el token y sesión del usuario, se genera un cuello de botella crítico, multiplicando la latencia de red interna y convirtiendo a `ms-seguridad` en un punto único de falla (SPOF).
 - *Solución:* Se estableció un esquema de seguridad defensivo en dos capas:
-  + *Borde Perimetral (API Gateway):* El gateway recibe la petición externa, valida la presencia y estructura del token Bearer, consulta el estado de la sesión activa en `ms-seguridad` y enruta al microservicio de destino propagando solo cabeceras de trazabilidad (`x-request-id`, `x-correlation-id`). El gateway *no* comunica la identidad del usuario mediante cabeceras: elimina de la petición cualquier cabecera de identidad o de uso interno que envíe el cliente (`x-user-id`, `x-usuario-id`, `x-internal-token`), porque un microservicio que confiara en ellas permitiría suplantar a otro usuario. Además, nunca enruta hacia los endpoints internos de movimiento de saldo de Cuentas.
-  + *Verificación Criptográfica Local (Microservicios Core):* Cada microservicio downstream verifica de forma autónoma e instantánea la firma criptográfica del JWT (algoritmo HMAC-SHA256) utilizando la clave simétrica maestra compartida (`JWT_SECRET`), inyectada de forma segura mediante un Kubernetes Secret. Solo acepta el algoritmo `HS256`, rechaza tokens expirados y toma la identidad del usuario exclusivamente del _claim_ `sub` del token verificado.
+  + *Borde Perimetral (API Gateway):* El gateway recibe la petición externa, valida la presencia y estructura del token Bearer, consulta el estado de la sesión activa en `ms-seguridad` y enruta al microservicio de destino con las cabeceras de trazabilidad (`x-request-id`, `x-correlation-id`). Antes de reenviar, elimina cualquier cabecera de identidad o de uso interno que envíe el cliente (`x-user-id`, `x-usuario-id`, `x-user-role`, `x-user-roles`, `x-internal-token`); solo vuelve a poner `x-user-id` y `x-user-role` con los valores del token que verificó, a título informativo. Ningún microservicio autoriza con esas cabeceras (ADR-18): si alguien llega a un servicio sin pasar por el gateway, podría falsificarlas. El gateway también aplica el control de acceso por rol (RBAC) por ruta y nunca enruta hacia los endpoints internos de movimiento de saldo de Cuentas.
+  + *Verificación Criptográfica Local (Microservicios Core):* Cada microservicio downstream verifica de forma autónoma e instantánea la firma criptográfica del JWT (algoritmo HMAC-SHA256) utilizando la clave simétrica maestra compartida (`JWT_SECRET`), inyectada mediante un Kubernetes Secret por servicio (`<servicio>-auth`). Solo acepta el algoritmo `HS256`, rechaza tokens expirados y toma la identidad y el rol del usuario exclusivamente de los _claims_ `sub` y `active_role` del token verificado. En producción el servicio no arranca si falta `JWT_SECRET`.
 - *Consecuencias Positivas:* La validación criptográfica en cada microservicio toma menos de 0.05 ms por petición y se elimina el 100% del tráfico de red inter-servicio para chequeo de tokens, desacoplando los servicios de la disponibilidad inmediata de `ms-seguridad`.
-- *Consecuencias Negativas / Trade-offs:* Exige sincronizar de forma rigurosa la variable `JWT_SECRET` entre todos los deployments de Kubernetes mediante Ansible Vault y no permite invalidar un token de forma atómica en downstream antes de su tiempo de expiración (salvo por consulta explícita de lista negra en eventos críticos).
+- *Consecuencias Negativas / Trade-offs:* Exige sincronizar de forma rigurosa la variable `JWT_SECRET` entre todos los deployments de Kubernetes mediante Ansible Vault y no permite invalidar un token de forma atómica en downstream antes de su tiempo de expiración (salvo por consulta explícita de lista negra en eventos críticos). Rotar `JWT_SECRET` cierra todas las sesiones; para que no invalide también el 2FA ni los códigos QR vigentes, el cifrado de los secretos TOTP (`MFA_ENC_KEY`) y la firma de los QR (`QR_SIGNING_KEY`) usan llaves propias.
 
 == ADR-04: Streaming Asíncrono de Eventos con Apache Kafka para Auditoría y Notificaciones
 
@@ -1162,6 +1168,18 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Consecuencias Positivas:* No es necesario reconstruir el clúster; la infraestructura es más simple de operar y consume menos recursos en máquinas que también son estaciones de trabajo. El equipo puede dedicar el tiempo a los casos de uso.
 - *Consecuencias Negativas / Trade-offs:* `salomon`, cada base de datos y el broker de Kafka son puntos únicos de falla: si su máquina se apaga, la parte correspondiente del sistema queda fuera de línea hasta que vuelva. Sin NetworkPolicies, cualquier pod puede alcanzar a cualquier servicio o base del clúster, por lo que la seguridad entre servicios depende solo de la autenticación. Los respaldos están dentro del mismo clúster y la pérdida de datos posible es de hasta un día.
 
+== ADR-18: Análisis OWASP Top 10 y Escaneo de Seguridad Continuo
+
+- *ID ASR:* ASR-03 (Seguridad y Protección contra Fraude - Confidencialidad e Integridad).
+- *Problema:* El sistema maneja dinero y datos personales, pero hasta ahora la seguridad solo se verificaba con las pruebas de cada caso de uso. Una revisión manual con el OWASP Top 10:2025 encontró, entre otros, servicios que tomaban el usuario y el rol de cabeceras que el cliente puede enviar (A01), un login sin límite de intentos (A07), secretos con un valor por defecto escrito en el código, CORS abierto a cualquier origen y ninguna cabecera de seguridad (A02).
+- *Solución:*
+  + *Control de acceso (A01):* la identidad y el rol salen solo del JWT verificado en cada microservicio; las cabeceras `x-user-id` y `x-user-role` se ignoran. Cada servicio tiene pruebas de suplantación.
+  + *Autenticación (A07):* tras cinco fallos (clave o código 2FA) en 15 minutos, la cuenta queda bloqueada 15 minutos y responde `429`, incluso con la clave correcta. El estado se guarda en la base de datos de `ms-seguridad`, porque el servicio corre con varias réplicas, y el bloqueo es temporal para que nadie pueda bloquear la cuenta de otro de forma permanente.
+  + *Configuración (A02):* en producción ningún servicio arranca sin `JWT_SECRET` o `INTERNAL_SERVICE_TOKEN`; el gateway solo acepta los orígenes de `CORS_ORIGINS` (`https://fpe.acha.dev` por defecto); el Ingress agrega cabeceras de seguridad y la Web una `Content-Security-Policy` que solo permite conectar al mismo origen.
+  + *Escaneo continuo:* el repositorio `owasp` ejecuta OWASP ZAP sobre la web y sobre el OpenAPI de cada microservicio (con un usuario cliente y uno administrador) y OWASP Dependency-Check sobre todos los repositorios. Corre cada semana y después de cada despliegue, con las herramientas fijadas por versión. Dependabot propone las actualizaciones de dependencias en todos los repositorios.
+- *Consecuencias Positivas:* Se cierran las vulnerabilidades de mayor impacto (suplantación de usuarios y fuerza bruta) y los cambios futuros se revisan automáticamente contra el Top 10. El análisis completo y sus pendientes quedan documentados en `owasp/top10/analisis-top10.md`.
+- *Consecuencias Negativas / Trade-offs:* Quedan pendientes el límite de peticiones por IP en el gateway (A06), la firma de imágenes (A08) y las alertas sobre la bitácora de seguridad (A09). El bloqueo por cuenta permite que alguien que conozca un usuario lo bloquee 15 minutos a propósito, y el `429` revela que la cuenta existe. CloudBeaver y Grafana siguen expuestos a Internet detrás de su propio inicio de sesión.
+
 = Riesgos técnicos
 // #instruction[
 //   Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
@@ -1227,6 +1245,27 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Media],
   [Guardar la contraseña en un gestor de contraseñas fuera de las máquinas del clúster y probar periódicamente una recuperación desde otra máquina.],
   [Sin la contraseña no se pueden descifrar los respaldos ni reconstruir los Secrets: se deben regenerar todas las credenciales y se pierden los respaldos cifrados.],
+
+  [Fuerza bruta o _password spraying_ contra el inicio de sesión],
+  [Media],
+  [Alto],
+  [Alta],
+  [Bloqueo temporal de la cuenta tras cinco intentos fallidos, 2FA con TOTP y registro de cada intento fallido en la bitácora de auditoría (ADR-18).],
+  [Revisar en la bitácora los `LOGIN_FALLIDO` del usuario o IP afectados, forzar el cambio de clave de las cuentas comprometidas y agregar un límite de peticiones por IP en el gateway o en Cloudflare.],
+
+  [Acceso no autorizado a CloudBeaver o Grafana, publicados en Internet],
+  [Baja],
+  [Crítico],
+  [Media],
+  [Contraseñas fuertes generadas desde el vault; restringir el acceso con Cloudflare Access (pendiente, ADR-18).],
+  [Cambiar las contraseñas de CloudBeaver y de las bases de datos desde el vault, redesplegar y revisar en la bitácora qué datos se consultaron.],
+
+  [Filtración de `JWT_SECRET` o del token interno],
+  [Baja],
+  [Crítico],
+  [Media],
+  [Secretos solo en Ansible Vault y en Secrets de Kubernetes, nunca en texto plano en los Deployments; el servicio no arranca en producción sin ellos (ADR-18).],
+  [Rotar el secreto desde el vault y redesplegar: se cierran todas las sesiones, pero el 2FA y los QR vigentes no se afectan porque usan llaves propias (ADR-03).],
 
   [Librería `kafkajs` sin mantenimiento activo (sin versiones nuevas desde 2023)],
   [Media],

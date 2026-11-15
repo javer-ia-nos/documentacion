@@ -2388,3 +2388,48 @@ estaba en `ms-core` (A03), el pipeline usaba etiquetas móviles (`:latest`,
 ==== Tareas asignadas
 
 - Correr `09-monitoring.yml` para cargar las alertas nuevas.
+
+=== Iteración 61: CI en verde tras los cambios de seguridad y actualización del documento de arquitectura
+
+*Fecha y hora:* 15 de noviembre de 2026 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección / Documentación \
+*Commit:* pendiente (`arch-description.typ`) \
+*Archivos:* `api-gateway/src/tests/core-grpc.test.ts`, `api-gateway/src/rbac.ts`,
+`ms-core/src/tests/cu25-qr.test.ts`, `owasp/.github/workflows/owasp.yaml`,
+`integracion/docker-compose.yml`, `integracion/docker-compose.cu12-tests.yml`,
+`integracion/tests/cu12.integration.test.ts`,
+`integracion/src/tests/helpers/webview-utils.ts`,
+`Documentacion/docs/arch-description.typ`
+
+==== Descripción
+
+*Drivers:* tras subir las correcciones OWASP fallaban las pruebas de
+`api-gateway` y `ms-core`, un job del escaneo OWASP y las pruebas E2E de
+`integracion`.
+
+*Análisis preliminar de resultados:*
+- `api-gateway` y `ms-core`: errores de tipos en las pruebas que venían de
+  antes (un cambio del proto de CU-09 y una fila que podía no existir en
+  CU-25).
+- OWASP: el job de `tarjetas` falló porque el escaneo arrancó mientras el pod
+  se reiniciaba. La descarga del OpenAPI ahora reintenta.
+- `integracion`:
+  - La imagen se compila con `NODE_ENV=production`, así que los servicios
+    exigían `JWT_SECRET` y el gateway solo aceptaba `https://fpe.acha.dev`. Se
+    agregaron los secretos y `CORS_ORIGINS` a los `docker-compose`.
+  - El RBAC del gateway exigía rol de personal en
+    `/financiero/demo/vencimiento`, mientras que `ms-financiero` exige ser el
+    titular del producto: nadie podía usar el endpoint. Se quitó la regla del
+    gateway; el endpoint solo existe fuera de producción.
+  - Una utilidad de las pruebas web desviaba `fetch` a `localhost:4860`, que
+    la CSP de la web bloquea. Ahora usa el proxy `/api`.
+- Resultado: las ejecuciones más recientes de los 12 repositorios pasan,
+  incluidas las 108 pruebas E2E.
+- `arch-description.typ`:
+  - ADR-18 nuevo: análisis OWASP y escaneo continuo.
+  - ADR-03 corregido: el gateway sí propaga la identidad verificada, pero
+    ningún servicio autoriza con ella.
+  - Vista física: puerto 4860 del gateway, Secrets por servicio, cabeceras
+    del Ingress y alertas.
+  - Tres riesgos de seguridad nuevos.

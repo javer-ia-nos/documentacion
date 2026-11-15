@@ -2165,3 +2165,185 @@ que el despliegue nunca se completaba.
 
 - Pasar el `JWT_SECRET` del deployment de `ms-crm` a un Secret de Kubernetes,
   porque hoy está en texto plano en el env, y rotarlo.
+
+=== Iteración 55: Ampliación del pipeline OWASP y análisis del Top 10:2025
+
+*Fecha y hora:* 15 de noviembre de 2026, entre las 13:23 y las 14:05 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad / DevOps \
+*Commit:*
+#link(commit_owasp_url + "e818950a6e99fccb4bc51bb0cfbd62c92d671d11", [e818950 · «Actualizacion de escaneo»]),
+#link(commit_owasp_url + "97ada92fa3976ffa9f8dc703f630d9de594cf0eb", [97ada92 · «Correccion de autenticacion»]),
+#link(commit_owasp_url + "dc402c56f45fab6ca53e4a425e9d514820e93094", [dc402c5 · «Actualizacion de seguridad»]),
+#link(commit_infra_url + "71f0ca747fbb7716f6f8cf422a98137cae71dc15", [71f0ca7 · «Fix de BD y OWASP» (infra)]),
+#link(commit_auditoria_url + "6bc6fecf1822038571a15a0f4175eba27b8bfc5e", [6bc6fec · «Fix de seguridad» (ms-auditoria)]) \
+*Archivos:* `owasp/.github/workflows/owasp.yaml`, `owasp/top10/analisis-top10.md`,
+`infra/scripts/check-images.sh`, `infra/playbooks/11-image-poller.yml`,
+`ms-auditoria/src/index.ts`
+
+==== Descripción
+
+*Drivers:* el Dependency-Check fallaba cuando NVD respondía `503`, `ms-auditoria`
+no se escaneaba y el reporte solo corría los lunes, no después de cada
+despliegue.
+
+*Análisis preliminar de resultados:*
+- La base NVD se actualiza en un paso aparte. Si NVD falla y hay caché, el
+  escaneo sigue con la base en caché y deja un aviso; los escaneos usan
+  `--noupdate`.
+- `ms-auditoria` publica su OpenAPI y se agregó a la matriz de ZAP.
+- El _image poller_ de `infra` dispara el workflow (`repository_dispatch`,
+  evento `deploy`) después de cada _rollout_, con un token opcional
+  (`vault_owasp_dispatch_token`).
+- Se escribió `analisis-top10.md`: recorrido del OWASP Top 10:2025 sobre el
+  sistema, con los hallazgos priorizados que se corrigen en las iteraciones
+  56 a 59.
+
+==== Tareas asignadas
+
+- Crear el PAT de GitHub para el _dispatch_, guardarlo en el vault y volver a
+  correr `11-image-poller.yml`.
+
+=== Iteración 56: A01 · Identidad y rol solo desde el JWT
+
+*Fecha y hora:* 15 de noviembre de 2026, entre las 13:20 y las 13:22 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad / Corrección \
+*Commit:*
+#link(commit_crm_url + "56209f60c0da51f28acd55c9182b8822d80bb26b", [56209f6 · «Fix de seguridad» (ms-crm)]),
+#link(commit_notificaciones_url + "58570f243dd0a74fa1c44f6b2b8b464070f78412", [58570f2 · «Fix de seguridad pra las cabeceras» (ms-notificaciones)]),
+#link(commit_tarjetas_url + "5a26570dc3d25c9477a5969581dadd7d646845cb", [5a26570 · «Fix de seguridad y formateo» (ms-tarjetas)]),
+#link(commit_core_url + "3f725a365f1c45a839981676df3448fc5e47ea50", [3f725a3 · «Formateo y fix de seguridad» (ms-core)]),
+#link(commit_seguridad_url + "e64674715b9047ddfb977ff9033fd59ff24fe252", [e646747 · «Verficacion de cabeceras» (ms-seguridad)]) \
+*Archivos:* `ms-crm/src/modules/identidad.ts`, módulos `pqrs` y `soporte` de
+`ms-crm`, `ms-notificaciones/src/modules/notificaciones/index.ts`, módulos
+`tarjetas` y `cupo` de `ms-tarjetas`, `productos` y `cuentas` de `ms-core`,
+`src/tests/suplantacion.test.ts` en los cuatro servicios
+
+==== Descripción
+
+*Drivers:* varios servicios tomaban el usuario y el rol de las cabeceras
+`x-user-id` y `x-user-role`, que cualquiera puede enviar. Con eso un cliente
+podía actuar como otro usuario o como administrador.
+
+*Análisis preliminar de resultados:*
+- La identidad y el rol salen solo del JWT verificado; las cabeceras se
+  ignoran.
+- `ms-core`: un cliente ya no puede fijar el depósito inicial al abrir una
+  cuenta.
+- `ms-tarjetas`: un cliente ya no puede emitirse a sí mismo una tarjeta de
+  crédito.
+- Pruebas de suplantación nuevas en los cuatro servicios: fallan con el código
+  anterior y pasan con el nuevo. Las suites completas pasan (ms-crm 11,
+  ms-notificaciones 34, ms-tarjetas 31, ms-core 451).
+- En `ms-seguridad` solo se formateó el código.
+
+=== Iteración 57: A07 · Bloqueo temporal por intentos fallidos
+
+*Fecha y hora:* 15 de noviembre de 2026, 13:46 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad \
+*Commit:*
+#link(commit_seguridad_url + "ab5e1a4d303be6b2468afda9c7b04ac1dca97285", [ab5e1a4 · «Fix en seguridad de numero de reintentos» (ms-seguridad)]),
+#link(commit_infra_url + "a3204906786e73f99d62b4be7eb5be32065c410a", [a320490 · «Adicion en el SQL» (infra)]) \
+*Archivos:* `ms-seguridad/src/modules/auth/bloqueo.ts`, módulos `auth`,
+`seguridad-cuenta` y `dispositivos`, `ms-seguridad/init/sql/seed.sql`,
+`infra/migrations/ms-seguridad/004-a07-bloqueo-login.sql`,
+`src/tests/bloqueo-login.test.ts`
+
+==== Descripción
+
+*Drivers:* el login no limitaba los intentos, así que se podía adivinar una
+clave por fuerza bruta.
+
+*Análisis preliminar de resultados:*
+- Tras 5 fallos en 15 minutos la cuenta queda bloqueada 15 minutos y responde
+  `429`, incluso con la clave correcta. Los tres valores se configuran por
+  variables de entorno.
+- El bloqueo es temporal a propósito: uno permanente dejaría a cualquiera
+  bloquear la cuenta de otro.
+- El estado se guarda en `credentials` y no en memoria, porque
+  `ms-seguridad` corre con varias réplicas.
+- El cambio de clave, el 2FA y confiar en un dispositivo comparten el mismo
+  contador, así que tampoco se puede adivinar la clave con una sesión robada.
+- El intento sobre una cuenta bloqueada queda en la bitácora de auditoría con
+  el motivo `CUENTA_BLOQUEADA`.
+- 118 pruebas de `ms-seguridad` pasan. La migración `004` agrega las columnas
+  y debe aplicarse antes de la imagen nueva.
+
+=== Iteración 58: A02 · Secretos obligatorios, CORS y cabeceras de seguridad
+
+*Fecha y hora:* 15 de noviembre de 2026, entre las 14:01 y las 14:04 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad \
+*Commit:*
+#link(commit_gateway_url + "fae7a4f57eb99b5de9917a4c6e984bb316c65897", [fae7a4f · «Actualizacion del cors» (api-gateway)]),
+#link(commit_core_url + "eebb3f2701ab2bc5ebc5a80fddc581b3e5c8c85b", [eebb3f2 · «Fix de seguridad» (ms-core)]),
+#link(commit_auditoria_url + "447e0403c874cd2c8d3e19ac44e285e22f783a46", [447e040 · «Fix seguridad» (ms-auditoria)]),
+#link(commit_crm_url + "723dcec56aeff5d420f6a596a18c3f476cca6ab7", [723dcec · «Fix seguridad» (ms-crm)]),
+#link(commit_notificaciones_url + "84eefabc29da5753ee53fa3eb5a4d24829b59dac", [84eefab · «Fix seguridad» (ms-notificaciones)]),
+#link(commit_seguridad_url + "208b5ceb63165615ef164a142b62d9ffa159e9c7", [208b5ce · «Seguridad» (ms-seguridad)]),
+#link(commit_tarjetas_url + "46d25baad44f818a216ae64b3e0b7d8f97fc73d3", [46d25ba · «Secrets» (ms-tarjetas)]),
+#link(commit_financiero_url + "39855c7ff19b5d2694af273d0f10c4c5864c24f9", [39855c7 · «Fix de seguridad» (ms-financiero)]),
+#link(commit_web_url + "1b9b864f2b93520feecd7e4c2fbb43b08a80eeb8", [1b9b864 · «Middleware» (web)]),
+#link(commit_infra_url + "e9040ffc587e58e1d6e653da1b03f83ddb898965", [e9040ff · «Actualizacion de charts» (infra)]) \
+*Archivos:* `src/secretos.ts` en el gateway y los siete microservicios,
+`api-gateway/src/index.ts`, `web/src/middleware.ts`,
+`infra/ingress-nginx-values.yaml`, `infra/playbooks/08-ingress.yml`,
+`infra/charts/javer-ia-nos/values.yaml`
+
+==== Descripción
+
+*Drivers:* si faltaba `JWT_SECRET` o el token interno, los servicios usaban
+un valor por defecto conocido. Además, el CORS del gateway aceptaba cualquier
+origen y ninguna respuesta traía cabeceras de seguridad.
+
+*Análisis preliminar de resultados:*
+- `secretoRequerido()`: en producción el servicio no arranca si falta
+  `JWT_SECRET` o `INTERNAL_SERVICE_TOKEN`. El valor de prueba solo se usa
+  fuera de producción.
+- El gateway solo acepta los orígenes de `CORS_ORIGINS`; en producción, por
+  defecto, `https://fpe.acha.dev`.
+- El Ingress agrega `nosniff`, `X-Frame-Options`, `Referrer-Policy` y
+  `Permissions-Policy` a todas las respuestas. La cámara queda permitida para
+  el escáner de QR.
+- La web envía su propia Content-Security-Policy, solo en producción.
+  Grafana y CloudBeaver quedan fuera porque necesitan scripts _inline_.
+- Se verificó con un _build_ de producción en Chromium sin violaciones de la
+  CSP. Las pruebas del gateway (102) y de `ms-financiero` (31) pasan.
+
+=== Iteración 59: JWT_SECRET en un Secret de Kubernetes y llaves separadas para 2FA y QR
+
+*Fecha y hora:* 15 de noviembre de 2026, 15:09 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad / Infraestructura \
+*Commit:* #link(commit_infra_url + "12132410325a3d528ae791e4957f9dbb8cbfa41c", [1213241 · «Actualizacion de valores»]) \
+*Archivos:* `infra/charts/microservice/templates/auth-secret.yaml`,
+`infra/charts/microservice/templates/deployment.yaml`,
+`infra/charts/javer-ia-nos/values.yaml`, `infra/playbooks/12-app.yml`,
+`infra/inventory/group_vars/all/vault.yml.example`
+
+==== Descripción
+
+*Drivers:* era la tarea pendiente de la iteración 54. `JWT_SECRET` y el token
+interno iban en texto plano en el Deployment, y rotar el JWT habría dejado
+sin acceso a todos los usuarios con 2FA y habría invalidado los QR vigentes.
+
+*Análisis preliminar de resultados:*
+- Cada microservicio tiene un Secret `<servicio>-auth` y el Deployment lo lee
+  con `secretKeyRef`; los secretos ya no aparecen en `kubectl describe pod`.
+- Los pods se reinician solos cuando cambia el Secret.
+- Llaves separadas en el vault: `MFA_ENC_KEY` (cifrado del TOTP del 2FA) y
+  `QR_SIGNING_KEY` (firma de los QR). La primera vez deben valer lo mismo que
+  el `JWT_SECRET` actual; así el JWT se puede rotar sin tocarlas.
+- `12-app.yml` se detiene si falta alguna de las dos llaves. Se verificó con
+  `helm template` que ningún secreto queda en texto plano.
+- Se descartó por ahora restringir `/dbeaver` y `/grafana` por IP: no se pudo
+  confirmar por dónde llega Cloudflare al clúster.
+
+==== Tareas asignadas
+
+- Rotar `JWT_SECRET` y el token interno con `12-app.yml`, y probar un login con
+  2FA.
+- Definir cómo cerrar `/dbeaver` y `/grafana` a Internet, por ejemplo con
+  Cloudflare Access.

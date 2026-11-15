@@ -59,4 +59,8 @@
   [Realice la primera iteracion del caso de uso #08 (Gestion de subcuentas y bolsillos de ahorro)],
   [2026-11-03],
   [Primera iteracion en el codigo del caso de uso #08],
+  [15],
+  [Implementación completa del caso de uso #10 (Certificados Bancarios y Validación Pública) en ms-financiero, integración perimetral con api-gateway, pruebas automáticas e interfaz web con validación pública.],
+  [2026-11-15],
+  [Implementación Caso de Uso #10 - Certificados Bancarios y Validación Pública],
 )

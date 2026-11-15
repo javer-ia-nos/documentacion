@@ -2347,3 +2347,44 @@ sin acceso a todos los usuarios con 2FA y habría invalidado los QR vigentes.
   2FA.
 - Definir cómo cerrar `/dbeaver` y `/grafana` a Internet, por ejemplo con
   Cloudflare Access.
+
+=== Iteración 60: Dependabot en todos los repos, pipeline OWASP fijado y alertas de disponibilidad
+
+*Fecha y hora:* 15 de noviembre de 2026 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Seguridad / DevOps \
+*Commit:* pendiente \
+*Archivos:* `.github/dependabot.yml` en `api-gateway`, `ms-auditoria`, `ms-crm`,
+`ms-financiero`, `ms-notificaciones`, `ms-seguridad`, `ms-tarjetas`, `web` y
+`owasp`; `owasp/.github/workflows/` (`owasp.yaml`, `nvd-cache.yaml`),
+`owasp/top10/analisis-top10.md`, `infra/monitoring-values.yaml`
+
+==== Descripción
+
+*Drivers:* pendientes de esfuerzo bajo del análisis OWASP. Dependabot solo
+estaba en `ms-core` (A03), el pipeline usaba etiquetas móviles (`:latest`,
+`:stable`, `@v4`) y no había alertas propias de la app (A09).
+
+*Análisis preliminar de resultados:*
+- Dependabot, con la misma configuración de `ms-core` (Bun, Dockerfile y
+  actions), en los otros ocho repos con código. En `owasp`, solo las actions.
+- Las actions del pipeline OWASP quedaron fijadas por SHA, y ZAP (2.17.0) y
+  Dependency-Check (13.0.0) por versión y _digest_. Son las mismas versiones
+  que ya se usaban, así que el resultado del escaneo no cambia.
+- Alertas nuevas en Prometheus:
+  - `MicroservicioReiniciandose`: más de 2 reinicios en 15 minutos.
+  - `DespliegueIncompleto`: un despliegue lleva 30 minutos sin terminar,
+    como el caso de `ms-crm` de la iteración 54.
+- Las alertas no se envían a ningún canal: se revisan en Grafana
+  (_Alerting → Alert rules_).
+- Verificado:
+  - `amtool` acepta la configuración de Alertmanager.
+  - `promtool` acepta las reglas.
+  - El chart renderiza.
+- No se quitaron `x-user-id` / `x-user-role` del gateway: llevan los valores
+  del JWT verificado, ningún servicio autoriza con ellas y las pruebas del
+  gateway verifican que se propaguen.
+
+==== Tareas asignadas
+
+- Correr `09-monitoring.yml` para cargar las alertas nuevas.

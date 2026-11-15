@@ -24,6 +24,7 @@
 #let commit_gateway_url = "https://github.com/javer-ia-nos/api-gateway/commit/"
 #let commit_integracion_url = "https://github.com/javer-ia-nos/integracion/commit/"
 #let commit_demo_url = "https://github.com/javer-ia-nos/demo/commit/"
+#let commit_owasp_url = "https://github.com/javer-ia-nos/owasp/commit/"
 
 == Bitácora de Salomon Alfredo Avila Larrotta
 
@@ -1954,3 +1955,213 @@ ADR-14 (reportes de pruebas), ADR-15 (ISO 20022) y ADR-16 (CloudBeaver).
 
 - Actualizar el ADR-05 y las menciones a `ms-transacciones` y `ms-cuentas` del
   ADR-01 para que sean coherentes con los ADR-10 y ADR-11.
+
+=== Iteración 49: Corrección del paso de formato en los pipelines de pruebas
+
+*Fecha y hora:* 7 de noviembre de 2026, entre las 13:00 y las 16:40 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección + DevOps / Infraestructura \
+*Commit:*
+#link(commit_core_url + "a9cb32cd1d2fa7e8c29ac0c5e631e2efd8963a17", [a9cb32c · «Fix del formatter» (ms-core)]),
+#link(commit_seguridad_url + "9a1e0a50b92e7bc85dfe75b8457a9ffda83ee877", [9a1e0a5 · «Fix de fmt» (ms-seguridad)]),
+#link(commit_auditoria_url + "83b748de080bc79e67bbde6d7230a38a49d0883b", [83b748d · «fix fmt» (ms-auditoria)]),
+#link(commit_crm_url + "625a50cfb9f16610ae24fb4c6a8ec74d0483d0ff", [625a50c · «fix fmt» (ms-crm)]),
+#link(commit_financiero_url + "0749554b2a745fbd2eabe9241a923c5d97e3ff6a", [0749554 · «fix fmt» (ms-financiero)]),
+#link(commit_notificaciones_url + "1df43dd6a4fc8466684fa065b25e969a6e0782ef", [1df43dd · «fix fmt» (ms-notificaciones)]),
+#link(commit_tarjetas_url + "cd934d640aa3a7aedf7afaf828cc17e0f6707619", [cd934d6 · «fix fmt» (ms-tarjetas)]) \
+*Archivos:*
+`.github/workflows/test.yaml` de los siete microservicios,
+`ms-seguridad/src/tests/limites.test.ts`
+
+==== Descripción
+
+- Se quitó una línea en blanco sobrante en `test.yaml`, justo antes del paso
+  «Format Check» (`bun fmt --check`), en los siete microservicios.
+- En `ms-seguridad`, además, se reformateó `limites.test.ts` para que pasara
+  la verificación de formato.
+
+=== Iteración 50: Tablas de CU-07 y CU-08 en el seed de ms-core
+
+*Fecha y hora:* 7 de noviembre de 2026, 14:29 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección \
+*Commit:* #link(commit_core_url + "94f403753b1ca07c5ba55a74784b35387766edb8", [94f4037 · «Modificacion de seed»]) \
+*Archivos:* `ms-core/init/sql/seed.sql`
+
+==== Descripción
+
+Los cambios de esquema de CU-07 y CU-08 solo estaban en los scripts de
+`ms-core/migrations/`, así que una base creada desde cero no los tenía. Se
+agregaron al seed:
+- el tipo de transacción `SAVINGS_INTEREST` (CU-07);
+- los tipos `SUBACCOUNT_DEPOSIT` y `SUBACCOUNT_WITHDRAWAL`, la tabla
+  `subaccounts` y la llave foránea de `auto_saving_schedule.subAccountId`
+  hacia ella (CU-08).
+
+=== Iteración 51: Pipeline de seguridad OWASP
+
+*Fecha y hora:* 7 de noviembre de 2026, entre las 14:59 y las 16:41 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura \
+*Commit:*
+#link(commit_owasp_url + "c50e7129ae192c0c24e16103dde7a12014c04833", [c50e712 · «Owasp init»]),
+#link(commit_owasp_url + "5152bcfae713c3ce72bef145a6a298256cde37ea", [5152bcf · «Dependency-Check con bun install y caché diaria de NVD»]),
+#link(commit_owasp_url + "4654e2f94378734f11443c5570340fe0e0d41250", [4654e2f · «Ajuste para trabajo en v2»]),
+#link(commit_web_url + "2a877ef84f4d5a9681d2b9b8c97d274dd85e1e84", [2a877ef · «Actualizacion de dependencias» (web)]),
+#link(commit_crm_url + "6c89645afe59f93b4301658159047c03dc8ce9dd", [6c89645 · «fix openapi» (ms-crm)]),
+#link(commit_financiero_url + "fa3f8237842a97db69e351fd99fef257d67d7320", [fa3f823 · «fix openapi» (ms-financiero)]),
+#link(commit_owasp_url + "67bda0db65ccc0d4754ed011a22633445966b1bf", [67bda0d · «Fiz de pipeline»]),
+#link(commit_owasp_url + "05b123d8524c86e075e4c8b3b3b00b664ca46888", [05b123d · «Fix falso positivo»]) \
+*Archivos:*
+`owasp/.github/workflows/owasp.yaml`, `owasp/.github/workflows/nvd-cache.yaml`,
+`owasp/scripts/generar-reporte.ts`, `owasp/zap/rules.tsv`,
+`owasp/depcheck/suppressions.xml`, `owasp/README.md`,
+`web/package.json`, `ms-crm/src/index.ts`, `ms-financiero/src/index.ts`
+
+==== Descripción
+
+*Drivers:* contar con un análisis de seguridad automatizado y repetible de
+todo el sistema, basado en herramientas de OWASP.
+
+*Análisis preliminar de resultados:*
+- Nuevo repositorio `owasp`. Su workflow «Reporte OWASP» corre cada lunes a
+  las 06:00 UTC, se puede lanzar a mano o tras un despliegue, y genera un
+  reporte consolidado en HTML con:
+  - OWASP ZAP: _baseline_ pasivo sobre la web y escaneo de la API (OpenAPI)
+    de cada microservicio, autenticado con un usuario cliente y otro
+    administrador. El modo `activo` inyecta _payloads_ y solo se usa con
+    usuarios de prueba.
+  - OWASP Dependency-Check: CVE en las dependencias de los nueve repositorios.
+- Dependency-Check no entiende `bun.lock`. Ahora primero se instalan las
+  versiones exactas con `bun install --frozen-lockfile` y después se genera el
+  `package-lock.json`. Un workflow diario (`nvd-cache.yaml`) mantiene al día la
+  caché de la base NVD, para que el reporte semanal no la descargue completa.
+- Se clonan los repositorios en la rama de trabajo `v2`. El _login_ de ZAP
+  reintenta hasta cuatro veces y usa una huella de dispositivo distinta por
+  job, porque los _logins_ simultáneos competían por el mismo dispositivo.
+- `ms-crm` y `ms-financiero` ahora exponen OpenAPI y se agregaron a la matriz
+  de ZAP (core, seguridad, notificaciones, tarjetas, crm y financiero).
+- Se actualizaron las dependencias de `web` (Astro 5 → 7, `@astrojs/node` 9
+  → 11, `@astrojs/react` 4 → 7).
+- Se suprimió un falso positivo de Dependency-Check: CVE-2022-25645 en `dset`.
+  La vulnerabilidad se corrigió en la versión 3.1.2, el proyecto usa la 3.1.4,
+  pero NVD marca todas las versiones como afectadas.
+
+==== Tareas asignadas
+
+- Completar el análisis manual del OWASP Top 10 (`top10/analisis-top10.md`),
+  que el README referencia y aún no existe.
+
+=== Iteración 52: Vista física de producción y ADR-17
+
+*Fecha y hora:* 7 de noviembre de 2026, 17:09 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Decisión de diseño + Diagrama / Modelado + Documentación \
+*Commit:* #link(commit_url + "6c11a58ba225963dacdbc607dafc197062e52577", [6c11a58 · «Ajuste de despliegue»]) \
+*Archivos:*
+#link(git_base_url + "/docs/arch-description.typ", [arch-description.typ]),
+`docs/diagrams/deployment-produccion.drawio`,
+`docs/diagrams/deployment-produccion.png`
+
+==== Descripción
+
+*Drivers:* ASR-01 (disponibilidad transaccional). El documento describía el
+rediseño de alta disponibilidad de los ADR-06, ADR-07 y ADR-08, pero no se iba
+a implementar.
+
+*Conceptos de diseño analizados:*
+- Rediseño de alta disponibilidad: plano de control en tres máquinas, Cilium,
+  PostgreSQL replicado con CloudNativePG, Kafka con tres brokers y respaldos en
+  tres discos. Exigía reconstruir el clúster y operar componentes bastante más
+  complejos, en máquinas que también son estaciones de trabajo y con el
+  cronograma restante.
+- Mantener la infraestructura existente y documentar con honestidad sus puntos
+  únicos de falla. Es la opción elegida.
+
+*Análisis preliminar de resultados:*
+- Nuevo ADR-17 «Mantener el clúster con un único plano de control y
+  Flannel», que reemplaza a los ADR-06, ADR-07 y ADR-08 (marcados como «no se
+  implementó»).
+- La vista física describe lo que hay en producción: un plano de control en
+  `salomon` y cinco workers; Flannel con kube-proxy, sin NetworkPolicies; una
+  instancia de PostgreSQL por microservicio con volumen local; Kafka (Strimzi)
+  de un nodo en modo KRaft; y `pg_dump` diario conservado siete días. También
+  describe el acceso desde Internet por `fpe.acha.dev` a través de Cloudflare,
+  CloudBeaver en `/dbeaver` y el poller de imágenes que despliega cada `latest`
+  nuevo.
+- Se reconoce explícitamente que los Secrets no se cifran en reposo en etcd y
+  que el API server no tiene bitácora de auditoría.
+- Se ajustaron la tabla de tácticas de ASR-01 y los riesgos técnicos: la caída
+  de `salomon` pasa a ser un riesgo de probabilidad alta, y la pérdida de los
+  respaldos en un desastre del sitio queda como riesgo aceptado.
+- Se actualizó el diagrama de despliegue de producción.
+
+=== Iteración 53: Sincronización del esquema de las bases de datos en infra
+
+*Fecha y hora:* 15 de noviembre de 2026, 12:50 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* DevOps / Infraestructura \
+*Commit:* #link(commit_infra_url + "56ef062be063dce1c0f72e05aff9a49b5421778c", [56ef062 · «DB update»]) \
+*Archivos:*
+`infra/charts/microservice/db-seeds/` (`ms-core.sql`, `ms-tarjetas.sql`,
+`ms-auditoria.sql`, `ms-crm.sql`),
+`infra/migrations/ms-core/009-cu07-cu08-subcuentas.sql`,
+`infra/migrations/ms-core/010-cu25-qr.sql`,
+`infra/migrations/ms-auditoria/001-cu01-audit-logs.sql`,
+`infra/migrations/ms-crm/001-pqrs-y-soporte.sql`
+
+==== Descripción
+
+*Drivers:* después de traer los últimos cambios de los microservicios (CU-01,
+CU-07, CU-08, CU-09, CU-25, CU-34 y el chat de soporte), los seeds y las
+migraciones de `infra` no coincidían con los esquemas de los servicios.
+
+*Análisis preliminar de resultados:*
+- Seeds actualizados a los de cada servicio:
+  - `ms-core`: CU-07, CU-08 y CU-25 (`qr_codes` y `qr_payments`).
+  - `ms-tarjetas`: CU-33/35, que ya tenían migración.
+- Seeds nuevos de `ms-auditoria` y `ms-crm`: antes no existían, así que sus
+  bases se creaban vacías.
+- Migraciones idempotentes para las bases ya existentes:
+  - `ms-core`: CU-07/CU-08 y CU-25.
+  - `ms-auditoria`: `audit_logs`, con los _triggers_ que la hacen inmutable.
+  - `ms-crm`: PQRS, chat de soporte y FAQ.
+- Verificado en un PostgreSQL 18.6 desechable. Las migraciones se aplicaron
+  dos veces seguidas sobre el seed anterior sin errores, los seeds nuevos
+  cargan en bases vacías y `audit_logs` rechaza un `UPDATE`.
+- Se aplicaron en producción con `16-migrations.yml`.
+
+=== Iteración 54: Conexión a Postgres por campos en ms-crm, ms-auditoria, ms-seguridad y ms-tarjetas
+
+*Fecha y hora:* 15 de noviembre de 2026, entre las 12:53 y las 12:55 \
+*Personas involucradas:* Salomón Alfredo Ávila Larrotta \
+*Tipo de entrada:* Corrección \
+*Commit:*
+#link(commit_crm_url + "000522d16fe3f3af3b053344802607142f92a5aa", [000522d · «Fix de conexion en la base de datos» (ms-crm)]),
+#link(commit_auditoria_url + "3c2f7209e55c916803d3aecbdff7863b7c81104e", [3c2f720 · «Fix de conexion con la BD» (ms-auditoria)]),
+#link(commit_seguridad_url + "3cb9707947e561b6272f16c630a36c7fe70a5f0b", [3cb9707 · «Fix de conexion en la BD» (ms-seguridad)]),
+#link(commit_tarjetas_url + "14a696893941d1bc346de4be1abd3f16f85f1aee", [14a6968 · «Fix de conexion en la BD» (ms-tarjetas)]) \
+*Archivos:* `src/db/index.ts` de los cuatro microservicios
+
+==== Descripción
+
+*Drivers:* en producción, el pod nuevo de `ms-crm` llevaba 46 horas en
+`CrashLoopBackOff`, con 547 reinicios. El pod anterior seguía atendiendo, así
+que el despliegue nunca se completaba.
+
+*Análisis preliminar de resultados:*
+- Causa: el servicio armaba la conexión como URL
+  (`postgresql://usuario:contraseña@host/base`). La contraseña de producción
+  tiene caracteres como `/`, `+` o `=`, que rompen la URL, y Bun abortaba al
+  arrancar con `TypeError: Invalid URL`.
+- Se aplicó la misma solución que ya tenía `ms-core` (iteración 37): pasar
+  host, puerto, usuario, contraseña y base por separado, usando
+  `DATABASE_URL` solo si se define.
+- Se corrigieron también `ms-auditoria`, `ms-seguridad` y `ms-tarjetas`, que
+  tenían el mismo código. Se verificó que el cliente se crea con una
+  contraseña que contiene esos caracteres.
+
+==== Tareas asignadas
+
+- Pasar el `JWT_SECRET` del deployment de `ms-crm` a un Secret de Kubernetes,
+  porque hoy está en texto plano en el env, y rotarlo.

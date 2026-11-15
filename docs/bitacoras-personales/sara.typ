@@ -83,4 +83,9 @@
   [2026-11-12],
   [Casos de uso],
 
+  [17],
+  [Hacer arreglos en el CU-02],
+  [2026-11-13],
+  [Casos de uso],
+
 )

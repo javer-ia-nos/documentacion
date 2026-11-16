@@ -1197,10 +1197,11 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Consecuencias Negativas / Trade-offs:* Quedan pendientes el límite de peticiones por IP en el gateway (A06), la firma de imágenes (A08) y las alertas sobre la bitácora de seguridad (A09). El bloqueo por cuenta permite que alguien que conozca un usuario lo bloquee 15 minutos a propósito, y el `429` revela que la cuenta existe. CloudBeaver y Grafana siguen expuestos a Internet detrás de su propio inicio de sesión.
 
 == ADR-19: Safety del Dinero: Chequeo de Sanidad de ms-core
+
 - *ID ASR:* ASR-07 (Integridad del Dinero - Safety). Complementa a los ADR-01 y ADR-12, y al ADR-18 para el control de intentos de acceso.
 - *Problema:* El requisito del negocio es que no se pierda dinero y que todo funcione como debe. Las validaciones del código y la compensación SAGA cubren los fallos esperados, pero no el error sutil, el que parece correcto y no lo es: una transacción que queda a medias, un débito duplicado o un evento que nunca se publica.
 - *Solución:* Se aplicaron las cuatro tácticas de Safety. *Evasión:* restricciones en la base de datos que impiden un saldo negativo, movimientos idempotentes y bloqueo de filas en las operaciones concurrentes. *Detección:* ms-core ejecuta cada cinco minutos un chequeo de sanidad que solo lee la base y busca siete invariantes rotas (saldo negativo, movimiento inválido, doble débito, transferencia descuadrada, dinero retenido sin reintegro, transacción estancada y evento del outbox sin publicar); deja en el log un resumen con el identificador de los casos afectados, y también puede ejecutarse a demanda con `bun run sanidad`, que termina con error si algo está roto. *Contención:* el bloqueo temporal de la cuenta tras varios intentos fallidos de acceso (ADR-18) y los topes por operación y diarios.
-*Recuperación:* la compensación SAGA y el outbox transaccional (ADR-01 y ADR-12) reintegran o reintentan lo pendiente.
+- *Recuperación:* la compensación SAGA y el outbox transaccional (ADR-01 y ADR-12) reintegran o reintentan lo pendiente.
 - *Consecuencias Positivas:* Un estado inseguro queda registrado con sus casos en lugar de pasar inadvertido, aunque ninguna validación del código haya fallado, y la revisión sirve también como comprobación manual antes de una entrega.
 - *Consecuencias Negativas / Trade-offs:* El chequeo detecta pero no corrige: la corrección sigue siendo de la compensación o de una persona. La consignación con cheque se excluye de la regla de transacción estancada porque espera el canje por diseño (CU-28). Aún no hay una alerta automática: depende de que el equipo revise el log.
 
@@ -1326,7 +1327,9 @@ Este glosario define los términos técnicos y de negocio utilizados a lo largo 
 
 + *Requisitos Arquitectónicamente Significativos (ASR)*: Requisitos del sistema que tienen un impacto directo y profundo en la estructura y diseño de la arquitectura de software.
 
-+ *Seguridad y Protection Operativa (Safety)*: Conjunto de mecanismos orientados a proteger la información confidencial de los usuarios, controlar el acceso a las cuentas y prevenir pérdidas económicas o fraudes derivados de fallos en el sistema.
++ *Safety (seguridad operativa)*: Propiedad del sistema de no causar pérdidas ni daños por sus propios errores, omisiones o fallas; en el sistema bancario, que el dinero no se pierda, duplique ni quede retenido.
+
++ *Seguridad (_Security_)*: Conjunto de mecanismos que protegen la información y las cuentas de los usuarios frente a accesos no autorizados, suplantación y fraude.
 
 + *Sistema bancario*: Plataforma tecnológica integral diseñada para gestionar cuentas, productos financieros, transacciones y servicios de atención a los clientes de una entidad financiera.
 

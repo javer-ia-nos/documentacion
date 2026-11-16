@@ -98,7 +98,7 @@
     [Salomón Avila],
 
     [2026-11-15],
-    [Se agregó el ADR-18 con el análisis OWASP Top 10:2025 y sus correcciones: identidad y rol solo desde el JWT, bloqueo temporal por intentos fallidos, secretos obligatorios en producción, CORS restringido, cabeceras de seguridad y CSP, y el pipeline de escaneo continuo. Se corrigió el ADR-03 (el gateway sí propaga la identidad verificada, pero ningún servicio autoriza con ella), se actualizó la vista física (puerto del gateway, Secrets por servicio, cabeceras del Ingress y alertas) y se agregaron riesgos de seguridad.],
+    [Se agregó el ADR-18 con el análisis OWASP Top 10:2025 y sus correcciones: identidad y rol solo desde el JWT, bloqueo temporal por intentos fallidos, secretos obligatorios en producción, CORS restringido, cabeceras de seguridad y CSP, y el pipeline de escaneo continuo. Se corrigió el ADR-03 (el gateway sí propaga la identidad verificada, pero ningún servicio autoriza con ella), se actualizó la vista física (puerto del gateway, Secrets por servicio, cabeceras del Ingress y alertas), se rehízo el diagrama de despliegue de desarrollo (Docker Compose de `integracion`, sin `ms-cuentas` ni `ms-transacciones`) y se agregaron riesgos de seguridad.],
     [Salomón Avila],
   )
 ]
@@ -834,7 +834,7 @@ Los respaldos los realiza un CronJob por microservicio que todos los días a las
   ),
 ) <fig-deployment>
 
-En el ambiente de desarrollo (@fig-deployment), cada integrante ejecuta en su máquina los microservicios con `bun dev`, cada uno con su propia base de datos PostgreSQL en Docker Compose, y los frontends con el servidor de desarrollo de Astro y Expo. Las llamadas síncronas entre servicios usan gRPC y los eventos usan Kafka igual que en producción; cuando no hay un broker disponible, los eventos quedan pendientes en la tabla _outbox_ de cada servicio hasta que se configure uno. Los sistemas externos se reemplazan por simuladores locales.
+En el ambiente de desarrollo (@fig-deployment), cada integrante levanta el sistema completo en su máquina con el Docker Compose del repositorio `integracion`, el mismo entorno que usan las pruebas de extremo a extremo: la Web, el API Gateway, los siete microservicios, una base de datos PostgreSQL por microservicio (inicializada con el `seed.sql` de su repositorio), un broker de Kafka y el simulador de pagos externos (ACH y SWIFT). El Compose descarga las imágenes `:latest` publicadas por GitHub Actions en GHCR o, si no tiene acceso, las construye desde los repositorios. El servicio que se está modificando se ejecuta en el host con `bun --watch` (o `astro dev` para la Web) y usa las bases y los demás servicios del Compose. Las llamadas síncronas entre servicios usan HTTP y gRPC, y los eventos usan Kafka a través del _outbox_, igual que en producción.
 
 
 = Vista de código

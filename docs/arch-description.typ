@@ -100,6 +100,10 @@
     [2026-11-15],
     [Se agregó el ADR-18 con el análisis OWASP Top 10:2025 y sus correcciones: identidad y rol solo desde el JWT, bloqueo temporal por intentos fallidos, secretos obligatorios en producción, CORS restringido, cabeceras de seguridad y CSP, y el pipeline de escaneo continuo. Se corrigió el ADR-03 (el gateway sí propaga la identidad verificada, pero ningún servicio autoriza con ella), se actualizó la vista física (puerto del gateway, Secrets por servicio, cabeceras del Ingress y alertas), se rehízo el diagrama de despliegue de desarrollo (Docker Compose de `integracion`, sin `ms-cuentas` ni `ms-transacciones`) y se agregaron riesgos de seguridad.],
     [Salomón Avila],
+
+    [2026-11-15],
+    [Se incorporó el atributo de calidad Safety (integridad del dinero): ASR-07, ADR-19 con el chequeo de sanidad de ms-core y la distinción entre Safety y Security en la introducción y el glosario. Se actualizaron los modelos de datos de Auditoría, Transacciones, Tarjetas, Cuentas y Autenticación y Seguridad con lo implementado en los CU-01, CU-09, CU-18, CU-25 y CU-34.],
+    [Arantxa Espejo],
   )
 ]
 
@@ -129,7 +133,7 @@ En la actualidad, las personas realizan sus operaciones financieras cotidianas a
 
 Para lograrlo, la arquitectura del software se enfoca en cumplir con características clave de calidad que requiere un banco. En primer lugar, busca garantizar una alta disponibilidad para que el sistema nunca se detenga y las transacciones pendientes no queden inconclusas. También prioriza un buen rendimiento y una rápida desplegabilidad, de modo que las operaciones sean veloces y las actualizaciones de la plataforma se implementen sin afectar el servicio.
 
-Asimismo, la seguridad y la protección operativa son fundamentales para evitar pérdidas económicas por errores del sistema y para blindar la información de los clientes frente a fraudes. La arquitectura también permite una alta integrabilidad con billeteras digitales, cajeros y otros bancos. Por último, se facilita la modificación y la comprobabilidad, asegurando que se puedan añadir nuevas funciones sin alterar lo ya construido y que cada parte del sistema pueda probarse de forma aislada y rigurosa.
+Asimismo, el sistema distingue dos atributos que se complementan. La seguridad (_Security_) protege a los clientes frente a quienes intentan hacerle daño al sistema: fraude, suplantación y accesos no autorizados. La seguridad operativa (_Safety_) protege a los clientes frente al propio sistema: que ningún error, omisión o falla deje dinero perdido, duplicado o retenido. La arquitectura también permite una alta integrabilidad con billeteras digitales, cajeros y otros bancos. La arquitectura también permite una alta integrabilidad con billeteras digitales, cajeros y otros bancos. Por último, se facilita la modificación y la comprobabilidad, asegurando que se puedan añadir nuevas funciones sin alterar lo ya construido y que cada parte del sistema pueda probarse de forma aislada y rigurosa.
 
 Para detallar todo esto, el documento presenta primero una visión general de los requisitos funcionales del sistema. A continuación, expone el modelo de dominio, los requerimientos arquitectónicos, las vistas de la arquitectura, las decisiones técnicas tomadas y los posibles riesgos para asegurar el éxito del proyecto.
 
@@ -542,6 +546,18 @@ El modelo de dominio define los conceptos centrales, entidades de negocio y rela
   [El equipo de calidad debe poder aislar y probar unitariamente los módulos de cuentas, PQRS y registros de auditoría de sesiones para verificar el cumplimiento normativo.],
   [Media],
   [Sara Rodriguez Urueña],
+
+  [ASR-07],
+  [Integridad del Dinero],
+  [Safety],
+  [Evitar estados inseguros],
+  [CU-08, CU-09, CU-12, CU-24, CU-25, CU-26, CU-28, CU-30],
+  [Ante un error, una omisión o una falla a mitad de una operación (transferencia, pago
+  automático, cheque), el sistema no debe perder, duplicar ni retener dinero: el saldo nunca es
+  negativo, cada débito tiene su reintegro o su destino, y cualquier operación estancada se
+  detecta y se recupera.],
+  [Alta],
+  [Arantxa Marian Espejo Malagon],
 )
 #set text(size: 11pt)
 

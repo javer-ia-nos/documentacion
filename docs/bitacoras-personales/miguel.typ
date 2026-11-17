@@ -173,4 +173,49 @@
   [Refactorización y optimización de UX/UI en la plataforma web: mejoras de robustez en el proveedor de notificaciones (`NotificationsProvider.astro`), emisión simplificada de tarjetas infiriendo el nombre del titular automáticamente sin entrada manual en `ms-tarjetas` y `CardsManager.tsx`, ajustes visuales de responsividad en pantallas, y estabilización de la suite de pruebas E2E en `integracion`.],
   [2026-10-16],
   [Backend, frontend y pruebas],
+
+  [33],
+  [Implementación transversal de control de acceso basado en roles (RBAC, CU-16) y conmutación dinámica de rol (CU-32): módulo de roles, permisos y pruebas (`roles.test.ts`) en `ms-seguridad`; capa de autorización RBAC (`rbac.ts`) y enrutamiento protegido en `api-gateway`; endpoints administrativos en `ms-core` (`productos/index.ts`), `ms-financiero` y `ms-tarjetas`; portal administrativo (`AdminPortal.tsx`), selector de roles (`RoleSwitcher.tsx`) y protección en `middleware.ts` en `web`; además del script auxiliar `scripts/assign-role.ts`.],
+  [2026-10-28],
+  [Seguridad, backend y frontend],
+
+  [34],
+  [Estandarización de formato de código (`bun format`) y automatización de verificación de estilo en los workflows de GitHub Actions (`.github/workflows/test.yaml`) en todos los microservicios, `api-gateway`, `web`, `infra` e `integracion`, junto con scripts operativos de mantenimiento en `scripts/`.],
+  [2026-11-07],
+  [Infraestructura, CI y calidad de código],
+
+  [35],
+  [Implementación completa del módulo de Avances de Tarjeta de Crédito (CU-23): extensión del contrato gRPC (`proto/core.proto`), lógica de desembolso y pruebas (`cu23-avance-tarjeta.test.ts`) en `ms-core`; módulo `avances` con cliente gRPC y pruebas en `ms-tarjetas`; reglas RBAC en `api-gateway`; migraciones SQL y seeds en `infra`; e integración en `web` (`CardsManager.tsx`) e `integracion`.],
+  [2026-11-15],
+  [Backend, gRPC e infraestructura],
+
+  [36],
+  [Implementación integral de pagos y compras con tarjetas (CU-21 y CU-22): servicio `pagos-tarjeta.ts` y RPCs gRPC en `ms-core`, módulo `pagos` y pruebas (`pagos.test.ts`) en `ms-tarjetas`, soporte de enrutamiento y RBAC en `api-gateway`, migraciones y seeds en `infra`, y desarrollo del simulador de comercio en el frontend web (`ComercioDemo.tsx`, `/comercio-demo` y `/api/comercio/pagar.ts`).],
+  [2026-11-15],
+  [Backend, frontend e infraestructura],
+
+  [37],
+  [Refinamiento del portal administrativo y preparación de despliegue en BD: filtros administrativos en `ms-core` (`productos/index.ts`, `cuentas-admin-filtros.test.ts`) y `web` (`AdminListControls.tsx`, `AdminPortal.tsx`, `AnalisisCupo.tsx`), limpieza de referencias internas de casos de uso en la interfaz de usuario (`web`), y sincronización de índices, migraciones y seeds en `infra`, `ms-core` y `ms-financiero`.],
+  [2026-11-15],
+  [Frontend, administración y despliegue],
+
+  [38],
+  [Ampliación de la suite de demostración E2E en `demo` para cubrir los casos de uso del sistema (`cu-01` a `cu-34`) con preparación automática de precondiciones vía API Gateway (`lib/preparar.ts`, `lib/tarjetas.ts`, `lib/entorno.ts`) y generación de evidencias navegables.],
+  [2026-11-15],
+  [Pruebas y demostración],
+
+  [39],
+  [Creación de la suite de generación y carga masiva de datos bancarios (`db-loading/`, inicialmente `db-charging/`) en TypeScript/Bun para poblar consistentemente las 7 bases de datos PostgreSQL (`01-ms-seguridad.sql` a `07-ms-auditoria.sql`) con datos colombianos realistas, hashes Argon2id e historial de 90 días, junto con `apply-to-k8s.sh` (`clean-dbs.sql`) para limpieza controlada y carga ordenada en Kubernetes.],
+  [2026-11-16],
+  [Datos e infraestructura],
+
+  [40],
+  [Evolución del runner de demostración automatizada en `demo` con Playwright sobre Bun: desarrollo del menú CLI interactivo (`scripts/cli.ts`), controles en vivo de velocidad, pausa y modo paso a paso (`lib/control.ts`), refactorización de `scripts/demo.ts`, servidor local de reporte (`scripts/reporte.ts`) y actualización de los flujos de casos de uso.],
+  [2026-11-16],
+  [Demostración E2E y herramientas],
+
+  [41],
+  [Diseño e implementación de la suite de pruebas de carga, estrés y rendimiento (`performance/`) para validar el ASR-02 (`< 2s` bajo concurrencia) contra `https://fpe.acha.dev`: runner concurrente en Bun con 11 escenarios (`01_baseline_health` a `11_core_grpc_extendido`, incluyendo gRPC, transferencias, QR, login Argon2id, contención de locks `pg_advisory_xact_lock`, idempotencia y picos de hasta 120 VUs), exportación de telemetría CSV/JSON, generación de 8 gráficas en Python (`generar_graficas.py`) y reportes en Markdown y HTML.],
+  [2026-11-16],
+  [Rendimiento y pruebas de carga],
 )

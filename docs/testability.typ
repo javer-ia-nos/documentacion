@@ -32,10 +32,10 @@ Testabilidad significa poder controlar las entradas y dependencias, observar el 
   [Consulta, confirmación y comprobante de pago en `/servicios`.],
 
   [CU-29],
-  [Billeteras; `ms-tarjetas/billeteras`],
+  [Billeteras; `web` + `ms-tarjetas/billeteras`],
   [Provisionador externo sustituible; `ms-tarjetas/src/tests/cu29.test.ts`],
-  [Cobertura de componente y contrato; se registra como pendiente el recorrido integrado de navegador.],
-  [La UI dedicada y su prueba de navegador deben agregarse antes de declarar cobertura E2E completa.],
+  [`integracion/tests/cu29.integration.test.ts`: gateway, tarjetas, sandbox y PostgreSQL.],
+  [Vinculación, desvinculación y revocación en `/tarjetas/billeteras`; pendiente recorrido Playwright en `demo/`.],
 
   [CU-31],
   [Intereses e impuestos; `web` + `ms-financiero/costos`],
@@ -60,7 +60,7 @@ Testabilidad significa poder controlar las entradas y dependencias, observar el 
 
 === GitHub Actions y Prometheus: responsabilidades distintas
 
-GitHub Actions es la evidencia primaria de *testabilidad*: en cada cambio instala dependencias, ejecuta validación de tipos, formato, pruebas de Bun y reportes; el repositorio `integracion` además levanta el entorno Docker, espera sus health checks y ejecuta los flujos integrados de CU-12, CU-13, CU-27, CU-31 y CU-33. Un fallo conserva los logs necesarios para diagnosticarlo.
+GitHub Actions es la evidencia primaria de *testabilidad*: en cada cambio instala dependencias, ejecuta validación de tipos, formato, pruebas de Bun y reportes; el repositorio `integracion` además levanta el entorno Docker, espera sus health checks y ejecuta los flujos integrados de CU-12, CU-13, CU-27, CU-29, CU-31 y CU-33. Un fallo conserva los logs necesarios para diagnosticarlo.
 
 Prometheus y Grafana son evidencia complementaria de *observabilidad en ejecución*. El despliegue actual de infraestructura observa nodos, pods, reinicios y disponibilidad de despliegues. No se declara como métrica de negocio ni como reemplazo de las pruebas: los microservicios Bun/Elysia todavía no exponen un endpoint `/metrics` propio. Instrumentar el Gateway con contadores y latencia, y descubrirlo con un `ServiceMonitor`, es una mejora posterior y debe validarse antes de afirmarla como implementada.
 

@@ -148,37 +148,36 @@ Para asegurar que los microservicios, el API Gateway y los brokers de mensajerí
   [*Emisión de Certificados Bancarios y Validación Pública*],
   [Juliana Sofia Novoa Solano],
   [ms-financiero \
-    ms-cuentas],
+    ms-core],
   [CU-10],
-  [ms-financiero consume los saldos y fechas de apertura reales desde ms-cuentas para generar certificados oficiales (saldos, tributarios). El documento incluye un hash/código de verificación que puede ser validado públicamente sin requerir sesión.],
+  [ms-financiero consume los saldos y fechas de apertura reales desde el módulo de Cuentas de ms-core para generar certificados oficiales (saldos, tributarios). El documento incluye un hash/código de verificación que puede ser validado públicamente sin requerir sesión.],
 
   [INT-13],
   [*Constitución de CDT y Retención de Fondos*],
   [Samuel Beltrán Martínez],
   [ms-financiero \
-    ms-cuentas],
+    ms-core],
   [CU-12 \
     CU-07],
-  [Proceso de apertura de CDT en ms-financiero: se debitan los fondos de la cuenta de ahorros en ms-cuentas, se bloquea el capital durante el plazo pactado y se proyectan matemáticamente los rendimientos según la tasa EA vigente.],
+  [Proceso de apertura de CDT en ms-financiero: se debitan los fondos de la cuenta en el módulo de Cuentas de ms-core, se bloquea el capital durante el plazo pactado y se proyectan los rendimientos según la tasa EA vigente.],
 
   [INT-14],
   [*Desembolso de Préstamo y Cobro de Cuota*],
   [Samuel Beltrán Martínez],
   [ms-financiero \
-    ms-cuentas \
-    ms-transacciones],
+    ms-core],
   [CU-13 \
     CU-24],
-  [Simulación, aprobación y desembolso de créditos en ms-financiero abonando el capital a la cuenta del cliente en ms-cuentas. Se genera la tabla de amortización y se prueba el cobro de la primera cuota mediante débito o pago programado.],
+  [Simulación, aprobación y desembolso de créditos en ms-financiero abonando el capital a la cuenta del cliente en ms-core. Se genera la tabla de amortización y se prueba el cobro de cuota, abono anticipado y liquidación total.],
 
   [INT-15],
   [*Pago de Facturas y Desglose de Tributos (GMF / IVA)*],
   [Samuel Beltrán Martínez],
-  [ms-transacciones \
-    ms-cuentas],
+  [ms-core \
+    ms-financiero],
   [CU-27 \
     CU-31],
-  [Procesamiento del pago de recibos de servicios públicos y recargas en ms-transacciones, debitando de ms-cuentas y desglosando de manera transparente los intereses, IVA y gravamen a movimientos financieros (4x1000) aplicables.],
+  [Procesamiento idempotente de recibos de servicios en el módulo de pagos de facturas de ms-core, debitando desde el mismo servicio y validando la respuesta del proveedor; CU-31 expone en ms-financiero el desglose de capital, interés e impuestos aplicables.],
 
   [INT-16],
   [*Avance de Efectivo de Tarjeta de Crédito hacia Cuenta*],

@@ -108,6 +108,10 @@
     [2026-11-17],
     [Se incorporó la sección de Validación de Rendimiento y Pruebas de Carga (ASR-02) ejecutada sobre el entorno productivo `https://fpe.acha.dev` (43,814 peticiones en 11 escenarios, hasta 120 VUs), junto con las 8 gráficas de resultados, el análisis del cuello de botella CPU-bound de Argon2id en `ms-seguridad` y el riesgo técnico asociado.],
     [Equipo de Arquitectura],
+
+    [2026-11-16],
+    [Se corrigió la trazabilidad de la iteración V2: la web es el único canal de cliente, Cuentas y Transacciones son módulos de `ms-core`, y se documentó la evidencia de pruebas unitarias, integración, CI y observabilidad de los CU-12, CU-13, CU-27, CU-29, CU-31 y CU-33.],
+    [Samuel Beltrán Martínez],
   )
 ]
 
@@ -309,7 +313,7 @@ A continuación se detallan los 36 casos de uso funcionales del sistema bancario
   [CU-27],
   [*Pago de facturas de servicios*],
   [Cancelación de servicios públicos y privados mediante convenios registrados, además de recargas a operadores moviles.],
-  [Transacciones],
+  [Core - Pagos de facturas],
   [Samuel Beltrán Martínez],
 
   [CU-28],
@@ -321,7 +325,7 @@ A continuación se detallan los 36 casos de uso funcionales del sistema bancario
   [CU-29],
   [*Soporte para billeteras externas*],
   [Vinculación de tarjetas a plataformas como Apple Pay o Google Wallet.],
-  [Transacciones],
+  [Tarjetas - Billeteras],
   [Samuel Beltrán Martínez],
 
   [CU-30],
@@ -333,7 +337,7 @@ A continuación se detallan los 36 casos de uso funcionales del sistema bancario
   [CU-31],
   [*Información clara sobre intereses e impuestos aplicados a compras*],
   [Información clara sobre intereses e impuestos aplicados a compras, ya sea en avances, compras por tarjeta de credito o creditos ofrecidos. Visualización de cuotas pendientes y abonos a capital.],
-  [Transacciones],
+  [Financiero - Costos],
   [Samuel Beltrán Martínez],
 
   [CU-32],
@@ -557,11 +561,11 @@ El modelo de dominio define los conceptos centrales, entidades de negocio y rela
   [ASR-06],
   [Testabilidad y Auditoría del Sistema],
   [Testability],
-  [Aislamiento y Trazabilidad],
-  [CU-01, CU-04, CU-05, CU-14, CU-20, CU-24],
-  [El equipo de calidad debe poder aislar y probar unitariamente los módulos de cuentas, PQRS y registros de auditoría de sesiones para verificar el cumplimiento normativo.],
+  [Control, observación y trazabilidad],
+  [CU-12, CU-13, CU-27, CU-29, CU-31, CU-33],
+  [Ante una modificación de un producto financiero, pago de factura, billetera o solicitud de tarjeta, el equipo de calidad debe poder controlar sus dependencias externas, usar datos y fechas deterministas, observar el estado persistido y la respuesta visible, y repetir la prueba en CI con servicios y bases de datos aislados.],
   [Media],
-  [Sara Rodriguez Urueña],
+  [Samuel Beltrán Martínez],
 
   [ASR-07],
   [Integridad del Dinero],
@@ -599,7 +603,7 @@ A continuación se consolidan las restricciones técnicas, organizacionales y co
 
   [Framework ElysiaJS y TypeBox],
   [Técnica],
-  [Los contratos de API de los ocho microservicios y el gateway deben modelarse con TypeBox y procesarse con ElysiaJS para compilación en tiempo de ejecución de esquemas de validación de alto rendimiento.],
+  [Los contratos de API de los siete microservicios desplegables y del gateway se modelan con TypeBox y se procesan con ElysiaJS para validación de esquemas en tiempo de ejecución.],
 
   [Patrón Database-per-Service],
   [Técnica],
@@ -661,7 +665,7 @@ A continuación se consolidan las restricciones técnicas, organizacionales y co
 //   - Explicación del diagrama.
 // ]
 
-El diagrama de contexto (@fig-system-context) ubica al Sistema Bancario en el centro y muestra los dieciséis actores que interactúan con él. Los clientes finales, la persona natural y la persona jurídica, consultan saldos, realizan transferencias, gestionan tarjetas y solicitan productos financieros desde los canales web y móvil. El resto son roles internos del banco: el cajero atiende las operaciones de ventanilla, el personal de atención al cliente presencial y virtual resuelve dudas y asigna turnos, y el asesor comercial, el funcionario de créditos, el jefe de la sucursal, el especialista en comercio exterior, el gerente de Banca Corporativa y el ejecutivo de relación cumplen funciones administrativas y comerciales, cada uno con una relación distinta hacia el sistema.
+El diagrama de contexto (@fig-system-context) ubica al Sistema Bancario en el centro y muestra los actores que interactúan con él. Los clientes finales consultan saldos, realizan transferencias, gestionan tarjetas y solicitan productos financieros desde la aplicación web. Los roles internos del banco atienden operaciones, soporte y decisiones administrativas, entre ellas la evaluación de solicitudes de tarjeta de crédito en la consola `/admin`.
 
 Hacia afuera, el sistema se integra con seis sistemas externos. El proveedor de notificaciones envía alertas y eventos de seguridad. Las billeteras digitales externas se sincronizan con las tarjetas vinculadas del cliente. La central de riesgo entrega el score crediticio necesario para aprobar los préstamos. Los proveedores de servicios públicos reciben los pagos de facturas registradas. La pasarela de pagos internacionales procesa las transferencias al exterior. Y el ente regulador financiero recibe los reportes de auditoría y cumplimiento. Cada relación queda etiquetada con el propósito del intercambio de información, siguiendo la notación de c4model.com.
 
@@ -683,7 +687,7 @@ Hacia afuera, el sistema se integra con seis sistemas externos. El proveedor de 
 //   *Contenido:* C4 Container Diagram y explicación del diagrama.
 // ]
 
-El diagrama de contenedores (@fig-container-view) recoge la descomposición planteada en la primera iteración (previa a los ADR-10 y ADR-11) y describe tres puntos de entrada para los actores humanos. La Single-Page Application, construida en React y TypeScript, atiende a los clientes que operan desde el navegador. La Aplicación Móvil, en React Native, atiende a los clientes desde smartphones y tablets. El Portal de Atención y Backoffice, también en React, permite que el Agente de Atención al Cliente gestione PQRS, reclamaciones y chats de soporte. Los tres llaman por HTTPS/JSON a un único punto de entrada, el API Gateway, que valida la sesión y el JWT contra Autenticación y Seguridad por gRPC, aplica una _allowlist_ de rutas públicas, publica en Kafka la auditoría de cada petición y su respuesta, y reenvía por gRPC las peticiones autenticadas al dominio de backend; ningún cliente llama directamente a un microservicio. En la arquitectura vigente tras el ADR-10 y el ADR-11, las aplicaciones clientes se unificaron en la aplicación Web (Astro + React, que incluye la consola operativa `/admin` y atiende el flujo responsivo móvil desde el navegador) y el backend se consolidó en siete microservicios al fusionar Cuentas y Transacciones dentro de `ms-core` (en el diagrama inicial de la figura se observan todavía separados los ocho servicios originales: Autenticación y Seguridad, Cuentas, Tarjetas, Transacciones, Financiero, CRM, Notificaciones y Auditoría). Estos microservicios se comunican entre sí de forma asíncrona a través del Broker de Eventos Kafka, salvo las operaciones que requieren respuesta inmediata, como las validaciones y movimientos de saldo y cupo, que viajan por gRPC directo hacia Cuentas. Hacia afuera, cada microservicio dueño de la integración correspondiente se comunica directamente con su sistema externo: Transacciones con la Pasarela de Pagos Internacionales, los Proveedores de Servicios Públicos y las Billeteras Digitales; Financiero con la Central de Riesgo; Notificaciones con el Proveedor de Notificaciones; y Auditoría con el Ente Regulador Financiero.
+El diagrama de contenedores (@fig-container-view) conserva la descomposición lógica de la primera iteración, previa a los ADR-10 y ADR-11; por ello muestra clientes y servicios que hoy se consideran antecedentes. La implementación vigente V2 tiene una única aplicación web responsiva (Astro + React) y una consola administrativa `/admin` dentro del mismo repositorio. Ambas entran por el API Gateway, que valida sesión y JWT, aplica rutas públicas permitidas, registra la intención y respuesta de cada petición y enruta al dominio correspondiente. Los servicios desplegables vigentes son Seguridad, Core, Tarjetas, Financiero, CRM, Notificaciones y Auditoría. `ms-core` contiene los módulos lógicos de Cuentas y Transacciones; por ello las facturas y los movimientos de saldo no dependen de dos servicios desplegados distintos. Kafka mantiene la comunicación asíncrona de auditoría y notificaciones, y gRPC se reserva para validaciones y movimientos que requieren una respuesta inmediata.
 
 = Vista de componentes
 
@@ -713,10 +717,10 @@ El diagrama de contenedores (@fig-container-view) recoge la descomposición plan
   ),
 ) <fig-webpage-component-view>
 
-== Vista de componentes para la aplicación movil
+== Vista de componentes para la aplicación móvil (histórica, fuera del alcance V2)
 
 #figure(
-  caption: "Diagrama de vista de componentes para la aplicación movil",
+  caption: "Diagrama histórico de componentes para la aplicación móvil",
   align(
     center,
     image(
@@ -731,9 +735,9 @@ El diagrama de contenedores (@fig-container-view) recoge la descomposición plan
 //   *Contenido:* C4 Component Diagram (al menos uno por cada contenedor de la sección anterior) y explicación de cada diagrama.
 // ]
 
-Los diagramas de componentes de esta sección representan el diseño de la primera iteración (previo a ADR-10 y ADR-11). En @fig-backend-component-view se observan los ocho microservicios originales, cada uno con su base de datos PostgreSQL (en producción y en la versión vigente, Cuentas y Transacciones operan unificados como módulos internos dentro de `ms-core` sobre una única base de datos según ADR-11). Autenticación y Seguridad cubre el inicio de sesión, las sesiones, los roles, los dispositivos confiables y los límites de transacción. Cuentas cubre el CRUD de cuentas corrientes y de ahorro, las subcuentas, los beneficiarios y el ahorro automático. Tarjetas cubre la emisión, el bloqueo y desbloqueo, y los avances de crédito. Transacciones cubre las transferencias, los pagos con código QR, los pagos automáticos, las facturas y las billeteras externas. Financiero cubre los CDT, las inversiones, los préstamos y los certificados. CRM cubre el chat de soporte, las PQRS y las reclamaciones. Notificaciones orquesta el envío de alertas. Y Auditoría registra la actividad y la trazabilidad del sistema. Las validaciones de saldo y cupo que exigen respuesta inmediata viajan por gRPC entre Transacciones, Tarjetas y Cuentas, mientras que el resto de la comunicación entre microservicios es asíncrona a través del Broker de Eventos Kafka: cada servicio publica sus eventos de dominio y Auditoría los consume todos para construir la bitácora del sistema, mientras que CRM y Notificaciones consumen los eventos relevantes para abrir reclamaciones o enviar alertas. Tanto la aplicación Web como la Aplicación Móvil canalizan sus peticiones a través del API Gateway perimetral antes de llegar a los microservicios de backend.
+El componente de Back-end (@fig-backend-component-view) representa la separación lógica de los dominios. En V2 se despliegan siete microservicios, cada uno con su propia base PostgreSQL: Seguridad, Core, Tarjetas, Financiero, CRM, Notificaciones y Auditoría. Core reúne los módulos de Cuentas y Transacciones para confirmar débito, crédito y estado dentro de una sola transacción local. Tarjetas administra emisión, evaluación y billeteras externas; Financiero administra CDT, inversiones, préstamos y costos; y Seguridad, Auditoría y Notificaciones dan soporte transversal. Las validaciones y movimientos de saldo o cupo que deben responder en la misma operación usan gRPC; los eventos de auditoría y notificación se publican de forma asíncrona por Kafka mediante outbox.
 
-Los diagramas de componentes de Web (@fig-webpage-component-view) y Móvil (@fig-mobile-component-view) reflejan la organización modular original compartida mediante `ui-shared`; tras la decisión ADR-10, la interfaz móvil nativa y `ui-shared` fueron retiradas y todos estos módulos de presentación residen directamente en `web`. Se organizan en tres franjas: la primera agrupa Autenticación, Seguridad, Inicio, Tarjetas y Soporte; la segunda agrupa Cuentas, Transacciones, Notificaciones, Billeteras y pagos digitales, y Financiero; y la tercera agrupa Pagos, Documentos, Perfil y Configuración. Cada componente de frontend está coloreado según el microservicio de backend con el que se comunica, y ambos reciben actualizaciones de estado empujadas por WebSocket para reflejar movimientos y alertas sin necesidad de refrescar la pantalla.
+La Web (@fig-webpage-component-view) es la referencia actual de presentación. Agrupa autenticación, inicio, cuentas, productos financieros, tarjetas, pagos y la ruta administrativa protegida. La figura móvil se conserva solo como antecedente arquitectónico: la aplicación móvil y `ui-shared` fueron retirados del alcance por ADR-10 y no se usan como evidencia de la entrega V2.
 
 = Vista de procesos
 
@@ -808,19 +812,21 @@ Los diagramas de componentes de Web (@fig-webpage-component-view) y Móvil (@fig
 //   *Contenido:* Para cada parte del sistema que lo requiera, un C4 Dynamic Diagram y explicación para cada diagrama.
 // ]
 
-Los seis diagramas dinámicos modelan, en estilo secuencia, los flujos más críticos para los atributos de calidad descritos en la Introducción. Todos comparten un mismo patrón: el componente de dominio valida contra Cuentas por gRPC, persiste el movimiento, publica un evento asíncrono en el Broker de Eventos Kafka sin esperar respuesta, y Auditoría y Notificaciones consumen ese evento en paralelo para registrar la bitácora y avisar al cliente por un canal externo.
+Los seis diagramas dinámicos modelan los flujos críticos de la vista lógica. En la implementación V2, cuando el diagrama nombra Cuentas o Transacciones se refiere a módulos internos de `ms-core`, no a repositorios desplegados por separado. Los flujos que modifican dinero validan la sesión y los datos, persisten el cambio de negocio y emiten el evento de auditoría o notificación de forma asíncrona, conservando una evidencia verificable de cada resultado.
 
 La programación de ahorro automático, correspondiente al caso de uso CU-09 (@fig-proc-ahorro-automatico), tiene dos fases. En la primera fase el cliente configura el monto, la frecuencia y las cuentas involucradas. En la segunda fase un disparador interno ejecuta la transferencia programada en la fecha correspondiente; si el saldo es insuficiente, el ciclo se omite y la programación permanece activa para el siguiente intento, en vez de fallar o cancelarse.
 
-La solicitud de CDT e inversiones, correspondiente al caso de uso CU-12 (@fig-proc-cdt-inversiones), valida la sesión, consulta la tasa vigente y el saldo disponible antes de crear el CDT o la inversión; si el saldo es insuficiente, la solicitud se rechaza sin crear el registro. Incluye además una segunda fase de consulta de rendimientos proyectados y actuales.
+La solicitud de CDT e inversiones, correspondiente al caso de uso CU-12 (@fig-proc-cdt-inversiones), valida sesión, tasa y saldo antes de debitar el capital y crear el producto. El rendimiento se calcula con interés compuesto diario y solo se acredita capital más rendimiento al vencimiento; la demostración controla una fecha de vencimiento aislada para evidenciar el abono sin alterar cuentas reales.
 
-La solicitud y gestión de préstamos, correspondiente al caso de uso CU-13 (@fig-proc-gestion-prestamos), consulta el historial crediticio en la Central de Riesgo externa antes de aprobar el préstamo; si el score o la capacidad de pago no alcanzan, la solicitud se rechaza. Su segunda fase cubre el pago de cuotas y la actualización del plan de amortización.
+La solicitud y gestión de préstamos, correspondiente al caso de uso CU-13 (@fig-proc-gestion-prestamos), evalúa score y capacidad de pago antes de aprobar y desembolsar. Su segunda fase cubre cuotas, abonos anticipados a capital y liquidación total; los intereses futuros no se cobran cuando la deuda se paga antes de su fecha.
 
 La gestión de transferencias internacionales y nacionales, correspondiente al caso de uso CU-26 (@fig-proc-transferencias-internacionales-nacionales), separa la transferencia internacional, que pasa por la Pasarela de Pagos Internacionales, de la transferencia nacional interbancaria, ambas con la misma validación de saldo previa al débito.
 
-El pago de facturas y servicios, correspondiente al caso de uso CU-27 (@fig-proc-pago-facturas-servicios), valida el convenio registrado contra el proveedor de servicios públicos antes de procesar el pago, y cubre además la recarga a operadores móviles en su segunda fase.
+El pago de facturas y servicios, correspondiente al caso de uso CU-27 (@fig-proc-pago-facturas-servicios), consulta y valida la referencia con el proveedor simulado antes de debitar la cuenta. La clave idempotente evita cobrar dos veces la misma factura y un rechazo del proveedor no deja un débito confirmado.
 
 Las transferencias entre cuentas propias y a terceros, correspondientes al caso de uso CU-30 (@fig-proc-transferencias-propias-terceros), entran siempre por el API Gateway, que valida la sesión contra Autenticación y Seguridad por gRPC, publica la intención de la petición en Kafka para Auditoría y solo enruta rutas públicas permitidas; los endpoints internos de movimiento de saldo de Cuentas nunca se exponen al cliente. Transacciones vuelve a verificar el JWT, toma el usuario de su _claim_ `sub` y rechaza la operación antes de crear cualquier registro si el monto es inválido, supera el tope por operación, la petición no trae la huella del dispositivo o el dispositivo no es confiable, o el usuario no es titular de la cuenta origen; ante una falla de Cuentas el flujo se cierra (_fail-closed_) y nunca asume un saldo. Las llamadas gRPC hacia Cuentas y Seguridad llevan un token interno de servicio (metadato `x-internal-token`), sin el cual esos servicios rechazan la llamada, de modo que ningún pod del clúster puede mover saldo sin identificarse como un servicio autorizado. En la primera fase valida además que ambas cuentas sean del mismo cliente; en la segunda fase, hacia un tercero, la aplicación consulta primero los beneficiarios registrados del cliente en Cuentas (CU-03), que solo devuelve los del usuario autenticado. El criterio de comunicación del flujo es usar gRPC únicamente donde se requiere una respuesta inmediata (validación de sesión, dispositivo, titularidad, saldo, débito y crédito, necesarios para entregar el comprobante dentro del límite de ASR-02) y Kafka para todo lo demás. En ambas fases la transacción se crea en estado `PENDING`, el débito y el crédito se solicitan a Cuentas por gRPC con una clave de idempotencia y se aplican de forma atómica sobre el saldo. Al completarse, la transacción pasa a `COMPLETED` y en la misma transacción de base de datos se registran en una tabla _outbox_ los eventos `auditoria.evento-transaccion` y `notificaciones.evento-transaccion`, que un _relay_ publica en Kafka, de modo que ningún evento se pierde aunque el broker no esté disponible; Cuentas publica a su vez `auditoria.evento-cuenta` por cada movimiento, también mediante su propia tabla _outbox_. Si Cuentas rechaza el débito, no se movió dinero y la transacción termina en `FAILED`. Si el crédito falla, o si no se sabe con certeza si el débito o el crédito se aplicaron (por ejemplo, por un tiempo de espera agotado), la transacción pasa a `COMPENSATING`, el cliente recibe la respuesta de que la operación no se realizó y de que el reintegro está en proceso, y la compensación continúa de forma asíncrona por Kafka según el ADR-01. Al procesar el comando de compensación, Cuentas decide en una sola transacción de su base de datos usando las claves de idempotencia: si el crédito ya se había aplicado, responde `CREDITO_YA_APLICADO` y la transferencia se da por completada; si no, anula la clave del crédito, para que un crédito que llegue tarde sea rechazado, y reintegra el débito si existía (`REINTEGRADO`) o no hace nada si nunca se aplicó (`SIN_DEBITO`); en estos dos casos la transacción termina en `REVERSED`. Por último, un proceso periódico de Transacciones envía a compensación las transferencias que permanezcan en `PENDING` más de dos minutos, lo que cubre el caso en que el servicio se detenga entre el débito y el registro del resultado.
+
+#include "testability.typ"
 
 = Vista física
 // #instruction[

@@ -104,6 +104,10 @@
     [2026-11-15],
     [Se incorporó el atributo de calidad Safety (integridad del dinero): ASR-07, ADR-19 con el chequeo de sanidad de ms-core y la distinción entre Safety y Security en la introducción y el glosario. Se actualizaron los modelos de datos de Auditoría, Transacciones, Tarjetas, Cuentas y Autenticación y Seguridad con lo implementado en los CU-01, CU-09, CU-18, CU-25 y CU-34.],
     [Arantxa Espejo],
+
+    [2026-11-17],
+    [Se incorporó la sección de Validación de Rendimiento y Pruebas de Carga (ASR-02) ejecutada sobre el entorno productivo `https://fpe.acha.dev` (43,814 peticiones en 11 escenarios, hasta 120 VUs), junto con las 8 gráficas de resultados, el análisis del cuello de botella CPU-bound de Argon2id en `ms-seguridad` y el riesgo técnico asociado.],
+    [Equipo de Arquitectura],
   )
 ]
 
@@ -1205,6 +1209,119 @@ A continuación se detallan los Registros de Decisiones Arquitectónicas (ADR) a
 - *Consecuencias Positivas:* Un estado inseguro queda registrado con sus casos en lugar de pasar inadvertido, aunque ninguna validación del código haya fallado, y la revisión sirve también como comprobación manual antes de una entrega.
 - *Consecuencias Negativas / Trade-offs:* El chequeo detecta pero no corrige: la corrección sigue siendo de la compensación o de una persona. La consignación con cheque se excluye de la regla de transacción estancada porque espera el canje por diseño (CU-28). Aún no hay una alerta automática: depende de que el equipo revise el log.
 
+= Validación de Rendimiento y Pruebas de Carga (ASR-02)
+
+Con el fin de validar empíricamente el cumplimiento del atributo de calidad *Performance* definido en el *ASR-02* (tiempo de respuesta inferior a 2 segundos bajo alta concurrencia en operaciones críticas como pagos con código QR `CU-25`, transferencias `CU-30`, consultas de saldo `CU-11` y autenticación `CU-15`) y comprobar en producción el impacto de las decisiones arquitectónicas adoptadas (ADR-02, ADR-11 y ADR-13), se ejecutó una suite automatizada de pruebas de carga y estrés directamente contra el entorno público desplegado en `https://fpe.acha.dev`.
+
+== Estrategia de Pruebas y Entorno Evaluado
+
+La campaña de pruebas fue construida con un generador de carga nativo en Bun (`Bun 1.4.4`) y ejecutada contra el API Gateway productivo (`https://fpe.acha.dev/api`) siguiendo el flujo real extremo a extremo (TLS, Ingress NGINX, validación de sesión perimetral contra `ms-seguridad`, enrutamiento gRPC/HTTP hacia los microservicios, persistencia en PostgreSQL y publicación _Outbox_).
+
+- *Criterio de aceptación (ASR-02):* Percentil 95 (`p95`) menor o igual a `2,000 ms` por operación y escenario bajo carga concurrente.
+- *Volumen ejecutado:* *43,814 peticiones* distribuidas en *11 escenarios* durante `369.84 s`, empleando un _pool_ de *40 usuarios reales* (`MASS` del conjunto de datos cargado en el clúster) configurados en anillo circular (`usuario[i] -> usuario[(i+1) mod N]`) y códigos QR de monto abierto para mantener la integridad contable sin agotamiento de saldos.
+- *Escenarios evaluados:*
+  + `01_baseline_health`: Línea base de red, TLS e Ingress (`GET /api/health`, `1` a `50` VUs).
+  + `02_cu11_consultas`: Consultas de cuentas por gRPC (`GET /cuentas`) y movimientos por HTTP (`GET /cuentas/movimientos`) (`1` a `50` VUs).
+  + `03_cu30_transferencias`: Transferencias atómicas por gRPC (`POST /transacciones/transferencias`) (`1` a `50` VUs).
+  + `04_cu25_pagos_qr`: Generación, decodificación HMAC-SHA256 y pago atómico de QR por gRPC (`1` a `50` VUs).
+  + `05_workload_mixto`: Carga mixta sostenida de `30 VUs` durante `30 s` (65% lecturas, 35% transferencias y pagos QR).
+  + `06_cu15_auth_login`: Inicio de sesión con verificación criptográfica *Argon2id* (`1`, `5`, `10`, `20` VUs).
+  + `07_contencion_lock`: Comparativa de serialización con `pg_advisory_xact_lock` (`15 VUs` sobre un único usuario vs. `15 VUs` multiusuario).
+  + `08_ecosistema_microservicios`: Proxy HTTP sobre cinco microservicios (`ms-tarjetas`, `ms-notificaciones`, `ms-financiero`, `ms-seguridad` y `ms-crm`) (`10`, `25`, `50` VUs).
+  + `09_stress_pico_core`: Estrés extremo más allá de 50 VUs (`75 VUs`, `100 VUs` y ráfaga súbita de `120 VUs`) mezclando lecturas, transferencias y pagos QR.
+  + `10_validar_sesion_e_idempotencia`: Validación masiva de JWT/sesión (`GET /auth/validar` a `50 VUs`) y reintentos idempotentes concurrentes (`25 VUs` en grupos de 5 compartiendo la misma `Idempotency-Key`).
+  + `11_core_grpc_extendido`: Consultas gRPC adicionales en `ms-core` (`/cuentas/beneficiarios`, `/transferencias-externas/catalogo`, `/pagos-automaticos` y `/ahorros-automaticos` a `25` y `50` VUs).
+
+== Resumen Ejecutivo de Resultados por Operación Crítica
+
+La @tbl-asr02-ops resume las métricas agregadas por operación crítica y la @fig-asr02-sla contrasta el comportamiento de máxima concurrencia frente al umbral de `2,000 ms`:
+
+#figure(
+  caption: "Resultados agregados por operación crítica frente al criterio ASR-02 (https://fpe.acha.dev)",
+  [
+    #set text(size: 7.5pt)
+    #table(
+      columns: (2.2fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr),
+      align: (left, right, right, right, right, right, right, center),
+      [*Operación*], [*Reqs*], [*Éxito (%)*], [*Avg (ms)*], [*p50 (ms)*], [*p95 (ms)*], [*p99 (ms)*], [*ASR-02*],
+      [`GET /health`], [3,888], [100.00%], [134.0], [130.6], [148.7], [252.4], [*PASS*],
+      [`GET /cuentas` (gRPC)], [8,483], [100.00%], [186.6], [148.5], [340.0], [488.0], [*PASS*],
+      [`GET /cuentas/movimientos`], [2,712], [100.00%], [178.3], [166.5], [257.6], [320.4], [*PASS*],
+      [`POST /transacciones/transferencias` (gRPC)], [6,651], [100.00%], [299.7], [227.3], [658.0], [899.0], [*PASS*],
+      [`POST /transacciones/qr/pagar` (gRPC)], [5,835], [100.00%], [310.4], [247.8], [676.0], [921.7], [*PASS*],
+      [`POST /transacciones/qr/decodificar`], [764], [100.00%], [153.1], [140.5], [203.1], [289.6], [*PASS*],
+      [`POST /transacciones/qr`], [502], [100.00%], [182.1], [168.4], [291.3], [397.8], [*PASS*],
+      [`GET /auth/validar` (50 VUs)], [2,965], [100.00%], [135.9], [134.4], [149.0], [170.1], [*PASS*],
+      [`POST /transferencias (idempotency-replay)`], [1,335], [100.00%], [150.8], [141.9], [209.1], [259.7], [*PASS*],
+      [`GET /tarjetas` (`ms-tarjetas`)], [808], [100.00%], [142.0], [138.6], [169.6], [200.6], [*PASS*],
+      [`GET /notificaciones/historial`], [806], [100.00%], [141.7], [138.1], [171.2], [200.6], [*PASS*],
+      [`GET /financiero/prestamos`], [805], [100.00%], [142.8], [139.6], [170.9], [199.9], [*PASS*],
+      [`GET /dispositivos` (`ms-seguridad`)], [805], [100.00%], [141.2], [138.2], [163.8], [195.1], [*PASS*],
+      [`GET /limites/:usuarioId` (`ms-seguridad`)], [805], [100.00%], [140.8], [137.7], [165.7], [190.7], [*PASS*],
+      [`GET /pqrs/mis-solicitudes` (`ms-crm`)], [804], [100.00%], [141.6], [138.6], [161.3], [193.6], [*PASS*],
+      [`POST /auth/login` (`CU-15`, Argon2id)], [94], [90.43%], [3,978.3], [3,135.8], [10,167.7], [10,402.4], [*FAIL*],
+    )
+    #set text(size: 11pt)
+  ],
+) <tbl-asr02-ops>
+
+#figure(
+  caption: "Evaluación comparativa ASR-02 en máxima concurrencia frente al umbral de 2,000 ms",
+  align(center, image("assets/performance/01_asr02_sla_comparativo.png", width: 95%)),
+) <fig-asr02-sla>
+
+Diez de los once escenarios evaluados cumplieron el umbral `ASR-02` con amplio margen y `100.0%` de disponibilidad. En particular, a *50 VUs concurrentes*, `CU-11 Consultas` alcanzó `p95 = 248.2 ms` (`296.4 RPS`), `CU-30 Transferencias` registró `p95 = 502.1 ms` (`148.0 RPS`), `CU-25 Pagos QR` obtuvo `p95 = 486.9 ms` (`160.3 RPS`) y el conjunto de los cinco microservicios vía proxy HTTP mantuvo `p95 = 167.9 ms` (`349.8 RPS`).
+
+== Escalabilidad, Carga Sostenida y Estrés Extremo
+
+Las curvas de latencia (@fig-escalado-latencia), capacidad de procesamiento (@fig-throughput-errores) y distribución estadística (@fig-cdf-boxplot) evidencian que las operaciones de lectura mantienen una latencia prácticamente constante entre `1` y `50 VUs` (`p50` entre `130 ms` y `154 ms`), mientras que las operaciones monetarias con escritura atómica (`CU-30` y `CU-25`) escalan de forma gradual hasta ~`500 ms` en `p95`, cuatro veces por debajo del límite permitido.
+
+#figure(
+  caption: "Curvas de escalabilidad de latencia p50 y p95 frente a concurrencia creciente (1 a 50 VUs)",
+  align(center, image("assets/performance/02_escalado_concurrencia_latencia.png", width: 95%)),
+) <fig-escalado-latencia>
+
+#figure(
+  caption: "Throughput exitoso (req/s) y tasa de error (%) por nivel de concurrencia",
+  align(center, image("assets/performance/03_throughput_y_errores_concurrencia.png", width: 95%)),
+) <fig-throughput-errores>
+
+#figure(
+  caption: "Distribución empírica acumulada (CDF) y dispersión (p5–p95) por operación crítica",
+  align(center, image("assets/performance/04_distribucion_latencias_cdf_boxplot.png", width: 95%)),
+) <fig-cdf-boxplot>
+
+Durante la prueba de carga mixta sostenida (`30 VUs` durante `30 s`, @fig-carga-mixta), el sistema procesó `5,514` peticiones a un ritmo estable de `182.71 RPS`, con `p50 = 151.0 ms`, `p95 = 228.1 ms` y cero errores. Al llevar el núcleo transaccional más allá de `50 VUs` (@fig-stress-ecosistema), el clúster soportó *75 VUs* (`p95 = 597.5 ms`, `232.8 RPS`), *100 VUs* (`p95 = 806.6 ms`, `232.7 RPS`) y una ráfaga súbita de *120 VUs* (`p95 = 868.0 ms`, `239.7 RPS`) con *100.0% de respuestas exitosas*, confirmando la eficacia de la fusión de `ms-core` sobre Bun y gRPC (ADR-02 y ADR-11).
+
+#figure(
+  caption: "Evolución temporal segundo a segundo de la carga mixta sostenida (30 VUs)",
+  align(center, image("assets/performance/05_workload_mixto_serie_temporal.png", width: 92%)),
+) <fig-carga-mixta>
+
+#figure(
+  caption: "Estrés extremo del Core (75–120 VUs) y cobertura completa del ecosistema de microservicios",
+  align(center, image("assets/performance/07_stress_pico_y_ecosistema.png", width: 95%)),
+) <fig-stress-ecosistema>
+
+== Análisis Arquitectónico de Cuellos de Botella y Mitigaciones
+
+Las pruebas permitieron aislar con precisión los dos puntos de contención del sistema (@fig-cuellos-botella y @fig-seguridad-idempotencia):
+
++ *Cuello de botella CPU-bound en `CU-15` (`POST /api/auth/login` con Argon2id):* Con `1 VU`, el inicio de sesión cumple el SLA (`p50 = 1,141.7 ms`, `p95 = 1,309.8 ms`). Sin embargo, debido al costo computacional de verificar hashes Argon2id (`64 MiB` de memoria) sobre pods limitados a `300m` de CPU, la capacidad de `ms-seguridad` se satura alrededor de `2.4` inicios de sesión por segundo por réplica: a `5 VUs` el `p95` asciende a `4,536.4 ms`, a `10 VUs` alcanza `8,914.1 ms` y a `20 VUs` el encolamiento supera el _timeout_ de `10 s` del proxy en `api-gateway`, generando `24.32%` de respuestas `502 Bad Gateway` (`p95 = 10,388.9 ms`). En contraste, la validación perimetral de sesiones activas (`GET /api/auth/validar`, basada en firma JWT y consulta ligera de dispositivo) sostuvo *364.57 RPS a 50 VUs con `p95 = 149.0 ms` y 0% de errores*.
++ *Trade-off de integridad en `ms-core` (`pg_advisory_xact_lock`) e idempotencia concurrente:* Para impedir el doble gasto y garantizar los topes diarios (ASR-07 / ADR-19), `ms-core` serializa las transferencias concurrentes del mismo usuario mediante `pg_advisory_xact_lock`. Con `15 VUs` atacando una misma cuenta, el rendimiento se mantiene en `76.13 RPS` (`p95 = 288.2 ms`, `99.87%` éxito con `1` timeout gRPC de `5 s`), frente a `87.74 RPS` (`p95 = 234.8 ms`, `100%` éxito) cuando la carga se distribuye entre múltiples usuarios. Asimismo, al someter `POST /transacciones/transferencias` a `25 VUs` enviando reintentos concurrentes con la misma `Idempotency-Key`, el sistema procesó `1,335` peticiones (`164.33 RPS`, `p95 = 209.1 ms`) con *cero errores y cero débitos duplicados*.
+
+*Acciones de mitigación identificadas para `CU-15`:* (i) asignar un presupuesto dedicado de CPU y políticas de autoescalado horizontal (HPA) más agresivas para `ms-seguridad` o aislar `/auth/login` en un despliegue independiente; (ii) calibrar los parámetros de Argon2id siguiendo la guía OWASP (`m=19 MiB, t=2`) acorde a la cuota de CPU del contenedor; y (iii) incorporar control de admisión / _rate limiting_ en el gateway para degradar ordenadamente antes de agotar el _timeout_ de `10 s`.
+
+#figure(
+  caption: "Cuello de botella criptográfico (Argon2id vs gRPC) e impacto de serialización por usuario",
+  align(center, image("assets/performance/06_analisis_cuellos_botella.png", width: 95%)),
+) <fig-cuellos-botella>
+
+#figure(
+  caption: "Capacidad de validación perimetral de sesión (/auth/validar) y resiliencia idempotente",
+  align(center, image("assets/performance/08_seguridad_validar_e_idempotencia.png", width: 95%)),
+) <fig-seguridad-idempotencia>
+
 = Riesgos técnicos
 // #instruction[
 //   Indicar todo lo que puede salir mal producto de cómo ha sido definida la arquitectura. Por ejemplo, componentes que pueden funcionar mal bajo ciertas condiciones, eventos que pueden hacer que se incumplan algunos atributos de calidad, etc. \
@@ -1298,6 +1415,13 @@ La tabla a continuación clasifica los riesgos arquitectónicos del sistema en f
   [Media],
   [Fijar la versión, aislar su uso en un único módulo por servicio (publicación del _relay_ y consumidores) y cubrirlo con pruebas.],
   [Reemplazar el módulo por otro cliente de Kafka compatible con Bun sin modificar los casos de uso, ya que solo el _relay_ y los consumidores dependen de la librería.],
+
+  [Saturación de CPU en `ms-seguridad` ante picos de inicio de sesión (`CU-15` / Argon2id)],
+  [Media],
+  [Alto],
+  [Alta],
+  [Aumentar cuota de CPU y réplicas mínimas/HPA para `ms-seguridad` (o aislar `/auth/login`), calibrar parámetros Argon2id acorde a OWASP (`19 MiB`) para el perfil de contenedor y mantener verificación local de JWT en rutas protegidas.],
+  [Aplicar limitación de tasa (_rate limiting_) y cola de admisión en `api-gateway` antes del _timeout_ de `10 s` para devolver `429 Too Many Requests` en lugar de `502 Bad Gateway`, preservando la disponibilidad de usuarios ya autenticados (`GET /auth/validar` opera a >360 RPS).],
 )
 #set text(size: 11pt)
 

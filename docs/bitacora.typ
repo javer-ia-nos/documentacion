@@ -242,7 +242,67 @@
     - Juliana Sofia Novoa Solano
     - Sara Rodriguez Urueña
     - Samuel Beltrán Martínez
-  ]
+  ],
+
+  [14],
+  [Reunión],
+  [19-10-2026],
+  [
+    Reunión semanal de seguimiento y exposición de avances de la semana (8:00 PM):
+    - Miguel expuso el flujo completo de consulta de saldo y movimientos (CU-11 en `ms-core` y `web`), la vinculación obligatoria de tarjetas débito a cuentas, el campo `nombre_completo` en autenticación/perfil y la estandarización de pruebas unitarias tipadas con Elysia Treaty (`treaty(app)`) en los microservicios.
+    - Juliana presentó las primeras iteraciones de beneficiarios (CU-03) y cuentas corrientes (CU-06).
+    - Samuel expuso la entrega de CDT e inversiones (CU-12) y el avance en pruebas de integración.
+    - Sara presentó los avances en notificaciones (CU-14) y tarjetas débito/bloqueo (CU-20, CU-22).
+    - Arantxa presentó la implementación de límites por cuenta (CU-19), y Salomón expuso el motor ISO 20022 para transferencias externas (CU-26), el programador de pagos automáticos (CU-24), los reportes de pruebas en HTML/PDF y los ajustes de Kafka/HPA en Kubernetes.
+    - Compromisos de la semana: iniciar el módulo de roles y permisos RBAC (CU-16), avanzar en préstamos (CU-13) e intereses/impuestos (CU-31), y estabilizar las semillas de base de datos en `infra`.
+  ],
+  [Todos],
+
+  [15],
+  [Reunión],
+  [26-10-2026],
+  [
+    Reunión semanal de seguimiento y exposición de avances (8:00 PM):
+    - Arantxa expuso el flujo de ahorro automático programado (CU-09) y Samuel presentó la primera entrega de préstamos (CU-13) e intereses e impuestos (CU-31).
+    - Se revisó el estado de los reportes automatizados de pruebas y la sincronización de esquemas y seeds en las bases de datos de producción.
+    - Miguel presentó la arquitectura propuesta para el control de acceso basado en roles (RBAC, CU-16) y conmutación dinámica de rol (CU-32) entre `ms-seguridad`, `api-gateway` y el portal administrativo en `web`, definiendo su implementación prioritaria para esa semana.
+    - Se acordó iniciar la construcción del repositorio de demostración automatizada (`demo`) y preparar el cierre de dispositivos confiables (CU-17) y seguridad de cuenta (CU-18).
+  ],
+  [Todos],
+
+  [16],
+  [Reunión],
+  [02-11-2026],
+  [
+    Reunión semanal de seguimiento y exposición de avances (8:00 PM):
+    - Miguel expuso la implementación transversal de RBAC (CU-16) y conmutación de rol (CU-32) en `ms-seguridad`, `api-gateway`, `ms-core`, `ms-financiero`, `ms-tarjetas` y el nuevo portal administrativo (`AdminPortal.tsx` y `RoleSwitcher.tsx`) en `web`, junto con el script `scripts/assign-role.ts`.
+    - Salomón presentó dispositivos confiables (CU-17), pagos presenciales en ventanilla (CU-28) y la primera versión en vivo del proyecto `demo`.
+    - Arantxa expuso la gestión de seguridad de la cuenta (CU-18) y se ajustaron permisos de roles entre cliente y funcionarios.
+    - Compromisos de la semana: desarrollar gestión de cuentas de ahorros y subcuentas (CU-07, CU-08), implementar PQRS (CU-04), ejecutar la estandarización global de formato (`bun format`) y verificación de estilo en CI, y actualizar los ADRs de arquitectura.
+  ],
+  [Todos],
+
+  [17],
+  [Reunión],
+  [09-11-2026],
+  [
+    Reunión semanal de seguimiento y exposición de avances (8:00 PM):
+    - Miguel presentó la estandarización transversal de formato (`bun format`) y la integración de verificación automática de estilo en los workflows de GitHub Actions de todos los repositorios, así como los scripts operativos de mantenimiento.
+    - Juliana expuso las primeras iteraciones de cuentas de ahorros (CU-07) y subcuentas (CU-08); Sara presentó el módulo de PQRS (CU-04); Arantxa expuso historial de actividad (CU-01) y pagos con código QR (CU-25); y Samuel presentó la primera entrega de pago de facturas de servicios (CU-27).
+    - Se acordó la hoja de ruta para la semana final de desarrollo: evaluación de tarjetas (CU-33), chat de soporte (CU-02), certificados bancarios (CU-10), avances de tarjeta de crédito (CU-23), pagos con tarjetas y ampliación de pruebas E2E e imágenes en GHCR.
+  ],
+  [Todos],
+
+  [18],
+  [Reunión],
+  [16-11-2026],
+  [
+    Reunión semanal de cierre técnico y preparación de entrega final (8:00 PM):
+    - Miguel expuso avances de tarjeta de crédito (CU-23), compras/pagos con tarjetas (`ComercioDemo`), filtros administrativos en `ms-core`/`web` y la limpieza de referencias internas en la interfaz; presentó además el cargador masivo de datos bancarios para Kubernetes (`db-loading/`), la renovación de la CLI interactiva de `demo` con Playwright y la ejecución de la suite de pruebas de carga y rendimiento (`performance/`) para validar el ASR-02 en `https://fpe.acha.dev`.
+    - Sara expuso el chat de soporte y FAQs en `ms-crm` (CU-02); Juliana presentó certificados bancarios (CU-10); Samuel presentó evaluación de tarjetas (CU-33), billeteras externas (CU-29) y cierre de CU-12/CU-27; Arantxa expuso incremento de cupo (CU-34), idempotencia y la definición del atributo de calidad *Safety* (chequeo de sanidad en `ms-core`); y Salomón presentó las correcciones de seguridad/OWASP, monitoreo con Prometheus y estabilización del entorno de integración.
+    - Compromisos finales: consolidar los resultados de rendimiento (`ASR-02`) en `arch-description.typ`, afinar los flujos en vivo de `demo` y actualizar las bitácoras individuales y grupal para la sustentación.
+  ],
+  [Todos],
 )
 
 = Bitacoras personales

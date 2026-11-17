@@ -214,7 +214,7 @@
   [
     Se define una serie de reglas a cumplir para la entrega final del proyecto de arquitectura de software. Comprende las semanas desde la 9 hasta la ultima de clase.
 
-    Todos los integrantes aceptan por unanicidad.
+    Todos los integrantes aceptan por unanimidad.
 
     En general es cada semana realizar al menos un CU y exponerlo el lunes siguiente en una reunión. 8PM lunes.
   ],

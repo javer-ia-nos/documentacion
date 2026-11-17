@@ -3,10 +3,7 @@
 #table(
   columns: 4,
   table.header([*n°*], [*Descripción*], [*Fecha*], [*Actividad realizada*]),
-  [1],
-  [Se realizó un diagrama de código inicial. ],
-  [2026-08-22],
-  [Diagrama],
+  [1], [Se realizó un diagrama de código inicial. ], [2026-08-22], [Diagrama],
 
   [2],
   [Se revisaron los casos de uso correspondientes a los requisitos de modificabilidad, se hizo un primer análisis de lo que se podría implementar para los CU],
@@ -23,69 +20,40 @@
   [2026-09-09],
   [Diagrama],
 
-  [5],
-  [Se realizó el diagrama de código para web para el componente de pagos],
-  [2026-09-15],
-  [Diagrama],
+  [5], [Se realizó el diagrama de código para web para el componente de pagos], [2026-09-15], [Diagrama],
 
-  [6],
-  [Se realizó el diagrama de código para web el componente financiero],
-  [2026-09-15],
-  [Diagrama],
+  [6], [Se realizó el diagrama de código para web el componente financiero], [2026-09-15], [Diagrama],
 
   [7],
   [Se realizaron los casos de usos correspondientes 2-4-5-14-20-21-22-23 donde el 21 y 22 se hizo con ayuda de Juliana Novoa],
   [2026-09-19],
   [Casos de uso],
 
-  [8],
-  [Se modificaron/arreglaron los diagramas de ER de crm y tarjetas],
-  [2026-09-20],
-  [Diagramas],
+  [8], [Se modificaron/arreglaron los diagramas de ER de crm y tarjetas], [2026-09-20], [Diagramas],
 
   [9],
   [Se modificaron/arreglaron los casos de uso 2-4-5-14-20-21-22-23 con algunas cosas que faltaban],
   [2026-09-21],
   [Casos de uso],
 
-  [10],
-  [Se realizaron algunos de los test de integración],
-  [2026-09-21],
-  [Test],
+  [10], [Se realizaron algunos de los test de integración], [2026-09-21], [Test],
 
-  [11],
-  [Se realizó el diagrama de modelo de dominio],
-  [2026-09-22],
-  [Diagrama],
+  [11], [Se realizó el diagrama de modelo de dominio], [2026-09-22], [Diagrama],
 
-  [12],
-  [Se actualizaron todos los archivos y se descargó la BD],
-  [2026-10-11],
-  [Descargas],
+  [12], [Se actualizaron todos los archivos y se descargó la BD], [2026-10-11], [Descargas],
 
-  [13],
-  [Se realizó el CU-14. Backend, frontend y BD],
-  [2026-10-15],
+  [13], [Se realizó el CU-14. Backend, frontend y BD], [2026-10-15], [Casos de uso],
+
+  [14], [Se realizó el CU-20. Backend, frontend y BD], [2026-10-15], [Casos de uso],
+
+  [15], [Se realizó el CU-04 y parte del CU-05. Backend, frontend y BD], [2026-11-03], [Casos de uso],
+
+  [16], [Se realizó el CU-02. Backend, frontend y BD], [2026-11-12], [Casos de uso],
+
+  [17], [Hacer arreglos en el CU-02], [2026-11-13], [Casos de uso],
+
+  [18],
+  [Se mejoró el chatbot de soporte (CU-02) en `ms-crm` con filtrado por categoría, detección de temáticas cruzadas, las 5 FAQs oficiales y corrección de formato.],
+  [2026-11-15],
   [Casos de uso],
-
-  [14],
-  [Se realizó el CU-20. Backend, frontend y BD],
-  [2026-10-15],
-  [Casos de uso],
-
-  [15],
-  [Se realizó el CU-04 y parte del CU-05. Backend, frontend y BD],
-  [2026-11-3],
-  [Casos de uso],
-
-  [16],
-  [Se realizó el CU-02. Backend, frontend y BD],
-  [2026-11-12],
-  [Casos de uso],
-
-  [17],
-  [Hacer arreglos en el CU-02],
-  [2026-11-13],
-  [Casos de uso],
-
 )

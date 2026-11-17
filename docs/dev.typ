@@ -230,23 +230,25 @@ Para eliminar por completo los *mocks* y probar la interacción real de las APIs
 1. Cada microservicio compila y publica su imagen Docker oficial en GitHub Container Registry (`ghcr.io/javer-ia-nos/<servicio>:latest`) mediante su flujo de CI en `.github/workflows/docker-publish.yaml`.
 2. El repositorio `integracion` contiene un `docker-compose.yml` que orquesta la flota en modo prueba:
   - *Borde:* `api-gateway` (puerto `4860`).
-  - *Microservicios:* Los 8 servicios del banco (`ms-seguridad`, `ms-cuentas`, `ms-transacciones`, `ms-financiero`, `ms-tarjetas`, `ms-crm`, `ms-notificaciones`, `ms-auditoria`) configurados en `NODE_ENV=test` para operar con sus motores de persistencia embebidos nativos en memoria (SQLite nativo de Bun), evitando dependencias pesadas de contenedores de base de datos externas o brokers temporales.
+  - *Microservicios e infraestructura:* Los 7 microservicios del banco (`ms-core` —que unifica Cuentas y Transacciones—, `ms-seguridad`, `ms-financiero`, `ms-tarjetas`, `ms-crm`, `ms-notificaciones` y `ms-auditoria`), el frontend `web`, una instancia PostgreSQL dedicada por servicio inicializada con su `seed.sql`, un broker Apache Kafka (KRaft) y el simulador de pagos externos (`banca-mock-pagos-externos`).
 3. Los tests de integración se ejecutan desde fuera de los contenedores como un cliente HTTP real (Black Box Testing), consumiendo las rutas a través del API Gateway (`http://localhost:4860`) o directamente al servicio evaluado.
 
 === 2. Estructura del Repositorio `integracion`
 
 ```
 integracion/
-├── docker-compose.yml           # Levanta Gateway y los 8 microservicios
-├── package.json                 # Scripts de orquestación y runner de Bun
-├── README.md                    # Instrucciones de uso para el equipo
-└── src/
-    └── test/                    # Los 18 tests de integración
-        ├── int-01-auth-handshake.test.ts
-        ├── int-02-auditoria.test.ts
-        ├── int-03-dispositivos-topes.test.ts
-        ├── int-04-transferencias-atomicas.test.ts
-        └── ...
+├── docker-compose.yml            # Levanta Gateway, Web, los 7 microservicios, Postgres y Kafka
+├── docker-compose.cu12-tests.yml # Stack aislado para CU-12, CU-13, CU-27, CU-31 y CU-33
+├── package.json                  # Scripts de orquestación y runner de Bun
+├── README.md                     # Instrucciones de uso para el equipo
+├── src/
+│   └── tests/                    # Suite principal E2E (19 archivos HTTP, gRPC, Kafka y Bun.WebView)
+│       ├── int-04-cu30-transferencias.test.ts
+│       ├── int-05-cu26-transferencias-externas.test.ts
+│       ├── int-08-cu25-qr.test.ts
+│       ├── int-09-cu09-ahorro-automatico.test.ts
+│       └── ...
+└── tests/                        # Pruebas de integración aisladas (CU-12, CU-13, CU-27, CU-31, CU-33)
 ```
 
 === 3. Anatomía de un Test de Integración E2E (Sin Mocks)
@@ -336,7 +338,7 @@ describe("INT-04: Transferencia Bancaria Atómica (ms-transacciones <-> ms-cuent
 === 4. ¿Cómo ejecutar y probar la suite?
 
 ==== Modo 1: Ejecución completa en un solo comando (Recomendado para CI y pruebas generales)
-Descarga las imágenes más recientes de GHCR, levanta los contenedores en segundo plano, corre los 18 tests y luego desmonta el entorno:
+Descarga las imágenes más recientes de GHCR, levanta los contenedores en segundo plano, corre las pruebas secuencialmente (`bun test --parallel=1`) y luego desmonta el entorno:
 ```bash
 cd integracion
 bun run test:e2e
@@ -350,11 +352,11 @@ bun run test:e2e
   ```
 2. Ejecuta únicamente tu test de integración asignado cuantas veces necesites:
   ```bash
-  bun test src/test/int-07-beneficiarios.test.ts
+  bun test src/tests/int-04-cu30-transferencias.test.ts
   ```
-3. Si necesitas ver los logs de un servicio en vivo (ej. `ms-transacciones`):
+3. Si necesitas ver los logs de un servicio en vivo (ej. `ms-core`):
   ```bash
-  docker compose logs -f ms-transacciones
+  docker compose logs -f ms-core
   ```
 4. Al terminar tu jornada de pruebas, apaga el entorno:
   ```bash
@@ -374,7 +376,7 @@ Las llamadas síncronas entre servicios (las que necesitan respuesta inmediata, 
 
 === Contratos `.proto`
 
-- El contrato canónico vive en el repositorio del servicio que lo implementa: `ms-cuentas/proto/cuentas.proto` y `ms-seguridad/proto/seguridad.proto`. Los clientes, como `ms-transacciones`, guardan una copia idéntica.
+- El contrato canónico vive en el repositorio del servicio que lo implementa: `ms-core/proto/core.proto`. Los clientes, como `api-gateway`, guardan una copia idéntica.
 - Después de cambiar un `.proto`, regenerar con `bun run proto:gen` y versionar el código generado (`src/grpc/generated/`). `bun run proto:check` avisa si la copia de un cliente quedó desalineada respecto a la canónica.
 - Los montos viajan como texto decimal (`"150000.00"`), nunca como número de punto flotante.
 - Códigos de error: `NOT_FOUND` (no existe), `FAILED_PRECONDITION` (rechazo definitivo: no se aplicó nada) y `UNAUTHENTICATED` (falta el token interno). Cualquier otro código significa un resultado incierto: se reintenta con la misma clave de idempotencia y, si persiste, la transferencia pasa a compensación.
@@ -388,8 +390,8 @@ Cada movimiento en Cuentas lleva la clave `<transactionId>:debit`, `<transaction
 #table(
   columns: (auto, 1fr),
   [*Variable*], [*Uso*],
-  [`GRPC_PORT`], [Puerto del servidor gRPC (50051) en `ms-cuentas` y `ms-seguridad`.],
-  [`CUENTAS_GRPC_URL`, `SEGURIDAD_GRPC_URL`], [Destino de los clientes en `ms-transacciones`. En el clúster: `dns:///<servicio>-grpc.<namespace>.svc.cluster.local:50051` (Service _headless_, balanceo `round_robin`); en local: `localhost:50051` y `localhost:50052`.],
+  [`GRPC_PORT`], [Puerto del servidor gRPC (50051) en `ms-core`.],
+  [`CORE_GRPC_URL`], [Destino de los clientes gRPC (ej. `api-gateway` y `ms-financiero`). En el clúster: `dns:///ms-core-grpc.<namespace>.svc.cluster.local:50051` (Service _headless_, balanceo `round_robin`); en local: `localhost:50051`.],
   [`INTERNAL_SERVICE_TOKEN`], [Token interno de servicio que viaja en el metadato `x-internal-token`. Sin él, los servidores responden `UNAUTHENTICATED`. En el clúster sale de Ansible Vault; en local, cualquier valor igual en ambos servicios.],
   [`KAFKA_BROKERS`], [Brokers de Kafka para el _relay_ del _outbox_ y los consumidores. Si no está definida, los eventos quedan pendientes en la tabla _outbox_ y no se pierden.],
 )
@@ -399,8 +401,8 @@ Cada movimiento en Cuentas lleva la clave `<transactionId>:debit`, `<transaction
 Cuando el servidor tiene _reflection_ habilitado se puede usar `grpcurl`. Si no, se le pasa el `.proto`:
 
 ```bash
-grpcurl -plaintext -import-path proto -proto cuentas.proto \
+grpcurl -plaintext -import-path proto -proto core.proto \
   -H "x-internal-token: $INTERNAL_SERVICE_TOKEN" \
-  -d '{"cuentaId": "b1000000-0000-4000-8000-000000000001"}' \
-  localhost:50051 javerianos.cuentas.v1.CuentasService/ConsultarCuenta
+  -d '{}' \
+  localhost:50051 javerianos.core.v1.CoreService/ListarCuentas
 ```

@@ -2394,7 +2394,7 @@ estaba en `ms-core` (A03), el pipeline usaba etiquetas móviles (`:latest`,
 *Fecha y hora:* 15 de noviembre de 2026 \
 *Personas involucradas:* Salomón Alfredo Ávila Larrotta \
 *Tipo de entrada:* Corrección / Documentación \
-*Commit:* pendiente (`arch-description.typ`) \
+*Commit:* #link(commit_url + "07a21bf27c16997cccf4d97c3ec2c152454b74a5", [07a21bf · «Actualizacion de la bitacora y documento de arquitectura»]) \
 *Archivos:* `api-gateway/src/tests/core-grpc.test.ts`, `api-gateway/src/rbac.ts`,
 `ms-core/src/tests/cu25-qr.test.ts`, `owasp/.github/workflows/owasp.yaml`,
 `integracion/docker-compose.yml`, `integracion/docker-compose.cu12-tests.yml`,

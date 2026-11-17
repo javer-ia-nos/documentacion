@@ -22,7 +22,7 @@
   [Diagramas],
 
   [4],
-  [Se agrego duocumentación interna para el equipo en los readme del repo y se mejoró la calidad de las imagenes generadas por el workflow e incrustadas en el documento final.],
+  [Se agregó documentación interna para el equipo en los readme del repo y se mejoró la calidad de las imagenes generadas por el workflow e incrustadas en el documento final.],
   [2026-08-25],
   [Documentación y diagramas],
 

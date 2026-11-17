@@ -136,7 +136,7 @@ pasan (14 nuevas de CU-09; ms-core queda en 369 en total, de las cuales fallan s
 que necesitan `xmllint` en Windows), y comprobé desde la web y en la base de datos que el ahorro
 mueve los saldos, que el caso sin saldo se omite y que pausar, reanudar y cancelar funcionan.
 Los cambios se subieron a ms-core, api-gateway, web e integracion.
-#link("https://github.com/javer-ia-nos/ms-core/commit/XXXXXXX", "XXXXXXX")
+#link("https://github.com/javer-ia-nos/ms-core/commit/793927a1c91a7e915f711fb6628df887ce0be332", "793927a")
 
 === 01/11/2026 — Implementación CU-18 (Gestión de seguridad de la cuenta)
 Reimplementé en la v2 el cambio de contraseña y el segundo factor, que en la v1 ya había hecho con TOTP,

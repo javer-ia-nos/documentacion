@@ -62,8 +62,16 @@
   [15],
   [Implementación completa del caso de uso #10 (Certificados Bancarios y Validación Pública) en ms-financiero, integración perimetral con api-gateway, pruebas automáticas e interfaz web con validación pública.],
   [2026-11-15],
-  [Implementación Caso de Uso #10 - Certificados Bancarios y Validación Pública],
-  [2026-11-15]
   [16],
+  [Implementación Caso de Uso #10 - Certificados Bancarios y Validación Pública],
+  [2026-11-15],
+  [17],
   [Primera iteracion de las diapositivas de la presentación final],
+  [2026-11-15],
+  [18],
+  [Requisitos no funcionales (integrabilidad y usabilidad) registrados en la dispositiva final],
+  [2026-11-16],
+  [19],
+  [Fix en el caso de uso #10],
+  [2026-11-16]
 )

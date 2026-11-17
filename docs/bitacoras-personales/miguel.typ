@@ -218,4 +218,19 @@
   [Diseño e implementación de la suite de pruebas de carga, estrés y rendimiento (`performance/`) para validar el ASR-02 (`< 2s` bajo concurrencia) contra `https://fpe.acha.dev`: runner concurrente en Bun con 11 escenarios (`01_baseline_health` a `11_core_grpc_extendido`, incluyendo gRPC, transferencias, QR, login Argon2id, contención de locks `pg_advisory_xact_lock`, idempotencia y picos de hasta 120 VUs), exportación de telemetría CSV/JSON, generación de 8 gráficas en Python (`generar_graficas.py`) y reportes en Markdown y HTML.],
   [2026-11-16],
   [Rendimiento y pruebas de carga],
+
+  [42],
+  [Ajustes de despliegue e interfaz web: habilitación de montos libres en subcuentas (`SubaccountsManager.tsx`), reubicación del endpoint de pagos del comercio demo fuera de `/api` (`/comercio-demo/pagar`) y eliminación de emojis en componentes (`SeguridadCuenta.tsx`, `SupportAdminPortal.tsx`, `SupportChatWidget.tsx`) en `web`; además de la configuración de `MS_FINANCIERO_URL` en `ms-tarjetas` y migración `014-cu27-service-payments.sql` en `infra`.],
+  [2026-11-17],
+  [Frontend e infraestructura],
+
+  [43],
+  [Consolidación de la CLI interactiva y usabilidad de la suite de demostración en `demo`: mejoras en `lib/control.ts`, `lib/entorno.ts`, `lib/preparar.ts`, `lib/sesion.ts` y actualización transversal de los scripts de casos de uso (`cu-01` a `cu-34`) para facilitar la demostración en vivo contra el clúster.],
+  [2026-11-17],
+  [Demostración E2E y herramientas],
+
+  [44],
+  [Documentación formal en `docs/arch-description.typ` de la campaña de Validación de Rendimiento y Pruebas de Carga (`ASR-02`) ejecutada en producción (`https://fpe.acha.dev`, 43,814 peticiones en 11 escenarios hasta 120 VUs), integrando las 8 gráficas de resultados y reportes en `docs/assets/performance/`, tablas de métricas agregadas y el análisis del cuello de botella CPU-bound de Argon2id en `ms-seguridad`.],
+  [2026-11-17],
+  [Documentación y arquitectura],
 )

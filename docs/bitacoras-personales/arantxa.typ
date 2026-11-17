@@ -151,10 +151,10 @@ responde `428` con `requiere2FA: true` si falta el código, y lo valida antes de
 la clave o el código son incorrectos con la sesión activa, porque la web cierra la sesión ante cualquier
 `401`. Cada cambio publica `seguridad.cambio-cuenta` por outbox y ms-notificaciones lo convierte en una alerta
 al usuario. En la web creé la página `/seguridad` (con enlaces a Dispositivos y Límites), el QR para la app
-autenticadora y el campo del código en el login. Dejé fuera el bloqueo por intentos fallidos porque la
-documentación no define si es automático o lo hace un administrador. Las pruebas pasan (29 nuevas en
-ms-seguridad, que queda en 102, y 32 en ms-notificaciones) y lo probé desde la web con una app
-autenticadora real y en la base de datos. Los cambios se subieron a ms-seguridad, ms-notificaciones y web.
+autenticadora y el campo del código en el login. El bloqueo por intentos fallidos se incorporó después, como 
+parte del análisis OWASP del equipo (ADR-18). Las pruebas pasan (29 nuevas en ms-seguridad, que queda en 102,
+y 32 en ms-notificaciones) y lo probé desde la web con una app autenticadora real y en la base de datos. 
+Los cambios se subieron a ms-seguridad, ms-notificaciones y web.
 
 === 08/11/2026 — Implementación CU-01 (Historial de actividad y sesiones) e INT-02
 Construí desde cero el microservicio ms-auditoria, que hasta ahora solo tenía el endpoint de salud, y con
@@ -199,3 +199,13 @@ con la cámara y la opción de pegar el código, además de la etiqueta del movi
 cuenta. Las pruebas pasan (17 nuevas en ms-core, 7 en api-gateway y la prueba de integración INT-08, de la que
 comprobé todo salvo la parte que depende de Kafka) y lo probé desde la web con dos usuarios y la cámara real.
 Los cambios se subieron a ms-core, api-gateway, web e integracion.
+
+=== 15/11/2026 — Revisión previa a la entrega y Safety del dinero
+Antes de la entrega revisé los siete repositorios contra mis casos de uso y agregué el atributo Safety. 
+En ms-core creé un chequeo de sanidad que solo lee la base de datos y busca siete estados que nunca deben 
+darse: saldo negativo, movimiento inválido, doble débito de una misma transacción, transferencia descuadrada,
+dinero retenido sin reintegro en una transacción fallida o revertida, transacción estancada en PENDING o 
+COMPENSATING, y evento del outbox sin publicar. Corre cada cinco minutos desde el arranque, deja en el log 
+lo que encuentre y también puede ejecutarse con `bun run sanidad`, que termina con error si algo está roto.
+En integracion agregué una prueba de punta a punta del bloqueo por intentos fallidos. Documenté el atributo en el
+ASR-07 y el ADR-19, y actualicé los modelos de datos. Los cambios se subieron a ms-core, integracion y documentacion.

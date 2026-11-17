@@ -14,22 +14,22 @@
   [Diagramas],
 
   [3],
-  [Se implementaron los casos de uso CU-12, CU-13, CU-27 y CU-29 en el microservicio financiero, incluyendo la creación de CDT e inversiones, gestión de préstamos y amortización, pago de facturas y recargas móviles, y vinculación de billeteras externas.],
+  [Se implementaron los casos de uso financieros CU-12 y CU-13 en `ms-financiero`: constitución de CDT e inversiones, cálculo de rendimiento, evaluación, desembolso y amortización de préstamos. Los pagos de facturas (CU-27) se implementan en el módulo Pagos de Facturas de `ms-core` y las billeteras externas (CU-29) en `ms-tarjetas`.],
   [2026-09-15],
   [Desarrollo],
 
   [4],
-  [Se diseñaron los contratos, controladores, casos de uso, repositorios y esquemas de persistencia necesarios para cada funcionalidad, tomando como referencia la estructura y buenas prácticas del microservicio de transacciones.],
+  [Se diseñaron contratos, controladores, casos de uso, repositorios y esquemas de persistencia para cada funcionalidad. En V2, Cuentas y Transacciones se fusionaron como módulos internos de `ms-core`, por lo que la coordinación de saldos no depende de servicios separados.],
   [2026-09-15],
   [Desarrollo],
 
   [5],
-  [Se configuró Bun en el entorno de desarrollo y se elaboraron pruebas automatizadas para validar flujos exitosos, reglas de negocio y validaciones de los cuatro casos de uso. Se verificó la ejecución correcta de 14 pruebas y la validación de tipos con TypeScript.],
+  [Se configuró Bun en el entorno de desarrollo y se elaboraron pruebas automatizadas para validar flujos exitosos, reglas de negocio, validaciones y errores. Se verificó la ejecución correcta de 14 pruebas y la validación de tipos con TypeScript. Los productos financieros usan puertos inyectables para sustituir gRPC y proveedores externos por dobles de prueba, permitiendo resultados repetibles.],
   [2026-09-15],
   [Pruebas],
 
   [6],
-  [Se construyeron y ejecutaron exitosamente las pruebas de integración automatizadas INT-13, INT-14 e INT-15 en Bun, validando la comunicación HTTP punto a punto y el flujo transaccional entre ms-cuentas, ms-financiero y ms-transacciones.],
+  [Se construyeron pruebas de integración en el repositorio `integracion` para CU-12, CU-13, CU-27, CU-31 y CU-33. Estas levantan Docker Compose y bases aisladas; CU-12 y CU-13 validan la coordinación de `ms-financiero` con `ms-core`, y CU-27 valida idempotencia, reversión y persistencia del pago de servicios.],
   [2026-09-22],
   [Pruebas],
 
@@ -57,4 +57,9 @@
   [Se completó el flujo de evaluación de riesgo y aprobación administrativa de solicitudes de tarjetas de crédito (CU-33) entre `ms-financiero`, `ms-tarjetas`, `web`, `infra` e `integracion` (`tests/cu33.integration.test.ts`), cerrando las entregas finales y formato en los repositorios.],
   [2026-11-16],
   [Desarrollo y pruebas],
+
+  [12],
+  [Se actualizó la trazabilidad de la entrega V2: rutas visuales, servicios dueños, pruebas unitarias e integración, CI y observabilidad. Se dejó explícito que GitHub Actions es la evidencia automática de testabilidad y que Prometheus/Grafana observa actualmente la infraestructura del clúster, no sustituye las pruebas de negocio.],
+  [2026-11-17],
+  [Testabilidad y documentación],
 )
